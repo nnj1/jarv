@@ -4,13 +4,13 @@ extends DirectionalLight3D
 @export var sun_color: Color = Color("fff5f2")
 @export var sunset_color: Color = Color("ffad64")
 
-var time: float = 0.0
+var time: float = TAU/2
 
 func _process(delta):
 	time += delta * day_speed
 	
 	# Rotate the sun. Wrap the value so it stays between 0 and 2*PI (360 degrees)
-	rotation.x = fmod(time, TAU) 
+	rotation.x = fmod(time, 0) 
 	
 	# Adjust intensity based on the angle of the sun
 	# rotation.x > 0 and < PI means the sun is below the horizon
@@ -18,10 +18,9 @@ func _process(delta):
 	
 	if sun_height < 0:
 		# Day time (Sun is up)
-		light_intensity_lumens = abs(sun_height) * 10.0
+		light_intensity_lumens = abs(sun_height) * 20.0
 		# Interpolate color for a sunset effect
 		light_color = sunset_color.lerp(sun_color, abs(sun_height))
-		
 		
 	else:
 		# Night time (Sun is down)

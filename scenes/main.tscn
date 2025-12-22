@@ -1,46 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv88j0owojl6j"]
+[gd_scene load_steps=4 format=3 uid="uid://bv88j0owojl6j"]
 
 [ext_resource type="Script" uid="uid://d4gju1i54wlpr" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://duubjsky2ftc6" path="res://scenes/menu_background.tscn" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://ddwwdux6wtbf" path="res://assets/23-234533_wood-plank-clipart-transparent-background-hd-png-download.png" id="2_sugp2"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_o5qli")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 320.0
 offset_top = 319.0
 offset_right = 961.0
 offset_bottom = 415.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.52
 text = "localhost"
 placeholder_text = "hostname"
 
-[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="TextEdit2" type="TextEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "9999"
 placeholder_text = "port"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Start Server"
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Start Client"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="CanvasLayer"]
+z_index = 1
 offset_left = 320.0
 offset_top = 134.0
 offset_right = 491.0
@@ -48,5 +54,23 @@ offset_bottom = 244.0
 theme_override_font_sizes/font_size = 80
 text = "JaRV"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Button2" to="." method="_on_join_pressed"]
+[node name="23234533WoodPlankClipartTransparentBackgroundHdPngDownload" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(407.5, 197.75)
+scale = Vector2(0.20546876, 0.20928341)
+texture = ExtResource("2_sugp2")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="MenuBackground" parent="CanvasLayer2/SubViewportContainer/SubViewport" instance=ExtResource("2_0wfyh")]
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button2" to="." method="_on_join_pressed"]

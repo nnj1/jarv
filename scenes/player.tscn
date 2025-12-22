@@ -48,6 +48,7 @@ shape = SubResource("CapsuleShape3D_3vyb7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1435446, 0)
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_3vyb7")
 surface_material_override/0 = SubResource("StandardMaterial3D_3vyb7")
 
@@ -74,7 +75,11 @@ replication_config = SubResource("SceneReplicationConfig_3vyb7")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_g2els")
+cast_shadow = 0
 amount = 4000
 fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_qhqgy")
 draw_pass_1 = SubResource("QuadMesh_3vyb7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5302463, 0)

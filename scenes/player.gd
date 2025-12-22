@@ -38,12 +38,14 @@ var weapon_index = 0
 var max_weapons = 199
 
 func start_driving(given_seat_node):
-	is_driving = true
 	seat_node = given_seat_node
+	is_driving = true
 
 func stop_driving():
 	is_driving = false
 	seat_node = null
+	# reset player rotation
+	self.rotation = Vector3(0,0,0)
 
 func _ready():
 	if is_multiplayer_authority() and DisplayServer.window_is_focused():
@@ -93,30 +95,45 @@ func _physics_process(delta):
 
 		# 3. Get Input Direction
 		var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-		var wish_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
+		var wish_dir = Vector3.ZERO
+		if input_dir.length() > 0:
+			wish_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
 		# 4. Apply Quake Physics
 		if is_on_floor():
 			velocity = ground_move(delta, wish_dir, velocity)
 		else:
 			velocity = air_move(delta, wish_dir, velocity)
-
+		
+		# Prevent the player from teleporting to the shadow dimension
+		if not velocity.is_finite():
+			velocity = Vector3.ZERO
 		move_and_slide()
+		
 		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
-	else:
+	elif seat_node and is_driving:
 		# in driving mode
 		
 		# lock position
 		self.global_position = seat_node.get_node('driver_position').global_position
 		
 		# smooth rotation
-		var target_quat =  seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()
-		var current_quat = self.global_transform.basis.get_rotation_quaternion()
-		# Interpolate between current and target
-		var final_quat = current_quat.slerp(target_quat, 5 * delta)
 		
-		# Apply back to global basis
-		global_transform.basis = Basis(final_quat).scaled(global_basis.get_scale())
+		var target_quat = seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()
+		var current_quat = self.global_transform.basis.get_rotation_quaternion()
+
+		# SAFETY CHECK 1: Ensure quaternions are valid and not identical
+		if current_quat.is_finite() and target_quat.is_finite():
+			# Only slerp if there is actually a difference to calculate
+			if not current_quat.is_equal_approx(target_quat):
+				var final_quat = current_quat.slerp(target_quat, 5 * delta)
+				
+				# SAFETY CHECK 2: Final validation before applying to the GPU
+				if final_quat.is_finite():
+					# Apply rotation while preserving current scale
+					var s = global_basis.get_scale()
+					if s.is_finite():
+						global_transform.basis = Basis(final_quat).scaled(s)
 	
 	# --- CAMERA INTERPOLATION (New for smooth switching) ---
 	var target_position: Vector3
@@ -126,8 +143,15 @@ func _physics_process(delta):
 		# Target the SpringArm's global position when extended
 		target_position = tps_arm.global_position
 	
-	if camera:
-		camera.global_position = camera.global_position.lerp(target_position, delta * transition_speed)
+	# Inside _physics_process
+	if camera and target_position.is_finite():
+		# Clamp weight between 0 and 1 to prevent overshoot/NaN
+		var weight = clamp(delta * transition_speed, 0.0, 1.0)
+		camera.global_position = camera.global_position.lerp(target_position, weight)
+		
+		# Final safety: If the camera still breaks, snap it to target
+		if not camera.global_position.is_finite():
+			camera.global_position = target_position
 	
 	if camera:
 		# Determine which FOV to aim for
@@ -136,10 +160,20 @@ func _physics_process(delta):
 		camera.fov = lerp(camera.fov, target_fov, delta * zoom_speed)
 		
 	# Inside _physics_process
-	if FOV_KICK:
+	if FOV_KICK and camera:
 		var horizontal_speed = Vector3(velocity.x, 0, velocity.z).length()
 		var target_fov = zoom_fov if is_zooming else (default_fov + (horizontal_speed * 0.5))
 		camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+		
+	# Check if velocity has exploded
+	if not velocity.is_finite():
+		print("VELOCITY ERROR: ", velocity)
+		breakpoint # This pauses the game so you can look at variables
+
+	# Check if the camera has exploded
+	if camera and not camera.global_position.is_finite():
+		print("CAMERA ERROR: ", camera.global_position)
+		breakpoint
 
 # 2. Input Handling (Mouse Look and Toggles)
 func _unhandled_input(event):
@@ -203,22 +237,29 @@ func _set_view_position(target: Vector3):
 	if camera:
 		camera.global_position = target
 
-func ground_move(delta: float, wish_dir: Vector3, current_velocity: Vector3) -> Vector3:
-	# Apply friction
-	@warning_ignore("shadowed_variable")
-	var speed = current_velocity.length()
-	if speed != 0:
-		var drop = speed * friction * delta
-		current_velocity *= max(0, speed - drop) / speed
-
-	return accelerate(delta, wish_dir, current_velocity, acceleration)
-
 func air_move(delta: float, wish_dir: Vector3, current_velocity: Vector3) -> Vector3:
 	# Air movement uses a different acceleration value and NO friction
 	return accelerate(delta, wish_dir, current_velocity, air_acceleration)
 
+	
+func ground_move(delta: float, wish_dir: Vector3, current_velocity: Vector3) -> Vector3:
+	@warning_ignore("shadowed_variable")
+	var speed = current_velocity.length()
+	# SAFETY: Ensure we don't divide by zero speed or zero delta
+	if speed > 0.01 and delta > 0:
+		var drop = speed * friction * delta
+		var new_speed = max(0, speed - drop)
+		current_velocity *= (new_speed / speed)
+	elif speed < 0.01:
+		current_velocity = Vector3.ZERO
+		
+	return accelerate(delta, wish_dir, current_velocity, acceleration)
+
 func accelerate(delta: float, wish_dir: Vector3, current_velocity: Vector3, accel: float) -> Vector3:
-	# This is the "secret sauce" of air strafing
+	# SAFETY: If wish_dir is zero, don't accelerate
+	if wish_dir.is_zero_approx():
+		return current_velocity
+		
 	var current_speed = current_velocity.dot(wish_dir)
 	var add_speed = speed - current_speed
 	
@@ -229,4 +270,7 @@ func accelerate(delta: float, wish_dir: Vector3, current_velocity: Vector3, acce
 	if accel_speed > add_speed:
 		accel_speed = add_speed
 	
-	return current_velocity + wish_dir * accel_speed
+	var final_vel = current_velocity + wish_dir * accel_speed
+	
+	# FINAL SAFETY: If math explodes, return zero
+	return final_vel if final_vel.is_finite() else Vector3.ZERO

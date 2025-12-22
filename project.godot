@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalVars="*res://scenes/global_vars.tscn"
+CursorManager="*res://scenes/cursor_manager.tscn"
 GameManager="*res://scenes/multiplayer_manager.gd"
 MusicPlayer="*res://scenes/music_player.tscn"
 

@@ -34,6 +34,7 @@ sky_material = SubResource("PhysicalSkyMaterial_p57ef")
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_mode = 2
 sky = SubResource("Sky_yqjtg")
+ambient_light_source = 3
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
@@ -52,7 +53,7 @@ _spawnable_scenes = PackedStringArray("uid://cbaoxocs5fdn5")
 spawn_path = NodePath("..")
 
 [node name="rv" parent="entities" instance=ExtResource("2_yqjtg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.063898, 2.190504, -26.96763)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.100772, 0, 0)
 physics_material_override = SubResource("PhysicsMaterial_lnu2h")
 
 [node name="terrain" type="Node3D" parent="."]
@@ -77,6 +78,8 @@ camera_attributes = SubResource("CameraAttributesPractical_lnu2h")
 compositor = SubResource("Compositor_lbhrr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9999982, 6.4103435e-05, -0.0019013274, -0.0019024077, 0.03369589, -0.99943036, 0, 0.99943215, 0.03369595, 0, 55.869606, 0)
+shadow_enabled = true
 script = ExtResource("4_lbhrr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
