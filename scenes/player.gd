@@ -104,7 +104,19 @@ func _physics_process(delta):
 		move_and_slide()
 		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
 	else:
+		# in driving mode
+		
+		# lock position
 		self.global_position = seat_node.get_node('driver_position').global_position
+		
+		# smooth rotation
+		var target_quat =  seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()
+		var current_quat = self.global_transform.basis.get_rotation_quaternion()
+		# Interpolate between current and target
+		var final_quat = current_quat.slerp(target_quat, 5 * delta)
+		
+		# Apply back to global basis
+		global_transform.basis = Basis(final_quat).scaled(global_basis.get_scale())
 	
 	# --- CAMERA INTERPOLATION (New for smooth switching) ---
 	var target_position: Vector3

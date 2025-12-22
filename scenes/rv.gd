@@ -23,7 +23,7 @@ var current_steer: float = 0.0
 
 const is_interactable: bool = true
 func interact(given_player_node) -> void:
-	print('You interacted with RV')
+	print(str(given_player_node) + ' interacted with RV')
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float):
