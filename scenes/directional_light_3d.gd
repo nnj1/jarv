@@ -21,6 +21,18 @@ func _process(delta):
 		light_intensity_lumens = abs(sun_height) * 10.0
 		# Interpolate color for a sunset effect
 		light_color = sunset_color.lerp(sun_color, abs(sun_height))
+		
+		
 	else:
 		# Night time (Sun is down)
+		light_intensity_lumens = 0.0
+	
+	if sun_height < 0:
+			# SUN IS UP
+			sky_mode = DirectionalLight3D.SKY_MODE_LIGHT_AND_SKY
+			light_intensity_lumens = abs(sun_height) * 10.0
+	else:
+		# SUN IS DOWN (Night)
+		# Switching to LIGHT_ONLY removes the "orange horizon" effect
+		sky_mode = DirectionalLight3D.SKY_MODE_LIGHT_ONLY
 		light_intensity_lumens = 0.0

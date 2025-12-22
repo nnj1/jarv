@@ -16,6 +16,22 @@ func _ready():
 	# Add any players who joined while we were loading
 	for id in multiplayer.get_peers():
 		add_player(id)
+		
+func _process(_delta: float) -> void:
+	# Get the FPS from the Engine singleton
+	var fps = Engine.get_frames_per_second()
+	
+	# Update the label text
+	# "FPS: %d" rounds the number to an integer
+	$CanvasLayer/HBoxContainer/FPS.text = "FPS: %d" % fps
+	
+	# Optional: Change color based on performance
+	if fps < 30:
+		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.RED)
+	elif fps < 55:
+		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.YELLOW)
+	else:
+		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.GREEN)
 
 func add_player(id: int):
 	var player = player_scene.instantiate()

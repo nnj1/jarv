@@ -3,6 +3,14 @@ extends VehicleBody3D
 # --- Node References (Set in the Inspector) ---
 @export var front_left_wheel: VehicleWheel3D
 @export var front_right_wheel: VehicleWheel3D
+@export var back_left_wheel: VehicleWheel3D
+@export var back_right_wheel: VehicleWheel3D
+
+# These are the actual 3D MeshInstance3D nodes inside the wheels
+@export var fl_mesh: Node3D
+@export var fr_mesh: Node3D
+@export var bl_mesh: Node3D
+@export var br_mesh: Node3D
 
 # --- Car Control Properties ---
 @export var max_steering_angle: float = 0.5 # Max steering angle in radians (~28 degrees)
@@ -56,3 +64,27 @@ func _physics_process(delta: float):
 	# 4. Apply Forces to the VehicleBody3D
 	engine_force = current_engine_force
 	brake = current_brake_force
+	
+	# 5. Animate Wheel Meshes
+	# pdate Front Wheels (Steering + Spinning)
+	update_wheel_transform(front_left_wheel, fl_mesh, delta)
+	update_wheel_transform(front_right_wheel, fr_mesh, delta)
+
+	# Update Rear Wheels (Just Spinning)
+	update_wheel_transform(back_left_wheel, bl_mesh, delta)
+	update_wheel_transform(back_right_wheel, br_mesh, delta)
+
+
+func update_wheel_transform(wheel_node: VehicleWheel3D, mesh_node: Node3D, delta: float):
+	if not wheel_node or not mesh_node:
+		return
+	
+	# --- SPINNING (X-Axis) ---
+	# RPM to Radians per second: (RPM * 2 * PI) / 60
+	var rpm = wheel_node.get_rpm()
+	var spin_speed = (rpm * TAU) / 60.0
+	mesh_node.rotate_x(spin_speed * delta)
+	
+	# --- STEERING (Y-Axis) ---
+	# We set the Y rotation directly to match the wheel's steering angle
+	mesh_node.rotation.y = wheel_node.steering
