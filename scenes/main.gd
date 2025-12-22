@@ -1,5 +1,8 @@
 extends Node
 
+func _ready() -> void:
+	pass
+	
 func _on_host_pressed():
 	GameManager.host_game()
 
