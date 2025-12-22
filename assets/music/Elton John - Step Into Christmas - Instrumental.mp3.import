@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2gl0dv2sxlnp"
+path="res://.godot/imported/Elton John - Step Into Christmas - Instrumental.mp3-50b28a305b88bc70ad54e28e51aecfad.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Elton John - Step Into Christmas - Instrumental.mp3"
+dest_files=["res://.godot/imported/Elton John - Step Into Christmas - Instrumental.mp3-50b28a305b88bc70ad54e28e51aecfad.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -19,16 +19,20 @@ var is_first_person: bool = true
 var camera: Camera3D
 
 func _ready():
-	# Lock the mouse at start
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	# Get camera reference and set initial view
-	camera = tps_arm.get_child(0) as Camera3D
-	_set_view_position(fp_position.global_position)
-	tps_arm.spring_length = 0.0 # Start SpringArm collapsed for FP
+	if is_multiplayer_authority() and DisplayServer.window_is_focused():
+		# Lock the mouse at start
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
+		# Get camera reference and set initial view
+		camera = tps_arm.get_child(0) as Camera3D
+		camera.make_current()
+		
+		_set_view_position(fp_position.global_position)
+		tps_arm.spring_length = 0.0 # Start SpringArm collapsed for FP
 
 # 1. Physics Movement and Camera Interpolation
 func _physics_process(delta):
+		
 	# --- MOVEMENT (Same as original) ---
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
@@ -36,6 +40,7 @@ func _physics_process(delta):
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_velocity
 
+	# Only process input if the window is currently focused
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
@@ -55,12 +60,17 @@ func _physics_process(delta):
 	else:
 		# Target the SpringArm's global position when extended
 		target_position = tps_arm.global_position
-		
-	camera.global_position = camera.global_position.lerp(target_position, delta * transition_speed)
+	
+	if camera:
+		camera.global_position = camera.global_position.lerp(target_position, delta * transition_speed)
 
 
 # 2. Input Handling (Mouse Look and Toggles)
 func _unhandled_input(event):
+	# Only process input if the window is currently focused
+	if not DisplayServer.window_is_focused():
+		return
+		
 	# --- MOUSE CAPTURE TOGGLE (Escape Key) ---
 	if event.is_action_pressed("ui_cancel"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

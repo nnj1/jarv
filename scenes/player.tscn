@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=9 format=3 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 
@@ -9,7 +9,34 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
 albedo_color = Color(1, 0.5764706, 1, 1)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3vyb7"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
+shading_mode = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qhqgy"]
+emission_shape_scale = Vector3(20, 10, 20)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -3, 0)
+turbulence_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_3vyb7"]
+size = Vector2(0.1, 0.1)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "tps_arm", "fp_position")]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_3vyb7")
 camera_pivot = NodePath("camera_pivot")
 tps_arm = NodePath("camera_pivot/tps_arm")
@@ -35,3 +62,13 @@ spring_length = 4.0
 [node name="Camera3D" type="Camera3D" parent="camera_pivot/tps_arm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0050638914, 0)
 current = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3vyb7")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_g2els")
+amount = 4000
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_qhqgy")
+draw_pass_1 = SubResource("QuadMesh_3vyb7")

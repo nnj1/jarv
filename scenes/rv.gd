@@ -6,7 +6,7 @@ extends VehicleBody3D
 
 # --- Car Control Properties ---
 @export var max_steering_angle: float = 0.5 # Max steering angle in radians (~28 degrees)
-@export var max_engine_force: float = 2000.0
+@export var max_engine_force: float = 4000.0
 @export var max_brake_force: float = 100.0
 
 var current_engine_force: float = 0.0
