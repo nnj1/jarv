@@ -112,3 +112,12 @@ offset_right = 24.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="interact_message" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 432.0
+offset_top = 400.0
+offset_right = 710.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 32
+text = "Press E to interact"

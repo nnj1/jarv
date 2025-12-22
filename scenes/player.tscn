@@ -63,6 +63,12 @@ spring_length = 4.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0050638914, 0)
 current = true
 
+[node name="RayCast3D" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011038542, -0.32660365, -0.009166241)
+target_position = Vector3(0, 0, -3)
+collision_mask = 7
+collide_with_areas = true
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3vyb7")
 
@@ -72,9 +78,3 @@ amount = 4000
 fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_qhqgy")
 draw_pass_1 = SubResource("QuadMesh_3vyb7")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011038542, 1.3544488, -0.009166241)
-target_position = Vector3(0, 0, -3)
-collision_mask = 7
-collide_with_areas = true

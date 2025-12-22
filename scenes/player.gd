@@ -23,6 +23,8 @@ extends CharacterBody3D
 @export var zoom_speed: float = 8.0
 
 var is_zooming: bool = false
+var is_driving:bool = false
+var seat_node: Node3D = null
 
 # --- Constants ---
 const CLAMP_ANGLE: float = 1.2
@@ -34,6 +36,14 @@ var is_first_person: bool = true
 var camera: Camera3D
 var weapon_index = 0
 var max_weapons = 199
+
+func start_driving(given_seat_node):
+	is_driving = true
+	seat_node = given_seat_node
+
+func stop_driving():
+	is_driving = false
+	seat_node = null
 
 func _ready():
 	if is_multiplayer_authority() and DisplayServer.window_is_focused():
@@ -55,32 +65,47 @@ func _physics_process(delta):
 	
 	if not is_multiplayer_authority(): return
 	
-	if $RayCast3D.is_colliding():
-		var target = $RayCast3D.get_collider()
+	if $camera_pivot/tps_arm/Camera3D/RayCast3D.is_colliding():
+		var target = $camera_pivot/tps_arm/Camera3D/RayCast3D.get_collider()
 		main_game_node.get_node('CanvasLayer/HBoxContainer/target').text = str(target)
+		if 'is_interactable' in target:
+			if target.is_interactable:
+				# show the interaction message
+				if 'custom_interact_message' in target:
+					if target.custom_interact_message:
+						main_game_node.get_node('CanvasLayer/interact_message').text = target.custom_interact_message
+				main_game_node.get_node('CanvasLayer/interact_message').visible = true
+				if Input.is_action_just_pressed('interact'):
+					target.interact(self)
+	else:
+		main_game_node.get_node('CanvasLayer/interact_message').text = 'Press E to interact'
+		main_game_node.get_node('CanvasLayer/interact_message').visible = false
 		
 	# --- MOVEMENT (Same as original) ---
-	# 1. Handle Gravity
-	if not is_on_floor():
-		velocity.y -= GRAVITY * delta
+	if not is_driving:
+		# 1. Handle Gravity
+		if not is_on_floor():
+			velocity.y -= GRAVITY * delta
 
-	# 2. Handle Jump (Standard Quake doesn't have jump cooldown)
-	if is_on_floor() and Input.is_action_pressed("jump"):
-		velocity.y = jump_velocity
+		# 2. Handle Jump (Standard Quake doesn't have jump cooldown)
+		if is_on_floor() and Input.is_action_pressed("jump"):
+			velocity.y = jump_velocity
 
-	# 3. Get Input Direction
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var wish_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		# 3. Get Input Direction
+		var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+		var wish_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	# 4. Apply Quake Physics
-	if is_on_floor():
-		velocity = ground_move(delta, wish_dir, velocity)
+		# 4. Apply Quake Physics
+		if is_on_floor():
+			velocity = ground_move(delta, wish_dir, velocity)
+		else:
+			velocity = air_move(delta, wish_dir, velocity)
+
+		move_and_slide()
+		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
 	else:
-		velocity = air_move(delta, wish_dir, velocity)
-
-	move_and_slide()
-	main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
-		
+		self.global_position = seat_node.get_node('driver_position').global_position
+	
 	# --- CAMERA INTERPOLATION (New for smooth switching) ---
 	var target_position: Vector3
 	if is_first_person:
