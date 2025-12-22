@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbaoxocs5fdn5"]
+
+[ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+albedo_color = Color(1, 0.5764706, 1, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "tps_arm", "fp_position")]
+script = ExtResource("1_3vyb7")
+camera_pivot = NodePath("camera_pivot")
+tps_arm = NodePath("camera_pivot/tps_arm")
+fp_position = NodePath("camera_pivot/fp_pos")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1493609, 0)
+shape = SubResource("CapsuleShape3D_3vyb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1435446, 0)
+mesh = SubResource("CapsuleMesh_3vyb7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vyb7")
+
+[node name="camera_pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6759886, 0)
+
+[node name="fp_pos" type="Node3D" parent="camera_pivot"]
+
+[node name="tps_arm" type="SpringArm3D" parent="camera_pivot"]
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="camera_pivot/tps_arm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0050638914, 0)
+current = true
