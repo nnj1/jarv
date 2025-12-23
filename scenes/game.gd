@@ -33,6 +33,9 @@ func _process(_delta: float) -> void:
 	else:
 		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.GREEN)
 
+	# update the time display
+	$CanvasLayer/HBoxContainer/time.text = $DirectionalLight3D.get_time_12h()
+	
 	# check for any broken math
 	## Get every single node currently in the game tree
 	#var all_nodes = get_tree().root.find_children("*", "Node3D", true, false)

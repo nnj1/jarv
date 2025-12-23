@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=4 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=26 format=4 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://j2ci80t10loi" path="res://assets/Heavy Weapons Pack/gl.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c06v8hb8bxe22" path="res://assets/Heavy Weapons Pack/knife.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://nswjibmrcdbc" path="res://assets/Heavy Weapons Pack/mauser.png" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b3e6nvgnd604j" path="res://assets/UI Soundpack/UI Soundpack/MP3/Wood Block1.mp3" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://bsjgl3qkbr63o" path="res://scenes/flashlight.gd" id="6_tuyoq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 
@@ -234,6 +235,11 @@ target_position = Vector3(0, 0, -3)
 collision_mask = 7
 collide_with_areas = true
 
+[node name="flashlight" type="SpotLight3D" parent="camera_pivot/tps_arm/Camera3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.25689197, -0.33529317, 0)
+spot_range = 300.0
+script = ExtResource("6_tuyoq")
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3vyb7")
 
@@ -251,6 +257,7 @@ autostart = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
 
 [node name="weapons" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)

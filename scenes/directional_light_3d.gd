@@ -77,3 +77,17 @@ func get_time_string() -> String:
 	var hours = int(current_hour)
 	var minutes = int((current_hour - hours) * 60)
 	return "%02d:%02d" % [hours, minutes]
+
+func get_time_12h(time_float = current_hour) -> String:
+	var total_time = fmod(time_float, 24.0)
+	var hours = int(total_time)
+	var minutes = int((total_time - hours) * 60)
+	
+	var am_pm = "AM" if hours < 12 else "PM"
+	
+	# Convert 0 to 12, and 13-23 to 1-11
+	var display_hours = hours % 12
+	if display_hours == 0:
+		display_hours = 12
+		
+	return "%d:%02d %s" % [display_hours, minutes, am_pm]
