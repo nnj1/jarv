@@ -60,7 +60,7 @@ func _ready():
 		camera.make_current()
 		
 		_set_view_position(fp_position.global_position)
-		tps_arm.spring_length = 0.0 # Start SpringArm collapsed for FP
+		tps_arm.spring_length = 0.00 # Start SpringArm collapsed for FP
 
 # 1. Physics Movement and Camera Interpolation
 func _physics_process(delta):
@@ -111,6 +111,7 @@ func _physics_process(delta):
 		move_and_slide()
 		
 		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
+	
 	elif seat_node and is_driving:
 		# in driving mode
 		
@@ -118,7 +119,6 @@ func _physics_process(delta):
 		self.global_position = seat_node.get_node('driver_position').global_position
 		
 		# smooth rotation
-		
 		var target_quat = seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()
 		var current_quat = self.global_transform.basis.get_rotation_quaternion()
 

@@ -33,6 +33,26 @@ func _process(_delta: float) -> void:
 	else:
 		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.GREEN)
 
+	# check for any broken math
+	## Get every single node currently in the game tree
+	#var all_nodes = get_tree().root.find_children("*", "Node3D", true, false)
+	#
+	#for node in all_nodes:
+		#var t = node.global_transform
+		#
+		## Check if any part of the transform matrix is non-finite
+		#if not (is_finite(t.origin.x) and is_finite(t.origin.y) and is_finite(t.origin.z) and \
+				#is_finite(t.basis.x.x) and is_finite(t.basis.y.y) and is_finite(t.basis.z.z)):
+			#
+			#print_rich("[color=red][b]MATH EXPLOSION DETECTED![/b][/color]")
+			#print_rich("Node Name: [color=yellow]", node.name, "[/color]")
+			#print("Path: ", node.get_path())
+			#print("Transform: ", t)
+			#
+			## Freeze the game so you can look at the Remote Scene Tree
+			#get_tree().paused = true 
+			#return
+				
 func add_player(id: int):
 	var player = player_scene.instantiate()
 	#spawn spot

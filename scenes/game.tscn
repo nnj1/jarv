@@ -78,8 +78,9 @@ camera_attributes = SubResource("CameraAttributesPractical_lnu2h")
 compositor = SubResource("Compositor_lbhrr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9999982, 6.4103435e-05, -0.0019013274, -0.0019024077, 0.03369589, -0.99943036, 0, 0.99943215, 0.03369595, 0, 55.869606, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shadow_enabled = true
+directional_shadow_mode = 0
 script = ExtResource("4_lbhrr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
