@@ -86,14 +86,17 @@ draw_pass_1 = SubResource("QuadMesh_3vyb7")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="equipment" type="Node3D" parent="."]
+[node name="weapons" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 
-[node name="grenadelauncher" parent="equipment" instance=ExtResource("2_g2els")]
+[node name="grenadelauncher" parent="weapons" instance=ExtResource("2_g2els")]
 transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, 0, 0, -0.86769944)
+visible = false
 
-[node name="knife" parent="equipment" instance=ExtResource("3_dqkch")]
+[node name="knife" parent="weapons" instance=ExtResource("3_dqkch")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -0.9908782)
+visible = false
 
-[node name="mauser" parent="equipment" instance=ExtResource("4_qlg0r")]
+[node name="mauser" parent="weapons" instance=ExtResource("4_qlg0r")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -1.1916931)
+visible = false

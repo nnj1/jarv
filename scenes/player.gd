@@ -35,8 +35,30 @@ const FOV_KICK: bool = true
 var is_first_person: bool = true
 var camera: Camera3D
 var weapon_index = 0
-var max_weapons = 199
+var max_weapons = 2
 
+var weapons = [
+	{
+		'name': 'grenadelauncher',
+		'reticle': 82
+	},
+	{
+		'name': 'knife',
+		'reticle': 45
+	},
+	{
+		'name': 'mauser',
+		'reticle': 37
+	}
+]
+
+func change_weapon(index:  int = weapon_index):
+	for child in $weapons.get_children():
+		child.visible = false
+	$weapons.get_children()[index].visible = true
+	main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapons[index].reticle, 20, 10)	
+
+		
 func start_driving(given_seat_node):
 	seat_node = given_seat_node
 	is_driving = true
@@ -54,7 +76,10 @@ func _ready():
 		
 		# set a crosshair
 		main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapon_index, 20, 10)
-
+		
+		# set default weapon (may change crosshair
+		change_weapon()
+		
 		# Get camera reference and set initial view
 		camera = tps_arm.get_child(0) as Camera3D
 		camera.make_current()
@@ -153,8 +178,8 @@ func _physics_process(delta):
 		if not camera.global_position.is_finite():
 			camera.global_position = target_position
 		
-	# make all equipment point in same direction camera is looking at
-	$equipment.look_at(camera.global_position - camera.global_basis.z * 100.0)
+	# make all weapons point in same direction camera is looking at
+	$weapons.look_at(camera.global_position - camera.global_basis.z * 100.0)
 	
 	
 	if camera:
@@ -198,12 +223,12 @@ func _unhandled_input(event):
 		weapon_index += 1
 		if weapon_index > max_weapons:
 			weapon_index = 0
-		main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapon_index, 20, 10)
+		change_weapon(weapon_index)
 	if event.is_action_pressed('scroll_down'):
 		weapon_index -= 1
 		if weapon_index < 0:
 			weapon_index = max_weapons
-		main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapon_index, 20, 10)	
+		change_weapon(weapon_index)
 		
 	# --- MOUSE CAPTURE TOGGLE (Escape Key) ---
 	if event.is_action_pressed("ui_cancel"):
