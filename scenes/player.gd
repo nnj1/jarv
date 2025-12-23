@@ -309,9 +309,10 @@ func _process(_delta: float) -> void:
 	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.global_transform = $camera_pivot/tps_arm/Camera3D.global_transform
 	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.fov = $camera_pivot/tps_arm/Camera3D.fov
 
-
+# for periodic weather effects
+#TODO: make this sync across players
 func _on_timer_timeout() -> void:
 	$GPUParticles3D.emitting = not $GPUParticles3D.emitting
-	print($GPUParticles3D.emitting)
-	$GPUParticles3D/Timer.wait_time = randi_range(1, 3)
+	#print($GPUParticles3D.emitting)
+	$GPUParticles3D/Timer.wait_time = randi_range(60, 60*3)
 	$GPUParticles3D/Timer.start()

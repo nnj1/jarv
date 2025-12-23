@@ -1,39 +1,79 @@
 extends DirectionalLight3D
 
-@export var day_speed: float = 0.05
-@export var sun_color: Color = Color("fff5f2")
+@export_group("Time Settings")
+## Total real-world seconds for a full 24-hour cycle
+@export var day_length_seconds: float = 60.0 
+## The starting hour (0 to 24)
+@export_range(0, 24) var current_hour: float = 12.0
+## The seasonal tilt of the sun's path (in degrees)
+@export var tilt_angle: float = 25.0 
+
+@export_group("Nodes")
+@export var world_env: WorldEnvironment
+
+@export_group("Sky Colors")
+@export var day_top_color: Color = Color("4b738c")
+@export var day_horizon_color: Color = Color("a5a7ab")
 @export var sunset_color: Color = Color("ffad64")
+@export var night_top_color: Color = Color("050505")
+@export var night_horizon_color: Color = Color("1a1a2e")
 
-var time: float = 0
+func _process(delta: float) -> void:
+	# 1. Advance the clock
+	var hours_per_second = 24.0 / day_length_seconds
+	current_hour = fmod(current_hour + (delta * hours_per_second), 24.0)
+	
+	# 2. Map Hour to Rotation (0-24 maps to 0-TAU)
+	# We offset by TAU * 0.25 (90 degrees) so 12:00 PM is directly overhead
+	var time_percent = current_hour / 24.0
+	var angle = (time_percent * TAU) - (TAU * 0.25)
+	
+	# 3. Apply rotation with tilt
+	rotation = Vector3(angle, deg_to_rad(tilt_angle), 0)
+	
+	# 4. Update Atmosphere and Light
+	update_visuals()
 
-func _process(delta):
-	time += delta * day_speed
-	
-	# FIX 1: Use TAU (2 * PI) instead of 0. TAU represents a full 360-degree circle.
-	rotation.x = fmod(time, TAU) 
-	
-	# FIX 2: Prevent gimbal lock/infinite math by ensuring the light 
-	# is never pointing PERFECTLY straight down (90 degrees).
-	# We add a tiny bit of Y and Z rotation so the matrix is always stable.
-	rotation.y = deg_to_rad(10.0) 
-	rotation.z = deg_to_rad(0.01)
-
-	# Adjust intensity based on the angle of the sun
-	var sun_height = sin(rotation.x)
-	
-	# Note: In Godot's default rotation, sin(rotation.x) < 0 usually means 
-	# the light is pointing downward (Daytime).
-	if sun_height < 0:
-		# Day time (Sun is up)
-		sky_mode = DirectionalLight3D.SKY_MODE_LIGHT_AND_SKY
+func update_visuals() -> void:
+	if not world_env:
+		return
 		
-		# Use clamp to ensure intensity doesn't accidentally hit NaN/Inf
-		var intensity_factor = clamp(abs(sun_height), 0.0, 1.0)
-		light_intensity_lumens = intensity_factor * 10.0
+	var sky_mat = world_env.environment.sky.sky_material as ProceduralSkyMaterial
+	if not sky_mat:
+		return
+
+	# We use the Basis to find the vertical direction the light is facing.
+	# transform.basis.z.y < 0 means the light is pointing down (Daytime)
+	var sun_direction = transform.basis.z.y 
+	
+	if sun_direction < 0: # --- DAY & SUNSET ---
+		# t is 1.0 at noon, 0.0 at horizon
+		var t = clamp(abs(sun_direction), 0.0, 1.0)
 		
-		# Interpolate color for a sunset effect
-		light_color = sunset_color.lerp(sun_color, intensity_factor)
-	else:
-		# Night time (Sun is down)
-		sky_mode = DirectionalLight3D.SKY_MODE_LIGHT_ONLY
-		light_intensity_lumens = 0.0
+		# Set Light properties
+		light_energy = t * 2.0
+		light_color = sunset_color.lerp(Color.WHITE, t)
+		
+		# Update Sky Material
+		sky_mat.sky_top_color = night_top_color.lerp(day_top_color, t)
+		sky_mat.sky_horizon_color = sunset_color.lerp(day_horizon_color, t)
+		
+		# Update Environment Brightness
+		world_env.environment.background_energy_multiplier = lerp(0.1, 1.0, t)
+		world_env.environment.ambient_light_energy = lerp(0.2, 1.0, t)
+		
+	else: # --- NIGHT ---
+		# Turn off sun light, keep sky at base night colors
+		light_energy = 0.0
+		sky_mat.sky_top_color = night_top_color
+		sky_mat.sky_horizon_color = night_horizon_color
+		
+		# Keep night visible but dark
+		world_env.environment.background_energy_multiplier = 0.1
+		world_env.environment.ambient_light_energy = 0.2
+
+## Optional: Helper function to get a formatted time string (HH:MM)
+func get_time_string() -> String:
+	var hours = int(current_hour)
+	var minutes = int((current_hour - hours) * 60)
+	return "%02d:%02d" % [hours, minutes]
