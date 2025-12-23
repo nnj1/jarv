@@ -152,6 +152,10 @@ func _physics_process(delta):
 		# Final safety: If the camera still breaks, snap it to target
 		if not camera.global_position.is_finite():
 			camera.global_position = target_position
+		
+	# make all equipment point in same direction camera is looking at
+	$equipment.look_at(camera.global_position - camera.global_basis.z * 100.0)
+	
 	
 	if camera:
 		# Determine which FOV to aim for

@@ -1,6 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=12 format=3 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://dvc5hvynj5lcu" path="res://assets/Heavy Weapons Pack/grenadelauncher.blend" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://clkq2lpbxkcaa" path="res://assets/Heavy Weapons Pack/knife.blend" id="3_dqkch"]
+[ext_resource type="PackedScene" uid="uid://durofcj0jhguy" path="res://assets/Heavy Weapons Pack/mauser.blend" id="4_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 
@@ -82,3 +85,15 @@ draw_pass_1 = SubResource("QuadMesh_3vyb7")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="equipment" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="grenadelauncher" parent="equipment" instance=ExtResource("2_g2els")]
+transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, 0, 0, -0.86769944)
+
+[node name="knife" parent="equipment" instance=ExtResource("3_dqkch")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -0.9908782)
+
+[node name="mauser" parent="equipment" instance=ExtResource("4_qlg0r")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -1.1916931)
