@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctsme4t3f31fa"
+path="res://.godot/imported/762x54r Single Isolated MP3.mp3-03a310afce2e85664a3ef04ae6b86462.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Isolated/7.62x54R/MP3/762x54r Single Isolated MP3.mp3"
+dest_files=["res://.godot/imported/762x54r Single Isolated MP3.mp3-03a310afce2e85664a3ef04ae6b86462.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

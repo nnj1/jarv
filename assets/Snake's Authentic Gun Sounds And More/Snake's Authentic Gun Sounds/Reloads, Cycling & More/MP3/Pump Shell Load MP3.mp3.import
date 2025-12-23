@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ca1jjysvecvml"
+path="res://.godot/imported/Pump Shell Load MP3.mp3-bb78be8b037fd066ccfbf4b9769a4469.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Reloads, Cycling & More/MP3/Pump Shell Load MP3.mp3"
+dest_files=["res://.godot/imported/Pump Shell Load MP3.mp3-bb78be8b037fd066ccfbf4b9769a4469.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

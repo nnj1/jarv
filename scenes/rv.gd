@@ -24,6 +24,9 @@ var current_steer: float = 0.0
 const is_interactable: bool = true
 func interact(given_player_node) -> void:
 	print(str(given_player_node) + ' interacted with RV')
+	
+func _ready() -> void:
+	$engineIdleSound.play()
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float):
@@ -49,6 +52,8 @@ func _physics_process(delta: float):
 	if accelerate_input > 0: # --- FORWARD INPUT ---
 		current_engine_force = max_engine_force * accelerate_input
 		current_brake_force = 0.0
+		if not $accelerateSound.playing:
+			$accelerateSound.play()
 	
 	elif accelerate_input < 0: # --- BACKWARD INPUT (Brake/Reverse) ---
 		if is_moving_forward:
@@ -65,7 +70,8 @@ func _physics_process(delta: float):
 		# Coasting: Reset forces
 		current_engine_force = 0.0
 		current_brake_force = 0.0
-
+		$accelerateSound.stop()
+		
 	# 4. Apply Forces to the VehicleBody3D
 	engine_force = current_engine_force
 	brake = current_brake_force

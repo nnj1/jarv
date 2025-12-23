@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d4fq7n5kremmj"
+path="res://.godot/imported/Horn.mp3-9b849bfa7f96770ee06c5b645dc0aa37.mp3str"
+
+[deps]
+
+source_file="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Horn/Horn.mp3"
+dest_files=["res://.godot/imported/Horn.mp3-9b849bfa7f96770ee06c5b645dc0aa37.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

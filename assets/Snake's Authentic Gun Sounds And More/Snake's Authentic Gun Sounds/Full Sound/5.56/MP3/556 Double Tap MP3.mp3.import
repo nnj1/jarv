@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cijih6rjuo1vk"
+path="res://.godot/imported/556 Double Tap MP3.mp3-9d18d129f3c60a588f7556b05a3af775.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Full Sound/5.56/MP3/556 Double Tap MP3.mp3"
+dest_files=["res://.godot/imported/556 Double Tap MP3.mp3-9d18d129f3c60a588f7556b05a3af775.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

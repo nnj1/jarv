@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://djf5kkbkbpxap"
+path="res://.godot/imported/Semi 22LR Reload Full WAV.wav-4703147567f875b1320cb230a92bab1c.sample"
+
+[deps]
+
+source_file="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Reloads, Cycling & More/WAV/Semi 22LR Reload Full WAV.wav"
+dest_files=["res://.godot/imported/Semi 22LR Reload Full WAV.wav-4703147567f875b1320cb230a92bab1c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkr3te3y7dxst"
+path="res://.godot/imported/Engine exhaust idle.mp3-2938ba7eae3da941c5fb8207d2df3605.mp3str"
+
+[deps]
+
+source_file="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Engine sounds/Engine exhaust idle.mp3"
+dest_files=["res://.godot/imported/Engine exhaust idle.mp3-2938ba7eae3da941c5fb8207d2df3605.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -57,7 +57,7 @@ func change_weapon(index:  int = weapon_index):
 		child.visible = false
 	$weapons.get_children()[index].visible = true
 	main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapons[index].reticle, 20, 10)	
-
+	$weaponswapSound.play()
 		
 func start_driving(given_seat_node):
 	seat_node = given_seat_node
@@ -303,3 +303,8 @@ func accelerate(delta: float, wish_dir: Vector3, current_velocity: Vector3, acce
 	
 	# FINAL SAFETY: If math explodes, return zero
 	return final_vel if final_vel.is_finite() else Vector3.ZERO
+
+# sync main camera 3d with the weapon camera3d in the subviewport
+func _process(_delta: float) -> void:
+	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.global_transform = $camera_pivot/tps_arm/Camera3D.global_transform
+	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.fov = $camera_pivot/tps_arm/Camera3D.fov

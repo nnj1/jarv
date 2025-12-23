@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bb6kt62n67y7h"
+path="res://.godot/imported/Coffee1.mp3-f062f32b26ab2f63dfa69dc7cd154f1e.mp3str"
+
+[deps]
+
+source_file="res://assets/UI Soundpack/UI Soundpack/MP3/Coffee1.mp3"
+dest_files=["res://.godot/imported/Coffee1.mp3-f062f32b26ab2f63dfa69dc7cd154f1e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
