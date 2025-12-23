@@ -1,4 +1,4 @@
-[200~# JaRV
+# JaRV
 
 Welcome to **JaRV**, the definitive co-op RV survival experience. 
 
@@ -15,15 +15,15 @@ Traverse desolate, low-poly landscapes in your customizable motorhome. Whether y
 
 ### The Journey Begins
 Explore vast, snow-covered terrains from the safety (and warmth) of your cockpit.
-![Cockpit View](image2.jpg)
+![Cockpit View](./image2.jpg)
 
 ### Gear Up
 Equip yourself and prepare for external threats. Cooperation is key to keeping the RV safe.
-![External Interaction](image.jpg)
+![External Interaction](./image.jpg)
 
 ### Into the Horizon
 Navigate through mountainous regions and brave the falling snow as you search for your next objective.
-![Driving Through Snow](6E6A9529-F9FD-40BD-90A8-0A18CD53B5B4.jpg)
+![Driving Through Snow](./6E6A9529-F9FD-40BD-90A8-0A18CD53B5B4.jpg)
 
 ## Getting Started
 
