@@ -308,3 +308,10 @@ func accelerate(delta: float, wish_dir: Vector3, current_velocity: Vector3, acce
 func _process(_delta: float) -> void:
 	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.global_transform = $camera_pivot/tps_arm/Camera3D.global_transform
 	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.fov = $camera_pivot/tps_arm/Camera3D.fov
+
+
+func _on_timer_timeout() -> void:
+	$GPUParticles3D.emitting = not $GPUParticles3D.emitting
+	print($GPUParticles3D.emitting)
+	$GPUParticles3D/Timer.wait_time = randi_range(1, 3)
+	$GPUParticles3D/Timer.start()
