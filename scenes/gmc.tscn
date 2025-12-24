@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://c83kt0i1psayj"]
+[gd_scene load_steps=37 format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
 [ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]

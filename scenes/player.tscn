@@ -233,7 +233,7 @@ cull_mask = 1048573
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011038542, -0.32660365, -0.009166241)
+transform = Transform3D(1, 0, 0, 0, 2.1, 0, 0, 0, 1, 0, 0, -0.009)
 target_position = Vector3(0, 0, -3)
 collision_mask = 7
 collide_with_areas = true
@@ -267,6 +267,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 
 [node name="hand" type="Node3D" parent="weapons"]
 visible = false
+
+[node name="grab_position" type="Marker3D" parent="weapons/hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.05)
 
 [node name="grenadelauncher" type="Node3D" parent="weapons"]
 transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, 0, 0, -0.85304)

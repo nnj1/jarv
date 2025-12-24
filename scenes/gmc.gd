@@ -26,6 +26,7 @@ var current_speed_kmh: float = 0.0
 
 var occupants = []
 const is_interactable: bool = true
+const is_pickable: bool = false
 
 func interact(given_player_node) -> void:
 	if not given_player_node in occupants:

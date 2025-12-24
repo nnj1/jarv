@@ -56,6 +56,8 @@ var weapons = [
 	}
 ]
 
+var entity_held = null
+
 func change_weapon(index:  int = weapon_index):
 	for child in $weapons.get_children():
 		child.visible = false
@@ -96,19 +98,32 @@ func _physics_process(delta):
 	
 	if not is_multiplayer_authority(): return
 	
+	# code for dropping held items
+	if Input.is_action_just_pressed('interact') and entity_held:
+		entity_held.drop()
+		self.entity_held = null
+	
 	if $camera_pivot/tps_arm/Camera3D/RayCast3D.is_colliding():
 		var target = $camera_pivot/tps_arm/Camera3D/RayCast3D.get_collider()
 		main_game_node.get_node('CanvasLayer/HBoxContainer/target').text = str(target)
-		if 'is_interactable' in target:
+		if 'is_interactable' in target and entity_held == null:
 			if target.is_interactable:
-				# show the interaction message
-				if 'custom_interact_message' in target:
-					if target.custom_interact_message:
-						main_game_node.get_node('CanvasLayer/interact_message').text = target.custom_interact_message
-				main_game_node.get_node('CanvasLayer/interact_message').visible = true
+				var message = target.custom_interact_message if ('custom_interact_message' in target) else 'Press E to interact'
+				# show the interaction message if the target isn't pickable
+				if not target.is_pickable:
+					main_game_node.get_node('CanvasLayer/interact_message').text = message
+					main_game_node.get_node('CanvasLayer/interact_message').visible = true
+				# show the interaction message only if the hand is active when the target is pickable
+				elif target.is_pickable:
+					if weapons[weapon_index].name == 'hand':
+						main_game_node.get_node('CanvasLayer/interact_message').text = message
+						main_game_node.get_node('CanvasLayer/interact_message').visible = true
+				
+				# do the actual interaction if the player presses the key
 				if Input.is_action_just_pressed('interact'):
 					target.interact(self)
 	else:
+		# reset to default message
 		main_game_node.get_node('CanvasLayer/interact_message').text = 'Press E to interact'
 		main_game_node.get_node('CanvasLayer/interact_message').visible = false
 		
