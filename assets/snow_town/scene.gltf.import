@@ -1,0 +1,435 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dud1wakjd81ub"
+path="res://.godot/imported/scene.gltf-09a7e0910f0cb9fa27b074d864401a98.scn"
+
+[deps]
+
+source_file="res://assets/snow_town/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-09a7e0910f0cb9fa27b074d864401a98.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=3
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"TextureMaterial": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial.tres",
+"use_external/path": "uid://cu26vtyh25g5g"
+},
+"TextureMaterial_1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_1.tres",
+"use_external/path": "uid://pyi757n2oras"
+},
+"TextureMaterial_10": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_10.tres",
+"use_external/path": "uid://dnuhvhb6lctdt"
+},
+"TextureMaterial_11": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_11.tres",
+"use_external/path": "uid://wg8jldhh07s6"
+},
+"TextureMaterial_12": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_12.tres",
+"use_external/path": "uid://flygetus2n2i"
+},
+"TextureMaterial_13": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_13.tres",
+"use_external/path": "uid://byf3qiifnwuq2"
+},
+"TextureMaterial_14": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_14.tres",
+"use_external/path": "uid://dgd73etwwb70r"
+},
+"TextureMaterial_15": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_15.tres",
+"use_external/path": "uid://qaa8e665gxwh"
+},
+"TextureMaterial_16": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_16.tres",
+"use_external/path": "uid://bbxtuvoxhpe4x"
+},
+"TextureMaterial_17": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_17.tres",
+"use_external/path": "uid://04u4hc7vcwgm"
+},
+"TextureMaterial_18": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_18.tres",
+"use_external/path": "uid://b1emd85peep4g"
+},
+"TextureMaterial_19": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_19.tres",
+"use_external/path": "uid://c0cvg0jn1tmwo"
+},
+"TextureMaterial_2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_2.tres",
+"use_external/path": "uid://cjcak773yrrcn"
+},
+"TextureMaterial_20": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_20.tres",
+"use_external/path": "uid://dqlnvysg02yyr"
+},
+"TextureMaterial_21": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_21.tres",
+"use_external/path": "uid://rmab5ux2q0hs"
+},
+"TextureMaterial_22": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_22.tres",
+"use_external/path": "uid://bn3dr6oofhh1o"
+},
+"TextureMaterial_23": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_23.tres",
+"use_external/path": "uid://cojnwqfowi10g"
+},
+"TextureMaterial_24": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_24.tres",
+"use_external/path": "uid://b7p1najmw7tfm"
+},
+"TextureMaterial_25": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_25.tres",
+"use_external/path": "uid://bcewqbh8f8e7y"
+},
+"TextureMaterial_26": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_26.tres",
+"use_external/path": "uid://bwf1aob3tp2qk"
+},
+"TextureMaterial_27": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_27.tres",
+"use_external/path": "uid://c6ratadu761vp"
+},
+"TextureMaterial_28": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_28.tres",
+"use_external/path": "uid://c7nrklypub6bq"
+},
+"TextureMaterial_29": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_29.tres",
+"use_external/path": "uid://4f6or2tbr2v"
+},
+"TextureMaterial_3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_3.tres",
+"use_external/path": "uid://k0t5q0et7tox"
+},
+"TextureMaterial_30": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_30.tres",
+"use_external/path": "uid://cn35ivy1nb8uc"
+},
+"TextureMaterial_31": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_31.tres",
+"use_external/path": "uid://d0wiwddoxup85"
+},
+"TextureMaterial_32": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_32.tres",
+"use_external/path": "uid://omvaihe421gd"
+},
+"TextureMaterial_33": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_33.tres",
+"use_external/path": "uid://dpcj3tk4wt4j5"
+},
+"TextureMaterial_34": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_34.tres",
+"use_external/path": "uid://db26whp6cl7vj"
+},
+"TextureMaterial_35": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_35.tres",
+"use_external/path": "uid://dvn3j7k8jw4ow"
+},
+"TextureMaterial_36": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_36.tres",
+"use_external/path": "uid://chc0n2vpnldqf"
+},
+"TextureMaterial_37": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_37.tres",
+"use_external/path": "uid://dsgt7mi78huks"
+},
+"TextureMaterial_38": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_38.tres",
+"use_external/path": "uid://cb5erd5at3miy"
+},
+"TextureMaterial_39": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_39.tres",
+"use_external/path": "uid://dxqkhji0mm3sy"
+},
+"TextureMaterial_4": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_4.tres",
+"use_external/path": "uid://cw3qhrmvjano8"
+},
+"TextureMaterial_40": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_40.tres",
+"use_external/path": "uid://cxugfkal13xlc"
+},
+"TextureMaterial_41": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_41.tres",
+"use_external/path": "uid://dgajhtwmxbbjd"
+},
+"TextureMaterial_42": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_42.tres",
+"use_external/path": "uid://bjgytm8h4dpln"
+},
+"TextureMaterial_43": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_43.tres",
+"use_external/path": "uid://cpah0jkunydmw"
+},
+"TextureMaterial_44": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_44.tres",
+"use_external/path": "uid://eqpcg5mt2kv1"
+},
+"TextureMaterial_45": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_45.tres",
+"use_external/path": "uid://clck5ck6enuq6"
+},
+"TextureMaterial_46": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_46.tres",
+"use_external/path": "uid://chbr4uw8ifi8o"
+},
+"TextureMaterial_47": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_47.tres",
+"use_external/path": "uid://blwc16yn5dlku"
+},
+"TextureMaterial_48": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_48.tres",
+"use_external/path": "uid://dili4ndve4edb"
+},
+"TextureMaterial_49": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_49.tres",
+"use_external/path": "uid://b33gqxj3d2gcs"
+},
+"TextureMaterial_5": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_5.tres",
+"use_external/path": "uid://df1fxw8bbxrjc"
+},
+"TextureMaterial_50": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_50.tres",
+"use_external/path": "uid://cj2s60hric3ed"
+},
+"TextureMaterial_51": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_51.tres",
+"use_external/path": "uid://cdstnlj77be7m"
+},
+"TextureMaterial_52": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_52.tres",
+"use_external/path": "uid://cx5lu0owyum7h"
+},
+"TextureMaterial_53": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_53.tres",
+"use_external/path": "uid://bg41ovung3atr"
+},
+"TextureMaterial_54": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_54.tres",
+"use_external/path": "uid://b1ke08wiw0a7b"
+},
+"TextureMaterial_55": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_55.tres",
+"use_external/path": "uid://ditjreyarwgpv"
+},
+"TextureMaterial_56": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_56.tres",
+"use_external/path": "uid://d34wu2o2k7nao"
+},
+"TextureMaterial_57": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_57.tres",
+"use_external/path": "uid://dhunrjc8h4n2u"
+},
+"TextureMaterial_58": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_58.tres",
+"use_external/path": "uid://b08qjok1fpuag"
+},
+"TextureMaterial_59": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_59.tres",
+"use_external/path": "uid://dpjl43g8264b6"
+},
+"TextureMaterial_6": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_6.tres",
+"use_external/path": "uid://bncuket1kt8bu"
+},
+"TextureMaterial_60": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_60.tres",
+"use_external/path": "uid://bepjvhplhmar0"
+},
+"TextureMaterial_61": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_61.tres",
+"use_external/path": "uid://d2gtjaxjskgpg"
+},
+"TextureMaterial_62": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_62.tres",
+"use_external/path": "uid://dcxom0dm2ql3b"
+},
+"TextureMaterial_63": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_63.tres",
+"use_external/path": "uid://c5a1bl1564n7b"
+},
+"TextureMaterial_64": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_64.tres",
+"use_external/path": "uid://dwyjlywjph1y4"
+},
+"TextureMaterial_65": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_65.tres",
+"use_external/path": "uid://bytpuuurp8skl"
+},
+"TextureMaterial_66": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_66.tres",
+"use_external/path": "uid://c8ut5rpi5kkoj"
+},
+"TextureMaterial_67": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_67.tres",
+"use_external/path": "uid://cgohuxvmy82e5"
+},
+"TextureMaterial_68": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_68.tres",
+"use_external/path": "uid://hekgnmi35xoc"
+},
+"TextureMaterial_69": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_69.tres",
+"use_external/path": "uid://cgdgfxdjv8ji3"
+},
+"TextureMaterial_7": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_7.tres",
+"use_external/path": "uid://dkkew1f4r3y0g"
+},
+"TextureMaterial_70": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_70.tres",
+"use_external/path": "uid://cl1625071qt12"
+},
+"TextureMaterial_71": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_71.tres",
+"use_external/path": "uid://buolcwn2wssse"
+},
+"TextureMaterial_72": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_72.tres",
+"use_external/path": "uid://dbcoq314366rn"
+},
+"TextureMaterial_73": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_73.tres",
+"use_external/path": "uid://pxdbv4nxhiv1"
+},
+"TextureMaterial_74": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_74.tres",
+"use_external/path": "uid://b0eucksfk64n3"
+},
+"TextureMaterial_75": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_75.tres",
+"use_external/path": "uid://cvusal6su2brm"
+},
+"TextureMaterial_76": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_76.tres",
+"use_external/path": "uid://c3kp6pjxkjrno"
+},
+"TextureMaterial_77": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_77.tres",
+"use_external/path": "uid://rb784u7r5k7d"
+},
+"TextureMaterial_8": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_8.tres",
+"use_external/path": "uid://m87n7f1v3nei"
+},
+"TextureMaterial_9": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/snow_town/mats/TextureMaterial_9.tres",
+"use_external/path": "uid://7d0k5pw4fwk8"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

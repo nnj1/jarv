@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 # --- Exported Variables ---
 @export var speed: float = 10
-@export var jump_velocity: float = 4.5
+@export var jump_velocity: float = 9
 @export var mouse_sensitivity: float = 0.002
 @export var camera_pivot: Node3D        # Drag the Camera Pivot (Node3D) here
 @export var tps_arm: SpringArm3D       # Drag the TPS_Arm (SpringArm3D) here
