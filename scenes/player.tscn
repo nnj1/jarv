@@ -265,6 +265,9 @@ visible = false
 [node name="weapons" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 
+[node name="hand" type="Node3D" parent="weapons"]
+visible = false
+
 [node name="grenadelauncher" type="Node3D" parent="weapons"]
 transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, 0, 0, -0.85304)
 visible = false

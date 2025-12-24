@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=8 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://cbaeob2jhrfbx" path="res://scenes/rv.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" path="res://scenes/town2.tscn" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://c83kt0i1psayj" path="res://scenes/gmc.tscn" id="3_p57ef"]
 [ext_resource type="Environment" uid="uid://b1syrdek0evt8" path="res://resources/gameworldenv.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://bna7jai6hx8m0" path="res://scenes/directional_light_3d.gd" id="4_lbhrr"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lnu2h"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
 
@@ -21,9 +19,8 @@ script = ExtResource("1_lbhrr")
 _spawnable_scenes = PackedStringArray("uid://cbaoxocs5fdn5")
 spawn_path = NodePath("..")
 
-[node name="rv" parent="entities" instance=ExtResource("2_yqjtg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.100772, 0, 0)
-physics_material_override = SubResource("PhysicsMaterial_lnu2h")
+[node name="Gmc" parent="entities" instance=ExtResource("3_p57ef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 10)
 
 [node name="terrain" type="Node3D" parent="."]
 
@@ -60,7 +57,7 @@ text = "Speed: "
 [node name="time" type="Label" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Speed: "
+text = "Time"
 
 [node name="target" type="Label" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2

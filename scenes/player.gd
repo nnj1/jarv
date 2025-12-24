@@ -34,10 +34,14 @@ const FOV_KICK: bool = true
 # --- State Variables ---
 var is_first_person: bool = true
 var camera: Camera3D
-var weapon_index = 0
-var max_weapons = 2
+var weapon_index = 1
+var max_weapons = 3
 
 var weapons = [
+	{
+		'name': 'hand',
+		'reticle': 0
+	},
 	{
 		'name': 'grenadelauncher',
 		'reticle': 82
@@ -77,7 +81,7 @@ func _ready():
 		# set a crosshair
 		main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapon_index, 20, 10)
 		
-		# set default weapon (may change crosshair
+		# set default weapon (may change crosshair)
 		change_weapon()
 		
 		# Get camera reference and set initial view

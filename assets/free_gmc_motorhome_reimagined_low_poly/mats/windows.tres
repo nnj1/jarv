@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dgbh3boursvid"]
+
+[ext_resource type="Texture2D" uid="uid://dtvdq78o6pjub" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/windows_baseColor.jpeg" id="1_d8luk"]
+[ext_resource type="Texture2D" uid="uid://b8yk0ly1ydwck" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/windows_metallicRoughness.png" id="2_2ebgt"]
+
+[resource]
+resource_name = "windows"
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.8039216, 0.627451, 0.17254902, 0.7019608)
+albedo_texture = ExtResource("1_d8luk")
+metallic = 1.0
+metallic_texture = ExtResource("2_2ebgt")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_2ebgt")
+roughness_texture_channel = 1
+ao_enabled = true
+ao_texture = ExtResource("2_2ebgt")
