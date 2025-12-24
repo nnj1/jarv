@@ -40,6 +40,24 @@ world_env = NodePath("../WorldEnvironment")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer"]
+position = Vector2(573, -22)
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
+polygon = PackedVector2Array(147, 30, 220, 26, 235, 54, 163, 59)
+uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer"]
+position = Vector2(191, -19)
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
+polygon = PackedVector2Array(158, 28, 258, 21, 235, 54, 141, 58)
+uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer"]
+position = Vector2(-158, -21)
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
+polygon = PackedVector2Array(147, 30, 220, 26, 235, 54, 163, 59)
+uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_right = 1152.0
 offset_bottom = 40.0
