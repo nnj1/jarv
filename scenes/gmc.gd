@@ -31,7 +31,12 @@ func interact(given_player_node) -> void:
 	if not given_player_node in occupants:
 		print(str(given_player_node) + ' entered GMC RV')
 		occupants.append(given_player_node)
+		# stop colliding with RV
+		set_collision_mask_value(2, false)
 		given_player_node.global_position = $entrance_point.global_position
+		# To start colliding again
+		set_collision_mask_value(2, true)
+		
 	
 func _ready() -> void:
 	$engineIdleSound.play()
