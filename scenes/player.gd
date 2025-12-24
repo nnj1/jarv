@@ -59,6 +59,10 @@ var weapons = [
 var entity_held = null
 
 func change_weapon(index:  int = weapon_index):
+	# drop any held items
+	if entity_held:
+		entity_held.drop()
+		self.entity_held = null
 	for child in $weapons.get_children():
 		child.visible = false
 	$weapons.get_children()[index].visible = true
