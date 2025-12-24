@@ -2,7 +2,7 @@ extends DirectionalLight3D
 
 @export_group("Time Settings")
 ## Total real-world seconds for a full 24-hour cycle
-@export var day_length_seconds: float = 60.0 
+@export var day_length_seconds: float = 60.0 * 30 
 ## The starting hour (0 to 24)
 @export_range(0, 24) var current_hour: float = 12.0
 ## The seasonal tilt of the sun's path (in degrees)

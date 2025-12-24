@@ -1,11 +1,11 @@
-[gd_scene load_steps=26 format=4 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=27 format=4 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://j2ci80t10loi" path="res://assets/Heavy Weapons Pack/gl.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c06v8hb8bxe22" path="res://assets/Heavy Weapons Pack/knife.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://nswjibmrcdbc" path="res://assets/Heavy Weapons Pack/mauser.png" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b3e6nvgnd604j" path="res://assets/UI Soundpack/UI Soundpack/MP3/Wood Block1.mp3" id="5_qlg0r"]
-[ext_resource type="Script" uid="uid://bsjgl3qkbr63o" path="res://scenes/flashlight.gd" id="6_tuyoq"]
+[ext_resource type="Script" path="res://scenes/flashlight.gd" id="6_tuyoq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 
@@ -36,7 +36,10 @@ initial_velocity_max = 20.0
 gravity = Vector3(0, -3, 0)
 turbulence_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
+
 [sub_resource type="QuadMesh" id="QuadMesh_3vyb7"]
+material = SubResource("StandardMaterial3D_qlg0r")
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf27b"]
@@ -201,7 +204,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "tps_arm", "fp_position")]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_3vyb7")
 camera_pivot = NodePath("camera_pivot")
 tps_arm = NodePath("camera_pivot/tps_arm")

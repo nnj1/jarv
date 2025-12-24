@@ -23,7 +23,8 @@ var current_steer: float = 0.0
 
 const is_interactable: bool = true
 func interact(given_player_node) -> void:
-	print(str(given_player_node) + ' interacted with RV')
+	print(str(given_player_node) + ' entered RV')
+	given_player_node.global_position = $entrance_point.global_position
 	
 func _ready() -> void:
 	$engineIdleSound.play()
