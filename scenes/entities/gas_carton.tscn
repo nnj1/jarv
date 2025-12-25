@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cw4vukdv7u3or"]
+[gd_scene load_steps=11 format=4 uid="uid://cw4vukdv7u3or"]
 
 [ext_resource type="Script" uid="uid://dqo0sqykr5p0c" path="res://scenes/entities/gas_carton.gd" id="1_fgm4t"]
 [ext_resource type="Texture2D" uid="uid://dhjm0a0t1lrgl" path="res://assets/fuel_can_low-poly/textures/fuel_can_baseColor.png" id="2_ypghb"]
@@ -58,6 +58,14 @@ shadow_mesh = SubResource("ArrayMesh_7mgrt")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ypghb"]
 points = PackedVector3Array(7.226995, 17.90896, 22.31643, -7.337154, -18.123716, -22.148228, 7.191826, -18.173092, -22.209156, 6.516823, 17.293535, -24.069916, -8.132434, 14.774739, 24.536995, 5.652072, -17.379042, 19.880915, -7.335183, 17.767698, -22.902763, -8.644442, -13.201554, 15.633957, 8.650223, 12.352557, 24.300098, -8.823701, 12.36431, -24.322994, 8.60518, -13.393288, -24.17486, -7.3935905, -5.175559, 24.63011, 8.583883, -13.360887, 15.825191, 8.663751, 13.131254, -24.33784, -7.303606, -18.040716, 12.920696, -8.761618, -12.6263895, -24.150242, -7.3708816, 17.856018, 22.2511, 7.242818, -5.185484, 24.679, -7.4134936, -15.993974, -24.69726, -8.605016, 13.533681, 22.971563, 7.1618543, -18.09894, 12.962806, 7.187586, 17.811459, -22.95862, -8.758337, -10.358754, 17.34957, 7.9343023, -15.827261, 19.853754, 7.9706388, 15.547059, -24.547731, 2.563709, -16.437138, 20.418514, 7.9354463, 15.478352, 24.440361, -8.093618, 15.464465, -24.41878, 7.916316, -15.792146, -24.382147, 4.9180427, -13.641292, 22.318838, 7.787154, 17.440905, 20.987448, -7.419093, 15.654914, 24.716026)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ypghb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="GasCarton" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_ypghb")
 script = ExtResource("1_fgm4t")
@@ -83,3 +91,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.02, 0, 0, 0, -8.7422775e-10, 0.02, 0, -0.02, -8.7422775e-10, 0, 0.5035166, -9.536743e-09)
 shape = SubResource("ConvexPolygonShape3D_ypghb")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ypghb")

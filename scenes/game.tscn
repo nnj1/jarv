@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=12 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
+[ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
+[ext_resource type="PackedScene" uid="uid://cbaoxocs5fdn5" path="res://scenes/player.tscn" id="3_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://boimqj5gn80a2" path="res://scenes/town2.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://do3xxsfa4op1l" path="res://scenes/gmc.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cw4vukdv7u3or" path="res://scenes/entities/gas_carton.tscn" id="3_u5sy4"]
@@ -15,11 +17,13 @@
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lbhrr")
 
-[node name="entities" type="Node3D" parent="."]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="entities"]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://cbaoxocs5fdn5")
-spawn_path = NodePath("..")
+spawn_path = NodePath("../entities")
+script = ExtResource("2_gee14")
+network_player = ExtResource("3_0tnpc")
+
+[node name="entities" type="Node3D" parent="."]
 
 [node name="Gmc" parent="entities" instance=ExtResource("3_p57ef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 10)
@@ -86,6 +90,22 @@ text = "Time"
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Looking at: "
+
+[node name="role" type="Label" parent="CanvasLayer"]
+offset_left = 1085.0
+offset_top = 29.0
+offset_right = 1152.0
+offset_bottom = 54.0
+size_flags_horizontal = 10
+text = "Role"
+
+[node name="id" type="Label" parent="CanvasLayer"]
+offset_left = 1086.0
+offset_top = 49.0
+offset_right = 1153.0
+offset_bottom = 74.0
+size_flags_horizontal = 10
+text = "ID"
 
 [node name="crosshair" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8

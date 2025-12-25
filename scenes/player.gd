@@ -79,8 +79,11 @@ func stop_driving():
 	# reset player rotation
 	self.rotation = Vector3(0,0,0)
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
 func _ready():
-	if is_multiplayer_authority() and DisplayServer.window_is_focused():
+	if is_multiplayer_authority(): #and DisplayServer.window_is_focused():
 		# Lock the mouse at start
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
@@ -96,7 +99,12 @@ func _ready():
 		
 		_set_view_position(fp_position.global_position)
 		tps_arm.spring_length = 0.00 # Start SpringArm collapsed for FP
-
+	else:
+		camera = tps_arm.get_child(0) as Camera3D
+		camera.current = false
+		$CanvasLayer.hide()
+		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.current = false
+	
 # 1. Physics Movement and Camera Interpolation
 func _physics_process(delta):
 	
@@ -329,8 +337,9 @@ func accelerate(delta: float, wish_dir: Vector3, current_velocity: Vector3, acce
 
 # sync main camera 3d with the weapon camera3d in the subviewport
 func _process(_delta: float) -> void:
-	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.global_transform = $camera_pivot/tps_arm/Camera3D.global_transform
-	$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.fov = $camera_pivot/tps_arm/Camera3D.fov
+	if is_multiplayer_authority(): 
+		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.global_transform = $camera_pivot/tps_arm/Camera3D.global_transform
+		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.fov = $camera_pivot/tps_arm/Camera3D.fov
 
 # for periodic weather effects
 #TODO: make this sync across players

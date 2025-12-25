@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://do3xxsfa4op1l"]
+[gd_scene load_steps=38 format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
 [ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]
@@ -394,6 +394,14 @@ size = Vector3(4.684143, 0.24487305, 22.420654)
 [sub_resource type="BoxShape3D" id="BoxShape3D_asokp"]
 size = Vector3(4.684143, 0.24487305, 22.420654)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3f1he"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Gmc" type="VehicleBody3D"]
 collision_layer = 2
 collision_mask = 5
@@ -577,3 +585,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3448782, 0)
 
 [node name="drivers_seat" parent="." instance=ExtResource("8_3f1he")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8758545, 3.2676468, 7.3725643)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3f1he")

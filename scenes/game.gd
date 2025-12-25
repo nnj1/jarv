@@ -3,19 +3,8 @@ extends Node3D
 @export var player_scene: PackedScene = preload("res://scenes/player.tscn")
 
 func _ready():
-	# Only the server manages spawning
-	if not multiplayer.is_server():
-		return
-
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
-
-	# Add the server's player
-	add_player(1)
-
-	# Add any players who joined while we were loading
-	for id in multiplayer.get_peers():
-		add_player(id)
+	$CanvasLayer/role.text = GameManager.ROLE
+	$CanvasLayer/id.text = str(get_tree().get_multiplayer().get_unique_id())
 		
 func _process(_delta: float) -> void:
 	# Get the FPS from the Engine singleton
@@ -55,15 +44,3 @@ func _process(_delta: float) -> void:
 			## Freeze the game so you can look at the Remote Scene Tree
 			#get_tree().paused = true 
 			#return
-				
-func add_player(id: int):
-	var player = player_scene.instantiate()
-	#spawn spot
-	player.position = Vector3(9.39, 3.841, -2.935)
-	player.name = str(id) # Name must be the peer ID
-	$entities.add_child(player) # Add to a "Players" Node2D
-
-func remove_player(id: int):
-	var player = $entities.get_node_or_null(str(id))
-	if player:
-		player.queue_free()
