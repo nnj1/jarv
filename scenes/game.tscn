@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=18 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -9,10 +9,83 @@
 [ext_resource type="Environment" uid="uid://b1syrdek0evt8" path="res://resources/gameworldenv.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://bna7jai6hx8m0" path="res://scenes/directional_light_3d.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://13a0tm6jijnb" path="res://assets/8664993.png" id="7_u5sy4"]
+[ext_resource type="FontFile" uid="uid://bbyybor08ktnd" path="res://assets/fonts/Oswald/Oswald-VariableFont_wght.ttf" id="10_vtaks"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
 
 [sub_resource type="Compositor" id="Compositor_lbhrr"]
+
+[sub_resource type="DPITexture" id="DPITexture_kvpfn"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dinhu"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvuet"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trtic"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_0tnpc"]
+LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 1)
+LineEdit/colors/clear_button_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0.875, 0.875, 0.875, 0.6)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_uneditable_color = Color(0.875, 0.875, 0.875, 0.5)
+LineEdit/colors/selection_color = Color(0.5, 0.5, 0.5, 1)
+LineEdit/constants/caret_width = 1
+LineEdit/constants/minimum_character_width = 4
+LineEdit/constants/outline_size = 0
+LineEdit/font_sizes/font_size = 20
+LineEdit/fonts/font = ExtResource("10_vtaks")
+LineEdit/icons/clear = SubResource("DPITexture_kvpfn")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_dinhu")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_kvuet")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_trtic")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lbhrr")
@@ -62,7 +135,8 @@ polygon = PackedVector2Array(158, 28, 258, 21, 235, 54, 141, 58)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
 [node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer"]
-position = Vector2(-158, -21)
+position = Vector2(-158, -58.030304)
+scale = Vector2(1, 2.4242425)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(147, 30, 220, 26, 235, 54, 163, 59)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
@@ -92,18 +166,16 @@ size_flags_horizontal = 10
 text = "Looking at: "
 
 [node name="role" type="Label" parent="CanvasLayer"]
-offset_left = 1085.0
-offset_top = 29.0
-offset_right = 1152.0
-offset_bottom = 54.0
+offset_top = 28.0
+offset_right = 67.0
+offset_bottom = 53.0
 size_flags_horizontal = 10
 text = "Role"
 
 [node name="id" type="Label" parent="CanvasLayer"]
-offset_left = 1086.0
-offset_top = 49.0
-offset_right = 1153.0
-offset_bottom = 74.0
+offset_top = 47.0
+offset_right = 67.0
+offset_bottom = 72.0
 size_flags_horizontal = 10
 text = "ID"
 
@@ -182,3 +254,39 @@ offset_right = 124.0
 offset_bottom = 614.0
 texture = ExtResource("7_u5sy4")
 expand_mode = 4
+
+[node name="chatbox" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="chathistory" type="RichTextLabel" parent="CanvasLayer/chatbox"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -416.0
+offset_top = 32.0
+offset_bottom = 168.0
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 20
+scroll_following = true
+horizontal_alignment = 2
+
+[node name="chatinput" type="LineEdit" parent="CanvasLayer/chatbox"]
+layout_mode = 0
+offset_left = -376.0
+offset_top = 168.0
+offset_right = 40.0
+offset_bottom = 201.0
+theme = SubResource("Theme_0tnpc")
+alignment = 2
+
+[connection signal="ready" from="CanvasLayer/chatbox/chathistory" to="." method="_on_chathistory_ready"]
+[connection signal="focus_entered" from="CanvasLayer/chatbox/chatinput" to="." method="_on_chatinput_focus_entered"]
+[connection signal="focus_exited" from="CanvasLayer/chatbox/chatinput" to="." method="_on_chatinput_focus_exited"]
+[connection signal="text_submitted" from="CanvasLayer/chatbox/chatinput" to="." method="_on_chatinput_text_submitted"]

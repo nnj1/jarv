@@ -111,7 +111,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	
 	# code for dropping held items
-	if Input.is_action_just_pressed('interact') and entity_held:
+	if Input.is_action_just_pressed('interact') and entity_held and not main_game_node.typing_chat:
 		entity_held.drop()
 		self.entity_held = null
 	
@@ -132,7 +132,7 @@ func _physics_process(delta):
 						main_game_node.get_node('CanvasLayer/interact_message').visible = true
 				
 				# do the actual interaction if the player presses the key
-				if Input.is_action_just_pressed('interact'):
+				if Input.is_action_just_pressed('interact') and not main_game_node.typing_chat:
 					target.interact(self)
 	else:
 		# reset to default message
@@ -146,7 +146,7 @@ func _physics_process(delta):
 			velocity.y -= GRAVITY * delta
 
 		# 2. Handle Jump (Standard Quake doesn't have jump cooldown)
-		if is_on_floor() and Input.is_action_pressed("jump"):
+		if is_on_floor() and Input.is_action_pressed("jump") and not main_game_node.typing_chat:
 			velocity.y = jump_velocity
 
 		# 3. Get Input Direction
