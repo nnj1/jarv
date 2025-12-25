@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=10 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://boimqj5gn80a2" path="res://scenes/town2.tscn" id="3_iywne"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4vukdv7u3or" path="res://scenes/entities/gas_carton.tscn" id="3_u5sy4"]
 [ext_resource type="Environment" uid="uid://b1syrdek0evt8" path="res://resources/gameworldenv.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://bna7jai6hx8m0" path="res://scenes/directional_light_3d.gd" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://13a0tm6jijnb" path="res://assets/8664993.png" id="7_u5sy4"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
 
@@ -107,3 +108,57 @@ offset_right = 710.0
 offset_bottom = 445.0
 theme_override_font_sizes/font_size = 32
 text = "Press E to interact"
+
+[node name="RV_HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
+position = Vector2(-117, 602)
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
+polygon = PackedVector2Array(111, -60, 260, -37, 223, 66, 107, 32)
+uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 546.0
+offset_right = 127.0
+offset_bottom = 640.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/RV_HUD/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.1
+
+[node name="gear" type="Label" parent="CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "gear"
+
+[node name="car_speed" type="Label" parent="CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="fuelpercent" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 615.0
+offset_right = 132.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 1.22
+text = "99L"
+
+[node name="fuelicon" type="TextureRect" parent="CanvasLayer/RV_HUD"]
+modulate = Color(1, 1, 1, 0.5176471)
+layout_mode = 0
+offset_left = 82.0
+offset_top = 572.0
+offset_right = 124.0
+offset_bottom = 614.0
+texture = ExtResource("7_u5sy4")
+expand_mode = 4
