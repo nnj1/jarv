@@ -88,6 +88,12 @@ func _physics_process(delta: float) -> void:
 				engine_force = -back_input * (max_engine_force * 0.6)
 			if forward_input > 0:
 				brake = forward_input * brake_strength
+
+	if engine_force != 0:
+		if not $accelerateSound.playing:
+			$accelerateSound.play()
+	else:
+		$accelerateSound.stop()
 	
 	if Input.is_action_pressed("handbrake"):
 		brake = brake_strength * 4.0
