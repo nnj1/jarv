@@ -16,7 +16,7 @@ var current_gear = Gear.DRIVE
 
 @export_group("Fuel Settings")
 @export var max_fuel: float = 100.0
-@export var current_fuel: float = 10.0
+@export var current_fuel: float = 100.0
 @export var fuel_consumption_rate: float = 1.5
 @export var idle_consumption_rate: float = 0.1
 
