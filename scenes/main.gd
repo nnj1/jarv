@@ -14,6 +14,5 @@ func _on_join_pressed():
 	#SceneTransition.change_scene('res://scenes/game.tscn')
 	get_tree().change_scene_to_file('res://scenes/game.tscn')
 
-
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	GameManager.selected_skin = color

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=24 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -15,6 +15,11 @@
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
 
 [sub_resource type="Compositor" id="Compositor_lbhrr"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kvpfn"]
+properties/0/path = NodePath(".:current_hour")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [sub_resource type="Animation" id="Animation_dinhu"]
 length = 0.001
@@ -170,6 +175,9 @@ shadow_enabled = true
 directional_shadow_mode = 0
 script = ExtResource("4_lbhrr")
 world_env = NodePath("../WorldEnvironment")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="DirectionalLight3D"]
+replication_config = SubResource("SceneReplicationConfig_kvpfn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
