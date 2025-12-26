@@ -36,6 +36,10 @@ var is_first_person: bool = true
 var camera: Camera3D
 var weapon_index = 1
 var max_weapons = 3
+var max_health = 100
+var current_health = 100
+var health_decay_rate = 0.1
+
 
 var weapons = [
 	{
@@ -79,6 +83,14 @@ func stop_driving():
 	# reset player rotation
 	self.rotation = Vector3(0,0,0)
 
+func decay_health(delta):
+	if current_health > 0:
+		# delta ensures the decay is consistent regardless of frame rate
+		current_health -= health_decay_rate * delta
+		
+		# Prevent health from going below zero
+		current_health = max(current_health, 0)
+		
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
@@ -335,14 +347,20 @@ func accelerate(delta: float, wish_dir: Vector3, current_velocity: Vector3, acce
 	# FINAL SAFETY: If math explodes, return zero
 	return final_vel if final_vel.is_finite() else Vector3.ZERO
 
-# sync main camera 3d with the weapon camera3d in the subviewport
-func _process(_delta: float) -> void:
+
+func _process(delta: float) -> void:
 	if is_multiplayer_authority(): 
+		# sync main camera 3d with the weapon camera3d in the subviewport
 		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.global_transform = $camera_pivot/tps_arm/Camera3D.global_transform
 		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.fov = $camera_pivot/tps_arm/Camera3D.fov
+		
+		# update health and other player HUD UI elements and decay health
+		decay_health(delta)
+		main_game_node.get_node('CanvasLayer/player_HUD/health_value').text = str(int(current_health))
+		main_game_node.get_node('CanvasLayer/player_HUD/heart').material.set_shader_parameter("progress", 1.0 * current_health / max_health)
 
 # for periodic weather effects
-#TODO: make this sync across players
+#TODO: make this sync across playersset_shader_parameter
 func _on_timer_timeout() -> void:
 	$GPUParticles3D.emitting = not $GPUParticles3D.emitting
 	#print($GPUParticles3D.emitting)
