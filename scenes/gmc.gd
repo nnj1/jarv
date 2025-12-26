@@ -26,11 +26,15 @@ var current_gear = Gear.DRIVE
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12/Object_20,
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
 
+var steer_input: float = 0.0
+var forward_input:float = 0.0
+var back_input: float = 0.0
+
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 
 # --- SPEED TRACKING ---
-var current_speed_mps: float = 0.0 
-var current_speed_kmh: float = 0.0 
+@export var current_speed_mps: float = 0.0 
+@export var current_speed_kmh: float = 0.0 
 
 var occupants = []
 const is_interactable: bool = true
@@ -48,6 +52,16 @@ func _ready() -> void:
 	$engineIdleSound.play()
 	center_of_mass_mode = VehicleBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0, -0.8, 0)
+	
+#@rpc("any_peer", "call_local", "unreliable")
+func push_input(given_steer_input:float, given_forward_input:float, given_back_input:float):
+	steer_input = given_steer_input
+	forward_input = given_forward_input
+	back_input = given_back_input
+	
+#@rpc("any_peer", "call_local", "reliable")
+func push_gear_change():
+	current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
 	
 func _physics_process(delta: float) -> void:
 	# 1. Update Speed Variables
@@ -74,18 +88,20 @@ func _physics_process(delta: float) -> void:
 			if linear_velocity.dot(global_transform.basis.z) > 0.1:
 				direction = -1.0
 			rotating_part.rotate_x(current_speed_mps * rotation_speed_multiplier * direction * delta * -1)
-
-	# 4. Gear Switching
-	if Input.is_action_just_pressed("shift_gear"):
-		current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
 	
-	# 5. Steering Logic
-	var steer_input = Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right")
+	# If server, can drive with arrow keys directly and shift with tab directly
+	if GameManager.ROLE == 'Server':
+		
+		# 4. Gear Switching
+		if Input.is_action_just_pressed("shift_gear"):
+			push_gear_change()
+		
+		# 5. Steering and Movement Logic
+		push_input(Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right"),
+					Input.get_action_strength("drive_forward"),
+					 Input.get_action_strength("drive_back") )
+		
 	steering = move_toward(steering, steer_input * max_steer_angle, delta * steering_speed)
-	
-	# 6. Movement Logic
-	var forward_input = Input.get_action_strength("drive_forward")
-	var back_input = Input.get_action_strength("drive_back")
 	
 	engine_force = 0.0
 	brake = 0.0

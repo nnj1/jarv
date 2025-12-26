@@ -40,6 +40,7 @@ var max_health = 100
 var current_health = 100
 var health_decay_rate = 0.1
 
+var skin_color = Color(1,0,0)
 
 var weapons = [
 	{
@@ -61,6 +62,15 @@ var weapons = [
 ]
 
 var entity_held = null
+
+func set_skin_color(given_skin_color: Color):
+	skin_color = given_skin_color
+	var mesh_instance = self.get_node('gnome_model/Sketchfab_model/Collada visual scene group/gnome_low/defaultMaterial')
+	var base_mat = mesh_instance.get_active_material(0)
+	base_mat = base_mat.duplicate()
+	mesh_instance.set_surface_override_material(0, base_mat)
+	base_mat.next_pass = base_mat.next_pass.duplicate()
+	base_mat.next_pass.set_shader_parameter("blue_replacement_color", skin_color)
 
 func change_weapon(index:  int = weapon_index):
 	# drop any held items
@@ -182,6 +192,7 @@ func _physics_process(delta):
 	
 	elif seat_node and is_driving:
 		# in driving mode
+		main_game_node.get_node('entities/Gmc').push_input()
 		
 		# lock position
 		self.global_position = seat_node.get_node('driver_position').global_position

@@ -21,6 +21,9 @@ var current_engine_force: float = 0.0
 var current_brake_force: float = 0.0
 var current_steer: float = 0.0
 
+var accelerate_input: float = 0.0
+var steer_input: float = 0.0
+
 const is_interactable: bool = true
 func interact(given_player_node) -> void:
 	print(str(given_player_node) + ' entered RV')
@@ -28,13 +31,14 @@ func interact(given_player_node) -> void:
 	
 func _ready() -> void:
 	$engineIdleSound.play()
-
+	
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float):
 
-	# 1. Handle Input
-	var accelerate_input: float = Input.get_axis("drive_back", "drive_forward")
-	var steer_input: float = Input.get_axis("turn_right", "turn_left")
+	# 1. If server, can drive with arrow keys directly
+	if multiplayer.is_server():
+		accelerate_input = Input.get_axis("drive_back", "drive_forward")
+		steer_input = Input.get_axis("turn_right", "turn_left")
 
 	# 2. Steering (Apply steering angle as before)
 	current_steer = steer_input * max_steering_angle

@@ -86,6 +86,9 @@ albedo_color = Color(1, 0.5764706, 1, 1)
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 shading_mode = 0
