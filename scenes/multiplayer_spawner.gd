@@ -17,6 +17,14 @@ func spawn_player(id: int) -> void:
 	var player: Node = network_player.instantiate()
 	player.name = str(id)
 	
+	# set up the player's skin
+	var mesh_instance = player.get_node('gnome_model/Sketchfab_model/Collada visual scene group/gnome_low/defaultMaterial')
+	var base_mat = mesh_instance.get_active_material(0)
+	base_mat = base_mat.duplicate()
+	mesh_instance.set_surface_override_material(0, base_mat)
+	base_mat.next_pass = base_mat.next_pass.duplicate()
+	base_mat.next_pass.set_shader_parameter("blue_replacement_color", GameManager.selected_skin)
+	
 	get_node(spawn_path).call_deferred("add_child", player)
 	print('Spawned ' + str(player.name))
 	
