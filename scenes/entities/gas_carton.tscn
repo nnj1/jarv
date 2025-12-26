@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cw4vukdv7u3or"]
+[gd_scene load_steps=13 format=4 uid="uid://cw4vukdv7u3or"]
 
 [ext_resource type="Script" uid="uid://dqo0sqykr5p0c" path="res://scenes/entities/gas_carton.gd" id="1_fgm4t"]
 [ext_resource type="Texture2D" uid="uid://dhjm0a0t1lrgl" path="res://assets/fuel_can_low-poly/textures/fuel_can_baseColor.png" id="2_ypghb"]
@@ -7,8 +7,35 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ypghb"]
 
+[sub_resource type="Shader" id="Shader_ypghb"]
+code = "shader_type spatial;
+render_mode unshaded, depth_draw_never;
+
+uniform vec4 shine_color : source_color = vec4( 1.0, 1.0, 1.0, 1.0 );
+uniform float cycle_interval : hint_range(0.0, 5.0) = 1.0;
+uniform float shine_speed : hint_range(1.0, 5.0) = 3.0;
+uniform float shine_width : hint_range(1.0, 100.0) = 3.0;
+
+void fragment( )
+{
+	vec3 vertex = ( INV_VIEW_MATRIX * vec4( VERTEX, 1.0 ) ).xyz;
+	float width = shine_width * 0.001 * cycle_interval;
+	float frequency = floor( sin( vertex.z * cycle_interval + TIME * shine_speed * cycle_interval ) + width );
+	ALBEDO = shine_color.rgb;
+	ALPHA = clamp( ( 1.0 - dot( NORMAL, VIEW ) ) * frequency * shine_color.a, 0.0, 1.0 );
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tkv4r"]
+render_priority = 0
+shader = SubResource("Shader_ypghb")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f76iw"]
 resource_name = "fuel_can"
+next_pass = SubResource("ShaderMaterial_tkv4r")
 cull_mode = 2
 albedo_texture = ExtResource("2_ypghb")
 metallic = 1.0
