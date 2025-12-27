@@ -166,8 +166,56 @@ func _ready():
 		camera = tps_arm.get_child(0) as Camera3D
 		camera.current = false
 		$CanvasLayer.hide()
-		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.current = false
+		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.current = false	
+
+@rpc("any_peer","call_local","reliable")
+func network_lock_self_to_driver_seat(delta):
+	# lock position client side 
+	var target_position = main_game_node.get_node('entities/Gmc/drivers_seat/driver_position').global_position
+	self.global_position = target_position
+	#print('position locked')
 	
+	# smooth rotation
+	var target_quat = main_game_node.get_node('entities/Gmc/drivers_seat/driver_position').global_transform.basis.get_rotation_quaternion()
+	var current_quat = self.global_transform.basis.get_rotation_quaternion()
+	
+	# SAFETY CHECK 1: Ensure quaternions are valid and not identical
+	if current_quat.is_finite() and target_quat.is_finite():
+		# Only slerp if there is actually a difference to calculate
+		if not current_quat.is_equal_approx(target_quat):
+			var final_quat = current_quat.slerp(target_quat, 5 * delta)
+			
+			# SAFETY CHECK 2: Final validation before applying to the GPU
+			if final_quat.is_finite():
+				# Apply rotation while preserving current scale
+				var s = global_basis.get_scale()
+				if s.is_finite():
+					self.global_transform.basis = Basis(final_quat).scaled(s)	
+
+
+func lock_self_to_driver_seat(delta):
+	# lock position client side (may also do this server side to prevent jittering
+	self.global_position = seat_node.get_node('driver_position').global_position
+	#print('position locked')
+	
+	# smooth rotation
+	var target_quat = seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()
+	var current_quat = self.global_transform.basis.get_rotation_quaternion()
+	
+	# SAFETY CHECK 1: Ensure quaternions are valid and not identical
+	if current_quat.is_finite() and target_quat.is_finite():
+		# Only slerp if there is actually a difference to calculate
+		if not current_quat.is_equal_approx(target_quat):
+			var final_quat = current_quat.slerp(target_quat, 5 * delta)
+			
+			# SAFETY CHECK 2: Final validation before applying to the GPU
+			if final_quat.is_finite():
+				# Apply rotation while preserving current scale
+				var s = global_basis.get_scale()
+				if s.is_finite():
+					global_transform.basis = Basis(final_quat).scaled(s)	
+
+
 # 1. Physics Movement and Camera Interpolation
 func _physics_process(delta):
 	
@@ -240,35 +288,20 @@ func _physics_process(delta):
 
 		if Input.is_action_just_pressed('shift_gear'):
 			self.gear_key_just_pressed = true
+			seat_node.get_parent().rpc_id(1, 'network_gear_change')
 		else:
 			self.gear_key_just_pressed = false
 		
 		if Input.is_action_pressed('handbrake'):
 			self.handbrake_key_pressed = true
+			seat_node.get_parent().rpc_id(1, 'network_handbrake')
 		else:
 			self.handbrake_key_pressed = false
 		
-		# lock position
-		self.global_position = seat_node.get_node('driver_position').global_position
-		#print('position locked')
+		# called on client side but using client's delta (aka client's physics)
+		#lock_self_to_driver_seat(delta)
+		#self.rpc('network_lock_self_to_driver_seat', delta)
 		
-		# smooth rotation
-		var target_quat = seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()
-		var current_quat = self.global_transform.basis.get_rotation_quaternion()
-
-		# SAFETY CHECK 1: Ensure quaternions are valid and not identical
-		if current_quat.is_finite() and target_quat.is_finite():
-			# Only slerp if there is actually a difference to calculate
-			if not current_quat.is_equal_approx(target_quat):
-				var final_quat = current_quat.slerp(target_quat, 5 * delta)
-				
-				# SAFETY CHECK 2: Final validation before applying to the GPU
-				if final_quat.is_finite():
-					# Apply rotation while preserving current scale
-					var s = global_basis.get_scale()
-					if s.is_finite():
-						global_transform.basis = Basis(final_quat).scaled(s)
-	
 	# --- CAMERA INTERPOLATION (New for smooth switching) ---
 	var target_position: Vector3
 	if is_first_person:

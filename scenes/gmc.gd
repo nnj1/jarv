@@ -1,7 +1,7 @@
 extends VehicleBody3D
 
 enum Gear { DRIVE, REVERSE }
-var current_gear = Gear.DRIVE
+@export var current_gear = Gear.DRIVE
 
 @export_group("Engine Settings")
 @export var max_engine_force: float = 2500.0
@@ -36,6 +36,7 @@ var occupants = []
 const is_interactable: bool = true
 const is_pickable: bool = false
 @export var driver_player_id:String = ''
+var driver_player_node:Node3D = null
 
 #TODO: find a way to exit the RV
 func interact(given_player_node) -> void:
@@ -63,6 +64,14 @@ func gear_change():
 
 func handbrake():
 	brake = brake_strength * 4.0
+
+@rpc("any_peer","call_local", "reliable")
+func network_gear_change():
+	current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
+
+@rpc("any_peer","call_local", "reliable")
+func network_handbrake():
+	brake = brake_strength * 4.0
 	
 func _process(_delta: float) -> void:
 	# Update UI
@@ -73,17 +82,17 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	
 	# CLIENT-SIDE SMOOTHING
-	if not multiplayer.is_server():
-		# The client shouldn't run engine logic, 
-		# but it SHOULD keep moving the car based on velocity
-		# so it doesn't "stop" between server updates.
-		var velocity_clamped = linear_velocity.length()
-		if velocity_clamped > 0.1:
-			# This 'predicts' where the car should be
-			# preventing the 'snap' jitter.
-			return 
-		else:
-			return
+	#if not multiplayer.is_server():
+		## The client shouldn't run engine logic, 
+		## but it SHOULD keep moving the car based on velocity
+		## so it doesn't "stop" between server updates.
+		#var velocity_clamped = linear_velocity.length()
+		#if velocity_clamped > 0.1:
+			## This 'predicts' where the car should be
+			## preventing the 'snap' jitter.
+			#return 
+		#else:
+			#return
 			
 	if not is_multiplayer_authority(): return
 	
@@ -112,24 +121,31 @@ func _physics_process(delta: float) -> void:
 	var steer_input = 0.0
 	var forward_input = 0.0
 	var back_input = 0.0
+	@warning_ignore("unused_variable")
 	var gear_key_just_pressed = null
+	@warning_ignore("unused_variable")
 	var handbrake_key_pressed = null
 	
 	# if there is a driver
 	if driver_player_id != '':
-		var driver_player_node = main_game_node.get_node('entities/' + driver_player_id)
+		driver_player_node = main_game_node.get_node('entities/' + driver_player_id)
 		# HAVE THE DRIVING PLAYER CONTROL THE CAR
 		steer_input = driver_player_node.steer_input
 		forward_input = driver_player_node.forward_input
 		back_input = driver_player_node.back_input
-		gear_key_just_pressed = driver_player_node.gear_key_just_pressed
-		handbrake_key_pressed = driver_player_node.handbrake_key_pressed
+		#gear_key_just_pressed = driver_player_node.gear_key_just_pressed
+		#handbrake_key_pressed = driver_player_node.handbrake_key_pressed
 		
-		if gear_key_just_pressed:
-			gear_change()
-		if handbrake_key_pressed:
-			handbrake()
+		#if gear_key_just_pressed:
+		#	gear_change()
+		#if handbrake_key_pressed:
+		#	handbrake()
 		#print('Being driven by ' + str(driver_player_node))
+		
+		# lock the playery's position on the client side using rpc call (but using server delta, aka server physics)
+		driver_player_node.rpc_id(int(driver_player_id), 'network_lock_self_to_driver_seat', delta)
+		#driver_player_node.rpc('network_lock_self_to_driver_seat', delta)
+
 		
 	# no driver, then the server player is sending the inputs (but via arrow keys)
 	elif driver_player_id == '':

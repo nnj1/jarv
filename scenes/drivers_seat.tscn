@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cylrmf48x24ml" path="res://scenes/drivers_seat.gd" id="1_2my36"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fekdd"]
-size = Vector3(1, 0.5, 1)
+size = Vector3(1.7734985, 0.5, 2.265686)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2my36"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath("driver_position:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
+properties/1/path = NodePath("driver_position:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
@@ -17,11 +17,11 @@ properties/1/replication_mode = 1
 script = ExtResource("1_2my36")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.8104439, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026275635, 0, 0.632843)
 shape = SubResource("BoxShape3D_fekdd")
 
 [node name="driver_position" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.50484836, -0.3921342)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="driver_position"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_2my36")
