@@ -72,9 +72,30 @@ func network_gear_change():
 @rpc("any_peer","call_local", "reliable")
 func network_handbrake():
 	brake = brake_strength * 4.0
+
+func lock_player_to_driver_seat(delta) -> void:
+	if not driver_player_node: return
+	
+	var seat_node = get_node('drivers_seat')
+	# smooth rotation
+	var target_quat = seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()
+	var current_quat = driver_player_node.global_transform.basis.get_rotation_quaternion()
+	
+	# SAFETY CHECK 1: Ensure quaternions are valid and not identical
+	if current_quat.is_finite() and target_quat.is_finite():
+		# Only slerp if there is actually a difference to calculate
+		if not current_quat.is_equal_approx(target_quat):
+			var final_quat = current_quat.slerp(target_quat, 5 * delta)
+			
+			# SAFETY CHECK 2: Final validation before applying to the GPU
+			if final_quat.is_finite():
+				# Apply rotation while preserving current scale
+				var s = driver_player_node.global_basis.get_scale()
+				if s.is_finite():
+					driver_player_node.rpc('move_to_position_and_rotation', seat_node.get_node('driver_position').global_position, Basis(final_quat).scaled(s))
 	
 func _process(_delta: float) -> void:
-	# Update UI
+	# Update UI (runs on all clients)
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear').text = ['Drive', 'Reverse'][current_gear]
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/car_speed').text = str(int(current_speed_kmh)) + ' kmh'
 	main_game_node.get_node("CanvasLayer/RV_HUD/fuelpercent").text = str(int(current_fuel)) + "L"
@@ -141,11 +162,8 @@ func _physics_process(delta: float) -> void:
 		#if handbrake_key_pressed:
 		#	handbrake()
 		#print('Being driven by ' + str(driver_player_node))
-		
-		# lock the playery's position on the client side using rpc call (but using server delta, aka server physics)
-		driver_player_node.rpc_id(int(driver_player_id), 'network_lock_self_to_driver_seat', delta)
-		#driver_player_node.rpc('network_lock_self_to_driver_seat', delta)
-
+	
+		lock_player_to_driver_seat(delta)
 		
 	# no driver, then the server player is sending the inputs (but via arrow keys)
 	elif driver_player_id == '':

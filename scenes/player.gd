@@ -124,7 +124,12 @@ func stop_driving():
 	self.rotation = Vector3.ZERO
 	$CollisionShape3D.disabled = false
 
+@rpc('any_peer','call_local','reliable')
+func move_to_position_and_rotation(given_position, given_basis) -> void:
+	self.global_position = given_position
+	self.global_transform.basis = given_basis
 	
+
 @rpc("any_peer", "call_local", "reliable")
 func server_register_driver(starting: bool):
 	if multiplayer.is_server():

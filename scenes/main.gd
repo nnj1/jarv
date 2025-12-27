@@ -59,9 +59,14 @@ extends Node
 ]
 
 func _ready() -> void:
+	
+	# preset default username
 	$CanvasLayer/VBoxContainer/HBoxContainer2/TextEdit.text = default_names.pick_random()
 	GameManager.selected_username = $CanvasLayer/VBoxContainer/HBoxContainer2/TextEdit.text
+	
+	# preset default skin color
 	set_random_color($CanvasLayer/VBoxContainer/HBoxContainer2/ColorPickerButton)
+	GameManager.selected_skin = $CanvasLayer/VBoxContainer/HBoxContainer2/ColorPickerButton.color
 	
 func _on_host_pressed():	
 	GameManager.start_server(int($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text))
