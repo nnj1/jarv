@@ -136,6 +136,24 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:steer_input")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:forward_input")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:back_input")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:gear_key_just_pressed")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath(".:handbrake_key_pressed")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath(".:is_driving")
+properties/7/spawn = true
+properties/7/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 shading_mode = 0

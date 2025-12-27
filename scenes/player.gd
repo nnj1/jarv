@@ -23,8 +23,8 @@ extends CharacterBody3D
 @export var zoom_speed: float = 8.0
 
 var is_zooming: bool = false
-var is_driving:bool = false
-var seat_node: Node3D = null
+@export var is_driving: bool = false
+@export var seat_node: Node3D = null
 
 # --- Constants ---
 const CLAMP_ANGLE: float = 1.2
@@ -41,6 +41,14 @@ var max_weapons = 3
 var health_decay_rate = 0.1
 
 @export var skin_color = Color(1,0,0)
+@export var username:String = 'something'
+
+# Variables the GMC will hook into for driving purposes
+@export var steer_input = 0.0
+@export var forward_input = 0.0
+@export var back_input = 0.0
+@export var gear_key_just_pressed:bool = false
+@export var handbrake_key_pressed:bool = false
 
 var weapons = [
 	{
@@ -83,18 +91,48 @@ func change_weapon(index:  int = weapon_index):
 	$weapons.get_children()[index].visible = true
 	main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapons[index].reticle, 20, 10)	
 	$weaponswapSound.play()
-		
-func start_driving(given_seat_node):
-	seat_node = given_seat_node
-	given_seat_node.get_parent().driver_player_node = self
-	is_driving = true
 
+#func start_driving(_given_seat_node):
+	#main_game_node.get_node('entities/Gmc').driver_player_id = str(multiplayer.get_unique_id())
+	#self.seat_node = main_game_node.get_node('entities/Gmc/drivers_seat')#given_seat_node
+	#self.is_driving = true
+	#
+#func stop_driving():
+	#self.is_driving = false
+	#main_game_node.get_node('entities/Gmc').driver_player_id = ''
+	#self.seat_node = null
+	## reset player rotation
+	#self.rotation = Vector3(0,0,0)
+	
+func start_driving(_given_seat_node):
+	# 1. Set local state so the Client enters the loop immediately
+	self.is_driving = true
+	
+	# 2. Assign the seat node locally so the position lock works
+	self.seat_node = main_game_node.get_node('entities/Gmc/drivers_seat')
+	
+	# 3. Tell the server to register us (Host logic)
+	rpc_id(1, "server_register_driver", true)
+	
+	# disable the player's main collision shape
+	$CollisionShape3D.disabled = true
+	
 func stop_driving():
-	is_driving = false
-	seat_node.get_parent().driver_player_node = null
-	seat_node = null
-	# reset player rotation
-	self.rotation = Vector3(0,0,0)
+	rpc_id(1, "server_register_driver", false)
+	self.is_driving = false
+	self.seat_node = null
+	self.rotation = Vector3.ZERO
+	$CollisionShape3D.disabled = false
+
+	
+@rpc("any_peer", "call_local", "reliable")
+func server_register_driver(starting: bool):
+	if multiplayer.is_server():
+		var gmc = main_game_node.get_node('entities/Gmc')
+		if starting:
+			gmc.driver_player_id = str(multiplayer.get_remote_sender_id())
+		else:
+			gmc.driver_player_id = ""
 
 func decay_health(delta):
 	if current_health > 0:
@@ -195,18 +233,24 @@ func _physics_process(delta):
 	
 	elif seat_node and is_driving:
 		
-		# in driving mode, TODO: get rid of this, player should just get authority
-		main_game_node.get_node('entities/Gmc').push_input(Input.get_action_strength("move_left") - Input.get_action_strength("move_right"),
-					Input.get_action_strength("move_forward"),
-					 Input.get_action_strength("move_back") )
-					
+		# in driving mode
+		self.steer_input = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
+		self.forward_input = Input.get_action_strength("move_forward")
+		self.back_input = Input.get_action_strength("move_back") 
+
 		if Input.is_action_just_pressed('shift_gear'):
-			main_game_node.get_node('entities/Gmc').push_gear_change()
-			
-		print('started pushing shit')
+			self.gear_key_just_pressed = true
+		else:
+			self.gear_key_just_pressed = false
+		
+		if Input.is_action_pressed('handbrake'):
+			self.handbrake_key_pressed = true
+		else:
+			self.handbrake_key_pressed = false
 		
 		# lock position
 		self.global_position = seat_node.get_node('driver_position').global_position
+		#print('position locked')
 		
 		# smooth rotation
 		var target_quat = seat_node.get_node('driver_position').global_transform.basis.get_rotation_quaternion()

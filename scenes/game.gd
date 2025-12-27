@@ -64,9 +64,9 @@ func _on_chatinput_focus_exited() -> void:
 func _on_chatinput_text_submitted(new_text: String) -> void:
 	if new_text != '':
 		if not is_multiplayer_authority():
-			send_chat.rpc_id(1, new_text, multiplayer.get_unique_id())
+			send_chat.rpc(new_text, multiplayer.get_unique_id())
 		else:
-			send_chat(new_text, multiplayer.get_unique_id())
+			send_chat.rpc(new_text, multiplayer.get_unique_id())
 		get_node('CanvasLayer/chatbox/chatinput').text = ''
 	get_node('CanvasLayer/chatbox/chatinput').release_focus()
 	typing_chat = false
@@ -74,10 +74,11 @@ func _on_chatinput_text_submitted(new_text: String) -> void:
 func _on_chathistory_ready() -> void:
 	get_node('CanvasLayer/chatbox/chathistory').set_multiplayer_authority(1)
 
-@rpc('any_peer', 'unreliable_ordered')
+@rpc('any_peer', 'call_local','reliable')
 func send_chat(new_text, id):
 	# APPEND THE MESSAGE TO CHAT HISTORY
-	get_node('CanvasLayer/chatbox/chathistory').text += '\n' + str(id) + ':  ' + new_text
+	var username = get_node('entities/'+ str(id)).username
+	get_node('CanvasLayer/chatbox/chathistory').text += '\n' + str(username) + ':  ' + new_text
 	# if the message contains a server code send it to server TODO: only allow the authority to do this!
 	if multiplayer.is_server():
 		if new_text == '/customcommand':

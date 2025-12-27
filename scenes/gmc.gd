@@ -26,10 +26,6 @@ var current_gear = Gear.DRIVE
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12/Object_20,
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
 
-@export var steer_input: float = 0.0
-@export var forward_input:float = 0.0
-@export var back_input: float = 0.0
-
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 
 # --- SPEED TRACKING ---
@@ -39,8 +35,9 @@ var current_gear = Gear.DRIVE
 var occupants = []
 const is_interactable: bool = true
 const is_pickable: bool = false
-@export var driver_player_node = null
+@export var driver_player_id:String = ''
 
+#TODO: find a way to exit the RV
 func interact(given_player_node) -> void:
 	if not given_player_node in occupants:
 		print(str(given_player_node) + ' entered GMC RV')
@@ -48,31 +45,51 @@ func interact(given_player_node) -> void:
 		set_collision_mask_value(2, false)
 		given_player_node.global_position = $entrance_point.global_position
 		set_collision_mask_value(2, true)
+	elif given_player_node in occupants:
+		print(str(given_player_node) + ' left GMC RV')
+		occupants.erase(given_player_node)
+		#TODO: teleport them out of the RV, based on their position	
 		
+func _enter_tree() -> void:
+	set_multiplayer_authority(1)
+	
 func _ready() -> void:
 	$engineIdleSound.play()
 	center_of_mass_mode = VehicleBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0, -0.8, 0)
 	
-#@rpc("any_peer", "call_local", "unreliable")
-func push_input(given_steer_input:float, given_forward_input:float, given_back_input:float):
-	steer_input = given_steer_input
-	forward_input = given_forward_input
-	back_input = given_back_input
-	
-#@rpc("any_peer", "call_local", "reliable")
-func push_gear_change():
+func gear_change():
 	current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
+
+func handbrake():
+	brake = brake_strength * 4.0
 	
-func _physics_process(delta: float) -> void:
-	# 1. Update Speed Variables
-	current_speed_mps = linear_velocity.length()
-	current_speed_kmh = current_speed_mps * 3.6
-	
+func _process(_delta: float) -> void:
 	# Update UI
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear').text = ['Drive', 'Reverse'][current_gear]
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/car_speed').text = str(int(current_speed_kmh)) + ' kmh'
 	main_game_node.get_node("CanvasLayer/RV_HUD/fuelpercent").text = str(int(current_fuel)) + "L"
+	
+func _physics_process(delta: float) -> void:
+	
+	# CLIENT-SIDE SMOOTHING
+	if not multiplayer.is_server():
+		# The client shouldn't run engine logic, 
+		# but it SHOULD keep moving the car based on velocity
+		# so it doesn't "stop" between server updates.
+		var velocity_clamped = linear_velocity.length()
+		if velocity_clamped > 0.1:
+			# This 'predicts' where the car should be
+			# preventing the 'snap' jitter.
+			return 
+		else:
+			return
+			
+	if not is_multiplayer_authority(): return
+	
+	# 1. Update Speed Variables
+	current_speed_mps = linear_velocity.length()
+	current_speed_kmh = current_speed_mps * 3.6
 	
 	# 2. Fuel Consumption Logic
 	if current_fuel > 0:
@@ -90,19 +107,42 @@ func _physics_process(delta: float) -> void:
 				direction = -1.0
 			rotating_part.rotate_x(current_speed_mps * rotation_speed_multiplier * direction * delta * -1)
 	
-	# If server, can drive with arrow keys directly and shift with tab directly
-	# TODO: player should just get authority
-	if GameManager.ROLE == 'Server' and driver_player_node == null:
+	# Grab the input variables from the player who is the driver
+	# by default the player host will be the driver (with the arrow keys though)
+	var steer_input = 0.0
+	var forward_input = 0.0
+	var back_input = 0.0
+	var gear_key_just_pressed = null
+	var handbrake_key_pressed = null
+	
+	# if there is a driver
+	if driver_player_id != '':
+		var driver_player_node = main_game_node.get_node('entities/' + driver_player_id)
+		# HAVE THE DRIVING PLAYER CONTROL THE CAR
+		steer_input = driver_player_node.steer_input
+		forward_input = driver_player_node.forward_input
+		back_input = driver_player_node.back_input
+		gear_key_just_pressed = driver_player_node.gear_key_just_pressed
+		handbrake_key_pressed = driver_player_node.handbrake_key_pressed
 		
-		# 4. Gear Switching
+		if gear_key_just_pressed:
+			gear_change()
+		if handbrake_key_pressed:
+			handbrake()
+		#print('Being driven by ' + str(driver_player_node))
+		
+	# no driver, then the server player is sending the inputs (but via arrow keys)
+	elif driver_player_id == '':
+		steer_input = Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right")
+		forward_input = Input.get_action_strength("drive_forward")
+		back_input = Input.get_action_strength("drive_back")
 		if Input.is_action_just_pressed("shift_gear"):
-			push_gear_change()
-		
-		# 5. Steering and Movement Logic
-		push_input(Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right"),
-					Input.get_action_strength("drive_forward"),
-					 Input.get_action_strength("drive_back") )
-		
+			gear_change()
+		if Input.is_action_pressed("handbrake"):
+			handbrake()
+		#print('Being driven by default server')
+	
+	# 5. Steering and Movement Logic
 	steering = move_toward(steering, steer_input * max_steer_angle, delta * steering_speed)
 	
 	engine_force = 0.0
@@ -140,9 +180,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		$accelerateSound.stop()
 	
-	if Input.is_action_pressed("handbrake"):
-		brake = brake_strength * 4.0
-
 	_apply_stability_logic()
 
 func refuel(amount: float) -> void:

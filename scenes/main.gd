@@ -16,3 +16,6 @@ func _on_join_pressed():
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	GameManager.selected_skin = color
+
+func _on_text_edit_text_changed() -> void:
+	GameManager.selected_username = $CanvasLayer/VBoxContainer/HBoxContainer2/TextEdit.text

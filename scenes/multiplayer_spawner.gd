@@ -11,31 +11,32 @@ func _ready() -> void:
 		
 		# Host spawns themselves immediately
 		# Using a small timer or call_deferred to ensure the scene is ready
-		_request_spawn_to_server.call_deferred(GameManager.selected_skin)
+		_request_spawn_to_server.call_deferred(GameManager.selected_skin, GameManager.selected_username)
 	else:
 		# CLIENTS listen for the "connected_to_server" signal
 		multiplayer.connected_to_server.connect(_on_connected_to_server)
 
 # This only runs on the Client the moment they successfully handshake with the server
 func _on_connected_to_server() -> void:
-	_request_spawn_to_server.rpc_id(1, GameManager.selected_skin)
+	_request_spawn_to_server.rpc_id(1, GameManager.selected_skin, GameManager.selected_username)
 
 # The Server receives this and does the spawning
 @rpc("any_peer", "call_local", "reliable")
-func _request_spawn_to_server(skin_choice: Variant) -> void:
+func _request_spawn_to_server(skin_choice: Variant, username: String = '') -> void:
 	if not is_multiplayer_authority():
 		return
 	
 	var sender_id = multiplayer.get_remote_sender_id()
 	if sender_id == 0: sender_id = 1 # Handle local host
-	
+	if username == '': username = str(sender_id)
 	# Prevent double spawning if the signal fires twice
 	if get_node(spawn_path).has_node(str(sender_id)):
 		return
 		
 	var setup_data = {
 		"id": sender_id, 
-		"skin": skin_choice
+		"skin": skin_choice,
+		"username": username
 	}
 	
 	spawn(setup_data)
@@ -47,6 +48,7 @@ func _custom_spawn_logic(data: Variant) -> Node:
 		
 	var player = network_player.instantiate()
 	player.name = str(data.id)
+	player.username = str(data.username)
 	player.set_multiplayer_authority(data.id)
 	
 	if player.has_method("set_skin_color"):
@@ -54,7 +56,7 @@ func _custom_spawn_logic(data: Variant) -> Node:
 	
 	var label = player.get_node_or_null("Label3D")
 	if label:
-		label.text = "Player " + str(data.id)
+		label.text = str(data.username)
 		
 	return player
 

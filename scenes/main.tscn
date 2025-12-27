@@ -46,6 +46,12 @@ text = "Start Server"
 layout_mode = 2
 text = "Start Client"
 
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.52
+placeholder_text = "Enter display name..."
+
 [node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = " "
@@ -81,4 +87,5 @@ render_target_update_mode = 4
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button2" to="." method="_on_join_pressed"]
+[connection signal="text_changed" from="CanvasLayer/VBoxContainer/HBoxContainer2/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="color_changed" from="CanvasLayer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
