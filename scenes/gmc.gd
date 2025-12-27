@@ -26,9 +26,9 @@ var current_gear = Gear.DRIVE
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12/Object_20,
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
 
-var steer_input: float = 0.0
-var forward_input:float = 0.0
-var back_input: float = 0.0
+@export var steer_input: float = 0.0
+@export var forward_input:float = 0.0
+@export var back_input: float = 0.0
 
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 
@@ -39,6 +39,7 @@ var back_input: float = 0.0
 var occupants = []
 const is_interactable: bool = true
 const is_pickable: bool = false
+@export var driver_player_node = null
 
 func interact(given_player_node) -> void:
 	if not given_player_node in occupants:
@@ -90,7 +91,8 @@ func _physics_process(delta: float) -> void:
 			rotating_part.rotate_x(current_speed_mps * rotation_speed_multiplier * direction * delta * -1)
 	
 	# If server, can drive with arrow keys directly and shift with tab directly
-	if GameManager.ROLE == 'Server':
+	# TODO: player should just get authority
+	if GameManager.ROLE == 'Server' and driver_player_node == null:
 		
 		# 4. Gear Switching
 		if Input.is_action_just_pressed("shift_gear"):

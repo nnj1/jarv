@@ -36,8 +36,8 @@ var is_first_person: bool = true
 var camera: Camera3D
 var weapon_index = 1
 var max_weapons = 3
-var max_health = 100
-var current_health = 100
+@export var max_health = 100
+@export var current_health = 100
 var health_decay_rate = 0.1
 
 @export var skin_color = Color(1,0,0)
@@ -63,8 +63,15 @@ var weapons = [
 
 var entity_held = null
 
+@rpc("any_peer",'call_local', 'reliable')
 func set_skin_color(given_skin_color: Color):
-	skin_color = given_skin_color
+	skin_color = given_skin_color# set the skin
+	var mesh_instance = self.get_node('gnome_model/Sketchfab_model/Collada visual scene group/gnome_low/defaultMaterial')
+	var base_mat = mesh_instance.get_active_material(0)
+	base_mat = base_mat.duplicate()
+	mesh_instance.set_surface_override_material(0, base_mat)
+	base_mat.next_pass = base_mat.next_pass.duplicate()
+	base_mat.next_pass.set_shader_parameter("blue_replacement_color", skin_color)
 
 func change_weapon(index:  int = weapon_index):
 	# drop any held items
@@ -79,10 +86,12 @@ func change_weapon(index:  int = weapon_index):
 		
 func start_driving(given_seat_node):
 	seat_node = given_seat_node
+	given_seat_node.get_parent().driver_player_node = self
 	is_driving = true
 
 func stop_driving():
 	is_driving = false
+	seat_node.get_parent().driver_player_node = null
 	seat_node = null
 	# reset player rotation
 	self.rotation = Vector3(0,0,0)
@@ -108,14 +117,6 @@ func _ready():
 		
 		# set default weapon (may change crosshair)
 		change_weapon()
-		
-		# set the skin
-		var mesh_instance = self.get_node('gnome_model/Sketchfab_model/Collada visual scene group/gnome_low/defaultMaterial')
-		var base_mat = mesh_instance.get_active_material(0)
-		base_mat = base_mat.duplicate()
-		mesh_instance.set_surface_override_material(0, base_mat)
-		base_mat.next_pass = base_mat.next_pass.duplicate()
-		base_mat.next_pass.set_shader_parameter("blue_replacement_color", skin_color)
 		
 		# Get camera reference and set initial view
 		camera = tps_arm.get_child(0) as Camera3D
@@ -193,8 +194,16 @@ func _physics_process(delta):
 		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
 	
 	elif seat_node and is_driving:
-		# in driving mode
-		main_game_node.get_node('entities/Gmc').push_input()
+		
+		# in driving mode, TODO: get rid of this, player should just get authority
+		main_game_node.get_node('entities/Gmc').push_input(Input.get_action_strength("move_left") - Input.get_action_strength("move_right"),
+					Input.get_action_strength("move_forward"),
+					 Input.get_action_strength("move_back") )
+					
+		if Input.is_action_just_pressed('shift_gear'):
+			main_game_node.get_node('entities/Gmc').push_gear_change()
+			
+		print('started pushing shit')
 		
 		# lock position
 		self.global_position = seat_node.get_node('driver_position').global_position

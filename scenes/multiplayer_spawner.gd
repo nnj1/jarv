@@ -3,33 +3,52 @@ extends MultiplayerSpawner
 @export var network_player: PackedScene
 
 func _ready() -> void:
-	# 1. Register the custom spawn function
 	self.spawn_function = _custom_spawn_logic
 	
 	if is_multiplayer_authority():
-		multiplayer.peer_connected.connect(add_new_player)
+		# The server listens for people leaving to clean up
 		multiplayer.peer_disconnected.connect(despawn_player)
 		
-		# Small delay or call_deferred is sometimes safer for the host player 
-		# to ensure the network peer is fully initialized
-		add_new_player.call_deferred(1)
+		# Host spawns themselves immediately
+		# Using a small timer or call_deferred to ensure the scene is ready
+		_request_spawn_to_server.call_deferred(GameManager.selected_skin)
+	else:
+		# CLIENTS listen for the "connected_to_server" signal
+		multiplayer.connected_to_server.connect(_on_connected_to_server)
 
-func add_new_player(id: int) -> void:
-	# Pass a dictionary of setup data
+# This only runs on the Client the moment they successfully handshake with the server
+func _on_connected_to_server() -> void:
+	_request_spawn_to_server.rpc_id(1, GameManager.selected_skin)
+
+# The Server receives this and does the spawning
+@rpc("any_peer", "call_local", "reliable")
+func _request_spawn_to_server(skin_choice: Variant) -> void:
+	if not is_multiplayer_authority():
+		return
+	
+	var sender_id = multiplayer.get_remote_sender_id()
+	if sender_id == 0: sender_id = 1 # Handle local host
+	
+	# Prevent double spawning if the signal fires twice
+	if get_node(spawn_path).has_node(str(sender_id)):
+		return
+		
 	var setup_data = {
-		"id": id, 
-		"skin": GameManager.selected_skin
+		"id": sender_id, 
+		"skin": skin_choice
 	}
-	# Calling spawn() triggers _custom_spawn_logic on ALL peers
+	
 	spawn(setup_data)
 
 func _custom_spawn_logic(data: Variant) -> Node:
+	if network_player == null:
+		push_error("Network Player PackedScene is not assigned!")
+		return null
+		
 	var player = network_player.instantiate()
-	
-	# Set the name first so get_node(str(id)) works later
 	player.name = str(data.id)
+	player.set_multiplayer_authority(data.id)
 	
-	# Apply visuals
 	if player.has_method("set_skin_color"):
 		player.set_skin_color(data.skin)
 	
@@ -40,7 +59,6 @@ func _custom_spawn_logic(data: Variant) -> Node:
 	return player
 
 func despawn_player(id: int):
-	# Use get_node(spawn_path) to find the container where players live
 	var container = get_node(spawn_path)
 	var player = container.get_node_or_null(str(id))
 	if player:

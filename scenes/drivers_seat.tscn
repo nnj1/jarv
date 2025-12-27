@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c23aoacj82jmr"]
 
-[ext_resource type="Script" path="res://scenes/drivers_seat.gd" id="1_2my36"]
+[ext_resource type="Script" uid="uid://cylrmf48x24ml" path="res://scenes/drivers_seat.gd" id="1_2my36"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fekdd"]
 size = Vector3(1, 0.5, 1)
@@ -9,7 +9,7 @@ size = Vector3(1, 0.5, 1)
 script = ExtResource("1_2my36")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.8104439, 0, 0, 0)
 shape = SubResource("BoxShape3D_fekdd")
 
 [node name="driver_position" type="Node3D" parent="."]
