@@ -21,14 +21,14 @@ offset_bottom = 415.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="TextEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.52
 text = "localhost"
 placeholder_text = "hostname"
 
-[node name="TextEdit2" type="TextEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="TextEdit2" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "9999"
@@ -46,7 +46,7 @@ text = "Start Server"
 layout_mode = 2
 text = "Start Client"
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+[node name="TextEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.52
