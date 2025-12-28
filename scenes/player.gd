@@ -63,7 +63,7 @@ var weapons = [
 	{
 		'name': 'grenadelauncher',
 		'reticle': 82,
-		'recoil_force':10,
+		'recoil_force':20,
 		'class':'SINGLE'
 	},
 	{
@@ -349,6 +349,27 @@ func _physics_process(delta):
 					if weapon_animation_player:
 						if weapon_animation_player.is_playing():
 							weapon_animation_player.stop()
+		
+		elif weapons[weapon_index].class == 'SINGLE':
+			if 'recoil_force' in weapons[weapon_index].keys():
+				var weapon_animation_player = get_node_or_null('weapons/' + weapons[weapon_index].name + '/AnimationPlayer')
+				if Input.is_action_pressed('shoot'):
+					# play the shoot animation for the respective weapon
+					if weapon_animation_player:
+						if not weapon_animation_player.is_playing():
+							weapon_animation_player.play('attack')
+							
+							# add some physical player recoil
+							var push_direction = global_transform.basis.z 
+							var force = weapons[weapon_index].recoil_force
+							recoil_velocity = push_direction * force / 10 # scale force down by factor of 10
+							velocity += recoil_velocity
+							recoil_velocity = recoil_velocity.lerp(Vector3.ZERO, 10.0 * delta)
+				
+				#if Input.is_action_just_released('shoot'):
+				#	if weapon_animation_player:
+				#		if weapon_animation_player.is_playing():
+				#			weapon_animation_player.stop()
 					
 		# finally, we can move and slide (we are not driving the RV in this case)
 		move_and_slide()

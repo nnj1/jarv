@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=47 format=4 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://j2ci80t10loi" path="res://assets/Heavy Weapons Pack/gl.png" id="2_qlg0r"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://b3e6nvgnd604j" path="res://assets/UI Soundpack/UI Soundpack/MP3/Wood Block1.mp3" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://bsjgl3qkbr63o" path="res://scenes/flashlight.gd" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://bdtm5ds3m6i7r" path="res://assets/UI Soundpack/UI Soundpack/MP3/Wood Block3.mp3" id="6_y4r1p"]
+[ext_resource type="AudioStream" uid="uid://cobye2nejgydu" path="res://assets/quake/Qtestsgun1.ogg" id="8_jej6c"]
 [ext_resource type="AudioStream" uid="uid://d4cpr8de437n7" path="res://assets/Grumbles - Copy/Damage/Ah.wav" id="10_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://bg531gqsw648s" path="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Isolated/5.56/WAV/556 Single Isolated WAV.wav" id="10_jej6c"]
 [ext_resource type="AudioStream" uid="uid://do1u75i0mgl63" path="res://assets/Free Footsteps Pack/Snow.wav" id="11_3v2ag"]
@@ -230,6 +231,46 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_swdnx")
 
+[sub_resource type="Animation" id="Animation_3v2ag"]
+resource_name = "attack"
+length = 1.4
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../weaponSoundPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.6701,
+"start_offset": 0.0,
+"stream": ExtResource("8_jej6c")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("grenadelauncher:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.85304), Vector3(0, 0, 0), Vector3(0, 0, -0.85304)]
+}
+
+[sub_resource type="Animation" id="Animation_jej6c"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jej6c"]
+_data = {
+&"RESET": SubResource("Animation_jej6c"),
+&"attack": SubResource("Animation_3v2ag")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys65c"]
 resource_name = "Material.001"
 cull_mode = 2
@@ -344,18 +385,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8468v")
 
-[sub_resource type="Animation" id="Animation_3v2ag"]
+[sub_resource type="Animation" id="Animation_f1ej7"]
 resource_name = "attack"
-length = 0.3
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("mauser:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.23333333),
+"times": PackedFloat32Array(0.033333335, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, -1.1916931), Vector3(0, 0, -1), Vector3(0, 0, -1.1916931)]
@@ -363,12 +404,12 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("mauser/shootSoundPlayer")
+tracks/1/path = NodePath("../../weaponSoundPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": [{
-"end_offset": 0.6701,
+"end_offset": 0.5734451,
 "start_offset": 0.0,
 "stream": ExtResource("10_jej6c")
 }],
@@ -376,12 +417,12 @@ tracks/1/keys = {
 }
 tracks/1/use_blend = true
 
-[sub_resource type="Animation" id="Animation_jej6c"]
+[sub_resource type="Animation" id="Animation_oprun"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("mauser:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -391,10 +432,10 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, -1.1916931)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jej6c"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8ls1"]
 _data = {
-&"RESET": SubResource("Animation_jej6c"),
-&"attack": SubResource("Animation_3v2ag")
+&"RESET": SubResource("Animation_oprun"),
+&"attack": SubResource("Animation_f1ej7")
 }
 
 [sub_resource type="Environment" id="Environment_qlg0r"]
@@ -483,6 +524,9 @@ autostart = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 visible = false
 
+[node name="weaponSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 1, -2.191693)
+
 [node name="weapons" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1)
 
@@ -501,6 +545,12 @@ layers = 2
 mesh = SubResource("ArrayMesh_rjdcq")
 skeleton = NodePath("")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/grenadelauncher"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_jej6c")
+}
+
 [node name="knife" type="Node3D" parent="weapons"]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -0.9908782)
 visible = false
@@ -515,6 +565,7 @@ skeleton = NodePath("")
 
 [node name="mauser" type="Node3D" parent="weapons"]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -1.1916931)
+visible = false
 
 [node name="Cube" type="MeshInstance3D" parent="weapons/mauser"]
 layers = 2
@@ -531,13 +582,10 @@ mesh = SubResource("ArrayMesh_uqeub")
 skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/mauser"]
-root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_jej6c")
+&"": SubResource("AnimationLibrary_a8ls1")
 }
-speed_scale = 5.0
-
-[node name="shootSoundPlayer" type="AudioStreamPlayer3D" parent="weapons/mauser"]
+speed_scale = 4.0
 
 [node name="jumpSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_d2wvv")
