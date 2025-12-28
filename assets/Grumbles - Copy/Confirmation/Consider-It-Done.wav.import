@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b2lw8ywoa2kta"
+path="res://.godot/imported/Consider-It-Done.wav-bc4f887aa47f3ff3478c5e83ece0012f.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Confirmation/Consider-It-Done.wav"
+dest_files=["res://.godot/imported/Consider-It-Done.wav-bc4f887aa47f3ff3478c5e83ece0012f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

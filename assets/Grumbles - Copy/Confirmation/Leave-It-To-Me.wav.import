@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bj26d4tgvhnt4"
+path="res://.godot/imported/Leave-It-To-Me.wav-69819feefc8389d084d41214ae9961af.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Confirmation/Leave-It-To-Me.wav"
+dest_files=["res://.godot/imported/Leave-It-To-Me.wav-69819feefc8389d084d41214ae9961af.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

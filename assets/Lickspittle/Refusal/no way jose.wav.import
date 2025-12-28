@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cymq0nadaugxr"
+path="res://.godot/imported/no way jose.wav-3d228b2075c7b2785cc4cd55f1e037f7.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Refusal/no way jose.wav"
+dest_files=["res://.godot/imported/no way jose.wav-3d228b2075c7b2785cc4cd55f1e037f7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

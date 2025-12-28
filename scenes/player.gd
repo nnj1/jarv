@@ -195,6 +195,10 @@ func _ready():
 		# call the function that lets other players turn off GPU effects
 		rpc('on_new_player', self.multiplayer.get_unique_id())
 		
+		# set up the timer for occasional grunting sounds 
+		$idleSound/Timer.start()
+		$idleSound/Timer.timeout.connect(_on_grunt_timer_timeout)
+		
 	else:
 		camera = tps_arm.get_child(0) as Camera3D
 		camera.current = false
@@ -294,7 +298,9 @@ func _physics_process(delta):
 			velocity.y = jump_velocity
 
 		# 3. Get Input Direction
-		var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+		var input_dir = Vector3.ZERO
+		if not main_game_node.typing_chat:
+			input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 		var wish_dir = Vector3.ZERO
 		if input_dir.length() > 0:
 			wish_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -523,3 +529,14 @@ func turn_snow_off():
 	$GPUParticles3D.emitting = false
 	snow_status = false
 	
+func _on_grunt_timer_timeout():
+	# The authority rolls the dice
+	if randf() <= 0.75:
+		# Tell everyone to execute the function
+		rpc('play_idle_sound', randi_range(0, len(GlobalVars.idle_sound_streams) - 1))
+	
+@rpc('any_peer','call_local','reliable')
+func play_idle_sound(index: int):
+	$idleSound.stream = GlobalVars.idle_sound_streams[index]
+	$idleSound.play()
+	print('Sound from ' + str(multiplayer.get_remote_sender_id()) + ' played on ' + str(multiplayer.get_unique_id()))

@@ -358,7 +358,6 @@ offset_top = 168.0
 offset_right = 40.0
 offset_bottom = 201.0
 theme = SubResource("Theme_0tnpc")
-alignment = 2
 
 [node name="player_HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3

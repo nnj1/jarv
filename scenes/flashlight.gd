@@ -3,13 +3,15 @@ extends SpotLight3D
 @export var follow_speed: float = 10.0
 @export var toggle_sound: AudioStreamPlayer3D
 
+@onready var main_game_node = get_tree().get_root().get_node('Node3D')
+
 func _ready():
 	# Start with the light off
 	visible = false
 
 func _input(event):
 	# Use "F" key to toggle
-	if event.is_action_pressed("flashlight_toggle") or Input.is_key_pressed(KEY_F):
+	if (event.is_action_pressed("flashlight_toggle") or Input.is_key_pressed(KEY_F)) and not main_game_node.typing_chat:
 		visible = !visible
 		if toggle_sound:
 			toggle_sound.play()

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://m6dmfjgh64oq"
+path="res://.godot/imported/Evening.wav-bf9410e69599aac3f3adffc41e5b1c9e.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Greetings/Evening.wav"
+dest_files=["res://.godot/imported/Evening.wav-bf9410e69599aac3f3adffc41e5b1c9e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

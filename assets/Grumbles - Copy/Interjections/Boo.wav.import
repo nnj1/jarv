@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://br8wuxuoyvxfq"
+path="res://.godot/imported/Boo.wav-cd46379450a60779d60823ce5360f5f2.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Interjections/Boo.wav"
+dest_files=["res://.godot/imported/Boo.wav-cd46379450a60779d60823ce5360f5f2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

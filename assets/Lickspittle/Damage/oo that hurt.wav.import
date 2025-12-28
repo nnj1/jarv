@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmtpqgk0e2nu5"
+path="res://.godot/imported/oo that hurt.wav-449a81977b265b7379f61c5e4996c92a.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Damage/oo that hurt.wav"
+dest_files=["res://.godot/imported/oo that hurt.wav-449a81977b265b7379f61c5e4996c92a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bp6up4uvud3c4"
+path="res://.godot/imported/Catch-Ya-Then.wav-be5916f5df4b6f07db134c713d2394e2.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Farewells/Catch-Ya-Then.wav"
+dest_files=["res://.godot/imported/Catch-Ya-Then.wav-be5916f5df4b6f07db134c713d2394e2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cva2m4vo0k1ey"
+path="res://.godot/imported/whatever you say.wav-74c7f36c6d97164f43036cdcb2b75adf.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Confirmation/whatever you say.wav"
+dest_files=["res://.godot/imported/whatever you say.wav-74c7f36c6d97164f43036cdcb2b75adf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

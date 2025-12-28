@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfe8e2ry61uev"
+path="res://.godot/imported/ahhhh! (falling away).wav-8c1a2477cc742c016b63545a36610085.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Shouting/ahhhh! (falling away).wav"
+dest_files=["res://.godot/imported/ahhhh! (falling away).wav-8c1a2477cc742c016b63545a36610085.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

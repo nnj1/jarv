@@ -2,6 +2,12 @@ extends Node
 
 # Load your spritesheet
 @onready var spritesheet = preload('res://assets/kenney_crosshairPack/Tilesheet/crosshairs_tilesheet_white.png')
+@onready var idle_sound_streams = []
+
+func _ready() -> void:
+	var grunt_sound_path = 'res://assets/Lickspittle/Grunting/'
+	for filename in dir_contents(grunt_sound_path):
+		idle_sound_streams.append(load(grunt_sound_path + filename))
 
 func get_cursor_texture(frame_index: int, columns: int, rows: int, spacing: int = 5) -> ImageTexture:
 	var sheet_image: Image = spritesheet.get_image()

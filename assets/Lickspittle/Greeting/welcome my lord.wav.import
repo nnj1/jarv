@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5f7qmebygad6"
+path="res://.godot/imported/welcome my lord.wav-b631f1f1438a87127d06f5c1e7622b51.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Greeting/welcome my lord.wav"
+dest_files=["res://.godot/imported/welcome my lord.wav-b631f1f1438a87127d06f5c1e7622b51.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dhb0ooei80qsq"
+path="res://.godot/imported/thats right.wav-75dee8d1645e9fbfb5a8a13c4eb6c0a7.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Confirmation/thats right.wav"
+dest_files=["res://.godot/imported/thats right.wav-75dee8d1645e9fbfb5a8a13c4eb6c0a7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

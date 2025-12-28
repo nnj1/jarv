@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cknldqtdd14pt"
+path="res://.godot/imported/Fine-Day.wav-dbd99df9679987634a638f520b0ca45d.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Greetings/Fine-Day.wav"
+dest_files=["res://.godot/imported/Fine-Day.wav-dbd99df9679987634a638f520b0ca45d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7dgd2uo38m56"
+path="res://.godot/imported/ive been hurt badly.wav-4242596dafd133a8faa13748ccc4a9fb.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Damage/ive been hurt badly.wav"
+dest_files=["res://.godot/imported/ive been hurt badly.wav-4242596dafd133a8faa13748ccc4a9fb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4cpr8de437n7"
+path="res://.godot/imported/Ah.wav-ba1aba9ab4fcdfc1d3b6547cde209555.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Damage/Ah.wav"
+dest_files=["res://.godot/imported/Ah.wav-ba1aba9ab4fcdfc1d3b6547cde209555.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

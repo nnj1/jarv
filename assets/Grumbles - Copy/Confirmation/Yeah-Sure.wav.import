@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://l2olcf2w1daf"
+path="res://.godot/imported/Yeah-Sure.wav-da47e22be6ee6e77db9e543631caa478.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Confirmation/Yeah-Sure.wav"
+dest_files=["res://.godot/imported/Yeah-Sure.wav-da47e22be6ee6e77db9e543631caa478.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

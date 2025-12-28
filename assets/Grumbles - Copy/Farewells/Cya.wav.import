@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dansauaxesqwj"
+path="res://.godot/imported/Cya.wav-ede98446f0cddc4a7cc0b48d421b53a4.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Farewells/Cya.wav"
+dest_files=["res://.godot/imported/Cya.wav-ede98446f0cddc4a7cc0b48d421b53a4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

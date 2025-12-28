@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bdcbbmopkukg6"
+path="res://.godot/imported/Hmm-Yeah.wav-8dd9bb1578f58c90ace6d8f31a3a0db1.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Confirmation/Hmm-Yeah.wav"
+dest_files=["res://.godot/imported/Hmm-Yeah.wav-8dd9bb1578f58c90ace6d8f31a3a0db1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmro2cvkg8jpt"
+path="res://.godot/imported/That-Hurts.wav-bb9b51f75ac01b80fbcf24e725c9ead4.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Damage/That-Hurts.wav"
+dest_files=["res://.godot/imported/That-Hurts.wav-bb9b51f75ac01b80fbcf24e725c9ead4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

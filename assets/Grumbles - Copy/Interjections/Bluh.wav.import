@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bvmd101xwme13"
+path="res://.godot/imported/Bluh.wav-76cc0f0838904fbf1284406013d2cffc.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Interjections/Bluh.wav"
+dest_files=["res://.godot/imported/Bluh.wav-76cc0f0838904fbf1284406013d2cffc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3c2xy0d52c7k"
+path="res://.godot/imported/Ouch.wav-1a2cbf9c4f5bb5495a22821f97462e5c.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Damage/Ouch.wav"
+dest_files=["res://.godot/imported/Ouch.wav-1a2cbf9c4f5bb5495a22821f97462e5c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
