@@ -4,11 +4,13 @@ extends RigidBody3D
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 
 # --- Constants & Variables ---
-const is_interactable: bool = true
-const is_pickable: bool = true
+const is_interactable: bool = true # if the player can interact with the item
+const is_pickable: bool = true # if the player can pick up the item
+const is_employable: bool = true # if the player can use the item on something
+const is_consumable: bool = true # if the player can eat the item
 const custom_interact_message: String = 'Press E to pick up'
 
-var holding_player: Node3D = null
+var holding_player: Node3D = null # stores the node of the player holding the item
 var hand_node: Marker3D = null # Store the specific hand node
 
 # --- Standard Loops ---
@@ -26,7 +28,6 @@ func interact(given_player_node) -> void:
 			rpc_id(1, "server_request_pickup", player_id)
 
 # --- Pickup Logic ---
-
 @rpc("any_peer", "call_local", "reliable")
 func server_request_pickup(given_player_id: int) -> void:
 	if not multiplayer.is_server(): return

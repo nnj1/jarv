@@ -63,10 +63,7 @@ func _on_chatinput_focus_exited() -> void:
 
 func _on_chatinput_text_submitted(new_text: String) -> void:
 	if new_text != '':
-		if not is_multiplayer_authority():
-			send_chat.rpc(new_text, multiplayer.get_unique_id())
-		else:
-			send_chat.rpc(new_text, multiplayer.get_unique_id())
+		send_chat.rpc(new_text, multiplayer.get_unique_id())
 		get_node('CanvasLayer/chatbox/chatinput').text = ''
 	get_node('CanvasLayer/chatbox/chatinput').release_focus()
 	typing_chat = false
@@ -80,7 +77,7 @@ func send_chat(new_text, id):
 	var username = get_node('entities/'+ str(id)).username
 	get_node('CanvasLayer/chatbox/chathistory').text += '\n' + str(username) + ':  ' + new_text
 	# if the message contains a server code send it to server TODO: only allow the authority to do this!
-	if multiplayer.is_server():
+	if multiplayer.get_remote_sender_id() == 1:
 		if new_text == '/customcommand':
 			#get_node('entities/EnemyMultiplayerSpawner').spawn_new_enemy(Vector2(0,0))
 			pass

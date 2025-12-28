@@ -539,4 +539,4 @@ func _on_grunt_timer_timeout():
 func play_idle_sound(index: int):
 	$idleSound.stream = GlobalVars.idle_sound_streams[index]
 	$idleSound.play()
-	print('Sound from ' + str(multiplayer.get_remote_sender_id()) + ' played on ' + str(multiplayer.get_unique_id()))
+	#print('Sound from ' + str(multiplayer.get_remote_sender_id()) + ' played on ' + str(multiplayer.get_unique_id()))
