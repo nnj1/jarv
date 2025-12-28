@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://brs35jscybls7"]
+[gd_scene load_steps=28 format=3 uid="uid://brs35jscybls7"]
 
 [ext_resource type="Script" uid="uid://cug3lfxus1q35" path="res://scenes/entities/rocket.gd" id="1_3l0q3"]
+[ext_resource type="AudioStream" uid="uid://ckvaqwyp36k78" path="res://assets/quake/Qtestr_exp3.ogg" id="2_n2suw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3l0q3"]
 
@@ -91,6 +92,46 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3l0q3"]
+radius = 3.948
+
+[sub_resource type="Gradient" id="Gradient_d40e5"]
+offsets = PackedFloat32Array(0, 0.2015504, 0.7751938, 0.9844961)
+colors = PackedColorArray(1, 1, 0, 1, 2.0002677, 1.0605859, 0.34245485, 1, 0.07683582, 0.07683582, 0.07683582, 1, 0.036447763, 0.036447763, 0.036447763, 0.47435904)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fn1qa"]
+gradient = SubResource("Gradient_d40e5")
+
+[sub_resource type="Curve" id="Curve_n2suw"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.48876405), 0.0, 0.0, 0, 0, Vector2(0.09677419, 5), 0.0, 0.0, 0, 0, Vector2(0.1935484, 0.89887667), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_d40e5"]
+curve = SubResource("Curve_n2suw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fn1qa"]
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+damping_min = 5.0
+damping_max = 10.0
+scale_curve = SubResource("CurveTexture_d40e5")
+color_ramp = SubResource("GradientTexture1D_fn1qa")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n2suw"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 1
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_d40e5"]
+material = SubResource("StandardMaterial3D_n2suw")
+
 [node name="Rocket" type="CharacterBody3D"]
 collision_layer = 9
 collision_mask = 15
@@ -125,3 +166,22 @@ replication_config = SubResource("SceneReplicationConfig_3l0q3")
 light_color = Color(1, 0.45882353, 0, 1)
 light_energy = 5.0
 omni_range = 50.0
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_3l0q3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_n2suw")
+
+[node name="explosion" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 500
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fn1qa")
+draw_pass_1 = SubResource("QuadMesh_d40e5")

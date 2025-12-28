@@ -48,6 +48,21 @@ func play_current_track():
 		self.play()
 		print("Playing: ", track_path)
 
+@rpc("any_peer","call_local","reliable")	
+func advance_track():
+	current_track_index += 1
+	play_current_track()
+
+@rpc("any_peer","call_local","reliable")
+func play_track_at_index(index:int):
+	if playlist.size() > 0:
+		var track_path = playlist[index]
+		@warning_ignore("shadowed_variable_base_class")
+		var stream = load(track_path)
+		self.stream = stream
+		self.play()
+		print("Playing: ", track_path)
+
 func _on_finished():
 	# Increment index and loop back to 0 if at the end
 	current_track_index = (current_track_index + 1) % playlist.size()
