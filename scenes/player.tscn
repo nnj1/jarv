@@ -165,6 +165,9 @@ properties/8/replication_mode = 2
 properties/9/path = NodePath("idleSound:playing")
 properties/9/spawn = true
 properties/9/replication_mode = 2
+properties/10/path = NodePath("weapons/grenadelauncher/spawn_position:position")
+properties/10/spawn = true
+properties/10/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 shading_mode = 0
@@ -231,6 +234,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_swdnx")
 
+[sub_resource type="Animation" id="Animation_jej6c"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_3v2ag"]
 resource_name = "attack"
 length = 1.4
@@ -261,9 +267,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, -0.85304), Vector3(0, 0, 0), Vector3(0, 0, -0.85304)]
 }
-
-[sub_resource type="Animation" id="Animation_jej6c"]
-length = 0.001
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_projectile"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jej6c"]
 _data = {
@@ -385,6 +402,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8468v")
 
+[sub_resource type="Animation" id="Animation_oprun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.1916931)]
+}
+
 [sub_resource type="Animation" id="Animation_f1ej7"]
 resource_name = "attack"
 length = 0.4
@@ -416,21 +448,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
-
-[sub_resource type="Animation" id="Animation_oprun"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -1.1916931)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a8ls1"]
 _data = {
@@ -505,6 +522,10 @@ toggle_sound = NodePath("toggleSoundPlayer")
 [node name="toggleSoundPlayer" type="AudioStreamPlayer3D" parent="camera_pivot/tps_arm/Camera3D/flashlight"]
 stream = ExtResource("6_y4r1p")
 
+[node name="aim_ray" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 9
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3vyb7")
 
@@ -538,7 +559,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.05)
 
 [node name="grenadelauncher" type="Node3D" parent="weapons"]
 transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, 0, 0, -0.85304)
-visible = false
 
 [node name="grenadeLauncher" type="MeshInstance3D" parent="weapons/grenadelauncher"]
 layers = 2
@@ -550,6 +570,9 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_jej6c")
 }
+
+[node name="spawn_position" type="Marker3D" parent="weapons/grenadelauncher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2.3841858e-07)
 
 [node name="knife" type="Node3D" parent="weapons"]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -0.9908782)

@@ -35,6 +35,7 @@ const IS_PLAYER: bool = true
 # --- State Variables ---
 var is_first_person: bool = true
 var camera: Camera3D
+@onready var aim_ray: RayCast3D = $camera_pivot/tps_arm/Camera3D/aim_ray
 var weapon_index = 1
 var max_weapons = 3
 @export var max_health = 100
@@ -64,7 +65,8 @@ var weapons = [
 		'name': 'grenadelauncher',
 		'reticle': 82,
 		'recoil_force':20,
-		'class':'SINGLE'
+		'class':'SINGLE',
+		'projectile_scene': preload('res://scenes/entities/rocket.tscn')
 	},
 	{
 		'name': 'knife',
@@ -602,3 +604,22 @@ func play_idle_sound(index: int):
 	if not $jumpSound.playing:
 		$idleSound.play()
 	#print('Sound from ' + str(multiplayer.get_remote_sender_id()) + ' played on ' + str(multiplayer.get_unique_id()))
+
+func shoot_projectile():
+	rpc('request_spawn_projectile', weapon_index, get_node('weapons/' + weapons[weapon_index].name + '/spawn_position').global_position, aim_ray.to_global(aim_ray.target_position))
+
+@rpc("any_peer", "call_local", "reliable")
+@warning_ignore("shadowed_variable")
+func request_spawn_projectile(weapon_index: int, origin_pos: Vector3, target_pos: Vector3):
+	# This code MUST run on the server to be synced by MultiplayerSpawner
+	if not multiplayer.is_server():
+		return
+		
+	var rocket = weapons[weapon_index].projectile_scene.instantiate()
+	
+	# This forces the rocket nose to point at the ray's impact point
+	rocket.look_at_from_position(origin_pos, target_pos, Vector3.UP)
+	
+	# Add it to the node pointed to by your MultiplayerSpawner's "Spawn Path"
+	# Example: adding it to the 'Projectiles' container in your level
+	main_game_node.get_node('entities').add_child(rocket, true)

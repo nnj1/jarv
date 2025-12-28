@@ -139,6 +139,7 @@ shoot={
 3d_physics/layer_1="world"
 3d_physics/layer_2="rv"
 3d_physics/layer_3="players"
+3d_physics/layer_4="projectiles"
 
 [physics]
 
