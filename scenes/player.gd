@@ -30,6 +30,7 @@ var is_zooming: bool = false
 const CLAMP_ANGLE: float = 1.2
 const GRAVITY: float = 9.8
 const FOV_KICK: bool = true
+const IS_PLAYER: bool = true
 
 # --- State Variables ---
 var is_first_person: bool = true
@@ -42,6 +43,8 @@ var health_decay_rate = 0.1
 
 @export var skin_color = Color(1,0,0)
 @export var username:String = 'something'
+
+@export var snow_status:bool = true
 
 # Variables the GMC will hook into for driving purposes
 @export var steer_input = 0.0
@@ -149,6 +152,13 @@ func decay_health(delta):
 		
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
+	
+@rpc("any_peer","call_remote","reliable")
+func on_new_player(player_id: int) -> void:
+	# if the new player who joins is not yourself, turn off the GPU particles
+	var player_node = main_game_node.get_node('entities/' + str(player_id))
+	if player_id != multiplayer.get_unique_id():
+		player_node.get_node('GPUParticles3D').hide()
 
 func _ready():
 	if is_multiplayer_authority(): #and DisplayServer.window_is_focused():
@@ -167,12 +177,31 @@ func _ready():
 		
 		_set_view_position(fp_position.global_position)
 		tps_arm.spring_length = 0.00 # Start SpringArm collapsed for FP
+		
+		# set the particles to the snow status of the server player
+		snow_status = main_game_node.get_node('entities/1').snow_status
+		$GPUParticles3D.emitting = snow_status
+			
+		# Joined game message
+		main_game_node.rpc('send_chat', 'Just joined the game!', multiplayer.get_unique_id())
+		
+		# DO NOT RENDER THE EXISTING PLAYER'S GPU PARTICLES, if you're not the server
+		for child in main_game_node.get_node('entities').get_children():
+			if 'IS_PLAYER' in child:
+				if child.IS_PLAYER:
+					if child.name != self.name:
+						child.get_node('GPUParticles3D').hide()
+			
+		# call the function that lets other players turn off GPU effects
+		rpc('on_new_player', self.multiplayer.get_unique_id())
+		
 	else:
 		camera = tps_arm.get_child(0) as Camera3D
 		camera.current = false
 		$CanvasLayer.hide()
 		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.current = false	
-
+	
+	
 @rpc("any_peer","call_local","reliable")
 func network_lock_self_to_driver_seat(delta):
 	# lock position client side 
@@ -219,7 +248,6 @@ func lock_self_to_driver_seat(delta):
 				var s = global_basis.get_scale()
 				if s.is_finite():
 					global_transform.basis = Basis(final_quat).scaled(s)	
-
 
 # 1. Physics Movement and Camera Interpolation
 func _physics_process(delta):
@@ -462,11 +490,36 @@ func _process(delta: float) -> void:
 		decay_health(delta)
 		main_game_node.get_node('CanvasLayer/player_HUD/health_value').text = str(int(current_health))
 		main_game_node.get_node('CanvasLayer/player_HUD/heart').material.set_shader_parameter("progress", 1.0 * current_health / max_health)
-
+		
+		# set the particles to the snow status of the server player
+		self.snow_status = main_game_node.get_node('entities/1').snow_status
+		$GPUParticles3D.emitting = snow_status
+		
 # for periodic weather effects
-#TODO: make this sync across playersset_shader_parameter
 func _on_timer_timeout() -> void:
-	$GPUParticles3D.emitting = not $GPUParticles3D.emitting
-	#print($GPUParticles3D.emitting)
-	$GPUParticles3D/Timer.wait_time = randi_range(60, 60*3)
+	# only runs on the server
+	if not multiplayer.is_server(): return
+	
+	print('Server toggling snow')
+	var time_til_toggle = randi_range(60, 60*3)
+	@warning_ignore("standalone_ternary")
+	#rpc('turn_snow_off') if snow_status else rpc('turn_snow_on')
+	turn_snow_off() if snow_status else turn_snow_on()
+
+	$GPUParticles3D/Timer.wait_time = time_til_toggle
 	$GPUParticles3D/Timer.start()
+	#main_game_node.rpc('send_chat', 'Toggled snow', multiplayer.get_unique_id())
+	#print($GPUParticles3D.emitting)
+
+#@rpc('any_peer','call_local','reliable')
+func turn_snow_on():
+	#print(str(multiplayer.get_unique_id()) + ' turned on snow')
+	$GPUParticles3D.emitting = true
+	snow_status = true
+	
+#@rpc('any_peer','call_local','reliable')
+func turn_snow_off():
+	#print(str(multiplayer.get_unique_id()) + ' turned off snow')
+	$GPUParticles3D.emitting = false
+	snow_status = false
+	
