@@ -84,3 +84,7 @@ func send_chat(new_text, id):
 		if new_text == '/customcommand':
 			#get_node('entities/EnemyMultiplayerSpawner').spawn_new_enemy(Vector2(0,0))
 			pass
+		if new_text == '/snowon':
+			get_node('entities/1').turn_snow_on()
+		if new_text == '/snowoff':
+			get_node('entities/1').turn_snow_off()
