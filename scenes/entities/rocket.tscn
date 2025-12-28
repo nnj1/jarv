@@ -123,3 +123,5 @@ replication_config = SubResource("SceneReplicationConfig_3l0q3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 0.45882353, 0, 1)
+light_energy = 5.0
+omni_range = 50.0

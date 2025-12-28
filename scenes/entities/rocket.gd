@@ -22,13 +22,16 @@ func _physics_process(delta: float):
 	# Move and check for collisions
 	var collision = move_and_collide(velocity * delta)
 	
-	if collision:
-		handle_collision(collision)
+	# IMPORTANT: Only the server handles the 'death' of the node
+	if multiplayer.is_server():
+		if collision:
+			handle_collision(collision)
 
 @warning_ignore("unused_parameter")
 func handle_collision(collision: KinematicCollision3D):
 	# collision.get_collider() tells you what you hit
 	# collision.get_position() tells you exactly where the spark/explosion should be
+	
 	explode()
 
 func explode():

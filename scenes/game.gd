@@ -4,6 +4,8 @@ extends Node3D
 
 var typing_chat: bool = false
 
+@onready var regex = RegEx.new()
+
 func _ready():
 	$CanvasLayer/role.text = GameManager.ROLE
 	$CanvasLayer/id.text = str(get_tree().get_multiplayer().get_unique_id())
@@ -85,3 +87,10 @@ func send_chat(new_text, id):
 			get_node('entities/1').turn_snow_on()
 		if new_text == '/snowoff':
 			get_node('entities/1').turn_snow_off()
+		else:
+			regex.compile("^/sethour\\s+(\\d+)$")
+			var result = regex.search(new_text)
+			if result:
+				var hour_string = result.get_string(1) # Gets the first captured group (\d+)
+				var hour_int = hour_string.to_int()
+				$DirectionalLight3D.current_hour = hour_int
