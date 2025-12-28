@@ -40,6 +40,7 @@ var max_weapons = 3
 @export var max_health = 100
 @export var current_health = 100
 var health_decay_rate = 0.1
+var recoil_velocity: Vector3 = Vector3.ZERO
 
 @export var skin_color = Color(1,0,0)
 @export var username:String = 'something'
@@ -56,19 +57,25 @@ var health_decay_rate = 0.1
 var weapons = [
 	{
 		'name': 'hand',
-		'reticle': 0
+		'reticle': 0,
+		'class':'MELEE'
 	},
 	{
 		'name': 'grenadelauncher',
-		'reticle': 82
+		'reticle': 82,
+		'recoil_force':10,
+		'class':'SINGLE'
 	},
 	{
 		'name': 'knife',
-		'reticle': 45
+		'reticle': 45,
+		'class':'MELEE'
 	},
 	{
 		'name': 'mauser',
-		'reticle': 37
+		'reticle': 37,
+		'recoil_force':5,
+		'class':'BURST'
 	}
 ]
 
@@ -296,6 +303,7 @@ func _physics_process(delta):
 		# 2. Handle Jump (Standard Quake doesn't have jump cooldown)
 		if is_on_floor() and Input.is_action_pressed("jump") and not main_game_node.typing_chat:
 			velocity.y = jump_velocity
+			rpc('play_jump_sound')
 
 		# 3. Get Input Direction
 		var input_dir = Vector3.ZERO
@@ -304,20 +312,47 @@ func _physics_process(delta):
 		var wish_dir = Vector3.ZERO
 		if input_dir.length() > 0:
 			wish_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		
+			
 		# 4. Apply Quake Physics
 		if is_on_floor():
 			velocity = ground_move(delta, wish_dir, velocity)
+			if input_dir:
+				# TODO: make this dependent on the surface you are walking on
+				if not $moveSound.playing:
+					$moveSound.play()
 		else:
 			velocity = air_move(delta, wish_dir, velocity)
 		
 		# Prevent the player from teleporting to the shadow dimension
 		if not velocity.is_finite():
 			velocity = Vector3.ZERO
+		
+		# attack animation for all kinds of weapons
+		# BURST CLASS: this means the weapon that is currently equipped is shootable
+		if weapons[weapon_index].class == 'BURST':
+			if 'recoil_force' in weapons[weapon_index].keys():
+				var weapon_animation_player = get_node_or_null('weapons/' + weapons[weapon_index].name + '/AnimationPlayer')
+				if Input.is_action_pressed('shoot'):
+					# play the shoot animation for the respective weapon
+					if weapon_animation_player:
+						if not weapon_animation_player.is_playing():
+							weapon_animation_player.play('attack')
+							
+					# add some physical player recoil
+					var push_direction = global_transform.basis.z 
+					var force = weapons[weapon_index].recoil_force
+					recoil_velocity = push_direction * force / 10 # scale force down by factor of 10
+					velocity += recoil_velocity
+					#recoil_velocity = recoil_velocity.lerp(Vector3.ZERO, 10.0 * delta)
+				
+				if Input.is_action_just_released('shoot'):
+					if weapon_animation_player:
+						if weapon_animation_player.is_playing():
+							weapon_animation_player.stop()
+					
+		# finally, we can move and slide (we are not driving the RV in this case)
 		move_and_slide()
 		
-		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
-	
 	elif seat_node and is_driving:
 		
 		# in driving mode
@@ -496,7 +531,8 @@ func _process(delta: float) -> void:
 		decay_health(delta)
 		main_game_node.get_node('CanvasLayer/player_HUD/health_value').text = str(int(current_health))
 		main_game_node.get_node('CanvasLayer/player_HUD/heart').material.set_shader_parameter("progress", 1.0 * current_health / max_health)
-		
+		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
+
 		# set the particles to the snow status of the server player
 		self.snow_status = main_game_node.get_node('entities/1').snow_status
 		$GPUParticles3D.emitting = snow_status
@@ -534,9 +570,14 @@ func _on_grunt_timer_timeout():
 	if randf() <= 0.75:
 		# Tell everyone to execute the function
 		rpc('play_idle_sound', randi_range(0, len(GlobalVars.idle_sound_streams) - 1))
+
+@rpc('any_peer','call_local','reliable')
+func play_jump_sound():
+	$jumpSound.play()
 	
 @rpc('any_peer','call_local','reliable')
 func play_idle_sound(index: int):
 	$idleSound.stream = GlobalVars.idle_sound_streams[index]
-	$idleSound.play()
+	if not $jumpSound.playing:
+		$idleSound.play()
 	#print('Sound from ' + str(multiplayer.get_remote_sender_id()) + ' played on ' + str(multiplayer.get_unique_id()))
