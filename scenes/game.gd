@@ -77,7 +77,9 @@ func _on_chathistory_ready() -> void:
 func send_chat(new_text, id):
 	# APPEND THE MESSAGE TO CHAT HISTORY
 	var username = get_node('entities/'+ str(id)).username
-	get_node('CanvasLayer/chatbox/chathistory').text += '\n' + str(username) + ':  ' + new_text
+	var color_hex = get_node('entities/'+ str(id)).skin_color.to_html(false)
+	var bbcode_text = "\n[color=#" + color_hex + "]" + str(username) + "[/color]: " + new_text
+	get_node('CanvasLayer/chatbox/chathistory').append_text(bbcode_text)
 	# if the message contains a server code send it to server TODO: only allow the authority to do this!
 	if multiplayer.get_remote_sender_id() == 1:
 		if new_text == '/customcommand':
