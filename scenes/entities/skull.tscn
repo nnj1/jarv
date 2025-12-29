@@ -243,23 +243,26 @@ motion_mode = 1
 script = ExtResource("1_tl5qv")
 detection_area_path = NodePath("Area3D")
 
-[node name="Sketchfab_Scene" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Sketchfab_Scene" type="Node3D" parent="model"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -41.607, -30, -72.908)
 
-[node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene"]
+[node name="Sketchfab_model" type="Node3D" parent="model/Sketchfab_Scene"]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
 
-[node name="root" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model"]
+[node name="root" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model"]
 
-[node name="GLTF_SceneRootNode" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/root"]
+[node name="GLTF_SceneRootNode" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root"]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, -1, 0, 1, 2.220446e-16, 0, 0, 0)
 
-[node name="Armature_15" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode"]
+[node name="Armature_15" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.435146, 4.881332, 14.651846)
 
-[node name="GLTF_created_0" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15"]
+[node name="GLTF_created_0" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15"]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0"]
+[node name="Skeleton3D" type="Skeleton3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0"]
 bones/0/name = "GLTF_created_0_rootJoint"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -352,24 +355,24 @@ bones/12/position = Vector3(-2.3935647, 2.7038465, -0.74384964)
 bones/12/rotation = Quaternion(-0.64781916, 0.3581582, -0.28342593, 0.6096907)
 bones/12/scale = Vector3(1, 1.0000004, 1)
 
-[node name="Object_7" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
+[node name="Object_7" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_f5t0j")
 skin = SubResource("Skin_63k5r")
 
-[node name="Object_8" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
+[node name="Object_8" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_gdeki")
 skin = SubResource("Skin_63k5r")
 
-[node name="Object_9" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
+[node name="Object_9" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_5cvjj")
 skin = SubResource("Skin_63k5r")
 
-[node name="Cube_14" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0"]
+[node name="Cube_14" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sketchfab_Scene"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="model/Sketchfab_Scene"]
 libraries = {
 &"": SubResource("AnimationLibrary_firie")
 }

@@ -16,6 +16,7 @@ var idle_target_pos := Vector3.ZERO
 var drift_timer := 0.0
 
 func _ready():
+	if not multiplayer.is_server(): return 
 	_pick_new_idle_pos()
 	
 	# Connect the Area3D signals
@@ -26,6 +27,7 @@ func _ready():
 		push_warning("DetectionArea not assigned to Flying Skull!")
 
 func _physics_process(delta):
+	if not multiplayer.is_server(): return
 	match current_state:
 		State.IDLE:
 			_process_idle(delta)
@@ -38,12 +40,15 @@ func _physics_process(delta):
 ## --- SIGNAL CALLBACKS ---
 
 func _on_detection_area_body_entered(body: Node3D):
+	if not multiplayer.is_server(): return 
 	# Check if the body entering is the player (ensure player is in "player" group)
-	if body.is_in_group("player"):
-		target_player = body
-		current_state = State.AGGRO
+	if 'IS_PLAYER' in body:
+		if body.IS_PLAYER:
+			target_player = body
+			current_state = State.AGGRO
 
 func _on_detection_area_body_exited(body: Node3D):
+	if not multiplayer.is_server(): return 
 	if body == target_player:
 		target_player = null
 		current_state = State.IDLE
@@ -52,6 +57,8 @@ func _on_detection_area_body_exited(body: Node3D):
 ## --- STATE LOGIC ---
 
 func _process_idle(delta):
+	if not multiplayer.is_server(): return 
+	
 	drift_timer -= delta
 	if drift_timer <= 0 or global_position.distance_to(idle_target_pos) < 1.0:
 		_pick_new_idle_pos()
@@ -61,6 +68,8 @@ func _process_idle(delta):
 	_smooth_look_at(idle_target_pos, delta * 2.0)
 
 func _process_aggro(delta):
+	if not multiplayer.is_server(): return 
+	
 	if not target_player:
 		current_state = State.IDLE
 		return
