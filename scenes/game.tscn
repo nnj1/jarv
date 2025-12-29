@@ -145,7 +145,6 @@ shader_parameter/wave_frequency = 10.0
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lbhrr")
-player_scene = null
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://cbaoxocs5fdn5", "uid://cw4vukdv7u3or", "uid://do3xxsfa4op1l", "uid://brs35jscybls7", "uid://okdu2wgy1tpf")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwadwdi8oo0bj"
+path="res://.godot/imported/Garmr_Growl.wav-0c6f1c3c3deb7de453825f5672bb291c.sample"
+
+[deps]
+
+source_file="res://assets/Monsters Vol.2/Monsters Vol.2/Garmr_Growl.wav"
+dest_files=["res://.godot/imported/Garmr_Growl.wav-0c6f1c3c3deb7de453825f5672bb291c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

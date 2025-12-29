@@ -1,9 +1,13 @@
-[gd_scene load_steps=14 format=4 uid="uid://okdu2wgy1tpf"]
+[gd_scene load_steps=18 format=4 uid="uid://okdu2wgy1tpf"]
 
 [ext_resource type="Material" uid="uid://c83v3ag3aga26" path="res://assets/flying_skull/mats/Material.tres" id="1_kq183"]
 [ext_resource type="Script" uid="uid://crqbckijea4vp" path="res://scenes/entities/skull.gd" id="1_tl5qv"]
+[ext_resource type="AudioStream" uid="uid://bm1y1v7k7f005" path="res://assets/Monsters Vol.2/Monsters Vol.2/GreatWarg_Growl.wav" id="2_8cdun"]
+[ext_resource type="AudioStream" uid="uid://b2wq76711jrk1" path="res://assets/memesounds/Aughhhh.mp3" id="2_knxwu"]
 [ext_resource type="Material" uid="uid://ov87lhl2e741" path="res://assets/flying_skull/mats/Material.001.tres" id="2_tl5qv"]
 [ext_resource type="Material" uid="uid://cx0epadddgpj" path="res://assets/flying_skull/mats/Material.002.tres" id="3_knxwu"]
+[ext_resource type="AudioStream" uid="uid://w7khplrlamea" path="res://assets/Monsters Vol.2/Monsters Vol.2/GreaWarg_Attack.wav" id="4_ribas"]
+[ext_resource type="AudioStream" uid="uid://24e4hjh802rc" path="res://assets/Monsters Vol.2/Monsters Vol.2/Monster_Attack.wav" id="5_a6se2"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f5t0j"]
 resource_name = "Sketchfab_Scene_Object_0"
@@ -242,6 +246,10 @@ collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_tl5qv")
 detection_area_path = NodePath("Area3D")
+idle_sound = ExtResource("2_8cdun")
+aggro_sound = ExtResource("2_knxwu")
+melee_attack_sound = ExtResource("4_ribas")
+ranged_attack_sound = ExtResource("5_a6se2")
 
 [node name="model" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -391,3 +399,15 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_tl5qv")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.318293, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41314125, 7.613599, 0)
+light_color = Color(1.8247963, 0, 0, 1)
+light_energy = 2.0
+omni_range = 16.170294

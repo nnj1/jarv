@@ -115,6 +115,8 @@ func spawn_entity(name_of_scene: String, given_scale: float, origin_position: Ve
 	var scene = load('res://scenes/entities/' + name_of_scene + '.tscn')
 	if scene:
 		var scene_instance = scene.instantiate()
+		scene_instance.scale *= given_scale
+		scene_instance.skin_color = Color.from_hsv(randf(), 1.0, 1.0) * 2
 		get_node('entities').add_child(scene_instance, true)
 		scene_instance.global_position = origin_position
-		scene_instance.scale *= given_scale
+		

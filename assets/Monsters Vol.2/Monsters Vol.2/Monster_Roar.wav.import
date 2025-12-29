@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cqc8i6i0eav5n"
+path="res://.godot/imported/Monster_Roar.wav-89b931b8f44b0e871cd1f7ce22b84ba2.sample"
+
+[deps]
+
+source_file="res://assets/Monsters Vol.2/Monsters Vol.2/Monster_Roar.wav"
+dest_files=["res://.godot/imported/Monster_Roar.wav-89b931b8f44b0e871cd1f7ce22b84ba2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
