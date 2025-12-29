@@ -1,0 +1,11 @@
+Model Information:
+* title:	Soju
+* source:	https://sketchfab.com/3d-models/soju-b82cb833c0264554a6025edb8b6dfa27
+* author:	Elizabeth Cahya (https://sketchfab.com/ElizabethCahya)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Soju" (https://sketchfab.com/3d-models/soju-b82cb833c0264554a6025edb8b6dfa27) by Elizabeth Cahya (https://sketchfab.com/ElizabethCahya) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

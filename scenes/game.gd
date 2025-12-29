@@ -124,8 +124,8 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 			get_node('entities').add_child(scene_instance, true)
 			scene_instance.global_position = origin_position
 		
-		# if it's an item_body, just spawn a random item
-		elif name_of_scene == 'whiskey':
+		# if it's an item_body, just the item
+		elif name_of_scene in ['whiskey', 'soju'] :
 			# TODO: Fix this class instantiation thing
 			scene_instance.setup('a drink', 'looks to be alcoholic')
 			# don't spawn this item at the end of the aim ray, it's too far! 
