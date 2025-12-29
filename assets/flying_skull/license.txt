@@ -1,0 +1,11 @@
+Model Information:
+* title:	Flying Skull
+* source:	https://sketchfab.com/3d-models/flying-skull-9ecb216b2116402181ae7c3d023315c6
+* author:	LopesVitor (https://sketchfab.com/LopesVitor)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Flying Skull" (https://sketchfab.com/3d-models/flying-skull-9ecb216b2116402181ae7c3d023315c6) by LopesVitor (https://sketchfab.com/LopesVitor) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

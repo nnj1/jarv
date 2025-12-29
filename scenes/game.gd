@@ -98,3 +98,23 @@ func send_chat(new_text, id):
 				var hour_string = result.get_string(1) # Gets the first captured group (\d+)
 				var hour_int = hour_string.to_int()
 				$DirectionalLight3D.current_hour = hour_int
+			else:
+				# We use parentheses to capture the "THING"
+				regex.compile("^/spawn\\s+(.+)")
+				result = regex.search(new_text)
+				if result:
+					# get_string(0) is the whole match ("/spawn THING")
+					# get_string(1) is the first captured group ("THING")
+					var player_aim_ray = get_node('entities/1/camera_pivot/tps_arm/Camera3D/aim_ray')
+					var local_point = player_aim_ray.target_position * 1
+					var end_point = player_aim_ray.to_global(local_point)
+					spawn_entity(result.get_string(1), randf_range(0.20, 1), end_point)
+		
+
+func spawn_entity(name_of_scene: String, given_scale: float, origin_position: Vector3):
+	var scene = load('res://scenes/entities/' + name_of_scene + '.tscn')
+	if scene:
+		var scene_instance = scene.instantiate()
+		get_node('entities').add_child(scene_instance, true)
+		scene_instance.global_position = origin_position
+		scene_instance.scale *= given_scale

@@ -100,6 +100,10 @@ func change_weapon(index:  int = weapon_index):
 		self.entity_held = null
 	for child in $weapons.get_children():
 		child.visible = false
+		# stop any running animations
+		var player = child.get_node_or_null('AnimationPlayer')
+		if player:
+			player.stop()
 	$weapons.get_children()[index].visible = true
 	main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapons[index].reticle, 20, 10)	
 	$weaponswapSound.play()
