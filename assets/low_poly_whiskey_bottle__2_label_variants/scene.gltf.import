@@ -1,0 +1,75 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cmhw6uj6hy2hr"
+path="res://.godot/imported/scene.gltf-7ffc14047a74e78988546fcaa7ff8162.scn"
+
+[deps]
+
+source_file="res://assets/low_poly_whiskey_bottle__2_label_variants/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-7ffc14047a74e78988546fcaa7ff8162.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Material.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.001.tres",
+"use_external/path": "uid://u6fjouwb8c8e"
+},
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.002.tres",
+"use_external/path": "uid://bm50gaqi2i5ge"
+},
+"Material.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.003.tres",
+"use_external/path": "uid://dx03gg4m5e02b"
+},
+"Material.004": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.004.tres",
+"use_external/path": "uid://cpi1ns7xqenvl"
+},
+"Material.005": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.005.tres",
+"use_external/path": "uid://dnjsxkftieswv"
+},
+"Material.006": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.006.tres",
+"use_external/path": "uid://by5bu6ffvhoip"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

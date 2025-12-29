@@ -99,21 +99,21 @@ collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_ypghb")
 script = ExtResource("1_fgm4t")
 
-[node name="Sketchfab_Scene" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene"]
+[node name="Sketchfab_model" type="Node3D" parent="model"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 
-[node name="fuel_can_fbx" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model"]
+[node name="fuel_can_fbx" type="Node3D" parent="model/Sketchfab_model"]
 transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
 
-[node name="RootNode" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/fuel_can_fbx"]
+[node name="RootNode" type="Node3D" parent="model/Sketchfab_model/fuel_can_fbx"]
 
-[node name="fuel_can" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/fuel_can_fbx/RootNode"]
+[node name="fuel_can" type="Node3D" parent="model/Sketchfab_model/fuel_can_fbx/RootNode"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 25.175833, -4.7683716e-07)
 
-[node name="fuel_can_fuel_can_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/fuel_can_fbx/RootNode/fuel_can"]
+[node name="fuel_can_fuel_can_0" type="MeshInstance3D" parent="model/Sketchfab_model/fuel_can_fbx/RootNode/fuel_can"]
 mesh = SubResource("ArrayMesh_bp6ny")
 skeleton = NodePath("")
 

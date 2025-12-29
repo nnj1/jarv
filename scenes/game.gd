@@ -108,15 +108,30 @@ func send_chat(new_text, id):
 					var player_aim_ray = get_node('entities/1/camera_pivot/tps_arm/Camera3D/aim_ray')
 					var local_point = player_aim_ray.target_position * 1
 					var end_point = player_aim_ray.to_global(local_point)
-					spawn_entity(result.get_string(1), randf_range(0.20, 1), end_point)
+					spawn_entity(result.get_string(1), end_point, randf_range(0.20, 1))
 		
 
-func spawn_entity(name_of_scene: String, given_scale: float, origin_position: Vector3):
+# Can spawn things like enemies, and ItemBody's
+func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: float = 1.0):
 	var scene = load('res://scenes/entities/' + name_of_scene + '.tscn')
 	if scene:
 		var scene_instance = scene.instantiate()
-		scene_instance.scale *= given_scale
-		scene_instance.skin_color = Color.from_hsv(randf(), 1.0, 1.0) * 2
-		get_node('entities').add_child(scene_instance, true)
-		scene_instance.global_position = origin_position
 		
+		# if the scene is a skull, just give it a random color
+		if name_of_scene == 'skull':
+			scene_instance.scale *= given_scale
+			scene_instance.skin_color = Color.from_hsv(randf(), 1.0, 1.0) * 2
+			get_node('entities').add_child(scene_instance, true)
+			scene_instance.global_position = origin_position
+		
+		# if it's an item_body, just spawn a random item
+		elif name_of_scene == 'whiskey':
+			# TODO: Fix this class instantiation thing
+			scene_instance.setup('a drink', 'looks to be alcoholic')
+			# don't spawn this item at the end of the aim ray, it's too far! 
+			# instead to go end of interaction ray
+			var player_interact_ray = get_node('entities/1/camera_pivot/tps_arm/Camera3D/RayCast3D')
+			var local_point = player_interact_ray.target_position * 1
+			var end_point = player_interact_ray.to_global(local_point)
+			scene_instance.position = end_point # once added it's local position will become global position
+			get_node('entities').add_child(scene_instance, true)
