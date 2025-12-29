@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://do3xxsfa4op1l"]
+[gd_scene load_steps=45 format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
 [ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c08emxcxrp1ag" path="res://assets/Vehicle_Truck/Vehicle_Truck_Idle_Exterior_Front_Loop_Stereo_01.wav" id="6_6ms31"]
 [ext_resource type="AudioStream" uid="uid://dootuokgpi4i" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Engine sounds/3700rpm.mp3" id="7_3f1he"]
 [ext_resource type="PackedScene" uid="uid://c23aoacj82jmr" path="res://scenes/drivers_seat.tscn" id="8_3f1he"]
+[ext_resource type="PackedScene" uid="uid://bcpaivify1yk4" path="res://scenes/door.tscn" id="9_asokp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ehrx3"]
 
@@ -112,6 +113,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mm0k0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asokp"]
+albedo_color = Color(0.6542039, 0.5547783, 0.2866218, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gvp7r"]
 _surfaces = [{
@@ -391,8 +395,17 @@ size = Vector3(6.6536865, 0.72998047, 19.135193)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3f1he"]
 size = Vector3(4.684143, 0.24487305, 22.420654)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qt6b"]
+size = Vector3(4.684143, 0.24487305, 12.32135)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_asokp"]
-size = Vector3(4.684143, 0.24487305, 22.420654)
+size = Vector3(4.684143, 0.24487305, 8.232666)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jwa7j"]
+size = Vector3(4.684143, 0.24487305, 6.1716003)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qrg0m"]
+size = Vector3(5.035309, 0.24487305, 6.1716003)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3f1he"]
 properties/0/path = NodePath(".:position")
@@ -429,9 +442,14 @@ properties/10/path = NodePath(".:current_gear")
 properties/10/spawn = true
 properties/10/replication_mode = 2
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asokp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wbms2"]
+size = Vector3(7.361, 7.9503174, 23.617)
+
 [node name="Gmc" type="VehicleBody3D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 21
 mass = 3500.0
 physics_material_override = SubResource("PhysicsMaterial_ehrx3")
 center_of_mass_mode = 1
@@ -473,6 +491,7 @@ transform = Transform3D(0.24527092, 0, 0, 0, 0.28796402, 0, 0, 0, 0.24527092, 0.
 gi_mode = 2
 mesh = SubResource("ArrayMesh_1qt6b")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_asokp")
 
 [node name="Plane_006_3" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1.169081, 0, 0, 0, 1.169081, 0, 0, 0, 1.169081, 0, 0, 0)
@@ -551,8 +570,20 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3.18
 shape = SubResource("BoxShape3D_3f1he")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -3.2124262, 4.431015, 0.095581055)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -3.2124262, 4.431015, -5.410919)
+shape = SubResource("BoxShape3D_1qt6b")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -3.2124262, 4.431015, 7.1532555)
 shape = SubResource("BoxShape3D_asokp")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0.019443512, 4.431015, -10.490852)
+shape = SubResource("BoxShape3D_jwa7j")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 0.8029111, 0.5960987, -2.6056306e-08, -0.5960987, 0.8029111, -3.509636e-08, 0.019443512, 4.894869, 9.7080765)
+shape = SubResource("BoxShape3D_qrg0m")
 
 [node name="front_left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8169963, 1.2730367, 7.63747)
@@ -619,3 +650,20 @@ replication_config = SubResource("SceneReplicationConfig_3f1he")
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.126053, 0)
 size = Vector3(7.4235535, 7.9203186, 23.197754)
+
+[node name="door" parent="." instance=ExtResource("9_asokp")]
+collision_layer = 0
+collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_asokp")
+
+[node name="inner_volume" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inner_volume"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1189947, 0)
+shape = SubResource("BoxShape3D_wbms2")
+
+[connection signal="body_entered" from="inner_volume" to="." method="_on_inner_volume_body_entered"]
+[connection signal="body_exited" from="inner_volume" to="." method="_on_inner_volume_body_exited"]

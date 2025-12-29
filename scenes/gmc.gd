@@ -32,25 +32,19 @@ enum Gear { DRIVE, REVERSE }
 @export var current_speed_mps: float = 0.0 
 @export var current_speed_kmh: float = 0.0 
 
-var occupants = []
-const is_interactable: bool = true
+#var occupants = []
+var is_interactable: bool = true
 const is_pickable: bool = false
 @export var driver_player_id:String = ''
 var driver_player_node:Node3D = null
 
-#TODO: find a way to exit the RV
-func interact(given_player_node) -> void:
-	if not given_player_node in occupants:
-		print(str(given_player_node) + ' entered GMC RV')
-		occupants.append(given_player_node)
-		set_collision_mask_value(2, false)
-		given_player_node.global_position = $entrance_point.global_position
-		set_collision_mask_value(2, true)
-	elif given_player_node in occupants:
-		print(str(given_player_node) + ' left GMC RV')
-		occupants.erase(given_player_node)
-		#TODO: teleport them out of the RV, based on their position	
-		
+const custom_interact_message:String = 'Press E to repair RV'
+
+func interact(_given_player_node) -> void:
+	pass
+	# CAN DO RV REPAIRS HERE
+	
+		#
 func _enter_tree() -> void:
 	set_multiplayer_authority(1)
 	
@@ -225,3 +219,12 @@ func _apply_stability_logic():
 	var side_velocity = global_transform.basis.x.dot(linear_velocity)
 	apply_central_force(-global_transform.basis.x * side_velocity * mass * grip_multiplier)
 	apply_central_force(Vector3.DOWN * mass * 0.5)
+
+# local functions for determining whether we can repair the vehicle
+@warning_ignore("unused_parameter")
+func _on_inner_volume_body_entered(body: Node3D) -> void:
+	is_interactable = false
+
+@warning_ignore("unused_parameter")
+func _on_inner_volume_body_exited(body: Node3D) -> void:
+	is_interactable = true 

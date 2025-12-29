@@ -50,8 +50,8 @@ func sync_pickup(given_player_id: int) -> void:
 	
 	# Physics: Disable physics entirely so it doesn't fall or collide
 	self.freeze = true
-	self.collision_layer = 0
-	self.collision_mask = 0
+	#self.collision_layer = 0
+	#self.collision_mask = 0
 
 # --- Drop Logic ---
 
@@ -76,8 +76,8 @@ func sync_drop() -> void:
 	# Restore physics
 	self.global_transform = final_transform
 	self.freeze = false
-	self.collision_layer = 1
-	self.collision_mask = 1
+	#self.collision_layer = 1
+	#self.collision_mask = 1
 	
 	# Server-only impulse
 	if multiplayer.is_server():
