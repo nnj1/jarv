@@ -371,6 +371,33 @@ offset_bottom = 614.0
 texture = ExtResource("11_trtic")
 expand_mode = 4
 
+[node name="RV_INSTRUCTIONS" type="Control" parent="CanvasLayer/RV_HUD"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/RV_HUD/RV_INSTRUCTIONS"]
+position = Vector2(576, 870)
+scale = Vector2(1, 2.4242425)
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
+polygon = PackedVector2Array(-257.28604, -110.627, 222, -117, 211.366, -80.459, -199.03203, -68.77601)
+uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/RV_HUD/RV_INSTRUCTIONS"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 609.0
+offset_right = 775.0
+offset_bottom = 640.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[b]ALT[/b] Shift Gears | [b]B[/b] Handbrakes | [b]L[/b] Highbeams
+"
+scroll_active = false
+horizontal_alignment = 1
+
 [node name="chatbox" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 1

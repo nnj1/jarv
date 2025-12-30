@@ -111,6 +111,7 @@ func change_weapon(index:  int = weapon_index):
 func start_driving(_given_seat_node):
 	# 1. Set local state so the Client enters the loop immediately
 	self.is_driving = true
+	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').show()
 	
 	# 2. Assign the seat node locally so the position lock works
 	self.seat_node = main_game_node.get_node('entities/Gmc/drivers_seat')
@@ -124,6 +125,7 @@ func start_driving(_given_seat_node):
 func stop_driving():
 	rpc_id(1, "server_register_driver", false)
 	self.is_driving = false
+	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').show()
 	self.seat_node = null
 	self.rotation = Vector3.ZERO
 	$CollisionShape3D.disabled = false
