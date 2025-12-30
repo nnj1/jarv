@@ -633,6 +633,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2.3841858e-07)
 
 [node name="knife" type="Node3D" parent="weapons"]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -0.9908782)
+visible = false
 
 [node name="Cylinder" type="MeshInstance3D" parent="weapons/knife"]
 layers = 2

@@ -107,18 +107,6 @@ func change_weapon(index:  int = weapon_index):
 	$weapons.get_children()[index].visible = true
 	main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(weapons[index].reticle, 20, 10)	
 	$weaponswapSound.play()
-
-#func start_driving(_given_seat_node):
-	#main_game_node.get_node('entities/Gmc').driver_player_id = str(multiplayer.get_unique_id())
-	#self.seat_node = main_game_node.get_node('entities/Gmc/drivers_seat')#given_seat_node
-	#self.is_driving = true
-	#
-#func stop_driving():
-	#self.is_driving = false
-	#main_game_node.get_node('entities/Gmc').driver_player_id = ''
-	#self.seat_node = null
-	## reset player rotation
-	#self.rotation = Vector3(0,0,0)
 	
 func start_driving(_given_seat_node):
 	# 1. Set local state so the Client enters the loop immediately
@@ -399,12 +387,13 @@ func _physics_process(delta):
 		
 		if Input.is_action_pressed('handbrake'):
 			self.handbrake_key_pressed = true
-			seat_node.get_parent().rpc_id(1, 'network_handbrake')
+			seat_node.get_parent().rpc('network_handbrake')
 		else:
 			self.handbrake_key_pressed = false
 		
 		if Input.is_action_just_pressed('highbeams'):
-			seat_node.get_parent().rpc_id(1, 'network_highbeams')
+			seat_node.get_parent().rpc('network_highbeams')
+			
 		
 		# called on client side but using client's delta (aka client's physics)
 		#lock_self_to_driver_seat(delta)
