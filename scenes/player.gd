@@ -270,7 +270,7 @@ func _physics_process(delta):
 		var target = $camera_pivot/tps_arm/Camera3D/RayCast3D.get_collider()
 		main_game_node.get_node('CanvasLayer/HBoxContainer/target').text = str(target)
 		if 'is_interactable' in target and entity_held == null:
-			if target.is_interactable:
+			if target.is_interactable and not 'IS_RV' in target:
 				var message = target.custom_interact_message if ('custom_interact_message' in target) else 'Press E to interact'
 				# show the interaction message if the target isn't pickable
 				if not target.is_pickable:

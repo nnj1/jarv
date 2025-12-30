@@ -38,6 +38,8 @@ enum Gear { DRIVE, REVERSE }
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12/Object_20,
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
 
+const IS_RV:bool = true
+
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 
 # --- SPEED TRACKING ---
