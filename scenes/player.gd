@@ -483,15 +483,27 @@ func _unhandled_input(event):
 		if is_first_person:
 			# Collapse arm for FP
 			tps_arm.spring_length = 0.0
+			
+			# reset any rotation or translation on the on the camera pivot
+			camera_pivot.rotation = Vector3(0, 0, 0)
+			camera_pivot.position = Vector3(0, 1.676, -1)
 		else:
 			# Extend arm for TP
 			tps_arm.spring_length = tps_distance
-
+			
+			# make camera pivot center on player
+			camera_pivot.position = Vector3(0, 1.676, 0)
+			
 	# --- MOUSE LOOK (ONLY when captured) ---
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		# Horizontal Rotation (Y-axis): Rotates the CharacterBody3D
-		rotate_y(-event.relative.x * mouse_sensitivity)
 		
+		# Horizontal Rotation (Y-axis): Rotates the CharacterBody3D
+		if is_first_person:
+			rotate_y(-event.relative.x * mouse_sensitivity)
+		else:
+			# don't rotate the player, rotate the camera around the player
+			camera_pivot.rotate_y(-event.relative.x * mouse_sensitivity)
+			
 		# Vertical Rotation (X-axis): Rotates the Camera Pivot node
 		if camera_pivot:
 			camera_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
@@ -499,6 +511,7 @@ func _unhandled_input(event):
 			# Clamp the vertical rotation
 			var cam_rot_x = camera_pivot.rotation.x
 			camera_pivot.rotation.x = clamp(cam_rot_x, -CLAMP_ANGLE, CLAMP_ANGLE)
+
 
 # Helper function for instantaneous position setting (used at start)
 func _set_view_position(target: Vector3):
