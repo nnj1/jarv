@@ -371,11 +371,15 @@ func _physics_process(delta):
 							recoil_velocity = push_direction * force / 10 # scale force down by factor of 10
 							velocity += recoil_velocity
 							recoil_velocity = recoil_velocity.lerp(Vector3.ZERO, 10.0 * delta)
-				
-				#if Input.is_action_just_released('shoot'):
-				#	if weapon_animation_player:
-				#		if weapon_animation_player.is_playing():
-				#			weapon_animation_player.stop()
+		
+		elif weapons[weapon_index].class == 'MELEE':
+				var weapon_animation_player = get_node_or_null('weapons/' + weapons[weapon_index].name + '/AnimationPlayer')
+				if weapon_animation_player:
+					if Input.is_action_pressed('shoot'):
+						# play the shoot animation for the respective weapon
+						if weapon_animation_player:
+							if not weapon_animation_player.is_playing():
+								weapon_animation_player.play('attack')
 					
 		# finally, we can move and slide (we are not driving the RV in this case)
 		move_and_slide()
@@ -398,6 +402,9 @@ func _physics_process(delta):
 			seat_node.get_parent().rpc_id(1, 'network_handbrake')
 		else:
 			self.handbrake_key_pressed = false
+		
+		if Input.is_action_just_pressed('highbeams'):
+			seat_node.get_parent().rpc_id(1, 'network_highbeams')
 		
 		# called on client side but using client's delta (aka client's physics)
 		#lock_self_to_driver_seat(delta)

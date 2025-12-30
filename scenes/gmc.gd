@@ -20,6 +20,18 @@ enum Gear { DRIVE, REVERSE }
 @export var fuel_consumption_rate: float = 1.5
 @export var idle_consumption_rate: float = 0.1
 
+@export_group("Battery Settings")
+@export var max_battery: float = 100.0
+@export var current_battery: float = 100.0
+@export var battery_consumption_rate_high_beams: float = 1.5
+@export var battery_consumption_rate_high_beams_idle: float = 0.1
+@export var high_beams_status: bool = false
+
+@export_group("Oil Settings")
+@export var max_oil: float = 100.0
+@export var current_oil: float = 100.0
+@export var oil_consumption_rate: float = 0.1
+
 @export_group("Animations")
 @export var rotation_speed_multiplier: float = 1.0
 @onready var rotating_parts = [$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_004_13/Object_22, 
@@ -58,6 +70,15 @@ func gear_change():
 
 func handbrake():
 	brake = brake_strength * 4.0
+	
+func highbeams():
+	high_beams_status = not high_beams_status
+	if high_beams_status:
+		$left_headlight.spot_range = 300
+		$right_headlight.spot_range = 300
+	else:
+		$left_headlight.spot_range = 70
+		$right_headlight.spot_range = 70
 
 @rpc("any_peer","call_local", "reliable")
 func network_gear_change():
@@ -66,6 +87,16 @@ func network_gear_change():
 @rpc("any_peer","call_local", "reliable")
 func network_handbrake():
 	brake = brake_strength * 4.0
+
+@rpc("any_peer","call_local", "reliable")
+func network_highbeams():
+	high_beams_status = not high_beams_status
+	if high_beams_status:
+		$left_headlight.spot_range = 300
+		$right_headlight.spot_range = 300
+	else:
+		$left_headlight.spot_range = 70
+		$right_headlight.spot_range = 70
 
 func lock_player_to_driver_seat(delta) -> void:
 	if not driver_player_node: return
@@ -93,6 +124,8 @@ func _process(_delta: float) -> void:
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear').text = ['Drive', 'Reverse'][current_gear]
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/car_speed').text = str(int(current_speed_kmh)) + ' kmh'
 	main_game_node.get_node("CanvasLayer/RV_HUD/fuelpercent").text = str(int(current_fuel)) + "L"
+	main_game_node.get_node("CanvasLayer/RV_HUD/oilpercent").text = str(int(current_oil)) + "%"
+	main_game_node.get_node("CanvasLayer/RV_HUD/batterypercent").text = str(int(current_battery)) + "%"
 	
 func _physics_process(delta: float) -> void:
 	
@@ -122,6 +155,16 @@ func _physics_process(delta: float) -> void:
 		current_fuel = 0
 		if $engineIdleSound.playing: $engineIdleSound.stop()
 		if $accelerateSound.playing: $accelerateSound.stop()
+
+	# 2. Battery Consumption Logic
+	if current_battery > 0:
+		if high_beams_status:
+			current_battery -= battery_consumption_rate_high_beams * delta
+		else:
+			current_battery -= battery_consumption_rate_high_beams_idle * delta
+	else:
+		# prevent battery from dipping below zero
+		current_battery = 0
 
 	# 3. ROTATION LOGIC
 	for rotating_part in rotating_parts:
@@ -168,6 +211,8 @@ func _physics_process(delta: float) -> void:
 			gear_change()
 		if Input.is_action_pressed("handbrake"):
 			handbrake()
+		if Input.is_action_just_pressed("highbeams"):
+			highbeams()
 		#print('Being driven by default server')
 	
 	# 5. Steering and Movement Logic

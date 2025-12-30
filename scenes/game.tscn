@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=26 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -9,8 +9,10 @@
 [ext_resource type="Environment" uid="uid://b1syrdek0evt8" path="res://resources/gameworldenv.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://bna7jai6hx8m0" path="res://scenes/directional_light_3d.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://13a0tm6jijnb" path="res://assets/8664993.png" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bvvojlcwjdmsu" path="res://assets/oil.png" id="10_kvuet"]
 [ext_resource type="FontFile" uid="uid://bbyybor08ktnd" path="res://assets/fonts/Oswald/Oswald-VariableFont_wght.ttf" id="10_vtaks"]
 [ext_resource type="Shader" uid="uid://378w7t6kcwua" path="res://shaders/heart.gdshader" id="11_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://cc30ax2tgdx20" path="res://assets/battery.png" id="11_trtic"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
 
@@ -279,9 +281,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
-position = Vector2(-117, 602)
+position = Vector2(-188.33334, 602)
+scale = Vector2(1.6666666, 1)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
-polygon = PackedVector2Array(111, -60, 260, -37, 223, 66, 107, 32)
+polygon = PackedVector2Array(111, -60, 260, -37, 239.6, 66, 107, 32)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RV_HUD"]
@@ -324,6 +327,48 @@ offset_top = 572.0
 offset_right = 124.0
 offset_bottom = 614.0
 texture = ExtResource("7_u5sy4")
+expand_mode = 4
+
+[node name="oilpercent" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 615.0
+offset_right = 186.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 1.22
+text = "99%"
+
+[node name="oilicon" type="TextureRect" parent="CanvasLayer/RV_HUD"]
+modulate = Color(1, 1, 1, 0.5176471)
+layout_mode = 0
+offset_left = 132.0
+offset_top = 572.0
+offset_right = 182.0
+offset_bottom = 626.0
+texture = ExtResource("10_kvuet")
+expand_mode = 4
+
+[node name="batterypercent" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 615.0
+offset_right = 236.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 1.22
+text = "99%"
+
+[node name="batteryicon" type="TextureRect" parent="CanvasLayer/RV_HUD"]
+modulate = Color(1, 1, 1, 0.5176471)
+layout_mode = 0
+offset_left = 186.0
+offset_top = 572.0
+offset_right = 228.0
+offset_bottom = 614.0
+texture = ExtResource("11_trtic")
 expand_mode = 4
 
 [node name="chatbox" type="Control" parent="CanvasLayer"]

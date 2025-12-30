@@ -3,19 +3,19 @@ extends RigidBody3D
 class_name ItemBody
 
 # --- Data Properties ---
-var item_name: String = ""
-var item_description: String = ""
+@export var item_name: String = 'default item name'
+@export var item_description: String = 'default item description'
 
 # --- Node References ---
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 @onready var model_container = $model
 
 # --- Interaction & Pickup Constants (need to be initiatized)---
-var is_interactable: bool = true
-var is_pickable: bool = true
-var is_employable: bool = true
-var is_consumable: bool = true
-var custom_interact_message: String = 'Press E to pick up'
+@export var is_interactable: bool = true
+@export var is_pickable: bool = true
+@export var is_employable: bool = true
+@export var is_consumable: bool = true
+@export var custom_interact_message: String = 'Press E to pick up'
 
 # --- State Variables ---
 var holding_player: Node3D = null 
@@ -25,9 +25,8 @@ var rotation_speed: float = 2.0
 
 # --- Initialization & Model Loading ---
 
-func setup(p_name: String, p_desc: String, interactable: bool = true, pick:bool = true, employ: bool = false, consumable: bool = true, given_custom_interact_message = 'Press E to pick up') -> void:
-	item_name = p_name
-	item_description = p_desc
+@warning_ignore("unused_parameter")
+func setup(interactable: bool = true, pick:bool = true, employ: bool = false, consumable: bool = true, given_custom_interact_message = 'Press E to pick up') -> void:
 	is_interactable = interactable
 	is_pickable = pick
 	is_employable = employ

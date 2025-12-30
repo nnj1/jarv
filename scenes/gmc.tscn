@@ -416,10 +416,10 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 properties/2/path = NodePath(".:current_fuel")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 properties/3/path = NodePath(".:current_speed_kmh")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath(".:linear_velocity")
 properties/4/spawn = true
 properties/4/replication_mode = 1
@@ -441,6 +441,15 @@ properties/9/replication_mode = 2
 properties/10/path = NodePath(".:current_gear")
 properties/10/spawn = true
 properties/10/replication_mode = 2
+properties/11/path = NodePath(".:current_oil")
+properties/11/spawn = true
+properties/11/replication_mode = 2
+properties/12/path = NodePath(".:current_battery")
+properties/12/spawn = true
+properties/12/replication_mode = 2
+properties/13/path = NodePath(".:high_beams_status")
+properties/13/spawn = true
+properties/13/replication_mode = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asokp"]
 
@@ -664,6 +673,18 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="inner_volume"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1189947, 0)
 shape = SubResource("BoxShape3D_wbms2")
+
+[node name="left_headlight" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.653021, 2.4290645, 10.138631)
+spot_range = 70.0
+spot_attenuation = 0.0
+spot_angle = 59.012245
+
+[node name="right_headlight" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.5997903, 2.4290645, 10.138631)
+spot_range = 72.03936
+spot_attenuation = 0.0
+spot_angle = 59.012245
 
 [connection signal="body_entered" from="inner_volume" to="." method="_on_inner_volume_body_entered"]
 [connection signal="body_exited" from="inner_volume" to="." method="_on_inner_volume_body_exited"]

@@ -11,7 +11,7 @@ func _ready():
 
 func _input(event):
 	# Use "F" key to toggle
-	if (event.is_action_pressed("flashlight_toggle") or Input.is_key_pressed(KEY_F)) and not main_game_node.typing_chat:
+	if event.is_action_pressed("flashlight_toggle") and not main_game_node.typing_chat:
 		visible = !visible
 		if toggle_sound:
 			toggle_sound.play()

@@ -54,6 +54,12 @@ func _input(_event: InputEvent):
 		get_node('CanvasLayer/chatbox/chatinput').grab_focus()
 		typing_chat = true
 		
+	if Input.is_action_just_released("command") and not typing_chat:
+		get_node('CanvasLayer/chatbox/chatinput').text = '/'
+		get_node('CanvasLayer/chatbox/chatinput').set_caret_column(1)
+		get_node('CanvasLayer/chatbox/chatinput').grab_focus()
+		typing_chat = true
+		
 # code for chat functionality
 func _on_chatinput_focus_entered() -> void:
 	# When TextEdit gains focus, disable player input handling
@@ -127,7 +133,7 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 		# if it's an item_body, just the item
 		elif name_of_scene in ['whiskey', 'soju'] :
 			# TODO: Fix this class instantiation thing
-			scene_instance.setup('a drink', 'looks to be alcoholic')
+			scene_instance.setup()
 			# don't spawn this item at the end of the aim ray, it's too far! 
 			# instead to go end of interaction ray
 			var player_interact_ray = get_node('entities/1/camera_pivot/tps_arm/Camera3D/RayCast3D')

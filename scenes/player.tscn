@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=51 format=4 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://j2ci80t10loi" path="res://assets/Heavy Weapons Pack/gl.png" id="2_qlg0r"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cobye2nejgydu" path="res://assets/quake/Qtestsgun1.ogg" id="8_jej6c"]
 [ext_resource type="AudioStream" uid="uid://d4cpr8de437n7" path="res://assets/Grumbles - Copy/Damage/Ah.wav" id="10_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://bg531gqsw648s" path="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Isolated/5.56/WAV/556 Single Isolated WAV.wav" id="10_jej6c"]
+[ext_resource type="AudioStream" uid="uid://i1332fdoy88j" path="res://assets/Grumbles - Copy/Interjections/Ha.wav" id="10_oprun"]
 [ext_resource type="AudioStream" uid="uid://do1u75i0mgl63" path="res://assets/Free Footsteps Pack/Snow.wav" id="11_3v2ag"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ur7pv"]
@@ -332,6 +333,58 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_56myo")
 
+[sub_resource type="Animation" id="Animation_a8ls1"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.9908782), Vector3(-0.5, 0, -2), Vector3(0, 0, -0.9908782)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../weaponSoundPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.77417076,
+"start_offset": 0.0515,
+"stream": ExtResource("10_oprun")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_qfm1y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.9908782)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fulsm"]
+_data = {
+&"RESET": SubResource("Animation_qfm1y"),
+&"attack": SubResource("Animation_a8ls1")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eueyt"]
 resource_name = "Material"
 cull_mode = 2
@@ -580,15 +633,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2.3841858e-07)
 
 [node name="knife" type="Node3D" parent="weapons"]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -0.9908782)
-visible = false
-
-[node name="Empty" type="Node3D" parent="weapons/knife"]
-transform = Transform3D(1, 0, 0, 0, -3.5762787e-07, -0.99999994, 0, 0.99999994, -3.5762787e-07, 0, 0.016330838, 0)
 
 [node name="Cylinder" type="MeshInstance3D" parent="weapons/knife"]
 layers = 2
 mesh = SubResource("ArrayMesh_vip6s")
 skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/knife"]
+libraries = {
+&"": SubResource("AnimationLibrary_fulsm")
+}
 
 [node name="mauser" type="Node3D" parent="weapons"]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -1.1916931)
@@ -598,9 +652,6 @@ visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_k4xca")
 skeleton = NodePath("")
-
-[node name="Empty" type="Node3D" parent="weapons/mauser"]
-transform = Transform3D(1.9866792, -8.877441e-09, -0.5963123, -0.5963123, -2.4460437e-07, -1.9866792, -6.1817246e-08, 2.0742426, -2.3683062e-07, -1.0778334, 0.14697717, 0)
 
 [node name="Cube_001" type="MeshInstance3D" parent="weapons/mauser"]
 transform = Transform3D(0.4047874, -0.0011695505, 0, 0.0011695505, 0.4047874, 0, 0, 0, 0.4047891, -0.213586, -0.44607335, 0)
