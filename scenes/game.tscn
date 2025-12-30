@@ -1,9 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=25 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
 [ext_resource type="PackedScene" uid="uid://cbaoxocs5fdn5" path="res://scenes/player.tscn" id="3_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://boimqj5gn80a2" path="res://scenes/town2.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://do3xxsfa4op1l" path="res://scenes/gmc.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cw4vukdv7u3or" path="res://scenes/entities/gas_carton.tscn" id="3_u5sy4"]
 [ext_resource type="Environment" uid="uid://b1syrdek0evt8" path="res://resources/gameworldenv.tres" id="4_iywne"]
@@ -154,6 +153,10 @@ spawn_path = NodePath("../entities")
 script = ExtResource("2_gee14")
 network_player = ExtResource("3_0tnpc")
 
+[node name="MapSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://boimqj5gn80a2", "uid://dnqgr5fa8773f")
+spawn_path = NodePath("../terrain")
+
 [node name="entities" type="Node3D" parent="."]
 
 [node name="Gmc" parent="entities" instance=ExtResource("3_p57ef")]
@@ -163,8 +166,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, 0)
 
 [node name="terrain" type="Node3D" parent="."]
-
-[node name="Sketchfab_Scene" parent="terrain" instance=ExtResource("3_iywne")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_iywne")

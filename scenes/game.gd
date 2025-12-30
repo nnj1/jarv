@@ -9,6 +9,9 @@ var typing_chat: bool = false
 func _ready():
 	$CanvasLayer/role.text = GameManager.ROLE
 	$CanvasLayer/id.text = str(get_tree().get_multiplayer().get_unique_id())
+	
+	# spawn the default map:
+	change_map('town2')
 		
 func _process(_delta: float) -> void:
 	# Get the FPS from the Engine singleton
@@ -115,7 +118,42 @@ func send_chat(new_text, id):
 					var local_point = player_aim_ray.target_position * 1
 					var end_point = player_aim_ray.to_global(local_point)
 					spawn_entity(result.get_string(1), end_point, randf_range(0.20, 1))
+				
+				else:
+					# We use parentheses to capture the "THING"
+					regex.compile("^/changemap\\s+(.+)")
+					result = regex.search(new_text)
+					if result:
+						# get_string(0) is the whole match ("/changemap THING")
+						# get_string(1) is the first captured group ("THING")
+						change_map(result.get_string(1))
+
+# spawns a new map, changes to it, and moves players and RV to the new spawn point
+func change_map(name_of_scene: String):
+	var scene = load('res://scenes/maps/' + name_of_scene + '.tscn')
+	if scene:
+		var scene_instance = scene.instantiate()
+		for child in $terrain.get_children():
+			child.queue_free()
+		# TODO: move the player and RV to the map's ideal spawn point
+		# destroy all other entities (usually would be things external to the map, 
+		# spawned in by the player)
+		var player_spawn_point = scene_instance.get_node_or_null('player_spawn_point')
+		var rv_spawn_point = scene_instance.get_node_or_null('rv_spawn_point')
 		
+		for entity in $entities.get_children():
+			if 'IS_PLAYER' in entity:
+				if player_spawn_point:
+					entity.global_position = player_spawn_point.position
+			elif 'IS_RV' in entity:
+				if rv_spawn_point:
+					global_teleport(entity, rv_spawn_point.position)
+					#entity.global_position = rv_spawn_point.position
+			elif 'IS_ITEM_BODY' in entity:
+				# delete the entity
+				# TODO: HANDLE WHAT WILL HAPPEN IF PLAYER IS INTERACTING WITH ENTITY
+				entity.smart_queue_free()
+		$terrain.add_child(scene_instance, true)
 
 # Can spawn things like enemies, and ItemBody's
 func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: float = 1.0):
@@ -141,3 +179,14 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 			var end_point = player_interact_ray.to_global(local_point)
 			scene_instance.position = end_point # once added it's local position will become global position
 			get_node('entities').add_child(scene_instance, true)
+
+func global_teleport(vehicle: VehicleBody3D, target_pos: Vector3):
+	var rid = vehicle.get_rid()
+	var new_transform = Transform3D(Basis.IDENTITY, target_pos)
+	
+	# Update the physics state directly
+	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, new_transform)
+	
+	# Critical: Reset velocity so the car doesn't keep its previous momentum
+	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, Vector3.ZERO)
+	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_ANGULAR_VELOCITY, Vector3.ZERO)

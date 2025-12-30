@@ -5,6 +5,7 @@ class_name ItemBody
 # --- Data Properties ---
 @export var item_name: String = 'default item name'
 @export var item_description: String = 'default item description'
+const IS_ITEM_BODY:bool = true
 
 # --- Node References ---
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
@@ -145,3 +146,7 @@ func set_item_highlight(enabled: bool) -> void:
 			var mat = mesh_instance.get_active_material(i)
 			if mat and mat.next_pass:
 				mat.next_pass.set_shader_parameter("cycle_interval", value)
+
+func smart_queue_free() -> void:
+	#TODO: do this in a smart way
+	self.queue_free()
