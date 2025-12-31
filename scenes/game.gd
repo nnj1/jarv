@@ -169,7 +169,7 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 			scene_instance.global_position = origin_position
 		
 		# if it's an item_body, just the item
-		elif name_of_scene in ['whiskey', 'soju'] :
+		elif name_of_scene in ['whiskey', 'soju', 'gas_carton'] :
 			# TODO: Fix this class instantiation thing
 			scene_instance.setup()
 			# don't spawn this item at the end of the aim ray, it's too far! 

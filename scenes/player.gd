@@ -125,7 +125,7 @@ func start_driving(_given_seat_node):
 func stop_driving():
 	rpc_id(1, "server_register_driver", false)
 	self.is_driving = false
-	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').show()
+	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').hide()
 	self.seat_node = null
 	self.rotation = Vector3.ZERO
 	$CollisionShape3D.disabled = false
