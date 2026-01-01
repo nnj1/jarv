@@ -257,10 +257,11 @@ func _physics_process(delta: float) -> void:
 	
 	_apply_stability_logic()
 
-func refuel(amount: float) -> void:
+func refuel(amount: float = 1000) -> void:
 	current_fuel = clamp(current_fuel + amount, 0, max_fuel)
-	if current_fuel > 0 and not $engineIdleSound.playing:
-		$engineIdleSound.play()
+	#if current_fuel > 0 and not $engineIdleSound.playing:
+	#	$engineIdleSound.play()
+	# ts doesn't belong here
 
 func _apply_stability_logic():
 	var side_velocity = global_transform.basis.x.dot(linear_velocity)
