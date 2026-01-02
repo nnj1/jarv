@@ -12,7 +12,7 @@ var selected_skin = Color(1,0,0)
 var game_name:String
 var current_port:int
 
-func start_server(PORT = 9999, given_game_name='generic game') -> void:
+func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "'s Game") -> void:
 	self.ROLE = 'Server'
 	peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
