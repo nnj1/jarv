@@ -155,7 +155,7 @@ script = ExtResource("2_gee14")
 network_player = ExtResource("3_0tnpc")
 
 [node name="MapSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://boimqj5gn80a2", "uid://dnqgr5fa8773f")
+_spawnable_scenes = PackedStringArray("uid://boimqj5gn80a2", "uid://dnqgr5fa8773f", "uid://bmww3ljcekw3k")
 spawn_path = NodePath("../terrain")
 
 [node name="entities" type="Node3D" parent="."]

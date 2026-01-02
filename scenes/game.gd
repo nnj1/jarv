@@ -14,6 +14,10 @@ func _ready():
 	if multiplayer.is_server():
 		change_map('town2')
 		
+	# if it's a client connecting, try to latch them into the spawn point on current map
+	if not multiplayer.is_server():
+		respawn(multiplayer.get_unique_id())
+		
 func _process(_delta: float) -> void:
 	# Get the FPS from the Engine singleton
 	var fps = Engine.get_frames_per_second()
@@ -95,10 +99,7 @@ func send_chat(new_text, id):
 	# commands anyone can do
 	if new_text == '/respawn':
 		var sender_id = multiplayer.get_remote_sender_id()
-		var player_spawn_point = get_node('terrain').get_children()[0].get_node_or_null('player_spawn_point')
-		if player_spawn_point:
-			get_node('entities/' + str(sender_id)).global_position = player_spawn_point.position
-					
+		respawn(sender_id)
 	# commands only the server can do
 	elif multiplayer.get_remote_sender_id() == 1:
 		if new_text == '/customcommand':
@@ -140,6 +141,23 @@ func send_chat(new_text, id):
 						# get_string(1) is the first captured group ("THING")
 						change_map(result.get_string(1))
 
+# for a player ID, grabs the player node and moves the player to the spawn point in the current map
+# no need to RPC, as position is synced
+func respawn(sender_id: int):
+	# if you're a late joiner, wait until the map loads in and the spawn point is ready to join
+	# TODO: could clean this up by using a signal
+	var map_node_children = []
+	while len(map_node_children) < 1:
+		await get_tree().process_frame
+		map_node_children = get_node('terrain').get_children()
+	var player_spawn_point = null
+	while player_spawn_point == null:
+		await get_tree().process_frame
+		player_spawn_point = get_node('terrain').get_children()[0].get_node_or_null('player_spawn_point')
+	
+	if player_spawn_point:
+		get_node('entities/' + str(sender_id)).global_position = player_spawn_point.position
+
 # spawns a new map, changes to it, and moves players and RV to the new spawn point
 func change_map(name_of_scene: String):
 	var scene = load('res://scenes/maps/' + name_of_scene + '.tscn')
@@ -175,12 +193,14 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 		var scene_instance = scene.instantiate()
 		
 		# if the scene is a skull, just give it a random color
+		#TODO: THE INITIAL SETTINGS DON'T REPLICATE ON CLIENTS and this is janky fix
 		if name_of_scene == 'skull':
-			scene_instance.scale *= given_scale
-			scene_instance.skin_color = Color.from_hsv(randf(), 1.0, 1.0) * 2
+			scene_instance.name = "skull_" + str(scene_instance.get_instance_id())
 			get_node('entities').add_child(scene_instance, true)
 			scene_instance.global_position = origin_position
-		
+			scene_instance.scale *= given_scale
+			scene_instance.skin_color = Color.from_hsv(randf(), 1.0, 1.0) * 2
+			
 		# if it's an item_body, just the item
 		elif name_of_scene in ['whiskey', 'soju', 'gas_carton'] :
 			# TODO: Fix this class instantiation thing

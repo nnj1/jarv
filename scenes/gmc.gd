@@ -102,6 +102,7 @@ func network_highbeams():
 
 func lock_player_to_driver_seat(delta) -> void:
 	if not driver_player_node: return
+	if not multiplayer.is_server(): return
 	
 	var seat_node = get_node('drivers_seat')
 	# smooth rotation

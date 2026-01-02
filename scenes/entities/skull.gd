@@ -47,6 +47,10 @@ var drift_timer := 0.0
 var switch_timer := 0.0 
 var attack_cooldown_timer := 0.0
 
+func _enter_tree():
+	# If the node name is the peer ID (common practice)
+	set_multiplayer_authority(1)
+
 func _ready():
 	if not multiplayer.is_server(): return 
 	
