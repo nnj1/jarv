@@ -17,6 +17,9 @@ offset_top = 319.0
 offset_right = 961.0
 offset_bottom = 415.0
 
+[node name="ItemList" type="ItemList" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
