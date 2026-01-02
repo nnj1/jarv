@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=26 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://bbyybor08ktnd" path="res://assets/fonts/Oswald/Oswald-VariableFont_wght.ttf" id="10_vtaks"]
 [ext_resource type="Shader" uid="uid://378w7t6kcwua" path="res://shaders/heart.gdshader" id="11_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://cc30ax2tgdx20" path="res://assets/battery.png" id="11_trtic"]
+[ext_resource type="AudioStream" uid="uid://clxblguwqgq6n" path="res://assets/UI Soundpack/UI Soundpack/MP3/Modern15.mp3" id="12_kvuet"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
 
@@ -428,6 +429,9 @@ offset_top = 168.0
 offset_right = 40.0
 offset_bottom = 201.0
 theme = SubResource("Theme_0tnpc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/chatbox"]
+stream = ExtResource("12_kvuet")
 
 [node name="player_HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3

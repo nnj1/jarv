@@ -263,6 +263,9 @@ func refuel(amount: float = 1000) -> void:
 	#	$engineIdleSound.play()
 	# ts doesn't belong here
 
+func recharge(amount: float = 1000) -> void:
+	current_fuel = clamp(current_battery + amount, 0, max_battery)
+
 func _apply_stability_logic():
 	var side_velocity = global_transform.basis.x.dot(linear_velocity)
 	apply_central_force(-global_transform.basis.x * side_velocity * mass * grip_multiplier)

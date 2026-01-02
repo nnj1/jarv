@@ -10,8 +10,9 @@ func _ready():
 	$CanvasLayer/role.text = GameManager.ROLE
 	$CanvasLayer/id.text = str(get_tree().get_multiplayer().get_unique_id())
 	
-	# spawn the default map:
-	change_map('town2')
+	# spawn the default map if the server:
+	if multiplayer.is_server():
+		change_map('town2')
 		
 func _process(_delta: float) -> void:
 	# Get the FPS from the Engine singleton
@@ -89,8 +90,17 @@ func send_chat(new_text, id):
 	var color_hex = get_node('entities/'+ str(id)).skin_color.to_html(false)
 	var bbcode_text = "\n[color=#" + color_hex + "]" + str(username) + "[/color]: " + new_text
 	get_node('CanvasLayer/chatbox/chathistory').append_text(bbcode_text)
-	# if the message contains a server code send it to server TODO: only allow the authority to do this!
-	if multiplayer.get_remote_sender_id() == 1:
+	$CanvasLayer/chatbox/AudioStreamPlayer.play()
+	
+	# commands anyone can do
+	if new_text == '/respawn':
+		var sender_id = multiplayer.get_remote_sender_id()
+		var player_spawn_point = get_node('terrain').get_children()[0].get_node_or_null('player_spawn_point')
+		if player_spawn_point:
+			get_node('entities/' + str(sender_id)).global_position = player_spawn_point.position
+					
+	# commands only the server can do
+	elif multiplayer.get_remote_sender_id() == 1:
 		if new_text == '/customcommand':
 			#get_node('entities/EnemyMultiplayerSpawner').spawn_new_enemy(Vector2(0,0))
 			pass
@@ -137,9 +147,7 @@ func change_map(name_of_scene: String):
 		var scene_instance = scene.instantiate()
 		for child in $terrain.get_children():
 			child.queue_free()
-		# TODO: move the player and RV to the map's ideal spawn point
-		# destroy all other entities (usually would be things external to the map, 
-		# spawned in by the player)
+		# move the player and RV to the map's ideal spawn point
 		var player_spawn_point = scene_instance.get_node_or_null('player_spawn_point')
 		var rv_spawn_point = scene_instance.get_node_or_null('rv_spawn_point')
 		
@@ -150,11 +158,14 @@ func change_map(name_of_scene: String):
 			elif 'IS_RV' in entity:
 				if rv_spawn_point:
 					global_teleport(entity, rv_spawn_point.position)
-					#entity.global_position = rv_spawn_point.position
+					#entity.global_position = rv_spawn_point.position # this breaks physics
 			elif 'IS_ITEM_BODY' in entity:
 				# delete the entity
 				# TODO: HANDLE WHAT WILL HAPPEN IF PLAYER IS INTERACTING WITH ENTITY
 				entity.smart_queue_free()
+			elif 'IS_ENEMY' in entity:
+				entity.queue_free()
+				
 		$terrain.add_child(scene_instance, true)
 
 # Can spawn things like enemies, and ItemBody's

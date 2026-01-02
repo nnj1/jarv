@@ -30,6 +30,8 @@ enum State { IDLE, AGGRO }
 @export_group("Visuals")
 @export var skin_color: Color
 
+const IS_ENEMY:bool = true
+
 # State with Setter to sync sounds/visuals across the network
 var current_state = State.IDLE:
 	set(value):
