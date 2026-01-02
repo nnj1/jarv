@@ -72,7 +72,7 @@ func _ready() -> void:
 		print("UDP Listener: Port busy (likely another debug instance).")
 	
 	# Connect the item list signal
-	item_list.item_activated.connect(_on_item_activated)
+	item_list.item_selected.connect(_on_item_activated)
 	
 	# preset default username
 	$CanvasLayer/VBoxContainer/HBoxContainer2/TextEdit.text = default_names.pick_random()
@@ -82,12 +82,25 @@ func _ready() -> void:
 	set_random_color($CanvasLayer/VBoxContainer/HBoxContainer2/ColorPickerButton)
 	GameManager.selected_skin = $CanvasLayer/VBoxContainer/HBoxContainer2/ColorPickerButton.color
 	
-func _process(_delta: float) -> void:
-	
-	# 1. Listen for new pings
+var retry_timer := 0.0
+
+func _process(delta: float) -> void:
+	# 1. If not bound, try to grab the port once every second
+	if not listener.is_bound():
+		retry_timer += delta
+		if retry_timer >= 1.0:
+			retry_timer = 0.0
+			var err = listener.bind(listen_port)
+			if err == OK:
+				print("Successfully grabbed the port! Now listening...")
+		return # Exit early: if we aren't bound, there's no data to read
+
+	# 2. Listen for new pings (only runs if bound)
 	while listener.get_available_packet_count() > 0:
 		var server_ip = listener.get_packet_ip()
 		var bytes = listener.get_packet()
+		
+		# Safer parsing: parse_string can return null if the packet is malformed
 		var data = JSON.parse_string(bytes.get_string_from_utf8())
 		
 		if data is Dictionary:
@@ -95,7 +108,10 @@ func _process(_delta: float) -> void:
 			known_servers[server_ip] = data
 			_refresh_ui()
 	
-func _on_host_pressed():	
+func _on_host_pressed():
+	# 1. Stop listening so another debug window can take the port	
+	stop_listening()
+	
 	GameManager.start_server(int($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text))
 	#TODO: Get the scene transition to work without destroying multiplayer connectivity
 	#SceneTransition.change_scene('res://scenes/game.tscn')
@@ -154,4 +170,9 @@ func _on_item_activated(index: int):
 	# NetworkManager.join_game(meta.ip, meta.port)
 	# populate the fields
 	$CanvasLayer/VBoxContainer/HBoxContainer/TextEdit.text = str(meta.ip)
-	$CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text = str(meta.port)
+	$CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text = str(int(meta.port))
+
+func stop_listening():
+	if listener.is_bound():
+		listener.close()
+		print("UDP Listener closed. Port 8910 is now free.")
