@@ -1,0 +1,82 @@
+[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://b0r5wecksw3fr"]
+
+[ext_resource type="Texture2D" uid="uid://dn6k6hktelwhq" path="res://assets/gnome_3d_model_low_poly/textures/gnome_mat_baseColor.jpeg" id="1_t1tis"]
+[ext_resource type="Texture2D" uid="uid://cui376mccnuuh" path="res://assets/gnome_3d_model_low_poly/textures/gnome_mat_metallicRoughness.png" id="2_aly3o"]
+[ext_resource type="Texture2D" uid="uid://dnjogtkaeypmb" path="res://assets/gnome_3d_model_low_poly/textures/gnome_mat_normal.png" id="3_5hwoo"]
+
+[sub_resource type="Shader" id="Shader_ur7pv"]
+code = "shader_type spatial;
+
+// --- Textures ---
+uniform sampler2D albedo_texture : source_color;
+uniform sampler2D normal_texture : hint_normal;
+uniform sampler2D orm_texture : hint_default_white; // AO, Roughness, Metallic
+
+// --- Replacement Settings ---
+uniform vec4 blue_replacement_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+uniform float threshold : hint_range(0.0, 0.5) = 0.05;
+
+// --- Material Tweaks ---
+uniform float metallic_strength : hint_range(0.0, 1.0) = 1.0;
+uniform float roughness_strength : hint_range(0.0, 1.0) = 1.0;
+
+void fragment() {
+    // 1. SAMPLE ALL TEXTURES
+    vec4 tex_color = texture(albedo_texture, UV);
+    vec3 normal_map = texture(normal_texture, UV).rgb;
+    vec3 orm = texture(orm_texture, UV).rgb; // R = AO, G = Roughness, B = Metallic
+
+    vec3 color = tex_color.rgb;
+    
+    // 2. BLUE DOMINANCE LOGIC
+    float max_channel = max(color.r, max(color.g, color.b));
+    
+    if (color.b == max_channel && color.b > color.r + threshold && color.b > color.g + threshold) {
+        // Swap color but keep the brightness (value) of the original texture
+        ALBEDO = blue_replacement_color.rgb * color.b;
+    } else {
+        ALBEDO = color;
+    }
+
+    // 3. APPLY PBR PROPERTIES
+    // Normal mapping
+    NORMAL_MAP = normal_map;
+    
+    // Ambient Occlusion, Roughness, and Metallic
+    // We use the strengths to multiply the values from your texture map
+    AO = orm.r;
+    ROUGHNESS = orm.g * roughness_strength;
+    METALLIC = orm.b * metallic_strength;
+    
+    // Alpha transparency
+    ALPHA = tex_color.a;
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y4r1p"]
+load_path = "res://.godot/imported/gnome_mat_baseColor.jpeg-0d867e5618e6704338bfc1cfe7bf8433.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4r1p"]
+render_priority = 0
+shader = SubResource("Shader_ur7pv")
+shader_parameter/albedo_texture = SubResource("CompressedTexture2D_y4r1p")
+shader_parameter/normal_texture = ExtResource("3_5hwoo")
+shader_parameter/orm_texture = ExtResource("2_aly3o")
+shader_parameter/blue_replacement_color = Color(1, 0, 0, 1)
+shader_parameter/threshold = 0.0
+shader_parameter/metallic_strength = 1.0
+shader_parameter/roughness_strength = 1.0
+
+[resource]
+resource_name = "gnome_mat"
+next_pass = SubResource("ShaderMaterial_y4r1p")
+cull_mode = 2
+albedo_texture = ExtResource("1_t1tis")
+metallic = 1.0
+metallic_texture = ExtResource("2_aly3o")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_aly3o")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_5hwoo")
+ao_enabled = true
+ao_texture = ExtResource("2_aly3o")

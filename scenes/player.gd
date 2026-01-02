@@ -90,8 +90,8 @@ func set_skin_color(given_skin_color: Color):
 	var base_mat = mesh_instance.get_active_material(0)
 	base_mat = base_mat.duplicate()
 	mesh_instance.set_surface_override_material(0, base_mat)
-	base_mat.next_pass = base_mat.next_pass.duplicate()
-	base_mat.next_pass.set_shader_parameter("blue_replacement_color", skin_color)
+	#base_mat.next_pass = base_mat.next_pass.duplicate()
+	base_mat.set_shader_parameter("blue_replacement_color", skin_color)
 
 func change_weapon(index:  int = weapon_index):
 	# drop any held items
