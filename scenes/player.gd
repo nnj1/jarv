@@ -36,12 +36,14 @@ const IS_PLAYER: bool = true
 var is_first_person: bool = true
 var camera: Camera3D
 @onready var aim_ray: RayCast3D = $camera_pivot/tps_arm/Camera3D/aim_ray
-var weapon_index = 1
-var max_weapons = 3
+var weapon_index:int = 1
+var max_weapons:int = 3
 @export var max_health = 100
 @export var current_health = 100
-var health_decay_rate = 0.1
+var health_decay_rate:float = 0.1
 var recoil_velocity: Vector3 = Vector3.ZERO
+
+var gravity_on:bool = true
 
 @export var skin_color = Color(1,0,0)
 @export var username:String = 'something'
@@ -293,7 +295,7 @@ func _physics_process(delta):
 	# --- MOVEMENT (Same as original) ---
 	if not is_driving:
 		# 1. Handle Gravity
-		if not is_on_floor():
+		if not is_on_floor() and gravity_on:
 			velocity.y -= GRAVITY * delta
 
 		# 2. Handle Jump (Standard Quake doesn't have jump cooldown)
@@ -638,3 +640,5 @@ func request_spawn_projectile(weapon_index: int, origin_pos: Vector3, target_pos
 	# Add it to the node pointed to by your MultiplayerSpawner's "Spawn Path"
 	# Example: adding it to the 'Projectiles' container in your level
 	main_game_node.get_node('entities').add_child(rocket, true)
+
+	

@@ -100,15 +100,20 @@ func send_chat(new_text, id):
 	if new_text == '/respawn':
 		var sender_id = multiplayer.get_remote_sender_id()
 		respawn(sender_id)
+
 	# commands only the server can do
 	elif multiplayer.get_remote_sender_id() == 1:
 		if new_text == '/customcommand':
 			#get_node('entities/EnemyMultiplayerSpawner').spawn_new_enemy(Vector2(0,0))
 			pass
-		if new_text == '/snowon':
+		if new_text == '/snow on':
 			get_node('entities/1').turn_snow_on()
-		if new_text == '/snowoff':
+		if new_text == '/snow off':
 			get_node('entities/1').turn_snow_off()
+		if new_text == '/gravity on':
+			get_node('entities/1').gravity_on = true
+		if new_text == '/gravity off':
+			get_node('entities/1').gravity_on = false
 		if new_text == '/advancetrack':
 			MusicPlayer.rpc('advance_track')
 		if new_text == '/refuel':
