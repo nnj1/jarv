@@ -2,85 +2,139 @@ extends Node3D
 
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 
-@export_group("Terrain Settings")
-@export var chunk_size: int = 32
-@export var chunk_radius: int = 4
-@export var height_scale: float = 15.0
+@export_group("Spawn Settings")
+@export var player_spawn_path: NodePath = "player_spawn_point"
+@export var rv_spawn_path: NodePath = "rv_spawn_point"
 
-@export_group("Scattering Folders")
-# Points to folders containing your .blend or .tscn files
-@export_dir var tree_folder: String = "res://assets/psx_nature/bushes/"
-@export_dir var bush_folder: String = "res://assets/psx_nature/trees/"
-@export var scatter_density: float = 0.2
+@export_group("Terrain Settings")
+@export var chunk_size: int = 64
+@export var chunk_radius: int = 4
+@export var height_scale: float = 10.0 
+
+@export_group("Road Settings")
+@export var road_width: float = 0.075   
+@export var road_smoothness: float = 0.02 
+@export var road_height: float = 0.2     
+
+@export_group("Asset Folders")
+@export_dir var tree_folder: String = "res://assets/Ultimate Nature Pack by Quaternius/FBX/trees/"
+@export_dir var rock_folder: String = "res://assets/Ultimate Nature Pack by Quaternius/FBX/rocks/"
+@export_dir var log_folder: String = "res://assets/Ultimate Nature Pack by Quaternius/FBX/logs/"
+@export_dir var stump_folder: String = "res://assets/Ultimate Nature Pack by Quaternius/FBX/stumps/"
+@export_dir var grass_folder: String = "res://assets/Ultimate Nature Pack by Quaternius/FBX/grass/"
+
+@export_group("Scale Settings")
+@export var tree_scale: Vector2 = Vector2(4.0, 5.0)
+@export var rock_scale: Vector2 = Vector2(2.0, 4.0)
+@export var log_scale: Vector2 = Vector2(3.0, 4.0)
+@export var stump_scale: Vector2 = Vector2(3.0, 4.0)
+@export var grass_scale: Vector2 = Vector2(0.5, 1.0)
+@export var min_solid_distance: float = 10.0 
 
 @export_group("Noise Configuration")
 @export var terrain_noise: FastNoiseLite = FastNoiseLite.new()
 @export var density_noise: FastNoiseLite = FastNoiseLite.new()
+@export var road_noise: FastNoiseLite = FastNoiseLite.new()
 
-var chunks = {} # {Vector2i: MeshInstance3D}
-var tree_scenes: Array[PackedScene] = []
-var bush_scenes: Array[PackedScene] = []
+var asset_library = {"solid": [], "soft": []}
+var chunks = {} 
 var terrain_material: ShaderMaterial
-var player: Node3D
+var player_spawn: Node3D
+var rv_spawn: Node3D
 
 func _ready():
-	player = main_game_node.get_node('entities/1')
+	# 1. Initialize Noise first so we can calculate positions
+	setup_noise()
+	setup_terrain_material()
 	
-	# Setup Noise
+	# 2. Get references
+	player_spawn = get_node(player_spawn_path)
+	rv_spawn = get_node(rv_spawn_path)
+	
+	# 3. Find road center and spawn entities
+	var spawn_pos = find_road_center(Vector2.ZERO, 100)
+	if player_spawn:
+		player_spawn.global_position = Vector3(spawn_pos.x, road_height + 2.0, spawn_pos.y)
+	if rv_spawn:
+		# Place RV slightly behind player_spawn
+		rv_spawn.global_position = Vector3(spawn_pos.x, road_height + 2.0, spawn_pos.y + 10.0)
+		rv_spawn.look_at(Vector3(spawn_pos.x, road_height + 2.0, spawn_pos.y - 10.0))
+
+	# 4. Load Assets
+	asset_library["solid"].append_array(load_scenes_from_dir(tree_folder))
+	asset_library["solid"].append_array(load_scenes_from_dir(rock_folder))
+	asset_library["solid"].append_array(load_scenes_from_dir(log_folder))
+	asset_library["solid"].append_array(load_scenes_from_dir(stump_folder))
+	asset_library["soft"].append_array(load_scenes_from_dir(grass_folder))
+
+func find_road_center(near_pos: Vector2, search_range: int) -> Vector2:
+	var best_pos = near_pos
+	var min_val = 1000.0
+	# Spiral or grid search for the absolute lowest road noise (the center-line)
+	for x in range(near_pos.x - search_range, near_pos.x + search_range):
+		for z in range(near_pos.y - search_range, near_pos.y + search_range):
+			var val = abs(road_noise.get_noise_2d(x, z))
+			if val < min_val:
+				min_val = val
+				best_pos = Vector2(x, z)
+	return best_pos
+
+func setup_noise():
 	terrain_noise.seed = randi()
-	terrain_noise.frequency = 0.015
+	terrain_noise.frequency = 0.006 
 	terrain_noise.fractal_type = FastNoiseLite.FRACTAL_FBM
+	terrain_noise.fractal_octaves = 3
 	
 	density_noise.seed = randi() + 1
-	density_noise.frequency = 0.05
+	density_noise.frequency = 0.01 
 	
-	setup_shader_material()
-	
-	# Load .blend or .tscn files as PackedScenes
-	tree_scenes = load_scenes_from_dir(tree_folder)
-	bush_scenes = load_scenes_from_dir(bush_folder)
+	road_noise.seed = 999 
+	road_noise.frequency = 0.003
+	road_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 
 func load_scenes_from_dir(path: String) -> Array[PackedScene]:
 	var arr: Array[PackedScene] = []
+	if path == "" or path == null: return arr
 	var dir = DirAccess.open(path)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			# Godot treats .blend as a scene upon import
-			if not dir.current_is_dir() and (file_name.ends_with(".blend") or file_name.ends_with(".tscn") or file_name.ends_with(".scn")):
-				var scene = load(path + "/" + file_name)
-				if scene is PackedScene:
-					arr.append(scene)
+			if not dir.current_is_dir():
+				var ext = file_name.get_extension().to_lower()
+				if ext in ["blend", "tscn", "fbx", "gltf", "glb"]:
+					var scene = load(path + "/" + file_name)
+					if scene is PackedScene: arr.append(scene)
 			file_name = dir.get_next()
 	return arr
 
-func setup_shader_material():
+func setup_terrain_material():
 	var shader = Shader.new()
 	shader.code = """
 	shader_type spatial;
 	varying float world_height;
-	void vertex() { world_height = (MODEL_MATRIX * vec4(VERTEX, 1.0)).y; }
+	varying float road_factor;
+	void vertex() { 
+		world_height = (MODEL_MATRIX * vec4(VERTEX, 1.0)).y;
+		road_factor = UV2.x; 
+	}
 	void fragment() {
 		vec3 sand = vec3(0.76, 0.70, 0.50);
-		vec3 grass = vec3(0.22, 0.38, 0.15);
-		vec3 rock = vec3(0.35, 0.32, 0.28);
-		float h = world_height;
-		vec3 col = mix(sand, grass, smoothstep(1.0, 3.5, h));
-		col = mix(col, rock, smoothstep(8.0, 12.0, h));
-		ALBEDO = col;
+		vec3 grass = vec3(0.25, 0.40, 0.15);
+		vec3 road_color = vec3(0.15, 0.15, 0.16);
+		vec3 base_col = mix(sand, grass, smoothstep(1.0, 3.5, world_height));
+		ALBEDO = mix(base_col, road_color, road_factor);
 		ROUGHNESS = 0.8;
-	}
-	"""
+	}"""
 	terrain_material = ShaderMaterial.new()
 	terrain_material.shader = shader
 
 func _process(_delta):
-	if player:
-		update_chunks()
+	if player_spawn: update_chunks()
 
 func update_chunks():
-	var p_pos = player.global_position
+	#TODO: need a smart multiplayer solution that looks at all players at the RV position
+	var p_pos = player_spawn.global_position
 	var p_x = int(floor(p_pos.x / chunk_size))
 	var p_z = int(floor(p_pos.z / chunk_size))
 	var current_coord = Vector2i(p_x, p_z)
@@ -94,25 +148,27 @@ func update_chunks():
 	
 	var to_remove = []
 	for coord in chunks:
-		if coord.distance_to(current_coord) > chunk_radius + 1:
-			to_remove.append(coord)
+		if coord.distance_to(current_coord) > chunk_radius + 1: to_remove.append(coord)
 	for coord in to_remove:
 		if chunks[coord]: chunks[coord].queue_free()
 		chunks.erase(coord)
 
-# --- BACKGROUND THREAD ---
 func create_chunk_data(coord: Vector2i):
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	
 	var x_off = coord.x * chunk_size
 	var z_off = coord.y * chunk_size
 
-	# Terrain Generation with Smoothing Padding
 	for z in range(-1, chunk_size + 2):
 		for x in range(-1, chunk_size + 2):
-			var y = terrain_noise.get_noise_2d(x_off + x, z_off + z) * height_scale
+			var world_x = x_off + x
+			var world_z = z_off + z
+			var r_val = abs(road_noise.get_noise_2d(world_x, world_z))
+			var is_road = clamp(inverse_lerp(road_width, road_width - road_smoothness, r_val), 0.0, 1.0)
+			var y = terrain_noise.get_noise_2d(world_x, world_z) * height_scale
+			y = lerp(y, road_height, is_road) 
 			st.set_uv(Vector2(float(x)/chunk_size, float(z)/chunk_size))
+			st.set_uv2(Vector2(is_road, 0)) 
 			st.add_vertex(Vector3(x, y, z))
 	
 	var vert_row = chunk_size + 3
@@ -124,29 +180,44 @@ func create_chunk_data(coord: Vector2i):
 
 	st.generate_normals()
 	var mesh = st.commit()
-
-	# Scatter Logic (Picking Scenes instead of Meshes)
 	var scatter_results = []
-	for z in range(0, chunk_size, 4): # Increased step for Scene performance
-		for x in range(0, chunk_size, 4):
-			var world_x = x_off + x
-			var world_z = z_off + z
-			var d = density_noise.get_noise_2d(world_x, world_z)
-			
-			if d > scatter_density:
-				var y = terrain_noise.get_noise_2d(world_x, world_z) * height_scale
-				var pos = Vector3(x, y, z)
-				var rot = randf() * TAU
-				@warning_ignore("shadowed_variable_base_class")
-				var scale = randf_range(0.8, 1.2)
-				
-				var chosen_scene = tree_scenes.pick_random() if d > 0.4 else bush_scenes.pick_random()
-				if chosen_scene:
-					scatter_results.append({"scene": chosen_scene, "pos": pos, "rot": rot, "scale": scale})
-	
+	var rng = RandomNumberGenerator.new()
+	rng.seed = hash(coord)
+
+	for i in range(400):
+		var rx = rng.randf_range(0, chunk_size)
+		var rz = rng.randf_range(0, chunk_size)
+		if abs(road_noise.get_noise_2d(x_off + rx, z_off + rz)) < (road_width + 0.02): continue
+		var d = density_noise.get_noise_2d(x_off + rx, z_off + rz)
+		if d > 0.0:
+			var y = (terrain_noise.get_noise_2d(x_off + rx, z_off + rz) * height_scale)
+			var pos = Vector3(rx, y, rz)
+			var too_close = false
+			for res in scatter_results:
+				if res.is_solid and res.pos.distance_to(pos) < min_solid_distance:
+					too_close = true
+					break
+			if not too_close:
+				var scene = asset_library["solid"].pick_random()
+				var s_path = scene.resource_path.to_lower()
+				var final_scale = 1.0
+				if "tree" in s_path: final_scale = rng.randf_range(tree_scale.x, tree_scale.y)
+				elif "rock" in s_path: final_scale = rng.randf_range(rock_scale.x, rock_scale.y)
+				elif "log" in s_path: final_scale = rng.randf_range(log_scale.x, log_scale.y)
+				elif "stump" in s_path: final_scale = rng.randf_range(stump_scale.x, stump_scale.y)
+				scatter_results.append({"scene": scene, "pos": pos - Vector3(0,0.1,0), "rot": rng.randf() * TAU, "scale": final_scale, "is_solid": true})
+
+	for i in range(1500):
+		var rx = rng.randf_range(0, chunk_size)
+		var rz = rng.randf_range(0, chunk_size)
+		if abs(road_noise.get_noise_2d(x_off + rx, z_off + rz)) < road_width: continue 
+		var d = density_noise.get_noise_2d(x_off + rx, z_off + rz)
+		if d > -0.2:
+			var y = terrain_noise.get_noise_2d(x_off + rx, z_off + rz) * height_scale
+			scatter_results.append({"scene": asset_library["soft"].pick_random(), "pos": Vector3(rx, y, rz), "rot": rng.randf() * TAU, "scale": rng.randf_range(grass_scale.x, grass_scale.y), "is_solid": false})
+
 	call_deferred("finalize_chunk", coord, mesh, x_off, z_off, scatter_results)
 
-# --- MAIN THREAD ---
 func finalize_chunk(coord: Vector2i, mesh: Mesh, x_f: float, z_f: float, scatter_data: Array):
 	var mi = MeshInstance3D.new()
 	mi.mesh = mesh
@@ -154,12 +225,22 @@ func finalize_chunk(coord: Vector2i, mesh: Mesh, x_f: float, z_f: float, scatter
 	mi.position = Vector3(x_f, 0, z_f)
 	add_child(mi)
 	mi.create_trimesh_collision()
+	var body = mi.get_child(0) as StaticBody3D
+	if body: body.collision_layer = 1
 	chunks[coord] = mi
-	
-	# Instantiate each tree/bush as a unique node
 	for item in scatter_data:
 		var instance = item.scene.instantiate()
 		mi.add_child(instance)
 		instance.position = item.pos
 		instance.rotation.y = item.rot
 		instance.scale = Vector3.ONE * item.scale
+		_apply_performance_and_physics(instance, item.is_solid)
+
+func _apply_performance_and_physics(node: Node, is_solid: bool):
+	if node is GeometryInstance3D:
+		if not is_solid: node.visibility_range_end = 80.0 
+	if node is StaticBody3D:
+		node.collision_layer = 2 if is_solid else 0 
+		node.collision_mask = 0
+	for child in node.get_children():
+		_apply_performance_and_physics(child, is_solid)
