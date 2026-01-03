@@ -69,7 +69,11 @@ func _ready() -> void:
 	
 func gear_change():
 	current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
-
+	if current_gear == Gear.REVERSE:
+		$reverseSound.play()
+	else:
+		$reverseSound.stop()
+		
 func handbrake():
 	brake = brake_strength * 4.0
 	
@@ -85,7 +89,11 @@ func highbeams():
 @rpc("any_peer","call_local", "reliable")
 func network_gear_change():
 	current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
-
+	if current_gear == Gear.REVERSE:
+		$reverseSound.play()
+	else:
+		$reverseSound.stop()
+		
 @rpc("any_peer","call_local", "reliable")
 func network_handbrake():
 	brake = brake_strength * 4.0

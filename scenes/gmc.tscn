@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://do3xxsfa4op1l"]
+[gd_scene load_steps=46 format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
 [ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://dgbh3boursvid" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/windows.tres" id="4_6ms31"]
 [ext_resource type="AudioStream" uid="uid://c08emxcxrp1ag" path="res://assets/Vehicle_Truck/Vehicle_Truck_Idle_Exterior_Front_Loop_Stereo_01.wav" id="6_6ms31"]
 [ext_resource type="AudioStream" uid="uid://dootuokgpi4i" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Engine sounds/3700rpm.mp3" id="7_3f1he"]
+[ext_resource type="AudioStream" uid="uid://vd06hs1yu8oe" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Reverse/REVERSE.mp3" id="8_1qt6b"]
 [ext_resource type="PackedScene" uid="uid://c23aoacj82jmr" path="res://scenes/drivers_seat.tscn" id="8_3f1he"]
 [ext_resource type="PackedScene" uid="uid://bcpaivify1yk4" path="res://scenes/door.tscn" id="9_asokp"]
 
@@ -450,6 +451,9 @@ properties/12/replication_mode = 2
 properties/13/path = NodePath(".:high_beams_status")
 properties/13/spawn = true
 properties/13/replication_mode = 2
+properties/14/path = NodePath("reverseSound:playing")
+properties/14/spawn = true
+properties/14/replication_mode = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asokp"]
 
@@ -645,6 +649,11 @@ bus = &"Sounds"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0060463, 10.156509)
 stream = ExtResource("7_3f1he")
 volume_db = -10.0
+bus = &"Sounds"
+
+[node name="reverseSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0060463, 10.156509)
+stream = ExtResource("8_1qt6b")
 bus = &"Sounds"
 
 [node name="entrance_point" type="Node3D" parent="."]
