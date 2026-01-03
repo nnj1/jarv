@@ -239,8 +239,34 @@ func finalize_chunk(coord: Vector2i, mesh: Mesh, x_f: float, z_f: float, scatter
 func _apply_performance_and_physics(node: Node, is_solid: bool):
 	if node is GeometryInstance3D:
 		if not is_solid: node.visibility_range_end = 80.0 
-	if node is StaticBody3D:
-		node.collision_layer = 2 if is_solid else 0 
-		node.collision_mask = 0
+		if is_solid:
+			_create_static_collision_for_mesh(node)
+	if node is StaticBody3D: 
+		node.collision_layer = 1 if is_solid else 0 
+		node.collision_mask = 1
 	for child in node.get_children():
 		_apply_performance_and_physics(child, is_solid)
+
+func _create_static_collision_for_mesh(mesh_node: MeshInstance3D):
+	# 1. Create the StaticBody3D
+	var static_body = StaticBody3D.new()
+	# Optional: Set layers programmatically
+	static_body.set_collision_layer_value(1, true)
+	static_body.set_collision_mask_value(1, true)
+	
+	# 2. Create the CollisionShape3D node
+	var collision_shape_node = CollisionShape3D.new()
+	
+	# 3. Generate the Trimesh Shape from the actual Mesh resource
+	var trimesh_shape = mesh_node.mesh.create_trimesh_shape()
+	collision_shape_node.shape = trimesh_shape
+	
+	# 4. Assembly: Add body to scene, then shape to body
+	# Usually, you want the body to be a sibling or parent of the mesh
+	# In this case, we'll strangely make it a child of the mesh
+	mesh_node.add_child(static_body)
+	static_body.add_child(collision_shape_node)
+	
+	# 5. Match the transform (very important!)
+	# This ensures the collision box is exactly where the mesh is
+	static_body.global_transform = mesh_node.global_transform
