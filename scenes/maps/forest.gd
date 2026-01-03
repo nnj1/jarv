@@ -7,14 +7,14 @@ extends Node3D
 @export var rv_spawn_path: NodePath = "rv_spawn_point"
 
 @export_group("Terrain Settings")
-@export var chunk_size: int = 64
+@export var chunk_size: int = 32
 @export var chunk_radius: int = 4
-@export var height_scale: float = 10.0 
+@export var height_scale: float = 5.0 
 
 @export_group("Road Settings")
-@export var road_width: float = 0.075   
+@export var road_width: float = 0.04   
 @export var road_smoothness: float = 0.02 
-@export var road_height: float = 0.2     
+@export var road_height: float = 0.0    
 
 @export_group("Asset Folders")
 @export_dir var tree_folder: String = "res://assets/Ultimate Nature Pack by Quaternius/FBX/trees/"
@@ -40,6 +40,7 @@ var asset_library = {"solid": [], "soft": []}
 var chunks = {} 
 var terrain_material: ShaderMaterial
 var player_spawn: Node3D
+var player_node: Node3D
 var rv_spawn: Node3D
 
 func _ready():
@@ -50,9 +51,10 @@ func _ready():
 	# 2. Get references
 	player_spawn = get_node(player_spawn_path)
 	rv_spawn = get_node(rv_spawn_path)
+	player_node = main_game_node.get_node('entities/' + str(multiplayer.get_unique_id()))
 	
 	# 3. Find road center and spawn entities
-	var spawn_pos = find_road_center(Vector2.ZERO, 100)
+	var spawn_pos = find_road_center(Vector2.ZERO, 500)
 	if player_spawn:
 		player_spawn.global_position = Vector3(spawn_pos.x, road_height + 2.0, spawn_pos.y)
 	if rv_spawn:
@@ -70,15 +72,35 @@ func _ready():
 func find_road_center(near_pos: Vector2, search_range: int) -> Vector2:
 	var best_pos = near_pos
 	var min_val = 1000.0
-	# Spiral or grid search for the absolute lowest road noise (the center-line)
-	for x in range(near_pos.x - search_range, near_pos.x + search_range):
-		for z in range(near_pos.y - search_range, near_pos.y + search_range):
+	
+	# We use a step of 0.5 to ensure we don't 'jump over' a narrow road
+	var step = 0.5 
+	
+	# search_range is now used to define the bounds
+	var start_x = near_pos.x - search_range
+	var end_x = near_pos.x + search_range
+	var start_z = near_pos.y - search_range
+	var end_z = near_pos.y + search_range
+	
+	var x = start_x
+	while x < end_x:
+		var z = start_z
+		while z < end_z:
+			# Get the absolute noise value
 			var val = abs(road_noise.get_noise_2d(x, z))
+			
 			if val < min_val:
 				min_val = val
 				best_pos = Vector2(x, z)
+				
+				# Optimization: If we are basically on the center line, stop searching
+				if min_val < 0.001: 
+					return best_pos
+			z += step
+		x += step
+		
 	return best_pos
-
+	
 func setup_noise():
 	terrain_noise.seed = randi()
 	terrain_noise.frequency = 0.006 
@@ -130,11 +152,10 @@ func setup_terrain_material():
 	terrain_material.shader = shader
 
 func _process(_delta):
-	if player_spawn: update_chunks()
+	if player_node: update_chunks()
 
 func update_chunks():
-	#TODO: need a smart multiplayer solution that looks at all players at the RV position
-	var p_pos = player_spawn.global_position
+	var p_pos = player_node.global_position
 	var p_x = int(floor(p_pos.x / chunk_size))
 	var p_z = int(floor(p_pos.z / chunk_size))
 	var current_coord = Vector2i(p_x, p_z)
