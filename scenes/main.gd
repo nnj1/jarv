@@ -59,12 +59,14 @@ extends Node
 ]
 
 @export var listen_port: int = 8910
-@onready var item_list = $CanvasLayer/VBoxContainer/ItemList
+@onready var item_list = $"CanvasLayer/VBoxContainer/TabContainer/Server Browser"
 
 var listener := PacketPeerUDP.new()
 var known_servers := {} # { "IP": {"name": String, "players": int, "port": int, "last_seen": float} }
 
 func _ready() -> void:
+	
+	$CanvasLayer/VBoxContainer/TabContainer.current_tab = 0
 	
 	# Bind the UDP listener
 	var err = listener.bind(listen_port)
@@ -85,6 +87,16 @@ func _ready() -> void:
 var retry_timer := 0.0
 
 func _process(delta: float) -> void:
+	# only activate create server if create server tab is open
+	if $CanvasLayer/VBoxContainer/TabContainer.current_tab == 0:
+		$CanvasLayer/VBoxContainer/HBoxContainer2/Button.disabled = false
+	else:
+		$CanvasLayer/VBoxContainer/HBoxContainer2/Button.disabled = true
+	# only activate join server if server browser tab is open
+	if $CanvasLayer/VBoxContainer/TabContainer.current_tab == 1:
+		$CanvasLayer/VBoxContainer/HBoxContainer2/Button2.disabled = false
+	else:
+		$CanvasLayer/VBoxContainer/HBoxContainer2/Button2.disabled = true	
 	# 1. If not bound, try to grab the port once every second
 	if not listener.is_bound():
 		retry_timer += delta

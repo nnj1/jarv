@@ -17,11 +17,22 @@ offset_top = 319.0
 offset_right = 961.0
 offset_bottom = 595.0
 
-[node name="ItemList" type="ItemList" parent="CanvasLayer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
+current_tab = 0
+
+[node name="Create Server" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Server Browser" type="ItemList" parent="CanvasLayer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
 item_count = 1
+metadata/_tab_index = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
