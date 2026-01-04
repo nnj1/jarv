@@ -132,10 +132,11 @@ func send_chat(new_text, id):
 				if result:
 					# get_string(0) is the whole match ("/spawn THING")
 					# get_string(1) is the first captured group ("THING")
-					var player_aim_ray = get_node('entities/1/camera_pivot/tps_arm/Camera3D/aim_ray')
-					var local_point = player_aim_ray.target_position * 1
-					var end_point = player_aim_ray.to_global(local_point)
-					spawn_entity(result.get_string(1), end_point, randf_range(0.20, 1))
+					if multiplayer.is_server(): # item spawning should only happen on server
+						var player_aim_ray = get_node('entities/1/camera_pivot/tps_arm/Camera3D/aim_ray')
+						var local_point = player_aim_ray.target_position * 1
+						var end_point = player_aim_ray.to_global(local_point)
+						spawn_entity(result.get_string(1), end_point, randf_range(0.20, 1))
 				
 				else:
 					# We use parentheses to capture the "THING"
@@ -144,6 +145,7 @@ func send_chat(new_text, id):
 					if result:
 						# get_string(0) is the whole match ("/changemap THING")
 						# get_string(1) is the first captured group ("THING")
+						# TODO: this should only happen on server, currently having syncing issues though
 						change_map(result.get_string(1))
 
 # for a player ID, grabs the player node and moves the player to the spawn point in the current map
