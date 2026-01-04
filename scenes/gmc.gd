@@ -137,7 +137,8 @@ func _physics_process(delta: float) -> void:
 			#return 
 		#else:
 			#return
-			
+	
+	# ALL PHYSICS SHOULD RUN IN THE SERVER
 	if not is_multiplayer_authority(): return
 	
 	# 1. Update Speed Variables
