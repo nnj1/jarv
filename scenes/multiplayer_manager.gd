@@ -10,6 +10,7 @@ var selected_username:String = ''
 var selected_skin = Color(1,0,0)
 
 var game_name:String
+var new_game_name:String # custom server name
 var current_port:int
 
 func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "'s Game") -> void:
@@ -18,7 +19,10 @@ func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
 	current_port = PORT
-	game_name = given_game_name
+	if not new_game_name:
+		game_name = given_game_name
+	else:
+		game_name = new_game_name
 
 func start_client(ADDRESS = 'localhost', PORT = 9999):
 	self.ROLE = 'Client'

@@ -66,6 +66,12 @@ var known_servers := {} # { "IP": {"name": String, "players": int, "port": int, 
 
 func _ready() -> void:
 	
+	# load map options
+	var map_files = GlobalVars.dir_contents('res://scenes/maps/')
+	var map_scenes = map_files.filter(func(file): return file.get_extension() == "tscn")
+	for map_scene in map_scenes:
+		$"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/OptionButton2".add_item(map_scene)
+	
 	$CanvasLayer/VBoxContainer/TabContainer.current_tab = 0
 	
 	# Bind the UDP listener
@@ -188,3 +194,10 @@ func stop_listening():
 	if listener.is_bound():
 		listener.close()
 		print("UDP Listener closed. Port 8910 is now free.")
+
+
+func _on_button_pressed() -> void:
+	$"CanvasLayer/VBoxContainer/TabContainer/Create Server/FileDialog".visible = true
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	GameManager.new_game_name = new_text
