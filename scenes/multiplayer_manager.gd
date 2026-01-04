@@ -19,7 +19,7 @@ func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "
 	multiplayer.multiplayer_peer = peer
 	current_port = PORT
 	game_name = given_game_name
-	
+
 func start_client(ADDRESS = 'localhost', PORT = 9999):
 	self.ROLE = 'Client'
 	peer = ENetMultiplayerPeer.new()

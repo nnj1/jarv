@@ -54,8 +54,6 @@ var gravity_on:bool = true
 @export var steer_input = 0.0
 @export var forward_input = 0.0
 @export var back_input = 0.0
-@export var gear_key_just_pressed:bool = false
-@export var handbrake_key_pressed:bool = false
 
 var weapons = [
 	{
@@ -184,8 +182,9 @@ func _ready():
 		tps_arm.spring_length = 0.00 # Start SpringArm collapsed for FP
 		
 		# set the particles to the snow status of the server player
-		snow_status = main_game_node.get_node('entities/1').snow_status
-		$GPUParticles3D.emitting = snow_status
+		if main_game_node.get_node('entities/1'):
+			snow_status = main_game_node.get_node('entities/1').snow_status
+			$GPUParticles3D.emitting = snow_status
 			
 		# Joined game message
 		main_game_node.rpc('send_chat', 'Just joined the game!', multiplayer.get_unique_id())
@@ -384,21 +383,14 @@ func _physics_process(delta):
 		self.back_input = Input.get_action_strength("move_back") 
 
 		if Input.is_action_just_pressed('shift_gear'):
-			self.gear_key_just_pressed = true
-			seat_node.get_parent().rpc_id(1, 'network_gear_change')
-		else:
-			self.gear_key_just_pressed = false
+			seat_node.get_parent().rpc('network_gear_change')
 		
 		if Input.is_action_pressed('handbrake'):
-			self.handbrake_key_pressed = true
 			seat_node.get_parent().rpc('network_handbrake')
-		else:
-			self.handbrake_key_pressed = false
 		
 		if Input.is_action_just_pressed('highbeams'):
 			seat_node.get_parent().rpc('network_highbeams')
 			
-		
 		# called on client side but using client's delta (aka client's physics)
 		#lock_self_to_driver_seat(delta)
 		#self.rpc('network_lock_self_to_driver_seat', delta)
@@ -574,8 +566,9 @@ func _process(delta: float) -> void:
 		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
 
 		# set the particles to the snow status of the server player
-		self.snow_status = main_game_node.get_node('entities/1').snow_status
-		$GPUParticles3D.emitting = snow_status
+		if main_game_node.get_node('entities/1'):
+			self.snow_status = main_game_node.get_node('entities/1').snow_status
+			$GPUParticles3D.emitting = snow_status
 		
 # for periodic weather effects
 func _on_timer_timeout() -> void:

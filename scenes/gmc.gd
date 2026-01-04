@@ -46,11 +46,14 @@ const IS_RV:bool = true
 @export var current_speed_mps: float = 0.0 
 @export var current_speed_kmh: float = 0.0 
 
-#var occupants = []
 var is_interactable: bool = true
 const is_pickable: bool = false
+
+# for managing who is driving the RV
 @export var driver_player_id:String = ''
 var driver_player_node:Node3D = null
+
+# TODO: come up with some system of keeping track of occupants
 
 const custom_interact_message:String = 'Press E to repair RV'
 
@@ -58,33 +61,15 @@ func interact(_given_player_node) -> void:
 	pass
 	# CAN DO RV REPAIRS HERE
 	
-		#
 func _enter_tree() -> void:
+	# authority is server
 	set_multiplayer_authority(1)
 	
 func _ready() -> void:
 	$engineIdleSound.play()
 	center_of_mass_mode = VehicleBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0, -0.8, 0)
-	
-func gear_change():
-	current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
-	if current_gear == Gear.REVERSE:
-		$reverseSound.play()
-	else:
-		$reverseSound.stop()
-		
-func handbrake():
-	brake = brake_strength * 4.0
-	
-func highbeams():
-	high_beams_status = not high_beams_status
-	if high_beams_status:
-		$left_headlight.spot_range = 300
-		$right_headlight.spot_range = 300
-	else:
-		$left_headlight.spot_range = 70
-		$right_headlight.spot_range = 70
+
 
 @rpc("any_peer","call_local", "reliable")
 func network_gear_change():
@@ -202,15 +187,7 @@ func _physics_process(delta: float) -> void:
 		steer_input = driver_player_node.steer_input
 		forward_input = driver_player_node.forward_input
 		back_input = driver_player_node.back_input
-		#gear_key_just_pressed = driver_player_node.gear_key_just_pressed
-		#handbrake_key_pressed = driver_player_node.handbrake_key_pressed
-		
-		#if gear_key_just_pressed:
-		#	gear_change()
-		#if handbrake_key_pressed:
-		#	handbrake()
-		#print('Being driven by ' + str(driver_player_node))
-	
+		# handbrakes, gearchange, etc will be handled by RPC calls from client
 		lock_player_to_driver_seat(delta)
 		
 	# no driver, then the server player is sending the inputs (but via arrow keys)
@@ -219,11 +196,11 @@ func _physics_process(delta: float) -> void:
 		forward_input = Input.get_action_strength("drive_forward")
 		back_input = Input.get_action_strength("drive_back")
 		if Input.is_action_just_pressed("shift_gear"):
-			gear_change()
+			rpc('network_gear_change')
 		if Input.is_action_pressed("handbrake"):
-			handbrake()
+			rpc('network_handbrake')
 		if Input.is_action_just_pressed("highbeams"):
-			highbeams()
+			rpc('network_highbeams')
 		#print('Being driven by default server')
 	
 	# 5. Steering and Movement Logic

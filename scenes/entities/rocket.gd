@@ -82,6 +82,8 @@ func sync_explode():
 				
 				body.take_damage(int(damage_amount * damage_multiplier))
 	
-	# 4. Cleanup
+	# 4. Cleanup (free the node on server, will free from elsewhere too because of multiplayersycnrhonizer)
 	await get_tree().create_timer(explosion_lifetime).timeout
-	queue_free()
+	if is_inside_tree():
+		if multiplayer.is_server():
+			queue_free()

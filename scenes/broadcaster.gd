@@ -28,4 +28,4 @@ func _on_timeout():
 		server_info["players"] = multiplayer.get_peers().size() + 1
 		var data = JSON.stringify(server_info)
 		broadcaster.put_packet(data.to_utf8_buffer())
-		print('Just broadcasted server...')
+		#print('Just broadcasted server...')
