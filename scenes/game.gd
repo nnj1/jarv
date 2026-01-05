@@ -14,9 +14,12 @@ func _ready():
 	if multiplayer.is_server():
 		change_map(GameManager.starting_map_string)
 		
-	# if it's a client connecting, try to latch them into the spawn point on current map
-	if not multiplayer.is_server():
-		respawn(multiplayer.get_unique_id())
+	# try to latch them into the spawn point on current map
+	respawn(multiplayer.get_unique_id())
+	
+	# if you're the server move the RV
+	if multiplayer.is_server():
+		respawn_rv()
 		
 func _process(_delta: float) -> void:
 	# Get the FPS from the Engine singleton
@@ -148,6 +151,22 @@ func send_chat(new_text, id):
 						# TODO: this should only happen on server, currently having syncing issues though
 						change_map(result.get_string(1))
 
+# ideally should only run on the server
+func respawn_rv():
+	# if you're a late joiner, wait until the map loads in and the spawn point is ready to join
+	# TODO: could clean this up by using a signal
+	var map_node_children = []
+	while len(map_node_children) < 1:
+		await get_tree().process_frame
+		map_node_children = get_node('terrain').get_children()
+	var rv_spawn_point = null
+	while rv_spawn_point == null:
+		await get_tree().process_frame
+		rv_spawn_point = get_node('terrain').get_children()[0].get_node_or_null('rv_spawn_point')
+	
+	if rv_spawn_point:
+		get_node('entities/Gmc').global_position = rv_spawn_point.position
+
 # for a player ID, grabs the player node and moves the player to the spawn point in the current map
 # no need to RPC, as position is synced
 func respawn(sender_id: int):
@@ -172,10 +191,12 @@ func change_map(name_of_scene: String):
 		var scene_instance = scene.instantiate()
 		for child in $terrain.get_children():
 			child.queue_free()
-			
+		
 		# move the player and RV to the map's ideal spawn point
 		var player_spawn_point = scene_instance.get_node_or_null('player_spawn_point')
 		var rv_spawn_point = scene_instance.get_node_or_null('rv_spawn_point')
+		
+		$terrain.add_child(scene_instance, true)
 		
 		for entity in $entities.get_children():
 			if 'IS_PLAYER' in entity:
@@ -192,8 +213,6 @@ func change_map(name_of_scene: String):
 			elif 'IS_ENEMY' in entity:
 				entity.queue_free()
 				
-		$terrain.add_child(scene_instance, true)
-
 # Can spawn things like enemies, and ItemBody's
 func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: float = 1.0):
 	var scene = load('res://scenes/entities/' + name_of_scene + '.tscn')
