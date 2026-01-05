@@ -12,7 +12,7 @@ func _ready():
 	
 	# spawn the default map if the server:
 	if multiplayer.is_server():
-		change_map('town2')
+		change_map(GameManager.starting_map_string)
 		
 	# if it's a client connecting, try to latch them into the spawn point on current map
 	if not multiplayer.is_server():
@@ -172,6 +172,7 @@ func change_map(name_of_scene: String):
 		var scene_instance = scene.instantiate()
 		for child in $terrain.get_children():
 			child.queue_free()
+			
 		# move the player and RV to the map's ideal spawn point
 		var player_spawn_point = scene_instance.get_node_or_null('player_spawn_point')
 		var rv_spawn_point = scene_instance.get_node_or_null('rv_spawn_point')
