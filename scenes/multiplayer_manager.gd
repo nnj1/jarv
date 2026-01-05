@@ -9,9 +9,14 @@ var UniquePeerID : String
 var selected_username:String = ''
 var selected_skin = Color(1,0,0)
 
+# Variables that are important for the server. Only mess with these if the game instance is_server()
 var game_name:String
 var new_game_name:String # custom server name
+var max_players:int = 0
+var friendly_fire = true
+var auto_save = false
 var current_port:int
+var starting_map_string:String
 
 func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "'s Game") -> void:
 	self.ROLE = 'Server'

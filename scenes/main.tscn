@@ -36,6 +36,7 @@ layout_mode = 2
 
 [node name="CheckButton" type="CheckButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
 layout_mode = 2
+button_pressed = true
 text = "Friendly Fire"
 
 [node name="CheckButton2" type="CheckButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
@@ -158,6 +159,9 @@ render_target_update_mode = 4
 [node name="MenuBackground" parent="CanvasLayer2/SubViewportContainer/SubViewport" instance=ExtResource("2_0wfyh")]
 
 [connection signal="text_changed" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/CheckButton2" to="." method="_on_check_button_2_toggled"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button2" to="." method="_on_join_pressed"]

@@ -71,6 +71,7 @@ func _ready() -> void:
 	var map_scenes = map_files.filter(func(file): return file.get_extension() == "tscn")
 	for map_scene in map_scenes:
 		$"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/OptionButton2".add_item(map_scene)
+	GameManager.starting_map_string = map_scenes[0]
 	
 	$CanvasLayer/VBoxContainer/TabContainer.current_tab = 0
 	
@@ -201,3 +202,12 @@ func _on_button_pressed() -> void:
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	GameManager.new_game_name = new_text
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	GameManager.friendly_fire = toggled_on
+
+func _on_check_button_2_toggled(toggled_on: bool) -> void:
+	GameManager.auto_save = toggled_on 
+	
+func _on_option_button_item_selected(index: int) -> void:
+	GameManager.max_players = index
