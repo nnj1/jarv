@@ -200,6 +200,8 @@ func stop_listening():
 func _on_button_pressed() -> void:
 	$"CanvasLayer/VBoxContainer/TabContainer/Create Server/FileDialog".visible = true
 
+
+
 func _on_line_edit_text_changed(new_text: String) -> void:
 	GameManager.new_game_name = new_text
 
@@ -214,3 +216,6 @@ func _on_option_button_item_selected(index: int) -> void:
 
 func _on_option_button_2_item_selected(index: int) -> void:
 	GameManager.starting_map_string = $"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/OptionButton2".get_item_text(index).get_basename()
+
+func _on_file_dialog_file_selected(path: String) -> void:
+	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit'.text = path
