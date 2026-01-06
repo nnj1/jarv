@@ -106,9 +106,9 @@ func send_chat(new_text, id):
 
 	# commands only the server can do
 	elif multiplayer.get_remote_sender_id() == 1:
-		if new_text == '/customcommand':
-			#get_node('entities/EnemyMultiplayerSpawner').spawn_new_enemy(Vector2(0,0))
-			pass
+		if new_text == '/save':
+			get_node('entities/Gmc').save_rv()
+			send_chat.rpc('Saved the RV.', multiplayer.get_unique_id())
 		if new_text == '/snow on':
 			get_node('entities/1').turn_snow_on()
 		if new_text == '/snow off':

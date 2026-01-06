@@ -218,4 +218,5 @@ func _on_option_button_2_item_selected(index: int) -> void:
 	GameManager.starting_map_string = $"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/OptionButton2".get_item_text(index).get_basename()
 
 func _on_file_dialog_file_selected(path: String) -> void:
+	GameManager.path_for_save = path
 	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit'.text = path

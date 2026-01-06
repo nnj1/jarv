@@ -87,3 +87,28 @@ func dir_contents(path):
 		#print("An error occurred when trying to access the path.")
 		pass
 	return files
+
+func load_json_file(file_path: String):
+	# 1. Check if the file exists
+	if not FileAccess.file_exists(file_path):
+		print("File does not exist at path: ", file_path)
+		return null
+		
+	# 2. Open the file for reading
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if file == null:
+		print("Error opening file: ", FileAccess.get_open_error())
+		return null
+		
+	# 3. Read the content as text
+	var content = file.get_as_text()
+	file.close()
+	
+	# 4. Parse the string into a Godot-readable format
+	var json_data = JSON.parse_string(content)
+	
+	if json_data == null:
+		print("Failed to parse JSON string.")
+		return null
+		
+	return json_data

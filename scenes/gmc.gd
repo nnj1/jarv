@@ -32,6 +32,10 @@ enum Gear { DRIVE, REVERSE }
 @export var current_oil: float = 100.0
 @export var oil_consumption_rate: float = 0.1
 
+@export_group("RV Health Settings")
+@export var max_health: float = 100.0
+@export var current_health: float = 100.0
+
 @export_group("Animations")
 @export var rotation_speed_multiplier: float = 1.0
 @onready var rotating_parts = [$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_004_13/Object_22, 
@@ -69,7 +73,45 @@ func _ready() -> void:
 	$engineIdleSound.play()
 	center_of_mass_mode = VehicleBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0, -0.8, 0)
+	
+# RV DATA SERIALIZATION
+# any client can call this function, but only the server will run it!
+@rpc("any_peer", "call_local", "reliable")
+func save_rv():
+	if not multiplayer.is_server(): return
+	# 1. Generate Timestamp and Path
+	var dt = Time.get_datetime_dict_from_system()
+	var timestamp = "%04d-%02d-%02d_%02d-%02d-%02d" % [
+		dt.year, dt.month, dt.day, 
+		dt.hour, dt.minute, dt.second
+	]
+	var save_path = "user://" + GameManager.rv_data.metadata.name + "_" + timestamp + ".json"
 
+	# 2. update the currently loaded RV save and dump it to file
+	# TODO: take care of mats and tech tree as well
+	
+	GameManager.rv_data.metadata.current_fuel = current_fuel
+	GameManager.rv_data.metadata.max_fuel = max_fuel
+	GameManager.rv_data.metadata.current_battery = current_battery
+	GameManager.rv_data.metadata.max_battery = max_battery
+	GameManager.rv_data.metadata.current_health = current_health
+	GameManager.rv_data.metadata.max_health = max_health
+	GameManager.rv_data.metadata.current_oil = current_oil
+	GameManager.rv_data.metadata.max_oil = max_oil
+	GameManager.rv_data.metadata.timestamp = timestamp
+
+	# 3. Serialize physical layout
+	#for item in $Interior.get_children():
+		#if item.has_method("get_grid_data"):
+			#save_data["grid_items"].append(item.get_grid_data())
+
+	# 4. Save
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(GameManager.rv_data, "\t"))
+		print("Detailed RV data saved to: ", save_path)
+
+# data deserialization
 
 @rpc("any_peer","call_local", "reliable")
 func network_gear_change():
