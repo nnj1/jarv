@@ -16,23 +16,23 @@ Traverse desolate landscapes in your customizable motorhome. Whether you are bat
 
 ### The Cockpit
 Keep your eyes on the road and your hand on the wheel. Managing the HUD is the difference between reaching the next town and being stranded.
-![Cockpit View](./screenshots/Screenshot_From_2025-12-26_19-04-31.jpg)
+![Cockpit View](./screenshots/Screenshot_From_2025-12-26_19-04-31.png)
 
 ### Braving the Elements
 Engage high-beams and navigate through heavy snowfall. Use chat commands to control the environment and manage server settings.
-![Driving Through Snow](./screenshots/Screenshot_From_2025-12-30_23-13-54.jpg)
+![Driving Through Snow](./screenshots/Screenshot_From_2025-12-30_23-13-54.png)
 
 ### High Stakes & Hard Knocks
 The road is unforgiving. Repair your RV after heavy damage to keep the "RV Health" from hitting zero.
-![Damaged RV](./screenshots/Screenshot_From_2026-01-08_21-02-13.jpg)
+![Damaged RV](./screenshots/Screenshot_From_2026-01-08_21-02-13.png)
 
 ### Scavenging
 Survival requires more than just gas. Explore the environment to find essential pick-ups and interactable items.
-![Scavenging](./screenshots/image.jpg)
+![Scavenging](./screenshots/image.png)
 
 ### Sunset Travels
 Take a moment to appreciate the low-poly horizons before the night-time threats arrive.
-![Sunset View](./screenshots/Screenshot_From_2026-01-02_23-45-35.jpg)
+![Sunset View](./screenshots/Screenshot_From_2026-01-02_23-45-35.png)
 
 ## Getting Started
 
