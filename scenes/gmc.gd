@@ -1,5 +1,4 @@
 extends VehicleBody3D
-
 enum Gear { DRIVE, REVERSE }
 @export var current_gear = Gear.DRIVE
 
@@ -164,6 +163,12 @@ func _process(_delta: float) -> void:
 	main_game_node.get_node("CanvasLayer/RV_HUD/fuelpercent").text = str(int(current_fuel)) + "L"
 	main_game_node.get_node("CanvasLayer/RV_HUD/oilpercent").text = str(int(current_oil)) + "%"
 	main_game_node.get_node("CanvasLayer/RV_HUD/batterypercent").text = str(int(current_battery)) + "%"
+	main_game_node.get_node("CanvasLayer/RV_HUD/rvhealthpercentage").text = str(int(current_health)) + "%"
+	
+	# update the GMC damage vertex shader
+	# Adjust shader for GMC body material
+	var mat = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16.get_active_material(0)
+	mat.set_shader_parameter("damage_amount", 1 - current_health/max_health)
 	
 func _physics_process(delta: float) -> void:
 	
@@ -294,6 +299,14 @@ func refuel(amount: float = 1000) -> void:
 
 func recharge(amount: float = 1000) -> void:
 	current_fuel = clamp(current_battery + amount, 0, max_battery)
+	
+func repair(amount: float = 1000) -> void:
+	current_health = clamp(current_health + amount, 0, max_health)
+
+func damage(amount: float = 1) -> void:
+	current_health = clamp(current_health - amount, 0, max_health)
+	# will have to adjust volume and other parameters
+	$crashSound.play()
 
 func _apply_stability_logic():
 	var side_velocity = global_transform.basis.x.dot(linear_velocity)
@@ -308,3 +321,15 @@ func _on_inner_volume_body_entered(body: Node3D) -> void:
 @warning_ignore("unused_parameter")
 func _on_inner_volume_body_exited(body: Node3D) -> void:
 	is_interactable = true 
+
+# for detecting crashes
+func _on_body_entered(body: Node) -> void:
+	
+	# 2. Set a threshold so minor bumps don't cause dents
+	if current_speed_kmh > 15.0:
+		# Map the speed to a damage value (e.g., 20 m/s = 0.4 damage)
+		var damage_gain = current_speed_kmh / 2
+		damage(damage_gain)
+		
+		# Optional: Play a sound or spawn particles at the hit location
+		print("Hit ", body.name, " at speed: ", current_speed_kmh)

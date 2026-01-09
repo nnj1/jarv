@@ -121,6 +121,8 @@ func send_chat(new_text, id):
 			MusicPlayer.rpc('advance_track')
 		if new_text == '/refuel':
 			get_node('entities/Gmc').refuel()
+		if new_text == '/repair':
+			get_node('entities/Gmc').repair()
 		else:
 			regex.compile("^/sethour\\s+(\\d+)$")
 			var result = regex.search(new_text)

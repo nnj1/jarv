@@ -286,6 +286,13 @@ color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(111, -60, 260, -37, 239.6, 66, 107, 32)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
+[node name="Polygon2D5" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
+position = Vector2(-229.00002, 354)
+scale = Vector2(1.6666666, 1)
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
+polygon = PackedVector2Array(129.634, 135.65701, 269.02292, 142.04062, 281.544, 201.4643, 131, 185)
+uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RV_HUD"]
 layout_mode = 0
 offset_left = 1.0
@@ -396,6 +403,24 @@ text = "[b]ALT[/b] Shift Gears | [b]B[/b] Handbrakes | [b]L[/b] Highbeams
 "
 scroll_active = false
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 504.0
+offset_right = 46.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 20
+text = "RV Health"
+
+[node name="rvhealthpercentage" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 495.0
+offset_right = 193.0
+offset_bottom = 548.0
+theme_override_font_sizes/font_size = 35
+text = "100%"
 
 [node name="chatbox" type="Control" parent="CanvasLayer"]
 layout_mode = 3

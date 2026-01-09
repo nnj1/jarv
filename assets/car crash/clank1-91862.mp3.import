@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cx7pin3qnayjm"
+path="res://.godot/imported/clank1-91862.mp3-60f3d97040cf3e3a3d8932a4b858f9f5.mp3str"
+
+[deps]
+
+source_file="res://assets/car crash/clank1-91862.mp3"
+dest_files=["res://.godot/imported/clank1-91862.mp3-60f3d97040cf3e3a3d8932a4b858f9f5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
