@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bymqtisotwo7o"
-path="res://.godot/imported/6E6A9529-F9FD-40BD-90A8-0A18CD53B5B4.png-afb987dab345a6a5c0fc08586bd1f3a2.ctex"
+uid="uid://dkb4h77p2qn2u"
+path="res://.godot/imported/Icon14_01.png-4eed3b1a1da46a45a27f7a7aea5e57f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://6E6A9529-F9FD-40BD-90A8-0A18CD53B5B4.png"
-dest_files=["res://.godot/imported/6E6A9529-F9FD-40BD-90A8-0A18CD53B5B4.png-afb987dab345a6a5c0fc08586bd1f3a2.ctex"]
+source_file="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_01.png"
+dest_files=["res://.godot/imported/Icon14_01.png-4eed3b1a1da46a45a27f7a7aea5e57f2.ctex"]
 
 [params]
 

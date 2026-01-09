@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=31 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -7,11 +7,16 @@
 [ext_resource type="Environment" uid="uid://b1syrdek0evt8" path="res://resources/gameworldenv.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://bna7jai6hx8m0" path="res://scenes/directional_light_3d.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://13a0tm6jijnb" path="res://assets/8664993.png" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://ipusdowtqxok" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_05.png" id="10_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bvvojlcwjdmsu" path="res://assets/oil.png" id="10_kvuet"]
 [ext_resource type="FontFile" uid="uid://bbyybor08ktnd" path="res://assets/fonts/Oswald/Oswald-VariableFont_wght.ttf" id="10_vtaks"]
+[ext_resource type="Texture2D" uid="uid://cor8okfy4cg4u" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_03.png" id="11_ca42v"]
 [ext_resource type="Shader" uid="uid://378w7t6kcwua" path="res://shaders/heart.gdshader" id="11_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://cc30ax2tgdx20" path="res://assets/battery.png" id="11_trtic"]
 [ext_resource type="AudioStream" uid="uid://clxblguwqgq6n" path="res://assets/UI Soundpack/UI Soundpack/MP3/Modern15.mp3" id="12_kvuet"]
+[ext_resource type="Texture2D" uid="uid://bwuo1ktluk05r" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_32.png" id="12_rysoc"]
+[ext_resource type="Texture2D" uid="uid://xythel0jxyq8" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_36.png" id="13_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://cj8k4rnouor5a" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_35.png" id="14_ssvqc"]
 [ext_resource type="Script" uid="uid://dpxy7fi5jc7vn" path="res://scenes/broadcaster.gd" id="14_trtic"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
@@ -421,6 +426,93 @@ offset_right = 193.0
 offset_bottom = 548.0
 theme_override_font_sizes/font_size = 35
 text = "100%"
+
+[node name="Polygon2D6" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
+position = Vector2(870.00006, 220)
+scale = Vector2(1.6666666, 1)
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
+polygon = PackedVector2Array(103.29994, -76.9, 179.3, -69.7, 179.1, 245.08, 118.71996, 272.4)
+uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+
+[node name="wiring_components" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 224.0
+offset_right = 1147.0
+offset_bottom = 262.0
+rotation = -0.10471976
+theme_override_font_sizes/font_size = 25
+text = "100"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/wiring_components"]
+position = Vector2(-35, 13)
+rotation = -0.10471976
+scale = Vector2(2, 2)
+texture = ExtResource("10_ir15t")
+
+[node name="refined_plates" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 287.0
+offset_right = 1147.0
+offset_bottom = 325.0
+rotation = -0.10471976
+theme_override_font_sizes/font_size = 25
+text = "100"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/refined_plates"]
+position = Vector2(-35, 13)
+rotation = -0.10471976
+scale = Vector2(2, 2)
+texture = ExtResource("11_ca42v")
+
+[node name="processor_chips" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 353.0
+offset_right = 1147.0
+offset_bottom = 391.0
+rotation = -0.10471976
+theme_override_font_sizes/font_size = 25
+text = "100"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/processor_chips"]
+position = Vector2(-35, 13)
+rotation = -0.10471976
+scale = Vector2(2, 2)
+texture = ExtResource("12_rysoc")
+
+[node name="chemical_sludge" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 419.0
+offset_right = 1147.0
+offset_bottom = 457.0
+rotation = -0.10471976
+theme_override_font_sizes/font_size = 25
+text = "100"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/chemical_sludge"]
+position = Vector2(-35, 13)
+rotation = -0.10471976
+scale = Vector2(2, 2)
+texture = ExtResource("13_ssvqc")
+
+[node name="rusty_scrap" type="Label" parent="CanvasLayer/RV_HUD"]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 158.0
+offset_right = 1147.0
+offset_bottom = 196.0
+rotation = -0.10471976
+theme_override_font_sizes/font_size = 25
+text = "100"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/rusty_scrap"]
+position = Vector2(-35, 13)
+rotation = -0.10471976
+scale = Vector2(2, 2)
+texture = ExtResource("14_ssvqc")
 
 [node name="chatbox" type="Control" parent="CanvasLayer"]
 layout_mode = 3
