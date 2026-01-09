@@ -1,34 +1,44 @@
 # JaRV
 
-Welcome to **JaRV**, the definitive co-op RV survival experience. 
+Welcome to **JaRV**, the definitive co-op RV survival experience where low-poly aesthetics meet high-stakes road trips. 
 
-Traverse desolate, low-poly landscapes in your customizable motorhome. Whether you are battling the elements, managing your resources, or simply trying to keep the engine running, JaRV offers a unique blend of vehicular maintenance and cooperative survival mechanics.
+Traverse desolate landscapes in your customizable motorhome. Whether you are battling a blizzard, managing your "supplies," or trying to keep the chassis from falling apart after a crash, JaRV offers a unique blend of vehicular maintenance, cooperative survival, and chaotic physics.
 
 ## Key Features
 
-* **Co-op Gameplay:** Work together with friends to manage the RV, navigate harsh terrains, and survive the unknown.
-* **RV Maintenance:** Keep your home on wheels in top shape. Manage fuel, repairs, and upgrades to ensure you reach your destination.
-* **Immersive Survival:** Face dynamic weather conditions and environmental hazards that challenge your ability to stay alive and mobile.
-* **Interactive Environments:** Fully interactable RV interiors and exteriors—from the driver's seat to the living quarters.
+* **Co-op Survival:** Team up with friends (as garden gnomes!) to navigate, defend, and maintain your mobile base.
+* **Detailed Vehicle Systems:** Monitor real-time telemetry including fuel levels, oil quality, and battery life. 
+* **Dynamic Damage Model:** Your RV isn't invincible. Watch it dent and deform in real-time. Keep an eye on that **RV Health** percentage.
+* **Survival Essentials:** Scavenge for resources to keep the crew going—from fuel canisters to "medicinal" whiskey.
+* **Defensive Combat:** Equip firearms to protect your convoy from external threats as you push through the wilderness.
 
 ## Gallery
 
-### The Journey Begins
-Explore vast, snow-covered terrains from the safety (and warmth) of your cockpit.
-![Cockpit View](./image2.png)
+### The Cockpit
+Keep your eyes on the road and your hand on the wheel. Managing the HUD is the difference between reaching the next town and being stranded.
+![Cockpit View](./screenshots/Screenshot_From_2025-12-26_19-04-31.jpg)
 
-### Gear Up
-Equip yourself and prepare for external threats. Cooperation is key to keeping the RV safe.
-![External Interaction](./image.png)
+### Braving the Elements
+Engage high-beams and navigate through heavy snowfall. Use chat commands to control the environment and manage server settings.
+![Driving Through Snow](./screenshots/Screenshot_From_2025-12-30_23-13-54.jpg)
 
-### Into the Horizon
-Navigate through mountainous regions and brave the falling snow as you search for your next objective.
-![Driving Through Snow](./6E6A9529-F9FD-40BD-90A8-0A18CD53B5B4.png)
+### High Stakes & Hard Knocks
+The road is unforgiving. Repair your RV after heavy damage to keep the "RV Health" from hitting zero.
+![Damaged RV](./screenshots/Screenshot_From_2026-01-08_21-02-13.jpg)
+
+### Scavenging
+Survival requires more than just gas. Explore the environment to find essential pick-ups and interactable items.
+![Scavenging](./screenshots/image.jpg)
+
+### Sunset Travels
+Take a moment to appreciate the low-poly horizons before the night-time threats arrive.
+![Sunset View](./screenshots/Screenshot_From_2026-01-02_23-45-35.jpg)
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/nnj1/jarv.git`
-2. *(Add specific build or run instructions here)*
+1.  **Clone the repository:** `git clone https://github.com/nnj1/jarv.git`
+2.  **Make sure blender is installed to load some models** 
+3.  **Launch the game**
 
 ---
-*JaRV - Survival is better on four wheels.*
+*JaRV - Survival is better on four wheels (and with a bottle of whiskey).*
