@@ -335,7 +335,7 @@ func repair(amount: float = 1000) -> void:
 	current_health = clamp(current_health + amount, 0, max_health)
 
 @rpc("any_peer", "call_local", "reliable")
-func damage(amount: float = 1) -> void:
+func damage(amount = 1) -> void:
 	if not multiplayer.is_server(): return
 	current_health = clamp(current_health - amount, 0, max_health)
 	# will have to adjust volume and other parameters

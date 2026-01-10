@@ -41,14 +41,14 @@ func _physics_process(delta: float):
 
 @warning_ignore("unused_parameter")
 func handle_collision(collision: KinematicCollision3D):
-	explode()
+	explode(collision.get_position())
 
-func explode():
+func explode(point_of_contact = null):
 	# We call an RPC so clients see the explosion too
-	sync_explode.rpc()
+	sync_explode.rpc(point_of_contact)
 
 @rpc("any_peer", "call_local", "reliable")
-func sync_explode():
+func sync_explode(point_of_contact = null):
 	if not is_active: return
 	is_active = false
 	
@@ -74,13 +74,14 @@ func sync_explode():
 		var bodies = explosion_area.get_overlapping_bodies()
 		for body in bodies:
 			if body == self: continue
-			if body.has_method("take_damage"):
+			if body.has_method("damage"):
+				print(body)
 				# Simple radial damage math
-				var dist = global_position.distance_to(body.global_position)
+				var dist =  global_position.distance_to(point_of_contact)
 				var radius = explosion_area.get_child(0).shape.radius
 				var damage_multiplier = clamp(1.0 - (dist / radius), 0.0, 1.0)
-				
-				body.take_damage(int(damage_amount * damage_multiplier))
+				print(int(damage_amount * damage_multiplier))
+				body.rpc('damage', int(damage_amount * damage_multiplier))
 	
 	# 4. Cleanup (free the node on server, will free from elsewhere too because of multiplayersycnrhonizer)
 	await get_tree().create_timer(explosion_lifetime).timeout
