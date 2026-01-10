@@ -104,7 +104,7 @@ func send_chat(new_text, id):
 		var sender_id = multiplayer.get_remote_sender_id()
 		respawn(sender_id)
 
-	# commands only the server can do
+	# commands only the server can do (note that unless specified they will execute on all peers)
 	elif multiplayer.get_remote_sender_id() == 1:
 		if new_text == '/save':
 			get_node('entities/Gmc').save_rv()
@@ -125,6 +125,8 @@ func send_chat(new_text, id):
 			get_node('entities/Gmc').repair()
 		if new_text == '/recharge':
 			get_node('entities/Gmc').recharge()
+		if new_text == '/heal':
+			get_node('entities/1').heal()
 		else:
 			regex.compile("^/sethour\\s+(\\d+)$")
 			var result = regex.search(new_text)

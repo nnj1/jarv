@@ -18,8 +18,10 @@ enum State { IDLE, AGGRO, ATTACK, STOMP }
 @export_group("Combat")
 @export var melee_damage := 25
 @export var attack_cooldown := 1.5
-@export var stomp_duration := 1.2
+@export var stomp_duration := 1.2 / 2 # faster than usual
 @export var revenge_duration := 10.0
+@export var max_health: = 1000
+@export var current_health := max_health
 
 @export_group("Detection")
 @export_node_path("Area3D") var detection_area_path
@@ -27,10 +29,46 @@ enum State { IDLE, AGGRO, ATTACK, STOMP }
 @onready var paw_hitbox: Area3D = $Area3D2
 
 @export_group("Sounds")
-@export var idle_sounds: Array[AudioStream] = []
-@export var aggro_sounds: Array[AudioStream] = []
-@export var attack_sounds: Array[AudioStream] = []
-@export var hurt_sounds: Array[AudioStream] = []
+@export_group("Sounds")
+
+@export var idle_sounds: Array[AudioStream] = [
+	preload('res://assets/Beasts/Beasts/Beast_Bellow1.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow2.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow3.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow4.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow5.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow6.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow7.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow8.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow9.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow10.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow11.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow12.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow13.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Bellow14.wav')
+]
+
+@export var aggro_sounds: Array[AudioStream] = [
+	preload('res://assets/Beasts/Beasts/Beast_Growl.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Growl1.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Growl2.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Growl3.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Growl4.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Growl5.wav')
+]
+
+@export var attack_sounds: Array[AudioStream] = [
+	preload('res://assets/Beasts/Beasts/Beast_Grunt.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Grunt2.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Grunt3.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Grunt4.wav'),
+	preload('res://assets/Beasts/Beasts/Beast_Grunt5.wav'),
+]
+
+@export var hurt_sounds: Array[AudioStream] = [
+	preload('res://assets/Beasts/Beasts/Beast_Roar.wav'),
+]
+
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 @onready var anim_player: AnimationPlayer = $Sketchfab_Scene/AnimationPlayer
@@ -95,6 +133,9 @@ func deactivate_paw_area():
 @rpc("any_peer", "call_local", "reliable")
 func damage(amount: int):
 	if not multiplayer.is_server(): return
+	
+	# recalculate health
+	current_health = clamp(current_health - amount, 0, max_health)
 	
 	var attacker_id = multiplayer.get_remote_sender_id()
 	for player in players_in_range:

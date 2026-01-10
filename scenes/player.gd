@@ -169,6 +169,9 @@ func damage(amount: int = 1):
 	
 	# Prevent health from going below zero
 	current_health = max(current_health, 0)
+
+func heal(amount: float = 1000) -> void:
+	current_health = clamp(current_health + amount, 0, max_health)
 		
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
