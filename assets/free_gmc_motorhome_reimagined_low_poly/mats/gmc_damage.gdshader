@@ -22,7 +22,7 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
 // --- Damage Uniforms ---
-uniform float damage_amount : hint_range(0.0, 1.0) = 0.0;
+uniform float damage_amount : hint_range(0.0, 0.85) = 0.0;
 uniform float crumple_scale = 4.0;
 uniform float crumple_strength = 0.4;
 uniform vec4 scrap_metal_color : source_color = vec4(0.4, 0.4, 0.4, 1.0);

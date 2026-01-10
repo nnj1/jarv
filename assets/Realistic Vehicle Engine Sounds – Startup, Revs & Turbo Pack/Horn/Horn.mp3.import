@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Horn.mp3-9b849bfa7f96770ee06c5b645dc0aa37.mp3
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

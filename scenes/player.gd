@@ -55,6 +55,9 @@ var gravity_on:bool = true
 @export var forward_input = 0.0
 @export var back_input = 0.0
 
+# some stuff the host server sends the client when they spawn
+var host_server_data: Dictionary
+
 var weapons = [
 	{
 		'name': 'hand',
@@ -152,6 +155,17 @@ func decay_health(delta):
 		
 		# Prevent health from going below zero
 		current_health = max(current_health, 0)
+		
+# Should be called by any client on all peers, but only the server will execute
+# current_health sync from authority to peers via multiplayer synchronizer
+# TODO: find a way for server to force hit animations on all clients
+@rpc("any_peer", "call_local", "reliable")
+func damage(amount: int = 1):
+	# delta ensures the decay is consistent regardless of frame rate
+	current_health -= amount
+	
+	# Prevent health from going below zero
+	current_health = max(current_health, 0)
 		
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -325,7 +339,7 @@ func _physics_process(delta):
 			velocity = Vector3.ZERO
 		
 		# attack animation for all kinds of weapons
-		# BURST CLASS: this means the weapon that is currently equipped is shootable
+		# BURST CLASS: this means the weapon that is currently equipped is hitscan
 		if weapons[weapon_index].class == 'BURST':
 			if 'recoil_force' in weapons[weapon_index].keys():
 				var weapon_animation_player = get_node_or_null('weapons/' + weapons[weapon_index].name + '/AnimationPlayer')
@@ -347,7 +361,7 @@ func _physics_process(delta):
 						if weapon_animation_player.is_playing():
 							weapon_animation_player.stop()
 		
-		elif weapons[weapon_index].class == 'SINGLE':
+		elif weapons[weapon_index].class == 'SINGLE': # this class of weapons spawns projectiles
 			if 'recoil_force' in weapons[weapon_index].keys():
 				var weapon_animation_player = get_node_or_null('weapons/' + weapons[weapon_index].name + '/AnimationPlayer')
 				if Input.is_action_pressed('shoot'):
@@ -387,6 +401,12 @@ func _physics_process(delta):
 		
 		if Input.is_action_pressed('handbrake'):
 			seat_node.get_parent().rpc('network_handbrake')
+		
+		if Input.is_action_pressed("horn"):
+			seat_node.get_parent().rpc('network_horn_on')
+			
+		if Input.is_action_just_released("horn"):
+			seat_node.get_parent().rpc('network_horn_off')
 		
 		if Input.is_action_just_pressed('highbeams'):
 			seat_node.get_parent().rpc('network_highbeams')
@@ -614,6 +634,19 @@ func play_idle_sound(index: int):
 	if not $jumpSound.playing:
 		$idleSound.play()
 	#print('Sound from ' + str(multiplayer.get_remote_sender_id()) + ' played on ' + str(multiplayer.get_unique_id()))
+
+func hit_scan_attack(damage_amount):
+	if aim_ray.is_colliding():
+		var body = aim_ray.get_collider() # This is the PhysicsBody3D (Static, Rigid, or Character)
+		if body.has_method('damage'):
+			if 'IS_PLAYER' in body:
+				if body.IS_PLAYER:
+					# only damage another player if friendly fire is on!
+					# TODO: NOT SECURE, since client can modify, make the check occur only on server
+					if host_server_data.friendly_fire:
+						body.rpc('damage', damage_amount)
+			else:
+				body.rpc('damage', damage_amount)
 
 func shoot_projectile():
 	rpc('request_spawn_projectile', weapon_index, get_node('weapons/' + weapons[weapon_index].name + '/spawn_position').global_position, aim_ray.to_global(aim_ray.target_position))

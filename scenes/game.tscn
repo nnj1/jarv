@@ -404,7 +404,7 @@ offset_bottom = 640.0
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
-text = "[b]ALT[/b] Shift Gears | [b]B[/b] Handbrakes | [b]L[/b] Highbeams
+text = "[b]ALT[/b] Shift Gears | [b]B[/b] Handbrakes | [b]L[/b] Highbeams | [b]H[/b] Horn
 "
 scroll_active = false
 horizontal_alignment = 1
@@ -428,7 +428,7 @@ theme_override_font_sizes/font_size = 35
 text = "100%"
 
 [node name="Polygon2D6" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
-position = Vector2(870.00006, 220)
+position = Vector2(870.83344, 265.9)
 scale = Vector2(1.6666666, 1)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(103.29994, -76.9, 179.3, -69.7, 179.1, 245.08, 118.71996, 272.4)
@@ -436,82 +436,72 @@ uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
 [node name="wiring_components" type="Label" parent="CanvasLayer/RV_HUD"]
 layout_mode = 0
-offset_left = 1107.0
-offset_top = 224.0
-offset_right = 1147.0
-offset_bottom = 262.0
-rotation = -0.10471976
+offset_left = 1107.8334
+offset_top = 269.9
+offset_right = 1147.8334
+offset_bottom = 307.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/wiring_components"]
-position = Vector2(-35, 13)
-rotation = -0.10471976
-scale = Vector2(2, 2)
+position = Vector2(-27, 24)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_ir15t")
 
 [node name="refined_plates" type="Label" parent="CanvasLayer/RV_HUD"]
 layout_mode = 0
-offset_left = 1107.0
-offset_top = 287.0
-offset_right = 1147.0
-offset_bottom = 325.0
-rotation = -0.10471976
+offset_left = 1107.8334
+offset_top = 332.9
+offset_right = 1147.8334
+offset_bottom = 370.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/refined_plates"]
-position = Vector2(-35, 13)
-rotation = -0.10471976
-scale = Vector2(2, 2)
+position = Vector2(-27, 24)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_ca42v")
 
 [node name="processor_chips" type="Label" parent="CanvasLayer/RV_HUD"]
 layout_mode = 0
-offset_left = 1107.0
-offset_top = 353.0
-offset_right = 1147.0
-offset_bottom = 391.0
-rotation = -0.10471976
+offset_left = 1107.8334
+offset_top = 398.9
+offset_right = 1147.8334
+offset_bottom = 436.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/processor_chips"]
-position = Vector2(-35, 13)
-rotation = -0.10471976
-scale = Vector2(2, 2)
+position = Vector2(-27, 24)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("12_rysoc")
 
 [node name="chemical_sludge" type="Label" parent="CanvasLayer/RV_HUD"]
 layout_mode = 0
-offset_left = 1107.0
-offset_top = 419.0
-offset_right = 1147.0
-offset_bottom = 457.0
-rotation = -0.10471976
+offset_left = 1107.8334
+offset_top = 464.9
+offset_right = 1147.8334
+offset_bottom = 502.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/chemical_sludge"]
-position = Vector2(-35, 13)
-rotation = -0.10471976
-scale = Vector2(2, 2)
+position = Vector2(-27, 24)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_ssvqc")
 
 [node name="rusty_scrap" type="Label" parent="CanvasLayer/RV_HUD"]
 layout_mode = 0
-offset_left = 1107.0
-offset_top = 158.0
-offset_right = 1147.0
-offset_bottom = 196.0
-rotation = -0.10471976
+offset_left = 1107.8334
+offset_top = 203.9
+offset_right = 1147.8334
+offset_bottom = 241.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/rusty_scrap"]
-position = Vector2(-35, 13)
-rotation = -0.10471976
-scale = Vector2(2, 2)
+position = Vector2(-27, 24)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_ssvqc")
 
 [node name="chatbox" type="Control" parent="CanvasLayer"]

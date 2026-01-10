@@ -35,6 +35,14 @@ enum Gear { DRIVE, REVERSE }
 @export var max_health: float = 100.0
 @export var current_health: float = 100.0
 
+@export_group("Materials")
+@export var current_rusty_scrap: int = 0
+@export var current_wiring_components: int = 0
+@export var current_refined_plates: int = 0
+@export var current_chemical_sludge: int = 0
+@export var current_processor_chips: int = 0
+
+
 @export_group("Animations")
 @export var rotation_speed_multiplier: float = 1.0
 @onready var rotating_parts = [$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_004_13/Object_22, 
@@ -97,6 +105,11 @@ func save_rv():
 	GameManager.rv_data.metadata.max_health = max_health
 	GameManager.rv_data.metadata.current_oil = current_oil
 	GameManager.rv_data.metadata.max_oil = max_oil
+	GameManager.rv_data.metadata.materials.rusty_scrap = current_rusty_scrap
+	GameManager.rv_data.metadata.materials.wiring_components = current_wiring_components
+	GameManager.rv_data.metadata.materials.refined_plates = current_refined_plates
+	GameManager.rv_data.metadata.materials.chemical_sludge = current_chemical_sludge
+	GameManager.rv_data.metadata.materials.processor_chips = current_processor_chips
 	GameManager.rv_data.metadata.timestamp = timestamp
 
 	# 3. Serialize physical layout
@@ -110,7 +123,16 @@ func save_rv():
 		file.store_string(JSON.stringify(GameManager.rv_data, "\t"))
 		print("Detailed RV data saved to: ", save_path)
 
-# data deserialization
+# TODO: data deserialization
+
+@rpc("any_peer","call_local", "reliable")
+func network_horn_on():
+	if not $hornSound.playing:
+		$hornSound.play()
+		
+@rpc("any_peer","call_local", "reliable")
+func network_horn_off():
+	$hornSound.stop()
 
 @rpc("any_peer","call_local", "reliable")
 func network_gear_change():
@@ -164,11 +186,16 @@ func _process(_delta: float) -> void:
 	main_game_node.get_node("CanvasLayer/RV_HUD/oilpercent").text = str(int(current_oil)) + "%"
 	main_game_node.get_node("CanvasLayer/RV_HUD/batterypercent").text = str(int(current_battery)) + "%"
 	main_game_node.get_node("CanvasLayer/RV_HUD/rvhealthpercentage").text = str(int(current_health)) + "%"
+	main_game_node.get_node('CanvasLayer/RV_HUD/wiring_components').text = str(int(current_wiring_components))
+	main_game_node.get_node('CanvasLayer/RV_HUD/refined_plates').text = str(int(current_refined_plates))
+	main_game_node.get_node('CanvasLayer/RV_HUD/processor_chips').text = str(int(current_processor_chips))
+	main_game_node.get_node('CanvasLayer/RV_HUD/chemical_sludge').text = str(int(current_chemical_sludge))
+	main_game_node.get_node('CanvasLayer/RV_HUD/rusty_scrap').text = str(int(current_rusty_scrap))
 	
 	# update the GMC damage vertex shader
 	# Adjust shader for GMC body material
 	var mat = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16.get_active_material(0)
-	mat.set_shader_parameter("damage_amount", 1 - current_health/max_health)
+	mat.set_shader_parameter("damage_amount", 0.85 *(1 - current_health/max_health))
 	
 func _physics_process(delta: float) -> void:
 	
@@ -247,6 +274,10 @@ func _physics_process(delta: float) -> void:
 			rpc('network_gear_change')
 		if Input.is_action_pressed("handbrake"):
 			rpc('network_handbrake')
+		if Input.is_action_pressed("horn"):
+			rpc('network_horn_on')
+		if Input.is_action_just_released("horn"):
+			rpc('network_horn_off')
 		if Input.is_action_just_pressed("highbeams"):
 			rpc('network_highbeams')
 		#print('Being driven by default server')
@@ -303,7 +334,9 @@ func recharge(amount: float = 1000) -> void:
 func repair(amount: float = 1000) -> void:
 	current_health = clamp(current_health + amount, 0, max_health)
 
+@rpc("any_peer", "call_local", "reliable")
 func damage(amount: float = 1) -> void:
+	if not multiplayer.is_server(): return
 	current_health = clamp(current_health - amount, 0, max_health)
 	# will have to adjust volume and other parameters
 	$crashSound.play()

@@ -36,7 +36,13 @@ func _request_spawn_to_server(skin_choice: Variant, username: String = '') -> vo
 	var setup_data = {
 		"id": sender_id, 
 		"skin": skin_choice,
-		"username": username
+		"username": username,
+		# THS IS ANY ADDITIONAL STUFF YOU WANT TO SEND THE PLAYER WHEN THEY SPAWN
+		# RV DATA WILL BE USEFUL FOR PLAYER TO DESERIALIZE THE RV
+		"host_server_data": {
+			'friendly_fire': GameManager.friendly_fire,
+			'rv_data': GameManager.rv_data
+		}
 	}
 	
 	spawn(setup_data)
@@ -47,6 +53,8 @@ func _custom_spawn_logic(data: Variant) -> Node:
 		return null
 		
 	var player = network_player.instantiate()
+	
+	player.host_server_data = data.host_server_data
 	player.name = str(data.id)
 	player.username = str(data.username)
 	player.set_multiplayer_authority(data.id)
