@@ -148,7 +148,11 @@ func network_handbrake():
 
 @rpc("any_peer","call_local", "reliable")
 func network_highbeams():
-	high_beams_status = not high_beams_status
+	# Don't toggle highbeams if no battery
+	if current_battery > 0:
+		high_beams_status = not high_beams_status
+	else:
+		high_beams_status = false
 	if high_beams_status:
 		$left_headlight.spot_range = 300
 		$right_headlight.spot_range = 300
@@ -197,6 +201,11 @@ func _process(_delta: float) -> void:
 	var mat = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16.get_active_material(0)
 	mat.set_shader_parameter("damage_amount", 0.85 *(1 - current_health/max_health))
 	
+	# turn off any highbeams if needed
+	if not high_beams_status:
+		$left_headlight.spot_range = 70
+		$right_headlight.spot_range = 70
+	
 func _physics_process(delta: float) -> void:
 	
 	# CLIENT-SIDE SMOOTHING
@@ -236,6 +245,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		# prevent battery from dipping below zero
 		current_battery = 0
+		# turn off high beams manually
+		high_beams_status = false
 
 	# 3. ROTATION LOGIC
 	for rotating_part in rotating_parts:
@@ -266,7 +277,7 @@ func _physics_process(delta: float) -> void:
 		lock_player_to_driver_seat(delta)
 		
 	# no driver, then the server player is sending the inputs (but via arrow keys)
-	elif driver_player_id == '':
+	elif driver_player_id == '' and not main_game_node.typing_chat:
 		steer_input = Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right")
 		forward_input = Input.get_action_strength("drive_forward")
 		back_input = Input.get_action_strength("drive_back")
@@ -329,7 +340,7 @@ func refuel(amount: float = 1000) -> void:
 	# ts doesn't belong here
 
 func recharge(amount: float = 1000) -> void:
-	current_fuel = clamp(current_battery + amount, 0, max_battery)
+	current_battery = clamp(current_battery + amount, 0, max_battery)
 	
 func repair(amount: float = 1000) -> void:
 	current_health = clamp(current_health + amount, 0, max_health)

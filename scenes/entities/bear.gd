@@ -19,46 +19,18 @@ enum State { IDLE, AGGRO, ATTACK, STOMP }
 @export var melee_damage := 25
 @export var attack_cooldown := 1.5
 @export var stomp_duration := 1.2
+@export var revenge_duration := 10.0
 
 @export_group("Detection")
 @export_node_path("Area3D") var detection_area_path
 @onready var detection_area: Area3D = get_node(detection_area_path)
+@onready var paw_hitbox: Area3D = $Area3D2
 
 @export_group("Sounds")
-@export var idle_sounds: Array[AudioStream] = [
-	preload('res://assets/Beasts/Beasts/Beast_Bellow1.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow2.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow3.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow4.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow5.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow6.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow7.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow8.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow9.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow10.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow11.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow12.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow13.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Bellow14.wav')
-]
-@export var aggro_sounds: Array[AudioStream] = [
-	preload('res://assets/Beasts/Beasts/Beast_Growl.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Growl1.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Growl2.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Growl3.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Growl4.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Growl5.wav')
-]
-@export var attack_sounds: Array[AudioStream] = [
-	preload('res://assets/Beasts/Beasts/Beast_Grunt.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Grunt2.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Grunt3.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Grunt4.wav'),
-	preload('res://assets/Beasts/Beasts/Beast_Grunt5.wav'),
-]
-@export var hurt_sounds: Array[AudioStream] = [
-	preload('res://assets/Beasts/Beasts/Beast_Roar.wav'),
-]
+@export var idle_sounds: Array[AudioStream] = []
+@export var aggro_sounds: Array[AudioStream] = []
+@export var attack_sounds: Array[AudioStream] = []
+@export var hurt_sounds: Array[AudioStream] = []
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 @onready var anim_player: AnimationPlayer = $Sketchfab_Scene/AnimationPlayer
@@ -70,10 +42,18 @@ var current_state = State.IDLE:
 	set(value):
 		if current_state != value:
 			current_state = value
+			if anim_player:
+				anim_player.speed_scale = 1.0 # Reset speed on state change
 			if is_inside_tree() and multiplayer.is_server():
+				_sync_anim_speed.rpc(1.0)
 				_update_state_assets(current_state)
 
-var target_player: Node3D = null
+# --- TARGETING VARIABLES ---
+var target_node: Node3D = null      
+var rv_target: Node3D = null        
+var revenge_target: Node3D = null   
+var revenge_timer := 0.0
+
 var players_in_range: Array[Node3D] = []
 var home_position := Vector3.ZERO
 var wander_direction := Vector3.ZERO
@@ -81,10 +61,14 @@ var wander_timer := 0.0
 var is_waiting := false
 var attack_cooldown_timer := 0.0
 var stomp_timer := 0.0
+var last_sent_anim := ""
 
 func _ready():
+	home_position = global_position
+	# CRITICAL: These must be set for collision detection to work!
 	contact_monitor = true
-	max_contacts_reported = 4
+	max_contacts_reported = 10
+	
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0, -1.0, 0) 
 	
@@ -95,38 +79,54 @@ func _ready():
 		detection_area.body_entered.connect(_on_detection_area_body_entered)
 		detection_area.body_exited.connect(_on_detection_area_body_exited)
 	
+	# Connect collision signal
 	self.body_entered.connect(_on_body_entered)
+	
+# --- ANIMATION CALLBACKS ---
+
+func activate_paw_area():
+	if paw_hitbox: paw_hitbox.monitoring = true
+
+func deactivate_paw_area():
+	if paw_hitbox: paw_hitbox.monitoring = false
 
 # --- COMBAT & DAMAGE ---
+
 @rpc("any_peer", "call_local", "reliable")
 func damage(amount: int):
 	if not multiplayer.is_server(): return
-	# only change to stomp state if the damage is above a treshold
+	
+	var attacker_id = multiplayer.get_remote_sender_id()
+	for player in players_in_range:
+		if is_instance_valid(player) and player.get_multiplayer_authority() == attacker_id:
+			revenge_target = player
+			revenge_timer = revenge_duration
+			break
+
 	if amount >= 25:
 		current_state = State.STOMP
 		stomp_timer = stomp_duration
 
 func _on_body_entered(body):
 	if not multiplayer.is_server(): return
-	if 'IS_PLAYER' in body and body.IS_PLAYER:
+	# Trigger initial attack on collision
+	if (body.get("IS_PLAYER") or body.get("IS_RV")):
 		if current_state != State.STOMP and attack_cooldown_timer <= 0:
 			_perform_attack(body)
 
-func _perform_attack(_player):
+func _perform_attack(_target):
 	current_state = State.ATTACK
 	attack_cooldown_timer = attack_cooldown
+	last_sent_anim = "" # Allow state machine to re-trigger run/attack
 	
-	# leave this state after a while
+	# Force full speed for the attack animation
+	anim_player.speed_scale = 1.0
+	_sync_anim_speed.rpc(1.0)
+	
 	get_tree().create_timer(1.0).timeout.connect(func():
 		if current_state == State.ATTACK:
 			current_state = State.AGGRO
 	)
-	
-func activate_paw_area():
-	$Area3D2.monitoring = true
-
-func deactivate_paw_area():
-	$Area3D2.monitoring = false
 
 # --- PROCESSING ---
 
@@ -136,40 +136,47 @@ func _physics_process(delta):
 	if attack_cooldown_timer > 0: 
 		attack_cooldown_timer -= delta
 	
+	if revenge_timer > 0:
+		revenge_timer -= delta
+		if revenge_timer <= 0: revenge_target = null
+	
 	match current_state:
 		State.STOMP:
 			stomp_timer -= delta
-			if stomp_timer <= 0:
-				current_state = State.AGGRO
+			if stomp_timer <= 0: current_state = State.AGGRO
+			
 		State.IDLE:
 			wander_timer -= delta
-			if wander_timer <= 0:
-				_update_wander_logic()
+			if wander_timer <= 0: _update_wander_logic()
+			if is_waiting: _play_anim_if_new("idleSmell")
+			else: _play_anim_if_new("polarbearrun")
 			
-			if is_waiting:
-				_play_anim_rpc.rpc("idleSmell")
-			else:
-				_play_anim_rpc.rpc("polarbearrun")
-				
 		State.AGGRO:
-			_play_anim_rpc.rpc("polarbearrun")
-	
+			_play_anim_if_new("polarbearrun")
+			
+			# Speed Scale Logic
+			var horiz_vel = Vector3(linear_velocity.x, 0, linear_velocity.z).length()
+			if horiz_vel > 0.5:
+				var target_anim_speed = clamp(remap(horiz_vel, 0, max_speed, 0.4, 1.2), 0.4, 1.2)
+				_sync_anim_speed.rpc(target_anim_speed)
+			else:
+				_sync_anim_speed.rpc(1.0)
+			
+			# CONTINUOUS ATTACK CHECK:
+			# If we are in AGGRO and touching our target, attack again.
+			if target_node and attack_cooldown_timer <= 0:
+				var bodies = get_colliding_bodies()
+				if bodies.has(target_node):
+					_perform_attack(target_node)
+
 	if current_state != State.STOMP:
 		_update_target_logic()
 	
-	# adjust speed of animations
-	if current_state == State.AGGRO: 
-		var horiz_vel = Vector3(linear_velocity.x, 0, linear_velocity.z).length()
-		var target_anim_speed = clamp(remap(horiz_vel, 0, max_speed, 0.1, 1.0), 0.1, 1.0)
-		_sync_anim_speed.rpc(target_anim_speed)
-
-	# damage anything in paw area
-	if $Area3D2.monitoring:
-		for body in $Area3D2.get_overlapping_bodies():
+	if paw_hitbox.monitoring:
+		for body in paw_hitbox.get_overlapping_bodies():
 			if body.has_method('damage'):
-				body.rpc('damage', delta * 100)
-		
-	
+				body.rpc('damage', int(delta * 100))
+
 func _integrate_forces(state: PhysicsDirectBodyState3D):
 	if not multiplayer.is_server(): return
 	
@@ -190,19 +197,18 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 
 	var move_dir = Vector3.ZERO
 	var current_max_speed = max_speed
+	
 	if current_state == State.IDLE and not is_waiting:
 		move_dir = wander_direction
 		current_max_speed = max_speed * wander_speed_multiplier
-	elif current_state == State.AGGRO and target_player:
-		move_dir = (target_player.global_position - global_position).normalized()
+	elif current_state == State.AGGRO and target_node:
+		move_dir = (target_node.global_position - global_position).normalized()
 
 	if move_dir.length() > 0.1:
 		var look_dir = Vector3(move_dir.x, 0, move_dir.z)
 		var target_up = ground_normal if is_on_ground else Vector3.UP
-		if look_dir.cross(target_up).length() > 0.001:
-			var target_basis = Basis.looking_at(look_dir, target_up)
-			state.transform.basis = state.transform.basis.slerp(target_basis, turn_speed * state.step).orthonormalized()
-		
+		var target_basis = Basis.looking_at(look_dir, target_up)
+		state.transform.basis = state.transform.basis.slerp(target_basis, turn_speed * state.step).orthonormalized()
 		state.angular_velocity = Vector3.ZERO 
 		
 		if is_on_ground:
@@ -212,47 +218,48 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 			if Vector3(linear_velocity.x, 0, linear_velocity.z).length() < current_max_speed:
 				apply_central_force(slope_dir * move_force)
 	elif is_on_ground:
-		apply_central_force(-Vector3(linear_velocity.x, 0, linear_velocity.z) * stop_drag)
+		var horizontal_vel = Vector3(linear_velocity.x, 0, linear_velocity.z)
+		apply_central_force(-horizontal_vel * stop_drag)
 
 # --- ASSETS & NETWORKING ---
 
 func _update_state_assets(new_state: State):
-	# The server decides which logic to trigger
 	match new_state:
-		State.IDLE: 
-			if not idle_sounds.is_empty(): _play_random_sound_rpc.rpc(State.IDLE)
-		State.AGGRO: 
-			if not aggro_sounds.is_empty(): _play_random_sound_rpc.rpc(State.AGGRO)
+		State.IDLE: _play_random_sound_rpc.rpc(State.IDLE)
+		State.AGGRO: _play_random_sound_rpc.rpc(State.AGGRO)
 		State.STOMP: 
-			_play_anim_rpc.rpc("polarbearstomp")
-			if not hurt_sounds.is_empty(): _play_random_sound_rpc.rpc(State.STOMP)
+			_play_anim_if_new("polarbearstomp")
+			_play_random_sound_rpc.rpc(State.STOMP)
 		State.ATTACK:
-			_play_anim_rpc.rpc("attackDownRight")
-			if not attack_sounds.is_empty(): _play_random_sound_rpc.rpc(State.ATTACK)
+			_play_anim_if_new("attackDownRight")
+			_play_random_sound_rpc.rpc(State.ATTACK)
+
+func _play_anim_if_new(anim_name: String):
+	if last_sent_anim != anim_name:
+		last_sent_anim = anim_name
+		_play_anim_rpc.rpc(anim_name)
 
 @rpc("authority", "call_local", "unreliable")
 func _play_anim_rpc(anim_name: String):
-	if not anim_player.has_animation(anim_name): return
-	if anim_player.current_animation == anim_name and anim_player.is_playing(): return
-	anim_player.play(anim_name)
+	if anim_player.has_animation(anim_name):
+		anim_player.play(anim_name)
 
 @rpc("authority", "call_local", "unreliable")
 func _play_random_sound_rpc(state_for_sound: State):
-	var selected_sound: AudioStream = null
-	
+	var pool: Array[AudioStream] = []
 	match state_for_sound:
-		State.IDLE: selected_sound = idle_sounds.pick_random()
-		State.AGGRO: selected_sound = aggro_sounds.pick_random()
-		State.STOMP: selected_sound = hurt_sounds.pick_random()
-		State.ATTACK: selected_sound = attack_sounds.pick_random()
-	
-	if selected_sound:
-		audio_player.stream = selected_sound
+		State.IDLE: pool = idle_sounds
+		State.AGGRO: pool = aggro_sounds
+		State.STOMP: pool = hurt_sounds
+		State.ATTACK: pool = attack_sounds
+	if not pool.is_empty():
+		audio_player.stream = pool.pick_random()
 		audio_player.play()
 
 @rpc("authority", "call_local", "unreliable")
 func _sync_anim_speed(speed: float):
-	anim_player.speed_scale = speed
+	if anim_player:
+		anim_player.speed_scale = speed
 
 # --- AI UTILS ---
 
@@ -269,27 +276,32 @@ func _update_wander_logic():
 		wander_timer = randf_range(wander_interval_min, wander_interval_max)
 
 func _update_target_logic():
-	if players_in_range.is_empty():
-		target_player = null
-		if current_state == State.AGGRO: current_state = State.IDLE
-		return
-	
-	var closest_dist := INF
-	var closest_player: Node3D = null
-	for player in players_in_range:
-		if is_instance_valid(player):
+	players_in_range = players_in_range.filter(func(p): return is_instance_valid(p))
+	if revenge_target and not is_instance_valid(revenge_target): revenge_target = null
+	if rv_target and not is_instance_valid(rv_target): rv_target = null
+
+	var next_target: Node3D = null
+	if revenge_target: next_target = revenge_target
+	elif rv_target: next_target = rv_target
+	elif not players_in_range.is_empty():
+		var closest_dist := INF
+		for player in players_in_range:
 			var dist = global_position.distance_to(player.global_position)
 			if dist < closest_dist:
 				closest_dist = dist
-				closest_player = player
-	
-	if closest_player:
-		target_player = closest_player
+				next_target = player
+
+	target_node = next_target
+	if target_node:
 		if current_state == State.IDLE: current_state = State.AGGRO
+	else:
+		if current_state == State.AGGRO: current_state = State.IDLE
 
 func _on_detection_area_body_entered(body):
-	if 'IS_PLAYER' in body and body.IS_PLAYER:
-		if not players_in_range.has(body): players_in_range.append(body)
+	if body.get("IS_RV"): rv_target = body
+	if body.get("IS_PLAYER") and not players_in_range.has(body):
+		players_in_range.append(body)
 
 func _on_detection_area_body_exited(body):
+	if body == rv_target: rv_target = null
 	if players_in_range.has(body): players_in_range.erase(body)

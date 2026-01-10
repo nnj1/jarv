@@ -123,6 +123,8 @@ func send_chat(new_text, id):
 			get_node('entities/Gmc').refuel()
 		if new_text == '/repair':
 			get_node('entities/Gmc').repair()
+		if new_text == '/recharge':
+			get_node('entities/Gmc').recharge()
 		else:
 			regex.compile("^/sethour\\s+(\\d+)$")
 			var result = regex.search(new_text)

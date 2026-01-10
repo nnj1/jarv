@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bul5swiy88ink"]
+[gd_scene load_steps=16 format=4 uid="uid://bul5swiy88ink"]
 
 [ext_resource type="Script" uid="uid://cy80ewyrvq3jn" path="res://scenes/entities/bear.gd" id="1_pi8ka"]
 [ext_resource type="Texture2D" uid="uid://bi0dqgflver2b" path="res://assets/polar_bear/textures/polarBearMaterial_baseColor.png" id="2_vhn86"]
@@ -952,6 +952,17 @@ radius = 43.879395
 [sub_resource type="SphereShape3D" id="SphereShape3D_vhn86"]
 radius = 6.7887135
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vhn86"]
+properties/0/path = NodePath("Sketchfab_Scene/AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="Bear" type="RigidBody3D"]
 collision_mask = 15
 mass = 100.0
@@ -1208,8 +1219,12 @@ bus = &"Sounds"
 [node name="Area3D2" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 6
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.634697, 2.8116827, -3.4655645)
 shape = SubResource("SphereShape3D_vhn86")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_vhn86")
