@@ -4,7 +4,7 @@ enum State { IDLE, AGGRO, ATTACK, STOMP }
 
 @export_group("Movement")
 @export var move_force := 5500.0
-@export var max_speed := 8.0
+@export var max_speed := 16.0
 @export var stop_drag := 15.0
 @export var turn_speed := 5.0
 @export var gravity_glue := 1000.0 
@@ -112,16 +112,21 @@ func _on_body_entered(body):
 		if current_state != State.STOMP and attack_cooldown_timer <= 0:
 			_perform_attack(body)
 
-func _perform_attack(player):
+func _perform_attack(_player):
 	current_state = State.ATTACK
 	attack_cooldown_timer = attack_cooldown
 	
+	# leave this state after a while
 	get_tree().create_timer(1.0).timeout.connect(func():
 		if current_state == State.ATTACK:
 			current_state = State.AGGRO
-			if player.has_method("damage"):
-				player.rpc('damage', melee_damage)
 	)
+	
+func activate_paw_area():
+	$Area3D2.monitoring = true
+
+func deactivate_paw_area():
+	$Area3D2.monitoring = false
 
 # --- PROCESSING ---
 
@@ -152,10 +157,19 @@ func _physics_process(delta):
 	if current_state != State.STOMP:
 		_update_target_logic()
 	
-	var horiz_vel = Vector3(linear_velocity.x, 0, linear_velocity.z).length()
-	var target_anim_speed = clamp(remap(horiz_vel, 0, max_speed, 0.1, 1.0), 0.1, 1.0)
-	_sync_anim_speed.rpc(target_anim_speed)
+	# adjust speed of animations
+	if current_state == State.AGGRO: 
+		var horiz_vel = Vector3(linear_velocity.x, 0, linear_velocity.z).length()
+		var target_anim_speed = clamp(remap(horiz_vel, 0, max_speed, 0.1, 1.0), 0.1, 1.0)
+		_sync_anim_speed.rpc(target_anim_speed)
 
+	# damage anything in paw area
+	if $Area3D2.monitoring:
+		for body in $Area3D2.get_overlapping_bodies():
+			if body.has_method('damage'):
+				body.rpc('damage', delta * 100)
+		
+	
 func _integrate_forces(state: PhysicsDirectBodyState3D):
 	if not multiplayer.is_server(): return
 	
