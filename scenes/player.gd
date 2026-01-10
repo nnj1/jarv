@@ -164,6 +164,9 @@ func damage(amount: int = 1):
 	# delta ensures the decay is consistent regardless of frame rate
 	current_health -= amount
 	
+	if not $hurtSound.playing:
+		$hurtSound.play()
+	
 	# Prevent health from going below zero
 	current_health = max(current_health, 0)
 		

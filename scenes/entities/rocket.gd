@@ -75,12 +75,12 @@ func sync_explode(point_of_contact = null):
 		for body in bodies:
 			if body == self: continue
 			if body.has_method("damage"):
-				print(body)
+				#print(body)
 				# Simple radial damage math
 				var dist =  global_position.distance_to(point_of_contact)
 				var radius = explosion_area.get_child(0).shape.radius
 				var damage_multiplier = clamp(1.0 - (dist / radius), 0.0, 1.0)
-				print(int(damage_amount * damage_multiplier))
+				#print(int(damage_amount * damage_multiplier))
 				body.rpc('damage', int(damage_amount * damage_multiplier))
 	
 	# 4. Cleanup (free the node on server, will free from elsewhere too because of multiplayersycnrhonizer)
