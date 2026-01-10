@@ -229,7 +229,13 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 			scene_instance.global_position = origin_position
 			scene_instance.scale *= given_scale
 			scene_instance.skin_color = Color.from_hsv(randf(), 1.0, 1.0) * 2
-			
+		
+		if name_of_scene == 'bear':
+			scene_instance.name = "bear_" + str(scene_instance.get_instance_id())
+			scene_instance.home_position = origin_position
+			get_node('entities').add_child(scene_instance, true)
+			global_teleport(scene_instance, origin_position)
+						
 		# if it's an item_body, just the item
 		elif name_of_scene in ['whiskey', 'soju', 'gas_carton'] :
 			# TODO: Fix this class instantiation thing
@@ -242,7 +248,8 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 			scene_instance.position = end_point # once added it's local position will become global position
 			get_node('entities').add_child(scene_instance, true)
 
-func global_teleport(vehicle: VehicleBody3D, target_pos: Vector3):
+# Takes in a rigidbody3d or vehiclebody3d to move
+func global_teleport(vehicle, target_pos: Vector3):
 	var rid = vehicle.get_rid()
 	var new_transform = Transform3D(Basis.IDENTITY, target_pos)
 	
