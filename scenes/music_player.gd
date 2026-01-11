@@ -70,7 +70,7 @@ func start_multiplayer_session():
 	
 	# Host switches from Menu Music to first Playlist track for everyone
 	if playlist.size() > 0:
-		sync_track_to_all.rpc(playlist[0], 0.0)
+		sync_track_to_all.rpc(playlist.pick_random(), 0.0)
 
 func _on_player_connected(id: int):
 	# Server tells the specific new player what is currently playing
