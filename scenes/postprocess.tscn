@@ -22,7 +22,7 @@ shader_parameter/lens_distortion_strength = 0.0
 script = ExtResource("1_47bfh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 4
+layer = 5
 
 [node name="Image" type="Sprite2D" parent="CanvasLayer"]
 visible = false

@@ -23,8 +23,9 @@ config/icon="uid://blsspkeufbdjb"
 GlobalVars="*res://scenes/global_vars.tscn"
 SceneTransition="*res://scenes/scene_transition.tscn"
 Postprocess="*res://scenes/postprocess.tscn"
-GameManager="*res://scenes/multiplayer_manager.gd"
 MusicPlayer="*res://scenes/music_player.tscn"
+PauseMenu="*res://scenes/pause_menu.tscn"
+GameManager="*res://scenes/multiplayer_manager.gd"
 CursorManager="*res://scenes/cursor_manager.tscn"
 
 [display]
