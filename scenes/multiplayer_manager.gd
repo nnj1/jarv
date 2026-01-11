@@ -111,6 +111,8 @@ func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "
 			},
 			"grid_items": []
 		}
+	
+	MusicPlayer.start_multiplayer_session()
 
 func start_client(ADDRESS = 'localhost', PORT = 9999):
 	self.ROLE = 'Client'

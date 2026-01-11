@@ -118,7 +118,8 @@ func send_chat(new_text, id):
 		if new_text == '/gravity off':
 			get_node('entities/1').gravity_on = false
 		if new_text == '/advancetrack':
-			MusicPlayer.rpc('advance_track')
+			if multiplayer.is_server():
+				MusicPlayer.skip_track()
 		if new_text == '/refuel':
 			get_node('entities/Gmc').refuel()
 		if new_text == '/repair':
