@@ -1,5 +1,7 @@
 extends MultiplayerSpawner
 
+@onready var main_game_node = get_tree().get_root().get_node('Node3D')
+
 @export var network_player: PackedScene
 
 func _ready() -> void:
@@ -15,6 +17,8 @@ func _ready() -> void:
 	else:
 		# CLIENTS listen for the "connected_to_server" signal
 		multiplayer.connected_to_server.connect(_on_connected_to_server)
+		# Clients connect to this to detect if the host closed the game
+		multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 # This only runs on the Client the moment they successfully handshake with the server
 func _on_connected_to_server() -> void:
@@ -73,3 +77,10 @@ func despawn_player(id: int):
 	var player = container.get_node_or_null(str(id))
 	if player:
 		player.queue_free()
+		# TODO: leave a message
+		main_game_node.rpc('send_chat', 'Disconnected from game.', str(id))
+
+func _on_server_disconnected():
+	# Clean up locally and send the client back to the menu
+	multiplayer.multiplayer_peer = null
+	get_tree().change_scene_to_file("res://scenes/main.tscn")

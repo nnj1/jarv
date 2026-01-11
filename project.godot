@@ -30,7 +30,7 @@ CursorManager="*res://scenes/cursor_manager.tscn"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [gui]
 
