@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=61 format=4 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://ch75vuvbyawff" path="res://shaders/gnome_mat_with_bounce.gdshader" id="2_jej6c"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bg531gqsw648s" path="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Isolated/5.56/WAV/556 Single Isolated WAV.wav" id="10_jej6c"]
 [ext_resource type="AudioStream" uid="uid://i1332fdoy88j" path="res://assets/Grumbles - Copy/Interjections/Ha.wav" id="10_oprun"]
 [ext_resource type="AudioStream" uid="uid://do1u75i0mgl63" path="res://assets/Free Footsteps Pack/Snow.wav" id="11_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://dc7hbcetts80k" path="res://assets/muzzle.png" id="14_fulsm"]
 [ext_resource type="AudioStream" uid="uid://ccmr1habota77" path="res://assets/Grumbles - Copy/Damage/Ow.wav" id="15_qfm1y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oprun"]
@@ -453,12 +454,75 @@ tracks/2/keys = {
 "method": &"hit_scan_attack"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a8ls1"]
 _data = {
 &"RESET": SubResource("Animation_oprun"),
 &"attack": SubResource("Animation_f1ej7")
 }
+
+[sub_resource type="Gradient" id="Gradient_fulsm"]
+offsets = PackedFloat32Array(0, 0.53488374, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.53333336, 0.53333336, 0.53333336, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4r5pv"]
+gradient = SubResource("Gradient_fulsm")
+
+[sub_resource type="Curve" id="Curve_60mlk"]
+_limits = [0.0, 25.0, 0.0, 1.0]
+_data = [Vector2(0, 25), 0.0, 0.0, 0, 0, Vector2(1, 25), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i4ail"]
+curve = SubResource("Curve_60mlk")
+
+[sub_resource type="Curve" id="Curve_fulsm"]
+_limits = [4.0, 8.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4r5pv"]
+curve = SubResource("Curve_fulsm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fulsm"]
+angle_min = -360.0
+angle_max = 360.00003
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_4r5pv")
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_4r5pv")
+emission_curve = SubResource("CurveTexture_i4ail")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r5pv"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("14_fulsm")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_60mlk"]
+material = SubResource("StandardMaterial3D_4r5pv")
 
 [sub_resource type="Environment" id="Environment_qlg0r"]
 background_color = Color(1, 1, 1, 1)
@@ -555,6 +619,7 @@ autostart = true
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 visible = false
+light_energy = 5.0
 
 [node name="weaponSoundPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 1, -2.191693)
@@ -620,6 +685,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_a8ls1")
 }
 speed_scale = 4.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="weapons/mauser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.1135387, -0.014629364)
+emitting = false
+amount = 1
+lifetime = 0.09999999999999999
+one_shot = true
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_fulsm")
+draw_pass_1 = SubResource("QuadMesh_60mlk")
 
 [node name="jumpSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_d2wvv")

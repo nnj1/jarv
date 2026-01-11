@@ -596,6 +596,7 @@ func _process(delta: float) -> void:
 			self.snow_status = main_game_node.get_node('entities/1').snow_status
 			$GPUParticles3D.emitting = snow_status
 		
+		
 # for periodic weather effects
 func _on_timer_timeout() -> void:
 	# only runs on the server
@@ -672,5 +673,3 @@ func request_spawn_projectile(weapon_index: int, origin_pos: Vector3, target_pos
 	# Add it to the node pointed to by your MultiplayerSpawner's "Spawn Path"
 	# Example: adding it to the 'Projectiles' container in your level
 	main_game_node.get_node('entities').add_child(rocket, true)
-
-	
