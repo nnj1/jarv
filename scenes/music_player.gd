@@ -34,19 +34,11 @@ func _ready():
 	play_menu_music()
 
 func load_music_from_folder():
-	var dir = DirAccess.open(music_folder)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if !dir.current_is_dir() and (file_name.ends_with(".mp3") or file_name.ends_with(".ogg")):
-				playlist.append(music_folder + file_name)
-			file_name = dir.get_next()
-	else:
-		print("Warning: Music folder not found at ", music_folder)
+	for file_name in GlobalVars.dir_contents(music_folder):
+		playlist.append(music_folder + file_name)
 
 func play_menu_music():
-	if FileAccess.file_exists(menu_music_path):
+	if ResourceLoader.exists(menu_music_path):
 		var stream_res = load(menu_music_path)
 		if self.stream != stream_res:
 			self.stream = stream_res
@@ -85,7 +77,7 @@ func _on_disconnected():
 
 @rpc("authority", "call_local", "reliable")
 func sync_track_to_all(track_path: String, timestamp: float):
-	if not FileAccess.file_exists(track_path):
+	if not ResourceLoader.exists(track_path):
 		print("Error: Missing music file: ", track_path)
 		return
 

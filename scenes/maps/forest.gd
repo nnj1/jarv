@@ -141,8 +141,34 @@ func find_road_center(near_pos: Vector2, search_range: int) -> Vector2:
 			z += step
 		x += step
 	return best_pos
-
+	
 func load_scenes_from_dir(path: String) -> Array[PackedScene]:
+	var arr: Array[PackedScene] = []
+	if path == "": 
+		return arr
+		
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			if not dir.current_is_dir() and not file_name.ends_with(".import"):
+				var full_path = path.path_join(file_name)
+				
+				# ResourceLoader.exists() is a safe check before attempting to load
+				if ResourceLoader.exists(full_path):
+					var resource = ResourceLoader.load(full_path)
+					if resource is PackedScene:
+						arr.append(resource)
+						
+			file_name = dir.get_next()
+	else:
+		push_error("Failed to access path: " + path)
+		
+	return arr
+
+func load_scenes_from_dir_old(path: String) -> Array[PackedScene]:
 	var arr: Array[PackedScene] = []
 	if path == "": return arr
 	var dir = DirAccess.open(path)
