@@ -720,7 +720,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.126053, 0)
 size = Vector3(7.4235535, 7.9203186, 23.197754)
 
 [node name="door" parent="." instance=ExtResource("9_asokp")]
-collision_layer = 0
 collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_asokp")
 

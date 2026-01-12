@@ -6,6 +6,7 @@
 size = Vector3(0.43701172, 5.4958344, 2.2504883)
 
 [node name="door" type="StaticBody3D"]
+collision_layer = 0
 script = ExtResource("1_hpvv5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

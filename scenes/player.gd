@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.002
 @export var camera_pivot: Node3D        # Drag the Camera Pivot (Node3D) here
 @export var tps_arm: SpringArm3D       # Drag the TPS_Arm (SpringArm3D) here
+@export var tps_pitch: float = 0.0
 @export var fp_position: Node3D        # Drag the FP_Pos (Node3D) here
 @export var transition_speed: float = 10.0 # How fast the camera moves when switching
 @export var tps_distance: float = 4.0   # The maximum length of the SpringArm in TP mode
@@ -530,13 +531,25 @@ func _unhandled_input(event):
 			
 		# Vertical Rotation (X-axis): Rotates the Camera Pivot node
 		if camera_pivot:
-			camera_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
-			
-			# Clamp the vertical rotation
-			var cam_rot_x = camera_pivot.rotation.x
-			camera_pivot.rotation.x = clamp(cam_rot_x, -CLAMP_ANGLE, CLAMP_ANGLE)
+			if is_first_person:
+				camera_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
+				# Clamp the vertical rotation
+				var cam_rot_x = camera_pivot.rotation.x
+				camera_pivot.rotation.x = clamp(cam_rot_x, -CLAMP_ANGLE, CLAMP_ANGLE)
+			else:
+				# Clamp the vertical rotation
 
-
+				# 1. Calculate the intended change
+				var change = event.relative.y * mouse_sensitivity
+				
+				# 2. Add change to our tracker and clamp it (e.g., between -90 and 90 degrees)
+				# We use radians because rotate_object_local does
+				var prev_pitch = tps_pitch
+				tps_pitch = clamp(tps_pitch + change, deg_to_rad(-45), deg_to_rad(45))
+				
+				# 3. Only rotate by the amount that wasn't "cut off" by the clamp
+				camera_pivot.rotate_object_local(Vector3.LEFT, tps_pitch - prev_pitch)
+				
 # Helper function for instantaneous position setting (used at start)
 func _set_view_position(target: Vector3):
 	if camera:
