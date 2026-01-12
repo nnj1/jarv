@@ -51,12 +51,8 @@ Executables coming soon!
 | **Move Left** | `A` |
 | **Move Right** | `D` |
 | **Jump** | `Space` |
-| **Drive Forward** | `Up Arrow` |
-| **Drive Backward** | `Down Arrow` |
-| **Steer Left** | `Left Arrow` |
-| **Steer Right** | `Right Arrow` |
 | **Handbrake** | `B` |
-| **Shift Gear** | `Shift` |
+| **Shift Gear** | `Alt` |
 | **High Beams** | `L` |
 | **Horn** | `H` |
 | **Interact** | `E` |
@@ -64,12 +60,12 @@ Executables coming soon!
 | **Zoom** | `Right Mouse Button` |
 | **Reload** | `R` |
 | **Toggle Flashlight** | `F` |
-| **Scroll Up** | `Mouse Wheel Up` |
-| **Scroll Down** | `Mouse Wheel Down` or `Tab` |
+| **Swap Weapon Up** | `Mouse Wheel Up` |
+| **Swap Weapon Down** | `Mouse Wheel Down` or `Tab` |
 | **Toggle Perspective/View** | `T` |
 | **Open Chat** | `Y` |
 | **Console Command** | `/` (Slash) |
-| **Toggle Post-Processing** | ``` (Backtick) |
+| **Toggle Post-Processing** | `\`` (Backtick) |
 
 ---
 *JaRV - Survival is better on four wheels (and with a bottle of whiskey).*
