@@ -16,14 +16,14 @@ enum Gear { DRIVE, REVERSE }
 @export_group("Fuel Settings")
 @export var max_fuel: float = 100.0
 @export var current_fuel: float = 100.0
-@export var fuel_consumption_rate: float = 1.5
-@export var idle_consumption_rate: float = 0.1
+@export var fuel_consumption_rate: float = 0.1
+@export var idle_consumption_rate: float = 0.05
 
 @export_group("Battery Settings")
 @export var max_battery: float = 100.0
 @export var current_battery: float = 100.0
-@export var battery_consumption_rate_high_beams: float = 1.5
-@export var battery_consumption_rate_high_beams_idle: float = 0.1
+@export var battery_consumption_rate_high_beams: float = 0.001
+@export var battery_consumption_rate_high_beams_idle: float = 0.005
 @export var high_beams_status: bool = false
 
 @export_group("Oil Settings")
@@ -248,6 +248,19 @@ func _physics_process(delta: float) -> void:
 		# turn off high beams manually
 		high_beams_status = false
 
+	# 2. Oil Consumption Logic
+	if current_oil > 0:
+		if engine_force: # oil gets more consumed when engine runs
+			current_oil -= oil_consumption_rate * 2 * delta
+		else:
+			current_oil -= oil_consumption_rate * delta
+	else:
+		# prevent oil from dipping below zero
+		current_battery = 0
+		# cause damage to the car as it runs
+		if engine_force:
+			current_health -= oil_consumption_rate * delta
+
 	# 3. ROTATION LOGIC
 	for rotating_part in rotating_parts:
 		if rotating_part:
@@ -341,6 +354,9 @@ func refuel(amount: float = 1000) -> void:
 
 func recharge(amount: float = 1000) -> void:
 	current_battery = clamp(current_battery + amount, 0, max_battery)
+	
+func reoil(amount: float = 1000) -> void:
+	current_oil = clamp(current_oil + amount, 0, max_oil)
 	
 func repair(amount: float = 1000) -> void:
 	current_health = clamp(current_health + amount, 0, max_health)

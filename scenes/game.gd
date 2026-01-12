@@ -122,6 +122,8 @@ func send_chat(new_text, id):
 				MusicPlayer.skip_track()
 		if new_text == '/refuel':
 			get_node('entities/Gmc').refuel()
+		if new_text == '/reoil':
+			get_node('entities/Gmc').reoil()
 		if new_text == '/repair':
 			get_node('entities/Gmc').repair()
 		if new_text == '/recharge':
