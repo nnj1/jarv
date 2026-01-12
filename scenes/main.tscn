@@ -29,7 +29,7 @@ metadata/_tab_index = 0
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server"]
 layout_mode = 2
-placeholder_text = "Enter custom game name"
+placeholder_text = "Enter server game name"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server"]
 layout_mode = 2
@@ -80,6 +80,11 @@ access = 1
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server"]
 layout_mode = 2
 
+[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter RV name"
+
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -89,6 +94,11 @@ editable = false
 [node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
 layout_mode = 2
 text = "Load RV Save"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
+layout_mode = 2
+disabled = true
+text = "Close Save"
 
 [node name="Server Browser" type="ItemList" parent="CanvasLayer/VBoxContainer/TabContainer"]
 visible = false
@@ -172,6 +182,7 @@ render_target_update_mode = 4
 [connection signal="item_selected" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/OptionButton2" to="." method="_on_option_button_2_item_selected"]
 [connection signal="file_selected" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Button2" to="." method="_on_join_pressed"]
 [connection signal="text_changed" from="CanvasLayer/VBoxContainer/HBoxContainer2/TextEdit" to="." method="_on_text_edit_text_changed"]

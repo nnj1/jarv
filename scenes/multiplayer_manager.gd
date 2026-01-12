@@ -17,10 +17,9 @@ var friendly_fire = true
 var auto_save = false
 var current_port:int
 var starting_map_string:String
-var path_for_save:String
 var rv_data: Dictionary
 
-func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "'s Game") -> void:
+func start_server(PORT = 9999, given_rv_name = "", given_game_name=GameManager.selected_username + "'s Game") -> void:
 	self.ROLE = 'Server'
 	peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
@@ -30,15 +29,18 @@ func start_server(PORT = 9999, given_game_name=GameManager.selected_username + "
 		game_name = given_game_name
 	else:
 		game_name = new_game_name
-	# TODO: ensure RV save data is valid
-	if path_for_save:
-		rv_data = GlobalVars.load_json_file(path_for_save)
-		#print(rv_data)
+	if self.rv_data:
+		# Set a new RV name if server passed in new name:
+		if given_rv_name == '':
+			rv_data.metadata.name = 'Generic RV Name'
+		else:
+			rv_data.metadata.name = given_rv_name
 	else:
-		# create new generic data for RV
-		rv_data = {
+		# create new data for RV
+		print('Created new RV JSON data for ' + given_rv_name)
+		self.rv_data = {
 			"metadata": {
-				"name": "Generic RV Name",
+				"name": (given_rv_name if given_rv_name != "" else 'GENERIC RV NAME'),
 				"stats": {
 					"current_fuel": 100, "max_fuel": 100,
 					"current_health": 100, "max_health": 100,

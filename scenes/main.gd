@@ -130,8 +130,7 @@ func _process(delta: float) -> void:
 func _on_host_pressed():
 	# 1. Stop listening so another debug window can take the port	
 	stop_listening()
-	
-	GameManager.start_server(int($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text))
+	GameManager.start_server(int($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text), $"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit2".text)
 	#TODO: Get the scene transition to work without destroying multiplayer connectivity
 	#SceneTransition.change_scene('res://scenes/game.tscn')
 	get_tree().change_scene_to_file('res://scenes/game.tscn')
@@ -200,8 +199,6 @@ func stop_listening():
 func _on_button_pressed() -> void:
 	$"CanvasLayer/VBoxContainer/TabContainer/Create Server/FileDialog".visible = true
 
-
-
 func _on_line_edit_text_changed(new_text: String) -> void:
 	GameManager.new_game_name = new_text
 
@@ -218,5 +215,16 @@ func _on_option_button_2_item_selected(index: int) -> void:
 	GameManager.starting_map_string = $"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/OptionButton2".get_item_text(index).get_basename()
 
 func _on_file_dialog_file_selected(path: String) -> void:
-	GameManager.path_for_save = path
+	var local_rv_data = GlobalVars.load_json_file(path)
+	#TODO: Check to make sure it's a valid game save file
+	GameManager.rv_data = local_rv_data.duplicate(true)
 	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit'.text = path
+	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/Button2'.disabled = false
+	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit2'.text = GameManager.rv_data.metadata.name
+	
+func _on_button_2_pressed() -> void:
+	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit2'.text = ''
+	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit'.text = ''
+	$'CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/Button2'.disabled = true
+
+	
