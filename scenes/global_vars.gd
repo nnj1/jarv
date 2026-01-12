@@ -68,7 +68,7 @@ func choose_random_from_list(rand_list):
 	return rand_list[randi() % rand_list.size()]
 
 #useful function for returning a list of files in a directory
-func dir_contents(path):
+func dir_contents_old(path):
 	var files = []
 	var dir = DirAccess.open(path)
 	if dir:
@@ -87,6 +87,35 @@ func dir_contents(path):
 		#print("An error occurred when trying to access the path.")
 		pass
 	return files
+	
+func dir_contents(path: String) -> Array:
+	var filenames = []
+	var dir = DirAccess.open(path)
+	
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			if !dir.current_is_dir():
+				# 1. Clean the path to handle exported naming conventions
+				var full_path = path.path_join(file_name)
+				var clean_path = full_path.replace(".remap", "").replace(".import", "")
+				
+				# 2. Check if Godot recognizes it as a resource
+				if ResourceLoader.exists(clean_path):
+					# 3. Extract just the name (e.g., "level1.tscn")
+					var just_the_file = clean_path.get_file()
+					
+					if !filenames.has(just_the_file):
+						filenames.append(just_the_file)
+			
+			file_name = dir.get_next()
+		dir.list_dir_end()
+	else:
+		printerr("Error: Could not open path: ", path)
+	
+	return filenames
 
 func load_json_file(file_path: String):
 	# 1. Check if the file exists
