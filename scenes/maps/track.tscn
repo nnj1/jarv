@@ -42181,12 +42181,13 @@ data = PackedVector3Array(717.6986, -810.0979, 0.0506, 726.72656, -816.5401, -5.
 [node name="Track" type="Node3D"]
 
 [node name="rv_spawn_point" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 986.40955, 222.67435, -131.80634)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1476.7979, 351.47647, -222.23543)
 
 [node name="player_spawn_point" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 993.40955, 226.55768, -180.42685)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1483.7979, 355.3598, -270.85596)
 
 [node name="Sketchfab_Scene" type="Node3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_lwb78")
 
 [node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene"]
