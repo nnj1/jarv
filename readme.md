@@ -40,5 +40,36 @@ Take a moment to appreciate the low-poly horizons before the night-time threats 
 2.  **Make sure blender is installed to load some models** 
 3.  **Launch the game**
 
+Executables coming soon!
+
+### Controls
+| Action Description | Key / Input |
+| --- | --- |
+| **Pause Game** | `Escape` |
+| **Move Forward** | `W` |
+| **Move Backward** | `S` |
+| **Move Left** | `A` |
+| **Move Right** | `D` |
+| **Jump** | `Space` |
+| **Drive Forward** | `Up Arrow` |
+| **Drive Backward** | `Down Arrow` |
+| **Steer Left** | `Left Arrow` |
+| **Steer Right** | `Right Arrow` |
+| **Handbrake** | `B` |
+| **Shift Gear** | `Shift` |
+| **High Beams** | `L` |
+| **Horn** | `H` |
+| **Interact** | `E` |
+| **Shoot** | `Left Mouse Button` |
+| **Zoom** | `Right Mouse Button` |
+| **Reload** | `R` |
+| **Toggle Flashlight** | `F` |
+| **Scroll Up** | `Mouse Wheel Up` |
+| **Scroll Down** | `Mouse Wheel Down` or `Tab` |
+| **Toggle Perspective/View** | `T` |
+| **Open Chat** | `Y` |
+| **Console Command** | `/` (Slash) |
+| **Toggle Post-Processing** | ``` (Backtick) |
+
 ---
 *JaRV - Survival is better on four wheels (and with a bottle of whiskey).*
