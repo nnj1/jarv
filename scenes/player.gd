@@ -44,6 +44,11 @@ var max_weapons:int = 3
 var health_decay_rate:float = 0.1
 var recoil_velocity: Vector3 = Vector3.ZERO
 
+# stuff for edit mode in the RV
+var in_edit_mode:bool =  false
+var in_rv: bool = false
+var currently_highlighted_mesh: MeshInstance3D
+
 var gravity_on:bool = true
 
 @export var skin_color = Color(1,0,0)
@@ -115,6 +120,9 @@ func change_weapon(index:  int = weapon_index):
 func start_driving(_given_seat_node):
 	# 1. Set local state so the Client enters the loop immediately
 	self.is_driving = true
+	# turn off collisions with internal items of the car 
+	$camera_pivot/tps_arm/Camera3D/RayCast3D.set_collision_mask_value(6, false)
+	
 	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').show()
 	
 	# 2. Assign the seat node locally so the position lock works
@@ -129,6 +137,10 @@ func start_driving(_given_seat_node):
 func stop_driving():
 	rpc_id(1, "server_register_driver", false)
 	self.is_driving = false
+	
+	# turn back on collision with internal items in car
+	$camera_pivot/tps_arm/Camera3D/RayCast3D.set_collision_mask_value(6, true)
+	
 	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').hide()
 	self.seat_node = null
 	self.rotation = Vector3.ZERO
@@ -288,9 +300,27 @@ func _physics_process(delta):
 		entity_held.drop()
 		self.entity_held = null
 	
+	# for checking interaction ray colliders
 	if $camera_pivot/tps_arm/Camera3D/RayCast3D.is_colliding():
 		var target = $camera_pivot/tps_arm/Camera3D/RayCast3D.get_collider()
+		
+		# put the target node name that is being collided with in the top right corner
 		main_game_node.get_node('CanvasLayer/HBoxContainer/target').text = str(target)
+		
+		# if this node has children that are meshes, change the highlight on the mesh if we are in edit mode
+		if in_edit_mode:
+					
+			var closest_mesh = get_closest_mesh_to_raycast($camera_pivot/tps_arm/Camera3D/RayCast3D)
+			if closest_mesh:
+				#print("Precisely hit: ", closest_mesh.name)
+				# dehighlight any previously selected mesh
+				if currently_highlighted_mesh != closest_mesh and currently_highlighted_mesh != null:
+					set_highlight_mesh(currently_highlighted_mesh, false)
+				# highlight the new mesh and set it as currently highlighted
+				set_highlight_mesh(closest_mesh, true)
+				currently_highlighted_mesh = closest_mesh
+				
+		
 		if 'is_interactable' in target and entity_held == null:
 			if target.is_interactable and not 'IS_RV' in target:
 				var message = target.custom_interact_message if ('custom_interact_message' in target) else 'Press E to interact'
@@ -482,6 +512,29 @@ func _unhandled_input(event):
 		is_zooming = true
 	elif event.is_action_released("zoom"):
 		is_zooming = false
+		
+	# Detect Edit mode Input
+	if event.is_action_pressed("edit") and not is_driving: # Map this to Right Mouse Button
+		in_edit_mode = true
+		# play the sound
+		$editSound.play()
+		# boost the FOV
+		#default_fov = 100
+		# swap to the hand
+		weapon_index = 0
+		change_weapon(weapon_index)
+		# change crosshair texture
+		main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(116, 20, 10)	
+	elif event.is_action_released("edit") and not is_driving:
+		in_edit_mode = false
+		# turn off any currently highlighted mesh
+		if currently_highlighted_mesh:
+			set_highlight_mesh(currently_highlighted_mesh, false)
+		$editSound.play()
+		default_fov = 75
+		# swap to the hand
+		weapon_index = 0
+		change_weapon(weapon_index)
 		
 	if event.is_action_pressed('scroll_up'):
 		weapon_index += 1
@@ -688,3 +741,61 @@ func request_spawn_projectile(weapon_index: int, origin_pos: Vector3, target_pos
 	# Add it to the node pointed to by your MultiplayerSpawner's "Spawn Path"
 	# Example: adding it to the 'Projectiles' container in your level
 	main_game_node.get_node('entities').add_child(rocket, true)
+
+# helpful function for recursively getting all meshes (useful for raycast)
+func get_all_nested_meshes(node: Node, mesh_list: Array[MeshInstance3D] = []) -> Array[MeshInstance3D]:
+	if node is MeshInstance3D:
+		mesh_list.append(node)
+	
+	for child in node.get_children():
+		get_all_nested_meshes(child, mesh_list)
+		
+	#print(mesh_list)
+	return mesh_list
+
+# if the mesh has a next pass highlight shader on the it's override material, highlight it
+func set_highlight_mesh(closest_mesh: MeshInstance3D, state:bool = true):
+	# highlight this mesh
+	var override_mat = closest_mesh.get_surface_override_material(0)
+	if override_mat:
+		var outline_shader_mat = override_mat.next_pass
+		if outline_shader_mat:
+			outline_shader_mat.set_shader_parameter('is_active', state)
+
+# exactly as the function says, it checks AABBs
+func get_closest_mesh_to_raycast(ray: RayCast3D) -> MeshInstance3D:
+	var hit_point = ray.get_collision_point()
+	var body = ray.get_collider()
+			
+	var ray_origin = ray.global_position
+	var ray_direction = (hit_point - ray_origin).normalized()
+	
+	# If you're in the RV only be able to select meshes of shit inside the RV
+	if self.in_rv:
+		body = main_game_node.get_node('entities/Gmc')
+		
+	var all_meshes = get_all_nested_meshes(body)
+	#print(all_meshes)
+	var best_mesh: MeshInstance3D = null
+	var min_error = INF
+
+	for mesh in all_meshes:
+		# 1. Local AABB check first to narrow it down
+		var local_point = mesh.to_local(hit_point)
+		if mesh.get_aabb().has_point(local_point):
+			
+			# 2. Calculate the 'Error' (Perpendicular distance from ray to mesh center)
+			# This distinguishes which mesh the ray is actually 'skewering'
+			var mesh_center = mesh.global_position
+			var vec_to_center = mesh_center - ray_origin
+			
+			# Project center onto the ray to find the closest point on the line
+			var projection = ray_origin + ray_direction * vec_to_center.dot(ray_direction)
+			var distance_to_ray_line = projection.distance_to(mesh_center)
+			
+			# 3. Choose the mesh with the smallest offset from the ray line
+			if distance_to_ray_line < min_error:
+				min_error = distance_to_ray_line
+				best_mesh = mesh
+				
+	return best_mesh

@@ -385,15 +385,20 @@ func _apply_stability_logic():
 	apply_central_force(Vector3.DOWN * mass * 0.5)
 
 # local functions for determining whether we can repair the vehicle
-@warning_ignore("unused_parameter")
 func _on_inner_volume_body_entered(body: Node3D) -> void:
+	if 'IS_PLAYER' in body:
+		if body.IS_PLAYER:
+			body.in_rv = true
 	is_interactable = false
 
-@warning_ignore("unused_parameter")
+
 func _on_inner_volume_body_exited(body: Node3D) -> void:
+	if 'IS_PLAYER' in body:
+		if body.IS_PLAYER:
+			body.in_rv = false
 	is_interactable = true 
 
-# for detecting crashes
+# for detecting crashes/collisions to the RV vehiclebody3d
 func _on_body_entered(body: Node) -> void:
 	
 	# 2. Set a threshold so minor bumps don't cause dents

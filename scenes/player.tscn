@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://cbaoxocs5fdn5"]
+[gd_scene load_steps=62 format=4 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://ch75vuvbyawff" path="res://shaders/gnome_mat_with_bounce.gdshader" id="2_jej6c"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://do1u75i0mgl63" path="res://assets/Free Footsteps Pack/Snow.wav" id="11_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://dc7hbcetts80k" path="res://assets/muzzle.png" id="14_fulsm"]
 [ext_resource type="AudioStream" uid="uid://ccmr1habota77" path="res://assets/Grumbles - Copy/Damage/Ow.wav" id="15_qfm1y"]
+[ext_resource type="AudioStream" uid="uid://bb6kt62n67y7h" path="res://assets/UI Soundpack/UI Soundpack/MP3/Coffee1.mp3" id="19_4r5pv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oprun"]
 radius = 1.1162109
@@ -585,7 +586,7 @@ current = true
 [node name="RayCast3D" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 2.1, 0, 0, 0, 1, 0, 0, -0.009)
 target_position = Vector3(0, 0, -3)
-collision_mask = 23
+collision_mask = 55
 collide_with_areas = true
 
 [node name="flashlight" type="SpotLight3D" parent="camera_pivot/tps_arm/Camera3D" node_paths=PackedStringArray("toggle_sound")]
@@ -746,5 +747,9 @@ max_db = 5.0
 
 [node name="Timer" type="Timer" parent="idleSound"]
 wait_time = 5.0
+
+[node name="editSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_4r5pv")
+volume_db = 2.0
 
 [connection signal="timeout" from="GPUParticles3D/Timer" to="." method="_on_timer_timeout"]
