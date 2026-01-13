@@ -44,6 +44,12 @@ enum Gear { DRIVE, REVERSE }
 @export var current_chemical_sludge: int = 0
 @export var current_processor_chips: int = 0
 
+@export_group("Interior Meshes")
+@onready var steering_wheel_mesh = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Circle_001_0/Object_4
+@onready var drivers_seat_base_mesh = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_1/Object_6
+@onready var drivers_seat_mesh = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_003_2/Object_8
+@onready var inner_body_mesh = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_006_3/Object_10
+
 
 @export_group("Animations")
 @export var rotation_speed_multiplier: float = 1.0

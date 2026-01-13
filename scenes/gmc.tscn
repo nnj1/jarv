@@ -1,8 +1,9 @@
-[gd_scene load_steps=52 format=4 uid="uid://do3xxsfa4op1l"]
+[gd_scene load_steps=53 format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
 [ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]
 [ext_resource type="Material" uid="uid://csseaenios2wy" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/clay.001.tres" id="3_2fmfr"]
+[ext_resource type="Material" uid="uid://d0knl0nnrco52" path="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/WoodFloor007_1K-JPG/wood_interior.tres" id="3_l0436"]
 [ext_resource type="Shader" uid="uid://dkhww0v5e0wr5" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/gmc_damage.gdshader" id="3_wbms2"]
 [ext_resource type="Material" uid="uid://dgbh3boursvid" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/windows.tres" id="4_6ms31"]
 [ext_resource type="Texture2D" uid="uid://62ijnpx5gtj0" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/clay_baseColor.png" id="4_rcdwc"]
@@ -558,6 +559,7 @@ transform = Transform3D(1.169081, 0, 0, 0, 1.169081, 0, 0, 0, 1.169081, 0, 0, 0)
 gi_mode = 2
 mesh = SubResource("ArrayMesh_jwa7j")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_l0436")
 
 [node name="Cube_001_4" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65635234, 0.29307264, 3.47624)
