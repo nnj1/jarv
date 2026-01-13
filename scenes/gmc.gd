@@ -139,6 +139,8 @@ func network_horn_off():
 @rpc("any_peer","call_local", "reliable")
 func network_gear_change():
 	current_gear = Gear.REVERSE if current_gear == Gear.DRIVE else Gear.DRIVE
+	if not $gearShiftSound.playing:
+		$gearShiftSound.play()
 	if current_gear == Gear.REVERSE:
 		$reverseSound.play()
 	else:
