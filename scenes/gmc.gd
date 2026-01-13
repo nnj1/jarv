@@ -22,8 +22,8 @@ enum Gear { DRIVE, REVERSE }
 @export_group("Battery Settings")
 @export var max_battery: float = 100.0
 @export var current_battery: float = 100.0
-@export var battery_consumption_rate_high_beams: float = 0.001
-@export var battery_consumption_rate_high_beams_idle: float = 0.005
+@export var battery_consumption_rate_high_beams: float = 0.1
+@export var battery_consumption_rate_high_beams_idle: float = 0.05
 @export var high_beams_status: bool = false
 
 @export_group("Oil Settings")
@@ -189,9 +189,10 @@ func _process(_delta: float) -> void:
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear').text = ['Drive', 'Reverse'][current_gear]
 	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/car_speed').text = str(int(current_speed_kmh)) + ' kmh'
 	main_game_node.get_node("CanvasLayer/RV_HUD/fuelpercent").text = str(int(current_fuel)) + "L"
-	main_game_node.get_node("CanvasLayer/RV_HUD/oilpercent").text = str(int(current_oil)) + "%"
-	main_game_node.get_node("CanvasLayer/RV_HUD/batterypercent").text = str(int(current_battery)) + "%"
-	main_game_node.get_node("CanvasLayer/RV_HUD/rvhealthpercentage").text = str(int(current_health)) + "%"
+	main_game_node.get_node("CanvasLayer/RV_HUD/oilpercent").text = str(int(current_oil / max_oil * 100)) + "%"
+	main_game_node.get_node("CanvasLayer/RV_HUD/batterypercent").text = str(int(current_battery / max_battery * 100)) + "%"
+	main_game_node.get_node("CanvasLayer/RV_HUD/rvhealthpercentage").text = str(int(current_health / max_health * 100)) + "%"
+	main_game_node.get_node("CanvasLayer/RV_HUD/Polygon2D5").material.set_shader_parameter("fill", float(current_health / max_health))
 	main_game_node.get_node('CanvasLayer/RV_HUD/wiring_components').text = str(int(current_wiring_components))
 	main_game_node.get_node('CanvasLayer/RV_HUD/refined_plates').text = str(int(current_refined_plates))
 	main_game_node.get_node('CanvasLayer/RV_HUD/processor_chips').text = str(int(current_processor_chips))

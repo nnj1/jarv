@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=33 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://do3xxsfa4op1l" path="res://scenes/gmc.tscn" id="3_p57ef"]
 [ext_resource type="Environment" uid="uid://b1syrdek0evt8" path="res://resources/gameworldenv.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://bna7jai6hx8m0" path="res://scenes/directional_light_3d.gd" id="4_lbhrr"]
+[ext_resource type="Shader" uid="uid://o3hu7fxclc3f" path="res://shaders/fillbar.gdshader" id="7_264po"]
 [ext_resource type="Texture2D" uid="uid://13a0tm6jijnb" path="res://assets/8664993.png" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ipusdowtqxok" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_05.png" id="10_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bvvojlcwjdmsu" path="res://assets/oil.png" id="10_kvuet"]
@@ -64,6 +65,12 @@ _data = {
 &"RESET": SubResource("Animation_dinhu"),
 &"bounce": SubResource("Animation_kvpfn")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_264po"]
+shader = ExtResource("7_264po")
+shader_parameter/fill = 1.0
+shader_parameter/color_empty = Color(1, 0.12941177, 0.12941177, 0.5803922)
+shader_parameter/color_full = Color(0.12941177, 1, 0.12941177, 0.5803922)
 
 [sub_resource type="DPITexture" id="DPITexture_kvpfn"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
@@ -292,11 +299,12 @@ polygon = PackedVector2Array(111, -60, 260, -37, 239.6, 66, 107, 32)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
 [node name="Polygon2D5" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
-position = Vector2(-229.00002, 354)
+material = SubResource("ShaderMaterial_264po")
+position = Vector2(-6, 491)
 scale = Vector2(1.6666666, 1)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
-polygon = PackedVector2Array(129.634, 135.65701, 269.02292, 142.04062, 281.544, 201.4643, 131, 185)
-uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
+polygon = PackedVector2Array(-1.486969, -0.6750778, 137.90195, 5.708528, 150.42303, 65.1322, -0.12097168, 48.66791)
+uv = PackedVector2Array(-1.486969, -0.6750778, 137.90195, 5.708528, 150.42303, 65.1322, -0.12097168, 48.66791)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RV_HUD"]
 layout_mode = 0
