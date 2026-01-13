@@ -65,7 +65,66 @@ Executables coming soon!
 | **Toggle Perspective/View** | `T` |
 | **Open Chat** | `Y` |
 | **Console Command** | `/` (Slash) |
-| **Toggle Post-Processing** | `\`` (Backtick) |
+| **Toggle Post-Processing** | ` ` ` (Backtick) |
+
+---
+
+# ⌨️ Console Commands
+
+To execute a command, open the chat box during gameplay. Commands are **case-sensitive** and must begin with a forward slash (`/`).
+
+### **How to Use**
+
+1. Press **`Enter`** to open the chat or **`/`** to open it with the prefix already filled.
+2. Type the command (and any required arguments).
+3. Press **`Enter`** to submit.
+
+---
+
+### 👤 General Commands
+
+Available to all players on the server.
+
+| Command | Arguments | Description |
+| --- | --- | --- |
+| `/respawn` | None | Resets your character to the current map's designated `player_spawn_point`. Useful if stuck or glitched. |
+
+### 🚐 RV Management (Server Only)
+
+These commands interact with the `Gmc` vehicle node to manage its resources and state.
+
+| Command | Description |
+| --- | --- |
+| `/save` | Saves the RV's current position and state. |
+| `/refuel` | Instantly refills the fuel tank to maximum capacity. |
+| `/reoil` | Resets oil levels to 100%. |
+| `/repair` | Fixes all structural and mechanical damage to the vehicle. |
+| `/recharge` | Fully restores the RV's battery life. |
+
+### 🌍 World & Environment (Server Only)
+
+Commands to manipulate game physics, time, and scene loading.
+
+| Command | Arguments | Description |
+| --- | --- | --- |
+| `/sethour` | `[0-23]` | Sets the world clock to a specific hour (e.g., `/sethour 0` for midnight). |
+| `/snow` | `on` / `off` | Manually toggles the snowfall weather system. |
+| `/gravity` | `on` / `off` | Toggles gravity for the host. Set to `off` to fly/noclip. |
+| `/changemap` | `[name]` | Clears the current map and loads `res://scenes/maps/[name].tscn`. |
+| `/advancetrack` | None | Skips the current background music track. |
+| `/heal` | None | Restores the host player's health to 100%. |
+
+### 📦 Spawning System (Server Only)
+
+Entities are spawned relative to where the host player is currently looking.
+
+| Command | Entity Name | Result |
+| --- | --- | --- |
+| `/spawn` | `bear` | Spawns a bear NPC that homes in on its spawn location. |
+| `/spawn` | `skull` | Spawns a physics-based skull with a randomized scale and glow color. |
+| `/spawn` | `whiskey` | Spawns a whiskey item at the end of the interaction ray. |
+| `/spawn` | `soju` | Spawns a soju item at the end of the interaction ray. |
+| `/spawn` | `gas_carton` | Spawns a gas carton at the end of the interaction ray. |
 
 ---
 *JaRV - Survival is better on four wheels (and with a bottle of whiskey).*
