@@ -34,6 +34,8 @@ enum Gear { DRIVE, REVERSE }
 @export_group("RV Health Settings")
 @export var max_health: float = 100.0
 @export var current_health: float = 100.0
+# mitigates all incoming sources of damage (exlcuding physical)
+@export var damage_damper: float = 1 #10
 
 @export_group("Materials")
 @export var current_rusty_scrap: int = 0
@@ -364,7 +366,7 @@ func repair(amount: float = 1000) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func damage(amount = 1) -> void:
 	if not multiplayer.is_server(): return
-	current_health = clamp(current_health - amount, 0, max_health)
+	current_health = clamp(current_health - amount/damage_damper, 0, max_health)
 	# will have to adjust volume and other parameters
 	$crashSound.play()
 
@@ -388,7 +390,7 @@ func _on_body_entered(body: Node) -> void:
 	# 2. Set a threshold so minor bumps don't cause dents
 	if current_speed_kmh > 15.0:
 		# Map the speed to a damage value (e.g., 20 m/s = 0.4 damage)
-		var damage_gain = current_speed_kmh / 2
+		var damage_gain = current_speed_kmh / 20
 		damage(damage_gain)
 		
 		# Optional: Play a sound or spawn particles at the hit location
