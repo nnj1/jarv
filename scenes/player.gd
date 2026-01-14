@@ -318,6 +318,7 @@ func _physics_process(delta):
 		main_game_node.get_node('CanvasLayer/HBoxContainer/target').text = str(target)
 		
 		# if this node has children that are meshes, change the highlight on the mesh if we are in edit mode
+		# only do this if in RV
 		if in_edit_mode:
 					
 			var closest_mesh = get_closest_mesh_to_raycast($camera_pivot/tps_arm/Camera3D/RayCast3D)
@@ -328,8 +329,7 @@ func _physics_process(delta):
 					set_highlight_mesh(currently_highlighted_mesh, false)
 				# highlight the new mesh and set it as currently highlighted
 				set_highlight_mesh(closest_mesh, true)
-				currently_highlighted_mesh = closest_mesh
-				
+				currently_highlighted_mesh = closest_mesh	
 		
 		if 'is_interactable' in target and entity_held == null:
 			if target.is_interactable and not 'IS_RV' in target:
@@ -550,9 +550,18 @@ func _unhandled_input(event):
 		weapon_index = 0
 		change_weapon(weapon_index)
 		
-	if event.is_action_pressed("shift_click"):
-		print('Shift clicked on ' + str(currently_highlighted_mesh))
-		
+	if event.is_action_pressed("shift_click") and not is_driving:	
+		var thing = $camera_pivot/tps_arm/Camera3D/RayCast3D.get_collider()
+		if thing:
+			var menu_scene = preload('res://scenes/context_menu.tscn')
+			var menu_instance = menu_scene.instantiate()
+			menu_instance.prepare(thing.name, 'Not an editable mesh', thing)
+			if currently_highlighted_mesh:	
+				print('Shift clicked on ' + str(currently_highlighted_mesh))
+				menu_instance.prepare(thing.name, str(currently_highlighted_mesh), thing)
+			main_game_node.get_node('CanvasLayer').add_child(menu_instance)
+
+			
 	if event.is_action_pressed('scroll_up'):
 		weapon_index += 1
 		if weapon_index > max_weapons:
