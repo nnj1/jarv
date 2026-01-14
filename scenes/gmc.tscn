@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://do3xxsfa4op1l"]
+[gd_scene load_steps=68 format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
 [ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bcpaivify1yk4" path="res://scenes/door.tscn" id="9_asokp"]
 [ext_resource type="AudioStream" uid="uid://cx7pin3qnayjm" path="res://assets/car crash/clank1-91862.mp3" id="12_jh1p5"]
 [ext_resource type="AudioStream" uid="uid://d4fq7n5kremmj" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Horn/Horn.mp3" id="12_rcdwc"]
+[ext_resource type="AudioStream" uid="uid://3oxhae2djy3f" path="res://assets/tires_squal_loop.wav" id="17_ldj7c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ehrx3"]
 
@@ -562,6 +563,9 @@ properties/17/replication_mode = 2
 properties/18/path = NodePath("gearShiftSound:playing")
 properties/18/spawn = true
 properties/18/replication_mode = 2
+properties/19/path = NodePath("handbrakeSound:playing")
+properties/19/spawn = true
+properties/19/replication_mode = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asokp"]
 
@@ -820,6 +824,11 @@ bus = &"Sounds"
 [node name="hornSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0060463, 10.156509)
 stream = ExtResource("12_rcdwc")
+bus = &"Sounds"
+
+[node name="handbrakeSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0060463, 10.156509)
+stream = ExtResource("17_ldj7c")
 bus = &"Sounds"
 
 [node name="entrance_point" type="Node3D" parent="."]

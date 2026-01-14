@@ -439,7 +439,10 @@ func _physics_process(delta):
 			seat_node.get_parent().rpc('network_gear_change')
 		
 		if Input.is_action_pressed('handbrake'):
-			seat_node.get_parent().rpc('network_handbrake')
+			seat_node.get_parent().rpc('network_handbrake_on')
+		
+		if Input.is_action_just_released('handbrake'):
+			seat_node.get_parent().rpc('network_handbrake_off')
 		
 		if Input.is_action_pressed("horn"):
 			seat_node.get_parent().rpc('network_horn_on')
@@ -530,11 +533,15 @@ func _unhandled_input(event):
 		# turn off any currently highlighted mesh
 		if currently_highlighted_mesh:
 			set_highlight_mesh(currently_highlighted_mesh, false)
+		currently_highlighted_mesh = null
 		$editSound.play()
 		default_fov = 75
 		# swap to the hand
 		weapon_index = 0
 		change_weapon(weapon_index)
+		
+	if event.is_action_pressed("shift_click"):
+		print('Shift clicked on ' + str(currently_highlighted_mesh))
 		
 	if event.is_action_pressed('scroll_up'):
 		weapon_index += 1

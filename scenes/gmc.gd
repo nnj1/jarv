@@ -153,8 +153,16 @@ func network_gear_change():
 		$reverseSound.stop()
 		
 @rpc("any_peer","call_local", "reliable")
-func network_handbrake():
+func network_handbrake_on():
 	brake = brake_strength * 4.0
+	if not $handbrakeSound.playing and current_speed_kmh > 10:
+		$handbrakeSound.play()
+	elif current_speed_kmh < 3:
+		$handbrakeSound.stop()
+		
+@rpc("any_peer","call_local", "reliable")
+func network_handbrake_off():
+	$handbrakeSound.stop()
 
 @rpc("any_peer","call_local", "reliable")
 func network_highbeams():
@@ -285,10 +293,6 @@ func _physics_process(delta: float) -> void:
 	var steer_input = 0.0
 	var forward_input = 0.0
 	var back_input = 0.0
-	@warning_ignore("unused_variable")
-	var gear_key_just_pressed = null
-	@warning_ignore("unused_variable")
-	var handbrake_key_pressed = null
 	
 	# if there is a driver
 	if driver_player_id != '':
@@ -308,7 +312,9 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("shift_gear"):
 			rpc('network_gear_change')
 		if Input.is_action_pressed("handbrake"):
-			rpc('network_handbrake')
+			rpc('network_handbrake_on')
+		if Input.is_action_just_released("handbrake"):
+			rpc('network_handbrake_off')
 		if Input.is_action_pressed("horn"):
 			rpc('network_horn_on')
 		if Input.is_action_just_released("horn"):
