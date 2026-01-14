@@ -197,6 +197,16 @@ func on_new_player(player_id: int) -> void:
 		player_node.get_node('GPUParticles3D').hide()
 
 func _ready():
+	
+	if not is_multiplayer_authority():
+		# if not the authority, make the guns visible on layer 1
+		# this allows you to see other players holding guns
+		for weapon_mesh in get_all_nested_meshes($weapons):
+			weapon_mesh.set_layer_mask_value(1, true)
+			# Deferred version:
+			weapon_mesh.call_deferred("set_layer_mask_value", 1, true)
+			#print(weapon_mesh)
+	
 	if is_multiplayer_authority(): #and DisplayServer.window_is_focused():
 		# Lock the mouse at start
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
