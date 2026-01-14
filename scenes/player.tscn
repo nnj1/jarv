@@ -109,6 +109,18 @@ properties/8/replication_mode = 1
 properties/9/path = NodePath(".:current_health")
 properties/9/spawn = true
 properties/9/replication_mode = 2
+properties/10/path = NodePath("weapons/hand:visible")
+properties/10/spawn = true
+properties/10/replication_mode = 2
+properties/11/path = NodePath("weapons/grenadelauncher:visible")
+properties/11/spawn = true
+properties/11/replication_mode = 2
+properties/12/path = NodePath("weapons/knife:visible")
+properties/12/spawn = true
+properties/12/replication_mode = 2
+properties/13/path = NodePath("weapons/mauser:visible")
+properties/13/spawn = true
+properties/13/replication_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 shading_mode = 0

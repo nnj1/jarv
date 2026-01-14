@@ -204,7 +204,7 @@ func _ready():
 		for weapon_mesh in get_all_nested_meshes($weapons):
 			weapon_mesh.set_layer_mask_value(1, true)
 			# Deferred version:
-			weapon_mesh.call_deferred("set_layer_mask_value", 1, true)
+			#weapon_mesh.call_deferred("set_layer_mask_value", 1, true)
 			#print(weapon_mesh)
 	
 	if is_multiplayer_authority(): #and DisplayServer.window_is_focused():
