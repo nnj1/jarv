@@ -116,6 +116,45 @@ func dir_contents(path: String) -> Array:
 		printerr("Error: Could not open path: ", path)
 	
 	return filenames
+	
+## Recursively finds files and filters by extension (e.g., [".tscn", ".tres"])
+func get_files_recursive(path: String, filter_extensions: Array = [], filenames: Array = []) -> Array:
+	if not path.begins_with("res://") and not path.begins_with("user://"):
+		path = "res://".path_join(path)
+		
+	var dir = DirAccess.open(path)
+	
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			var full_path = path.path_join(file_name)
+			
+			if dir.current_is_dir():
+				# Dive into subfolders
+				get_files_recursive(full_path, filter_extensions, filenames)
+			else:
+				# 1. Clean path for Exported builds (.remap/.import)
+				var clean_path = full_path.replace(".remap", "").replace(".import", "")
+				
+				# 2. Check if it's a valid resource
+				if ResourceLoader.exists(clean_path):
+					var file_ext = "." + clean_path.get_extension()
+					var just_the_file = clean_path.get_file()
+					
+					# 3. Apply Extension Filter
+					# If filter is empty, take everything. Otherwise, check if extension matches.
+					if filter_extensions.is_empty() or filter_extensions.has(file_ext):
+						if not filenames.has(just_the_file):
+							filenames.append(just_the_file)
+			
+			file_name = dir.get_next()
+		dir.list_dir_end()
+	else:
+		printerr("Error: Could not open path: ", path)
+	
+	return filenames
 
 func load_json_file(file_path: String):
 	# 1. Check if the file exists

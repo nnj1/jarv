@@ -555,10 +555,10 @@ func _unhandled_input(event):
 		if thing:
 			var menu_scene = preload('res://scenes/context_menu.tscn')
 			var menu_instance = menu_scene.instantiate()
-			menu_instance.prepare(thing.name, 'Not an editable mesh', thing)
+			menu_instance.prepare(thing.name, 'An item description would go here. This item doesn\'t have a mesh', thing)
 			if currently_highlighted_mesh:	
 				print('Shift clicked on ' + str(currently_highlighted_mesh))
-				menu_instance.prepare(thing.name, str(currently_highlighted_mesh), thing)
+				menu_instance.prepare(thing.name, 'An item description would go here', thing, currently_highlighted_mesh)
 			main_game_node.get_node('CanvasLayer').add_child(menu_instance)
 
 			

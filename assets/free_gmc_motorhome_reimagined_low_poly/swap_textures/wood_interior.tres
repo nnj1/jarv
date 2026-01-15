@@ -1,0 +1,56 @@
+[gd_resource type="StandardMaterial3D" load_steps=8 format=3 uid="uid://d0knl0nnrco52"]
+
+[ext_resource type="Texture2D" uid="uid://cptyqbqqne0nl" path="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/WoodFloor007_1K-JPG/WoodFloor007_1K-JPG_Color.jpg" id="1_agj8a"]
+[ext_resource type="Texture2D" uid="uid://cy6vxcv2jpuqi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/WoodFloor007_1K-JPG/WoodFloor007_1K-JPG_AmbientOcclusion.jpg" id="2_vwj5l"]
+[ext_resource type="Texture2D" uid="uid://ccp1scjshcsau" path="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/WoodFloor007_1K-JPG/WoodFloor007_1K-JPG_Displacement.jpg" id="3_ms7ef"]
+[ext_resource type="Texture2D" uid="uid://n4x2subgea6p" path="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/WoodFloor007_1K-JPG/WoodFloor007_1K-JPG_NormalGL.jpg" id="4_nhel2"]
+[ext_resource type="Texture2D" uid="uid://bqkkgwy0w7w2c" path="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/WoodFloor007_1K-JPG/WoodFloor007_1K-JPG_Roughness.jpg" id="5_8njap"]
+
+[sub_resource type="Shader" id="Shader_agj8a"]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform vec4 wire_color : source_color = vec4(0.0, 0.216, 1.0, 0.113);
+uniform float wire_width : hint_range(0.0, 4.0) = 1.0;
+uniform bool is_active = false;
+
+void fragment() {
+    if (!is_active) {
+        discard;
+    }
+
+    // This creates a wireframe effect based on the UV coordinates
+    // It works best on meshes with clean, non-overlapping UVs
+    vec2 uv_deriv = fwidth(UV);
+    vec2 line_grid = smoothstep(uv_deriv * (wire_width - 0.5), uv_deriv * (wire_width + 0.5), UV);
+    vec2 line_grid_inv = smoothstep(uv_deriv * (wire_width - 0.5), uv_deriv * (wire_width + 0.5), 1.0 - UV);
+    
+    float edge = 1.0 - (min(min(line_grid.x, line_grid.y), min(line_grid_inv.x, line_grid_inv.y)));
+
+    if (edge < 0.1) {
+        discard; // Remove the \"faces\" so the PBR pass shows through
+    }
+
+    ALBEDO = wire_color.rgb;
+    ALPHA = wire_color.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwj5l"]
+render_priority = 0
+shader = SubResource("Shader_agj8a")
+shader_parameter/wire_color = Color(0, 0.216, 1, 0.113)
+shader_parameter/wire_width = 1.0
+shader_parameter/is_active = false
+
+[resource]
+next_pass = SubResource("ShaderMaterial_vwj5l")
+albedo_texture = ExtResource("1_agj8a")
+roughness_texture = ExtResource("5_8njap")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("4_nhel2")
+ao_enabled = true
+ao_texture = ExtResource("2_vwj5l")
+ao_texture_channel = 4
+heightmap_texture = ExtResource("3_ms7ef")
+uv1_triplanar = true
