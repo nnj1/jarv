@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7fh1b8at674v"
+path="res://.godot/imported/Turbo idle.mp3-58068f26d3d801901bb31376329666b4.mp3str"
+
+[deps]
+
+source_file="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Turbo sounds/Turbo idle.mp3"
+dest_files=["res://.godot/imported/Turbo idle.mp3-58068f26d3d801901bb31376329666b4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

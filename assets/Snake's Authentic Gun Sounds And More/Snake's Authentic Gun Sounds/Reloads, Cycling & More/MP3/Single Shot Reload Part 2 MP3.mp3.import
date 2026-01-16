@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dus6o2mkxv5pl"
+path="res://.godot/imported/Single Shot Reload Part 2 MP3.mp3-72be771a631cb132c520d45042ca1aed.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Reloads, Cycling & More/MP3/Single Shot Reload Part 2 MP3.mp3"
+dest_files=["res://.godot/imported/Single Shot Reload Part 2 MP3.mp3-72be771a631cb132c520d45042ca1aed.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

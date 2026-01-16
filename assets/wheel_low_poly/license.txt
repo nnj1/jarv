@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wheel (low poly)
+* source:	https://sketchfab.com/3d-models/wheel-low-poly-a9e4469c26f74a789614869fe0b2c5e9
+* author:	Kostikkr (https://sketchfab.com/Kostikkr)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wheel (low poly)" (https://sketchfab.com/3d-models/wheel-low-poly-a9e4469c26f74a789614869fe0b2c5e9) by Kostikkr (https://sketchfab.com/Kostikkr) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

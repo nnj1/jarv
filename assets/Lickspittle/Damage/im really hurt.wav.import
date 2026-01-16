@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bchscytmy5t6k"
+path="res://.godot/imported/im really hurt.wav-61f6dd83d038dfb0c3d00714f6bc957a.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Damage/im really hurt.wav"
+dest_files=["res://.godot/imported/im really hurt.wav-61f6dd83d038dfb0c3d00714f6bc957a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

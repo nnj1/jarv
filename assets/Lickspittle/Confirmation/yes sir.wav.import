@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3sc4e8wjpjlm"
+path="res://.godot/imported/yes sir.wav-a8fa9fdd7b5ea8a78ca71894017813c8.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Confirmation/yes sir.wav"
+dest_files=["res://.godot/imported/yes sir.wav-a8fa9fdd7b5ea8a78ca71894017813c8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

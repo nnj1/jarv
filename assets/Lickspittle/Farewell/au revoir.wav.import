@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dxftrr1mrhkx1"
+path="res://.godot/imported/au revoir.wav-df4c7effa065a84ec845bb2236c18787.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Farewell/au revoir.wav"
+dest_files=["res://.godot/imported/au revoir.wav-df4c7effa065a84ec845bb2236c18787.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

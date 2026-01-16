@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://w7khplrlamea"
+path="res://.godot/imported/GreaWarg_Attack.wav-a698c6c4f2788634a77248867da86569.sample"
+
+[deps]
+
+source_file="res://assets/Monsters Vol.2/Monsters Vol.2/GreaWarg_Attack.wav"
+dest_files=["res://.godot/imported/GreaWarg_Attack.wav-a698c6c4f2788634a77248867da86569.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

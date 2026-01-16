@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cpl53kq3p46pv"
+path="res://.godot/imported/Nuh-Uh.wav-ad18a504d62f338e91dee6eeead977b2.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Refusal/Nuh-Uh.wav"
+dest_files=["res://.godot/imported/Nuh-Uh.wav-ad18a504d62f338e91dee6eeead977b2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

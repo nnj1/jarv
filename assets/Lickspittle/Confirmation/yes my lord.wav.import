@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b645ku433dvkx"
+path="res://.godot/imported/yes my lord.wav-147a56823d664cc8a5ffc0b91b40441d.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Confirmation/yes my lord.wav"
+dest_files=["res://.godot/imported/yes my lord.wav-147a56823d664cc8a5ffc0b91b40441d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

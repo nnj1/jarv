@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8uuhng77b3ie"
+path="res://.godot/imported/Always-Next-Time.wav-65efd125c76ce4e27525abb237af9391.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Failure/Always-Next-Time.wav"
+dest_files=["res://.godot/imported/Always-Next-Time.wav-65efd125c76ce4e27525abb237af9391.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://chc0n2vpnldqf"]
+
+[ext_resource type="Texture2D" uid="uid://ktb6jtg8x1ne" path="res://assets/snow_town/textures/TextureMaterial_36_baseColor.png" id="1_fs2j5"]
+
+[resource]
+resource_name = "TextureMaterial_36"
+albedo_texture = ExtResource("1_fs2j5")

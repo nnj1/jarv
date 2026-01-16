@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://th80pw5mi0qx"
+path="res://.godot/imported/762x39 Spray MP3.mp3-9ae873b3ef74a8032f471fa52f1ec5c2.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Full Sound/7.62x39/MP3/762x39 Spray MP3.mp3"
+dest_files=["res://.godot/imported/762x39 Spray MP3.mp3-9ae873b3ef74a8032f471fa52f1ec5c2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

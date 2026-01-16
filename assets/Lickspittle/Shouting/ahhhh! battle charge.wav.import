@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://t53qee2khpyo"
+path="res://.godot/imported/ahhhh! battle charge.wav-9575235db027bf4ef5a18d3b18c6c435.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Shouting/ahhhh! battle charge.wav"
+dest_files=["res://.godot/imported/ahhhh! battle charge.wav-9575235db027bf4ef5a18d3b18c6c435.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,63 @@
+[gd_scene load_steps=14 format=3 uid="uid://d2eopk71a0qdp"]
+
+[ext_resource type="PackedScene" uid="uid://cbaoxocs5fdn5" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://cbaeob2jhrfbx" path="res://scenes/rv.tscn" id="2_yqjtg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
+size = Vector2(100, 100)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uwrxv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yqjtg"]
+noise = SubResource("FastNoiseLite_uwrxv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwrxv"]
+albedo_color = Color(0.80784315, 1, 1, 1)
+albedo_texture = SubResource("NoiseTexture2D_yqjtg")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yqjtg"]
+size = Vector3(200, 0.1, 200)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
+
+[sub_resource type="Sky" id="Sky_yqjtg"]
+sky_material = SubResource("ProceduralSkyMaterial_uwrxv")
+
+[sub_resource type="Environment" id="Environment_yqjtg"]
+background_mode = 2
+sky = SubResource("Sky_yqjtg")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
+
+[sub_resource type="Compositor" id="Compositor_lbhrr"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="entities" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="entities"]
+spawn_path = NodePath("..")
+
+[node name="Player" parent="entities" instance=ExtResource("1_uwrxv")]
+
+[node name="rv" parent="entities" instance=ExtResource("2_yqjtg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -8.568235, 0, 0)
+
+[node name="terrain" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="terrain"]
+mesh = SubResource("PlaneMesh_uwrxv")
+surface_material_override/0 = SubResource("StandardMaterial3D_uwrxv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="terrain/MeshInstance3D"]
+physics_material_override = SubResource("PhysicsMaterial_uwrxv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_yqjtg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yqjtg")
+camera_attributes = SubResource("CameraAttributesPractical_lnu2h")
+compositor = SubResource("Compositor_lbhrr")

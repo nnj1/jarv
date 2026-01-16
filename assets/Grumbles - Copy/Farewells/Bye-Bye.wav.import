@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cn4fwsmlmxc10"
+path="res://.godot/imported/Bye-Bye.wav-09ce25465842984ed436de343d513977.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Farewells/Bye-Bye.wav"
+dest_files=["res://.godot/imported/Bye-Bye.wav-09ce25465842984ed436de343d513977.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

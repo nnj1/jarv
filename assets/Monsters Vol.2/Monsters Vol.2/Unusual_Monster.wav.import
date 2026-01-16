@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dqa2rhfwvpjxs"
+path="res://.godot/imported/Unusual_Monster.wav-12d8f57706eea7b913e69a2933860a07.sample"
+
+[deps]
+
+source_file="res://assets/Monsters Vol.2/Monsters Vol.2/Unusual_Monster.wav"
+dest_files=["res://.godot/imported/Unusual_Monster.wav-12d8f57706eea7b913e69a2933860a07.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

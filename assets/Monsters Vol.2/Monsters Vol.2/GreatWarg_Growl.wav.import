@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bm1y1v7k7f005"
+path="res://.godot/imported/GreatWarg_Growl.wav-130f68d7f843e09b787e3368f944a14f.sample"
+
+[deps]
+
+source_file="res://assets/Monsters Vol.2/Monsters Vol.2/GreatWarg_Growl.wav"
+dest_files=["res://.godot/imported/GreatWarg_Growl.wav-130f68d7f843e09b787e3368f944a14f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

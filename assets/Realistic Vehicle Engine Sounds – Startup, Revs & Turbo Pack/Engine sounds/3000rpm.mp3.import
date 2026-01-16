@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0xe1mcr4uwsx"
+path="res://.godot/imported/3000rpm.mp3-542d3ffbfd54fb66bd4263b318c476ed.mp3str"
+
+[deps]
+
+source_file="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Engine sounds/3000rpm.mp3"
+dest_files=["res://.godot/imported/3000rpm.mp3-542d3ffbfd54fb66bd4263b318c476ed.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

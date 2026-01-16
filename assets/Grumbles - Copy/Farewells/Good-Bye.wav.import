@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8u6hr8o7mt1q"
+path="res://.godot/imported/Good-Bye.wav-76cfc8e61d52c9f3c5e804522491d164.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Farewells/Good-Bye.wav"
+dest_files=["res://.godot/imported/Good-Bye.wav-76cfc8e61d52c9f3c5e804522491d164.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

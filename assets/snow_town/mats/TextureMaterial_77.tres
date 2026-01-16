@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://rb784u7r5k7d"]
+
+[ext_resource type="Texture2D" uid="uid://cipfmtqquuahq" path="res://assets/snow_town/textures/TextureMaterial_77_baseColor.png" id="1_b3p7e"]
+
+[resource]
+resource_name = "TextureMaterial_77"
+transparency = 4
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = ExtResource("1_b3p7e")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btr5aiaolmdl1"
+path="res://.godot/imported/roger roger.wav-592a766f82e010dc4b1763c205011772.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Confirmation/roger roger.wav"
+dest_files=["res://.godot/imported/roger roger.wav-592a766f82e010dc4b1763c205011772.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

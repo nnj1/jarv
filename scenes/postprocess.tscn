@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgmbnq3ptjrf1"]
+
+[ext_resource type="Script" uid="uid://cs8wg0a7b7j8c" path="res://scenes/postprocess.gd" id="1_47bfh"]
+[ext_resource type="Texture2D" uid="uid://cjqnvpk7a8kuh" path="res://screenshots/image.png" id="1_i0gwj"]
+[ext_resource type="Shader" uid="uid://cwjbdtiualye" path="res://shaders/psx.gdshader" id="1_kbw42"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0gwj"]
+shader = ExtResource("1_kbw42")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 1024.0
+shader_parameter/grainIntensity = 0.04
+shader_parameter/use_overlay = false
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.0
+
+[node name="Postprocess" type="Node2D"]
+script = ExtResource("1_47bfh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Image" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(584, 334)
+texture = ExtResource("1_i0gwj")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_i0gwj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

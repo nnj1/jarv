@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c5pkm3wjx6v21"
+path="res://.godot/imported/hey how are you.wav-79c71cfe8464834d2151248477097668.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Greeting/hey how are you.wav"
+dest_files=["res://.godot/imported/hey how are you.wav-79c71cfe8464834d2151248477097668.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

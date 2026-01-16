@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://ciih5ll5kn3e5"]
+
+[ext_resource type="Script" uid="uid://b1stdbtkfx14s" path="res://scenes/context_menu.gd" id="1_yidbp"]
+[ext_resource type="AudioStream" uid="uid://7hnt85uvo1uq" path="res://assets/UI Soundpack/UI Soundpack/MP3/Retro6.mp3" id="2_oog6e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yidbp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yidbp"]
+
+[sub_resource type="Environment" id="Environment_oog6e"]
+
+[sub_resource type="World3D" id="World3D_f7y6y"]
+environment = SubResource("Environment_oog6e")
+camera_attributes = SubResource("CameraAttributesPractical_yidbp")
+
+[sub_resource type="Environment" id="Environment_7015f"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7015f"]
+
+[node name="ContextMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yidbp")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 422.0
+offset_bottom = 301.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_yidbp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="modal_name" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 6
+theme_override_font_sizes/font_size = 20
+text = "example item"
+horizontal_alignment = 1
+
+[node name="modal_desc" type="RichTextLabel" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="TabContainer" type="TabContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Change Skin" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="ScrollContainer" parent="Panel/VBoxContainer/TabContainer/Change Skin"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer/Change Skin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Change Skin/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Default Texture"
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer/TabContainer/Change Skin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/VBoxContainer/TabContainer/Change Skin/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Panel/VBoxContainer/TabContainer/Change Skin/Panel/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_f7y6y")
+handle_input_locally = false
+size = Vector2i(209, 155)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Panel/VBoxContainer/TabContainer/Change Skin/Panel/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.83569235, 0.5491979, 0, -0.5491979, 0.83569235, 0, 4.9837904, 7.314328)
+environment = SubResource("Environment_7015f")
+attributes = SubResource("CameraAttributesPractical_7015f")
+current = true
+fov = 37.849285
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Panel/VBoxContainer/TabContainer/Change Skin/Panel/SubViewportContainer/SubViewport/Camera3D"]
+spot_range = 20.0
+
+[node name="Data" type="RichTextLabel" parent="Panel/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="closeButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Close"
+
+[node name="openSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_oog6e")
+
+[connection signal="pressed" from="Panel/VBoxContainer/TabContainer/Change Skin/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/closeButton" to="." method="_on_close_button_pressed"]

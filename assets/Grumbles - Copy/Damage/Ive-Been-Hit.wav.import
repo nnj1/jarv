@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cqhi8huhtnxne"
+path="res://.godot/imported/Ive-Been-Hit.wav-dae6dc738064c555499226960ffeec70.sample"
+
+[deps]
+
+source_file="res://assets/Grumbles - Copy/Damage/Ive-Been-Hit.wav"
+dest_files=["res://.godot/imported/Ive-Been-Hit.wav-dae6dc738064c555499226960ffeec70.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

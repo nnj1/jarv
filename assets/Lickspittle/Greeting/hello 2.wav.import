@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://e2ep57tss568"
+path="res://.godot/imported/hello 2.wav-4d5bea114aaae8badf915a9d33b7da20.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Greeting/hello 2.wav"
+dest_files=["res://.godot/imported/hello 2.wav-4d5bea114aaae8badf915a9d33b7da20.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

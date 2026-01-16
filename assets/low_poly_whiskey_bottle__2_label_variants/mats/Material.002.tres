@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bm50gaqi2i5ge"]
+
+[ext_resource type="Texture2D" uid="uid://cqbf0ortpem6h" path="res://assets/low_poly_whiskey_bottle__2_label_variants/textures/Material.002_baseColor.jpeg" id="1_r2lgs"]
+
+[resource]
+resource_name = "Material.002"
+cull_mode = 2
+albedo_texture = ExtResource("1_r2lgs")

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gnome 3D Model Low Poly
+* source:	https://sketchfab.com/3d-models/gnome-3d-model-low-poly-c4c7374f6ad440bdaf4923489c958489
+* author:	Javier Contreras (https://sketchfab.com/Javier.ConRod)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gnome 3D Model Low Poly" (https://sketchfab.com/3d-models/gnome-3d-model-low-poly-c4c7374f6ad440bdaf4923489c958489) by Javier Contreras (https://sketchfab.com/Javier.ConRod) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

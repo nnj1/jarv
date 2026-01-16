@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://h023x62obxgf"
+path="res://.godot/imported/engine OFF.mp3-ccb4d5c67ad899febf037cece110ca0a.mp3str"
+
+[deps]
+
+source_file="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Engine sounds/engine OFF.mp3"
+dest_files=["res://.godot/imported/engine OFF.mp3-ccb4d5c67ad899febf037cece110ca0a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,145 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccrkn50dj7e7f"]
+
+[ext_resource type="Script" uid="uid://bmbx7vvj5exrk" path="res://scenes/pause_menu.gd" id="1_n87rw"]
+[ext_resource type="Script" uid="uid://s74xaed61jt6" path="res://scenes/res_option_button.gd" id="2_kukqi"]
+[ext_resource type="AudioStream" uid="uid://bsqej3ddmusad" path="res://assets/UI Soundpack/UI Soundpack/MP3/African3.mp3" id="2_myx47"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.92156863)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="PauseMenu" type="Node2D"]
+script = ExtResource("1_n87rw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.5
+offset_top = -158.0
+offset_right = 278.5
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n87rw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -94.0
+offset_right = 90.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="FullscreenCheckBox" type="CheckButton" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="ResOptionButton" type="OptionButton" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+script = ExtResource("2_kukqi")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="masterSlider" type="HSlider" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="musicSlider" type="HSlider" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "Sound Volume"
+horizontal_alignment = 1
+
+[node name="soundSlider" type="HSlider" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="exitMenuButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Exit to Menu"
+
+[node name="exitDesktopButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Exit to Desktop"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_myx47")
+volume_db = 20.0
+bus = &"Sounds"
+
+[connection signal="toggled" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer2/FullscreenCheckBox" to="." method="_on_fullscreen_check_box_toggled"]
+[connection signal="value_changed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer3/masterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer/musicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer2/soundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer/exitMenuButton" to="." method="_on_exit_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer/exitDesktopButton" to="." method="_on_exit_desktop_button_pressed"]

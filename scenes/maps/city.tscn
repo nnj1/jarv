@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4oq6qksnqrv0"]
+
+[ext_resource type="PackedScene" uid="uid://cut1t5l52k6o4" path="res://assets/sports_car_racing_moscow/scene.gltf" id="1_vngj4"]
+
+[node name="City" type="Node3D"]
+
+[node name="rv_spawn_point" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.395157, 12.36139, -0.14569092)
+
+[node name="player_spawn_point" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.008163, 12.36139, -0.14569092)
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_vngj4")]

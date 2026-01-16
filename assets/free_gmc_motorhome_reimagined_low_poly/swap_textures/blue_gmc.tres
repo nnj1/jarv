@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c3uv6w6li2h0s"]
+
+[ext_resource type="Shader" uid="uid://dkhww0v5e0wr5" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/gmc_damage.gdshader" id="1_8arvm"]
+[ext_resource type="Texture2D" uid="uid://bp67n77fjrd5b" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/clay.001_baseColor.jpeg" id="2_6r1ma"]
+[ext_resource type="Texture2D" uid="uid://dvbugdhcxfqf6" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/clay_emissive.jpeg" id="3_35gpp"]
+[ext_resource type="Texture2D" uid="uid://cdkxaku6novwy" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/clay_metallicRoughness.png" id="4_2lyut"]
+
+[resource]
+resource_name = "clay"
+render_priority = 0
+shader = ExtResource("1_8arvm")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_6r1ma")
+shader_parameter/albedo_texture_size = Vector2i(4096, 4096)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("4_2lyut")
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 1, 0)
+shader_parameter/texture_roughness = ExtResource("4_2lyut")
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.46988338
+shader_parameter/texture_emission = ExtResource("3_35gpp")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/damage_amount = 0.0
+shader_parameter/crumple_scale = 4.0
+shader_parameter/crumple_strength = 0.4
+shader_parameter/scrap_metal_color = Color(0.6501282, 0.6501283, 0.65012807, 1)

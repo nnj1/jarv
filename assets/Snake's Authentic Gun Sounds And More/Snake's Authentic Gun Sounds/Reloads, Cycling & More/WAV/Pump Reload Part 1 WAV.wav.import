@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dktjm8r5ehs2t"
+path="res://.godot/imported/Pump Reload Part 1 WAV.wav-44bdf8d9974020df9f9c3d57e5265fb0.sample"
+
+[deps]
+
+source_file="res://assets/Snake's Authentic Gun Sounds And More/Snake's Authentic Gun Sounds/Reloads, Cycling & More/WAV/Pump Reload Part 1 WAV.wav"
+dest_files=["res://.godot/imported/Pump Reload Part 1 WAV.wav-44bdf8d9974020df9f9c3d57e5265fb0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b53sb6xejnv1q"
+path="res://.godot/imported/mmm (positive).wav-b3c40d602ed66de3e6d4f5e724dc2813.sample"
+
+[deps]
+
+source_file="res://assets/Lickspittle/Grunting/mmm (positive).wav"
+dest_files=["res://.godot/imported/mmm (positive).wav-b3c40d602ed66de3e6d4f5e724dc2813.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
