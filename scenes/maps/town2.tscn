@@ -244,397 +244,713 @@ data = PackedVector3Array(-18.9002, 142.025, 85.4152, -18.9002, 126.613, 85.4179
 [node name="Sketchfab_model" parent="." index="0"]
 transform = Transform3D(50, 0, 0, 0, -2.1855694e-06, 50, 0, -50, -2.1855694e-06, -4645.802, -3215, 0)
 
+[node name="FrontSide_0" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="0"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_0" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_0/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_65qn1")
 
+[node name="FrontSide_1" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="1"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_1" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_1/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_f5bb6")
 
+[node name="FrontSide_2" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="2"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_2" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_2/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_w3ts8")
 
+[node name="FrontSide_3" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="3"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_3" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_3/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_m7o1u")
 
+[node name="FrontSide_4" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="4"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_4" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_4/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_eb6kn")
 
+[node name="FrontSide_5" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="5"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_5" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_5/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_3uejj")
 
+[node name="FrontSide_6" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="6"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_6" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_6/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_xay4q")
 
+[node name="FrontSide_7" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="7"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_7" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_7/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mhsii")
 
+[node name="FrontSide_8" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="8"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_8" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_8/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_2dciv")
 
+[node name="FrontSide_9" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="9"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_9" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_9/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_wavn3")
 
+[node name="FrontSide_10" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="10"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_10" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_10/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_lvgsh")
 
+[node name="FrontSide_11" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="11"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_11" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_11/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_toxj2")
 
+[node name="FrontSide_12" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="12"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_12" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_12/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_vi2nw")
 
+[node name="FrontSide_13" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="13"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_13" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_13/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_qs1iu")
 
+[node name="FrontSide_14" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="14"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_14" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_14/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_utvoc")
 
+[node name="FrontSide_15" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="15"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_15" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_15/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_uqkqk")
 
+[node name="FrontSide_16" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="16"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_16" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_16/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ojnvc")
 
+[node name="FrontSide_17" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="17"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_17" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_17/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_2cdo2")
 
+[node name="FrontSide_18" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="18"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_18" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_18/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_p2xsv")
 
+[node name="FrontSide_19" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="19"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_19" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_19/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_e0gtg")
 
+[node name="FrontSide_20" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="20"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_20" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_20/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_3slg8")
 
+[node name="FrontSide_21" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="21"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_21" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_21/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_5l1ex")
 
+[node name="FrontSide_22" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="22"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_22" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_22/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_1gcjs")
 
+[node name="FrontSide_23" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="23"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_23" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_23/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_t7i5r")
 
+[node name="FrontSide_24" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="24"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_24" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_24/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_v1s33")
 
+[node name="FrontSide_25" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="25"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_25" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_25/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_hpwcm")
 
+[node name="FrontSide_26" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="26"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_26" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_26/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_wvrej")
 
+[node name="FrontSide_27" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="27"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_27" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_27/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_i7ph4")
 
+[node name="FrontSide_28" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="28"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_28" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_28/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_8wp2g")
 
+[node name="FrontSide_29" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="29"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_29" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_29/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_3u6vx")
 
+[node name="FrontSide_30" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="30"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_30" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_30/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_nuvoa")
 
+[node name="FrontSide_31" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="31"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_31" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_31/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_u1bf2")
 
+[node name="FrontSide_32" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="32"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_32" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_32/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_fc84o")
 
+[node name="FrontSide_33" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="33"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_33" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_33/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_strpj")
 
+[node name="FrontSide_34" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="34"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_34" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_34/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_k58a5")
 
+[node name="FrontSide_35" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="35"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_35" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_35/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_4ukpv")
 
+[node name="FrontSide_36" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="36"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_36" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_36/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_lp51u")
 
+[node name="FrontSide_37" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="37"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_37" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_37/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_xem25")
 
+[node name="FrontSide_38" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="38"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_38" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_38/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_jfgtm")
 
+[node name="FrontSide_39" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="39"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_39" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_39/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mto8x")
 
+[node name="FrontSide_40" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="40"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_40" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_40/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_evc4v")
 
+[node name="FrontSide_41" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="41"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_41" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_41/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_txgnn")
 
+[node name="FrontSide_42" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="42"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_42" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_42/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_may1s")
 
+[node name="FrontSide_43" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="43"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_43" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_43/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_1q6jn")
 
+[node name="FrontSide_44" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="44"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_44" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_44/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_kqrrc")
 
+[node name="FrontSide_45" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="45"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_45" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_45/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_cu1mk")
 
+[node name="FrontSide_46" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="46"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_46" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_46/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_nv6li")
 
+[node name="FrontSide_47" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="47"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_47" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_47/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_teui8")
 
+[node name="FrontSide_48" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="48"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_48" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_48/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_uy1oi")
 
+[node name="FrontSide_49" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="49"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_49" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_49/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_fkmvn")
 
+[node name="FrontSide_50" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="50"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_50" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_50/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_e1u2f")
 
+[node name="FrontSide_51" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="51"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_51" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_51/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_m1sv5")
 
+[node name="FrontSide_52" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="52"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_52" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_52/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_s8pt8")
 
+[node name="FrontSide_53" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="53"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_53" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_53/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_v80kn")
 
+[node name="FrontSide_54" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="54"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_54" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_54/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_fwn58")
 
+[node name="FrontSide_55" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="55"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_55" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_55/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_rvhrh")
 
+[node name="FrontSide_56" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="56"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_56" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_56/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_t2ity")
 
+[node name="FrontSide_57" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="57"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_57" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_57/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_vjlla")
 
+[node name="FrontSide_58" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="58"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_58" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_58/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_4gwwm")
 
+[node name="FrontSide_59" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="59"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_59" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_59/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_j4guk")
 
+[node name="FrontSide_60" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="60"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_60" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_60/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_gwcbt")
 
+[node name="FrontSide_61" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="61"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_61" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_61/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_sfoor")
 
+[node name="FrontSide_62" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="62"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_62" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_62/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_rxkf6")
 
+[node name="FrontSide_63" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="63"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_63" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_63/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_rwuio")
 
+[node name="FrontSide_64" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="64"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_64" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_64/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_m678q")
 
+[node name="FrontSide_65" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="65"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_65" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_65/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_hsk7u")
 
+[node name="FrontSide_66" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="66"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_66" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_66/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_jm0bl")
 
+[node name="FrontSide_67" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="67"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_67" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_67/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_axhps")
 
+[node name="FrontSide_68" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="68"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_68" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_68/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_wo5v7")
 
+[node name="FrontSide_69" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="69"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_69" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_69/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_iuol6")
 
+[node name="FrontSide_70" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="70"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_70" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_70/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_s7yef")
 
+[node name="FrontSide_71" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="71"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_71" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_71/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_e406h")
 
+[node name="FrontSide_72" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="72"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_72" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_72/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_im24b")
 
+[node name="FrontSide_73" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="73"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_73" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_73/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_1x8vf")
 
+[node name="FrontSide_74" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="74"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_74" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_74/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_y0a4v")
 
+[node name="FrontSide_75" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="75"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_75" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_75/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ai5hj")
 
+[node name="FrontSide_76" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="76"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_76" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/FrontSide_76/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_l1nag")
 
+[node name="BackSide_0" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="77"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/BackSide_0" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/BackSide_0/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_5y8qv")
 
+[node name="BackSide_02" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1" index="78"]
+gi_mode = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/BackSide_02" index="0"]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/USDRoot/model/Geom/Uschtenheim___in_arbeit__USDInstance_1/skp5DE__USDInstance_1/BackSide_02/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_lxvlw")
