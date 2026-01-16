@@ -41,7 +41,7 @@ var weapon_index:int = 1
 var max_weapons:int = 3
 @export var max_health = 100
 @export var current_health = 100
-var health_decay_rate:float = 0.1
+var health_decay_rate:float = 0.5
 var recoil_velocity: Vector3 = Vector3.ZERO
 
 # stuff for edit mode in the RV
@@ -167,6 +167,7 @@ func server_register_driver(starting: bool):
 
 func decay_health(delta):
 	if current_health > 0:
+		# 
 		# delta ensures the decay is consistent regardless of frame rate
 		current_health -= health_decay_rate * delta
 		
@@ -307,6 +308,10 @@ func lock_self_to_driver_seat(delta):
 
 # 1. Physics Movement and Camera Interpolation
 func _physics_process(delta):
+	
+	# decay health if outside the RV
+	if not in_rv:
+		decay_health(delta)
 	
 	if not is_multiplayer_authority(): return
 	
@@ -693,14 +698,13 @@ func accelerate(delta: float, wish_dir: Vector3, current_velocity: Vector3, acce
 	return final_vel if final_vel.is_finite() else Vector3.ZERO
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_multiplayer_authority(): 
 		# sync main camera 3d with the weapon camera3d in the subviewport
 		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.global_transform = $camera_pivot/tps_arm/Camera3D.global_transform
 		$CanvasLayer/SubViewportContainer/SubViewport/Camera3D.fov = $camera_pivot/tps_arm/Camera3D.fov
 		
-		# update health and other player HUD UI elements and decay health
-		decay_health(delta)
+		# update health and other player HUD UI elements
 		main_game_node.get_node('CanvasLayer/player_HUD/health_value').text = str(int(current_health))
 		main_game_node.get_node('CanvasLayer/player_HUD/heart').material.set_shader_parameter("progress", 1.0 * current_health / max_health)
 		main_game_node.get_node('CanvasLayer/HBoxContainer/speed').text = 'Speed: ' + str(int(velocity.length()))
