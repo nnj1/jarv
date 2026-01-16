@@ -135,6 +135,10 @@ func start_driving(_given_seat_node):
 	# disable the player's main collision shape
 	$CollisionShape3D.disabled = true
 	
+	# put away weapons when driving
+	weapon_index = 0
+	change_weapon(weapon_index)
+	
 func stop_driving():
 	rpc_id(1, "server_register_driver", false)
 	self.is_driving = false
@@ -199,10 +203,11 @@ func on_new_player(player_id: int) -> void:
 func _ready():
 	
 	if not is_multiplayer_authority():
-		# if not the authority, make the guns visible on layer 1
+		# if not the authority, make the guns visible on layer 1 and not layer 2
 		# this allows you to see other players holding guns
 		for weapon_mesh in get_all_nested_meshes($weapons):
 			weapon_mesh.set_layer_mask_value(1, true)
+			weapon_mesh.set_layer_mask_value(2, false)
 			# Deferred version:
 			#weapon_mesh.call_deferred("set_layer_mask_value", 1, true)
 			#print(weapon_mesh)
@@ -569,16 +574,21 @@ func _unhandled_input(event):
 			main_game_node.get_node('CanvasLayer').add_child(menu_instance)
 
 			
-	if event.is_action_pressed('scroll_up') and not in_edit_mode and not main_game_node.in_context_menu:
+	if event.is_action_pressed('scroll_up') and not in_edit_mode and not main_game_node.in_context_menu and not is_driving:
 		weapon_index += 1
 		if weapon_index > max_weapons:
 			weapon_index = 0
 		change_weapon(weapon_index)
-	if event.is_action_pressed('scroll_down') and not in_edit_mode and not main_game_node.in_context_menu:
+	if event.is_action_pressed('scroll_down') and not in_edit_mode and not main_game_node.in_context_menu and not is_driving:
 		weapon_index -= 1
 		if weapon_index < 0:
 			weapon_index = max_weapons
 		change_weapon(weapon_index)
+		
+	if event.is_action_pressed('scroll_up') and is_driving and not is_first_person:
+		tps_arm.spring_length += 1
+	if event.is_action_pressed('scroll_down') and is_driving and not is_first_person:
+		tps_arm.spring_length -= 1
 		
 	# --- MOUSE CAPTURE TOGGLE (Escape Key) ---
 	if event.is_action_pressed("ui_cancel"):
@@ -598,6 +608,9 @@ func _unhandled_input(event):
 			# reset any rotation or translation on the on the camera pivot
 			camera_pivot.rotation = Vector3(0, 0, 0)
 			camera_pivot.position = Vector3(0, 1.676, -1)
+			
+			# TODO: do something about the two weapon cameras
+			
 		else:
 			# Extend arm for TP
 			tps_arm.spring_length = tps_distance
