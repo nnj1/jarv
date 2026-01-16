@@ -240,7 +240,7 @@ color_ramp = SubResource("Gradient_5newe")
 shader = ExtResource("21_5newe")
 shader_parameter/noise_img = SubResource("NoiseTexture2D_bt5mj")
 shader_parameter/frost_amount = 0.0
-shader_parameter/distortion_strength = 0.0350000016625
+shader_parameter/distortion_strength = 0.02000000095
 shader_parameter/frost_color = Color(0.89979166, 0.9499975, 1, 1)
 
 [node name="Node3D" type="Node3D"]
