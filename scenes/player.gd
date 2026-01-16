@@ -45,7 +45,7 @@ var health_decay_rate:float = 0.5
 var recoil_velocity: Vector3 = Vector3.ZERO
 
 @onready var frost_material = main_game_node.get_node('CanvasLayer2/frozen').material
-var frost_rate: float = 0.001
+var frost_rate: float = 0.001 # 0.1 for debugging
 
 # stuff for edit mode in the RV
 var in_edit_mode:bool =  false
