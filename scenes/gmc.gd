@@ -198,7 +198,7 @@ func lock_player_to_driver_seat(delta) -> void:
 				# Apply rotation while preserving current scale
 				var s = driver_player_node.global_basis.get_scale()
 				if s.is_finite():
-					driver_player_node.rpc('move_to_position_and_rotation', seat_node.get_node('driver_position').global_position, Basis(final_quat).scaled(s))
+					driver_player_node.rpc_id(int(driver_player_id),'move_to_position_and_rotation', seat_node.get_node('driver_position').global_position, Basis(final_quat).scaled(s))
 	
 func _process(_delta: float) -> void:
 	# Update UI (runs on all clients)

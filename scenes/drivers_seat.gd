@@ -18,6 +18,7 @@ func interact(player_node: Node3D) -> void:
 		player_node.start_driving(self)
 		print(str(player_node) + ' started driving.')
 		custom_interact_message = 'Press E to stop driving'
+		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

@@ -123,6 +123,7 @@ func start_driving(_given_seat_node):
 	# turn off collisions with internal items of the car 
 	$camera_pivot/tps_arm/Camera3D/RayCast3D.set_collision_mask_value(6, false)
 	
+	# show the driving instructions
 	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').show()
 	
 	# 2. Assign the seat node locally so the position lock works
@@ -151,7 +152,6 @@ func move_to_position_and_rotation(given_position, given_basis) -> void:
 	self.global_position = given_position
 	self.global_transform.basis = given_basis
 	
-
 @rpc("any_peer", "call_local", "reliable")
 func server_register_driver(starting: bool):
 	if multiplayer.is_server():

@@ -57,7 +57,7 @@ func _ready():
 	
 	var spawn_pos = find_road_center(Vector2.ZERO, 500)
 	if player_spawn:
-		player_spawn.global_position = Vector3(spawn_pos.x, road_height + 2.0, spawn_pos.y)
+		player_spawn.global_position = Vector3(spawn_pos.x + 20, road_height + 2.0, spawn_pos.y + 20)
 	if rv_spawn:
 		rv_spawn.global_position = Vector3(spawn_pos.x, road_height + 2.0, spawn_pos.y + 10.0)
 		rv_spawn.look_at(Vector3(spawn_pos.x, road_height + 2.0, spawn_pos.y - 10.0))
@@ -350,6 +350,8 @@ func _create_static_collision_for_mesh(mesh_node: MeshInstance3D):
 	for child in mesh_node.get_children():
 		if child is StaticBody3D: return
 	var static_body = StaticBody3D.new()
+	static_body.collision_layer = 1
+	static_body.collision_mask = 0
 	var collision_shape_node = CollisionShape3D.new()
 	collision_shape_node.shape = mesh_node.mesh.create_trimesh_shape()
 	mesh_node.add_child(static_body)

@@ -545,7 +545,7 @@ size = Vector3(7.361, 7.9503174, 23.617)
 
 [node name="Gmc" type="VehicleBody3D"]
 collision_layer = 2
-collision_mask = 21
+collision_mask = 17
 mass = 3500.0
 physics_material_override = SubResource("PhysicsMaterial_ehrx3")
 center_of_mass_mode = 1
