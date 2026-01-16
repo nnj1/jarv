@@ -44,6 +44,9 @@ var max_weapons:int = 3
 var health_decay_rate:float = 0.5
 var recoil_velocity: Vector3 = Vector3.ZERO
 
+@onready var frost_material = main_game_node.get_node('CanvasLayer2/frozen').material
+var frost_rate: float = 0.001
+
 # stuff for edit mode in the RV
 var in_edit_mode:bool =  false
 var in_rv: bool = false
@@ -191,6 +194,14 @@ func damage(amount: int = 1):
 func heal(amount: float = 1000) -> void:
 	current_health = clamp(current_health + amount, 0, max_health)
 		
+func defrost():
+	var tween = create_tween()
+	#tween.set_trans(Tween.TRANS_EXPO)
+	#tween.set_ease(Tween.EASE_IN)
+	
+	# Melt the ice back to 0
+	tween.tween_property(frost_material, "shader_parameter/frost_amount", 0.0, 10)
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 	
@@ -214,6 +225,10 @@ func _ready():
 			#print(weapon_mesh)
 	
 	if is_multiplayer_authority(): #and DisplayServer.window_is_focused():
+		
+		# get rid of frost on screen
+		main_game_node.get_node('CanvasLayer2/frozen').material.set_shader_parameter('frost_amount', 0.0)
+		
 		# Lock the mouse at start
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
@@ -312,6 +327,9 @@ func _physics_process(delta):
 	# decay health if outside the RV
 	if not in_rv:
 		decay_health(delta)
+		# slowly grow the frost shader
+		var current_frost = frost_material.get_shader_parameter('frost_amount')
+		main_game_node.get_node('CanvasLayer2/frozen').material.set_shader_parameter('frost_amount', current_frost + delta * frost_rate)
 	
 	if not is_multiplayer_authority(): return
 	

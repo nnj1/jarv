@@ -396,6 +396,8 @@ func _on_inner_volume_body_entered(body: Node3D) -> void:
 	if 'IS_PLAYER' in body:
 		if body.IS_PLAYER:
 			body.in_rv = true
+			# defrost the player
+			body.defrost()
 	is_interactable = false
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=43 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://xythel0jxyq8" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_36.png" id="13_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://cj8k4rnouor5a" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_35.png" id="14_ssvqc"]
 [ext_resource type="Script" uid="uid://dpxy7fi5jc7vn" path="res://scenes/broadcaster.gd" id="14_trtic"]
+[ext_resource type="Shader" uid="uid://bl4okw64bbtb4" path="res://shaders/frozenscreen.gdshader" id="21_5newe"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
 
@@ -223,6 +224,24 @@ shader_parameter/edge_softness = 0.01
 shader_parameter/wave_amplitude = 0.02
 shader_parameter/wave_speed = 3.954000187815
 shader_parameter/wave_frequency = 10.0
+
+[sub_resource type="Gradient" id="Gradient_5newe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_37s47"]
+noise_type = 2
+frequency = 0.0247
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bt5mj"]
+noise = SubResource("FastNoiseLite_37s47")
+color_ramp = SubResource("Gradient_5newe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1j6l"]
+shader = ExtResource("21_5newe")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_bt5mj")
+shader_parameter/frost_amount = 0.0
+shader_parameter/distortion_strength = 0.0350000016625
+shader_parameter/frost_color = Color(0.89979166, 0.9499975, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lbhrr")
@@ -657,6 +676,21 @@ text = "100"
 
 [node name="broadcaster" type="Timer" parent="."]
 script = ExtResource("14_trtic")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="frozen" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_e1j6l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [connection signal="ready" from="CanvasLayer/chatbox/chathistory" to="." method="_on_chathistory_ready"]
 [connection signal="focus_entered" from="CanvasLayer/chatbox/chatinput" to="." method="_on_chatinput_focus_entered"]
