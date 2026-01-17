@@ -58,6 +58,8 @@ enum Gear { DRIVE, REVERSE }
 @onready var rotating_parts = [$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_004_13/Object_22, 
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12/Object_20,
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
+@onready var gmc_damage_mat = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16.get_active_material(0)
+@onready var steering_wheel_axis: Vector3 = Vector3(0, 1, -1).normalized()
 
 @export_group('UI Labels and Controls')
 @onready var gear_label = main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear')
@@ -73,7 +75,7 @@ enum Gear { DRIVE, REVERSE }
 @onready var chemical_sludge_label = main_game_node.get_node('CanvasLayer/RV_HUD/chemical_sludge')
 @onready var rusty_scrap_label = main_game_node.get_node('CanvasLayer/RV_HUD/rusty_scrap')
 	
-	
+# For other things that try to identify this thing
 const IS_RV:bool = true
 
 # --- SPEED TRACKING ---
@@ -232,9 +234,8 @@ func _process(_delta: float) -> void:
 	
 	# update the GMC damage vertex shader
 	# Adjust shader for GMC body material
-	var mat = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16.get_active_material(0)
-	if mat is ShaderMaterial:
-		mat.set_shader_parameter("damage_amount", 0.85 *(1 - current_health/max_health))
+	if gmc_damage_mat is ShaderMaterial:
+		gmc_damage_mat.set_shader_parameter("damage_amount", 0.85 *(1 - current_health/max_health))
 	
 	# turn off any highbeams if needed
 	if not high_beams_status:
@@ -338,6 +339,9 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("highbeams"):
 			rpc('network_highbeams')
 		#print('Being driven by default server')
+	
+	# actually rotate the steering wheel mesh
+	steering_wheel_mesh.rotate(steering_wheel_axis, delta * steer_input * 3)
 	
 	# 5. Steering and Movement Logic
 	steering = move_toward(steering, steer_input * max_steer_angle, delta * steering_speed)

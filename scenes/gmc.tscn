@@ -569,7 +569,7 @@ transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, -1, 0, 1, 2.220446e-16, 0, 0, 0)
 
 [node name="Circle_001_0" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode"]
-transform = Transform3D(1.0597088, -0.012953092, 0.0019657647, 0.012565306, 1.0498625, 0.14416982, -0.0037094417, -0.1441355, 1.0499358, 0.7595362, 0.2441585, 3.3979838)
+transform = Transform3D(1.0597088, -0.012953094, 0.0019657644, 0.012565306, 1.0498625, 0.14416984, -0.003709442, -0.1441355, 1.0499359, 0.7595362, 0.2441585, 3.3979838)
 
 [node name="Object_4" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Circle_001_0"]
 gi_mode = 2
