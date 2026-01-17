@@ -60,6 +60,9 @@ enum Gear { DRIVE, REVERSE }
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
 @onready var gmc_damage_mat = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16.get_active_material(0)
 @onready var steering_wheel_axis: Vector3 = Vector3(0, 1, -1).normalized()
+@onready var current_steering_wheel_rotation_amount : float = 0.0
+@onready var max_steering_wheel_angle = 3.0 * PI 
+@onready var steering_wheel_initial_basis = steering_wheel_mesh.transform.basis
 
 @export_group('UI Labels and Controls')
 @onready var gear_label = main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear')
@@ -341,7 +344,15 @@ func _physics_process(delta: float) -> void:
 		#print('Being driven by default server')
 	
 	# actually rotate the steering wheel mesh
-	steering_wheel_mesh.rotate(steering_wheel_axis, delta * steer_input * 3)
+	# 1. Target total rotation (e.g., 540 degrees)
+	var target_angle = steer_input * max_steering_wheel_angle
+	# 2. Smoothly move our tracker variable toward that target
+	current_steering_wheel_rotation_amount = lerp(current_steering_wheel_rotation_amount, target_angle, delta)
+	# 3. Rebuild the basis from scratch based on the original starting point
+	# This prevents "snapping" because the float doesn't wrap at 360
+	var rot_basis = Basis(steering_wheel_axis, current_steering_wheel_rotation_amount)
+	var new_basis = steering_wheel_initial_basis * rot_basis
+	steering_wheel_mesh.transform.basis = new_basis.orthonormalized()
 	
 	# 5. Steering and Movement Logic
 	steering = move_toward(steering, steer_input * max_steer_angle, delta * steering_speed)

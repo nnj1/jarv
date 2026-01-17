@@ -180,3 +180,11 @@ func load_json_file(file_path: String):
 		return null
 		
 	return json_data
+
+# function for safe slerping or quats without jumping or taking the shortest path
+func safe_slerp(from_q: Quaternion, to_q: Quaternion, weight: float) -> Quaternion:
+	# Check if they are pointing in opposite directions
+	if from_q.dot(to_q) < 0.0:
+		# Negate the target to ensure we take the shortest path
+		return from_q.slerp(-to_q, weight)
+	return from_q.slerp(to_q, weight)
