@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
-
+@onready var interaction_ray_target_label = main_game_node.get_node('CanvasLayer/HBoxContainer/target')
+@onready var interact_message_label = main_game_node.get_node('CanvasLayer/interact_message')
 # --- Exported Variables ---
 @export var speed: float = 10
 @export var jump_velocity: float = 9
@@ -37,6 +38,7 @@ const IS_PLAYER: bool = true
 var is_first_person: bool = true
 var camera: Camera3D
 @onready var aim_ray: RayCast3D = $camera_pivot/tps_arm/Camera3D/aim_ray
+@onready var interaction_ray: RayCast3D = $camera_pivot/tps_arm/Camera3D/RayCast3D
 var weapon_index:int = 1
 var max_weapons:int = 3
 @export var max_health = 100
@@ -124,7 +126,7 @@ func start_driving(_given_seat_node):
 	# 1. Set local state so the Client enters the loop immediately
 	self.is_driving = true
 	# turn off collisions with internal items of the car 
-	$camera_pivot/tps_arm/Camera3D/RayCast3D.set_collision_mask_value(6, false)
+	interaction_ray.set_collision_mask_value(6, false)
 	
 	# show the driving instructions
 	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').show()
@@ -147,7 +149,7 @@ func stop_driving():
 	self.is_driving = false
 	
 	# turn back on collision with internal items in car
-	$camera_pivot/tps_arm/Camera3D/RayCast3D.set_collision_mask_value(6, true)
+	interaction_ray.set_collision_mask_value(6, true)
 	
 	main_game_node.get_node('CanvasLayer/RV_HUD/RV_INSTRUCTIONS').hide()
 	self.seat_node = null
@@ -329,7 +331,7 @@ func _physics_process(delta):
 		decay_health(delta)
 		# slowly grow the frost shader
 		var current_frost = frost_material.get_shader_parameter('frost_amount')
-		main_game_node.get_node('CanvasLayer2/frozen').material.set_shader_parameter('frost_amount', current_frost + delta * frost_rate)
+		frost_material.set_shader_parameter('frost_amount', current_frost + delta * frost_rate)
 	
 	if not is_multiplayer_authority(): return
 	
@@ -339,17 +341,17 @@ func _physics_process(delta):
 		self.entity_held = null
 	
 	# for checking interaction ray colliders
-	if $camera_pivot/tps_arm/Camera3D/RayCast3D.is_colliding():
-		var target = $camera_pivot/tps_arm/Camera3D/RayCast3D.get_collider()
+	if interaction_ray.is_colliding():
+		var target = interaction_ray.get_collider()
 		
 		# put the target node name that is being collided with in the top right corner
-		main_game_node.get_node('CanvasLayer/HBoxContainer/target').text = str(target)
+		interaction_ray_target_label.text = str(target)
 		
 		# if this node has children that are meshes, change the highlight on the mesh if we are in edit mode
 		# only do this if in RV
 		if in_edit_mode:
 					
-			var closest_mesh = get_closest_mesh_to_raycast($camera_pivot/tps_arm/Camera3D/RayCast3D)
+			var closest_mesh = get_closest_mesh_to_raycast(interaction_ray)
 			if closest_mesh:
 				#print("Precisely hit: ", closest_mesh.name)
 				# dehighlight any previously selected mesh
@@ -364,21 +366,21 @@ func _physics_process(delta):
 				var message = target.custom_interact_message if ('custom_interact_message' in target) else 'Press E to interact'
 				# show the interaction message if the target isn't pickable
 				if not target.is_pickable:
-					main_game_node.get_node('CanvasLayer/interact_message').text = message
-					main_game_node.get_node('CanvasLayer/interact_message').visible = true
+					interact_message_label.text = message
+					interact_message_label.visible = true
 				# show the interaction message only if the hand is active when the target is pickable
 				elif target.is_pickable:
 					if weapons[weapon_index].name == 'hand':
-						main_game_node.get_node('CanvasLayer/interact_message').text = message
-						main_game_node.get_node('CanvasLayer/interact_message').visible = true
+						interact_message_label.text = message
+						interact_message_label.visible = true
 				
 				# do the actual interaction if the player presses the key
 				if Input.is_action_just_pressed('interact') and not main_game_node.typing_chat:
 					target.interact(self)
 	else:
 		# reset to default message
-		main_game_node.get_node('CanvasLayer/interact_message').text = 'Press E to interact'
-		main_game_node.get_node('CanvasLayer/interact_message').visible = false
+		interact_message_label.text = 'Press E to interact'
+		interact_message_label.visible = false
 		
 	# --- MOVEMENT (Same as original) ---
 	if not is_driving:
@@ -585,7 +587,7 @@ func _unhandled_input(event):
 		change_weapon(weapon_index)
 		
 	if event.is_action_pressed("shift_click") and not is_driving:	
-		var thing = $camera_pivot/tps_arm/Camera3D/RayCast3D.get_collider()
+		var thing = interaction_ray.get_collider()
 		if thing:
 			var menu_scene = preload('res://scenes/context_menu.tscn')
 			var menu_instance = menu_scene.instantiate()

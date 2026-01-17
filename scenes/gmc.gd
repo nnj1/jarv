@@ -1,4 +1,6 @@
 extends VehicleBody3D
+@onready var main_game_node = get_tree().get_root().get_node('Node3D')
+
 enum Gear { DRIVE, REVERSE }
 @export var current_gear = Gear.DRIVE
 
@@ -57,9 +59,22 @@ enum Gear { DRIVE, REVERSE }
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12/Object_20,
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
 
+@export_group('UI Labels and Controls')
+@onready var gear_label = main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear')
+@onready var car_speed_label = main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/car_speed')
+@onready var fuelpercent_label = main_game_node.get_node("CanvasLayer/RV_HUD/fuelpercent")
+@onready var oilpercent_label = main_game_node.get_node("CanvasLayer/RV_HUD/oilpercent")
+@onready var batterypercent_label = main_game_node.get_node("CanvasLayer/RV_HUD/batterypercent")
+@onready var rvhealthpercentage_label = main_game_node.get_node("CanvasLayer/RV_HUD/rvhealthpercentage")
+@onready var rvhealthbar_material = main_game_node.get_node("CanvasLayer/RV_HUD/Polygon2D5").material
+@onready var wiring_compoenents_label = main_game_node.get_node('CanvasLayer/RV_HUD/wiring_components')
+@onready var refined_plate_label = main_game_node.get_node('CanvasLayer/RV_HUD/refined_plates')
+@onready var processor_chips_label = main_game_node.get_node('CanvasLayer/RV_HUD/processor_chips')
+@onready var chemical_sludge_label = main_game_node.get_node('CanvasLayer/RV_HUD/chemical_sludge')
+@onready var rusty_scrap_label = main_game_node.get_node('CanvasLayer/RV_HUD/rusty_scrap')
+	
+	
 const IS_RV:bool = true
-
-@onready var main_game_node = get_tree().get_root().get_node('Node3D')
 
 # --- SPEED TRACKING ---
 @export var current_speed_mps: float = 0.0 
@@ -202,18 +217,18 @@ func lock_player_to_driver_seat(delta) -> void:
 	
 func _process(_delta: float) -> void:
 	# Update UI (runs on all clients)
-	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear').text = ['Drive', 'Reverse'][current_gear]
-	main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/car_speed').text = str(int(current_speed_kmh)) + ' kmh'
-	main_game_node.get_node("CanvasLayer/RV_HUD/fuelpercent").text = str(int(current_fuel)) + "L"
-	main_game_node.get_node("CanvasLayer/RV_HUD/oilpercent").text = str(int(current_oil / max_oil * 100)) + "%"
-	main_game_node.get_node("CanvasLayer/RV_HUD/batterypercent").text = str(int(current_battery / max_battery * 100)) + "%"
-	main_game_node.get_node("CanvasLayer/RV_HUD/rvhealthpercentage").text = str(int(current_health / max_health * 100)) + "%"
-	main_game_node.get_node("CanvasLayer/RV_HUD/Polygon2D5").material.set_shader_parameter("fill", float(current_health / max_health))
-	main_game_node.get_node('CanvasLayer/RV_HUD/wiring_components').text = str(int(current_wiring_components))
-	main_game_node.get_node('CanvasLayer/RV_HUD/refined_plates').text = str(int(current_refined_plates))
-	main_game_node.get_node('CanvasLayer/RV_HUD/processor_chips').text = str(int(current_processor_chips))
-	main_game_node.get_node('CanvasLayer/RV_HUD/chemical_sludge').text = str(int(current_chemical_sludge))
-	main_game_node.get_node('CanvasLayer/RV_HUD/rusty_scrap').text = str(int(current_rusty_scrap))
+	gear_label.text = ['Drive', 'Reverse'][current_gear]
+	car_speed_label.text = str(int(current_speed_kmh)) + ' kmh'
+	fuelpercent_label.text = str(int(current_fuel)) + "L"
+	oilpercent_label.text = str(int(current_oil / max_oil * 100)) + "%"
+	batterypercent_label.text = str(int(current_battery / max_battery * 100)) + "%"
+	rvhealthpercentage_label.text = str(int(current_health / max_health * 100)) + "%"
+	rvhealthbar_material.set_shader_parameter("fill", float(current_health / max_health))
+	wiring_compoenents_label.text = str(int(current_wiring_components))
+	refined_plate_label.text = str(int(current_refined_plates))
+	processor_chips_label.text = str(int(current_processor_chips))
+	chemical_sludge_label.text = str(int(current_chemical_sludge))
+	rusty_scrap_label.text = str(int(current_rusty_scrap))
 	
 	# update the GMC damage vertex shader
 	# Adjust shader for GMC body material

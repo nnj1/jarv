@@ -6,10 +6,14 @@ var typing_chat: bool = false
 var in_context_menu: bool = false
 
 @onready var regex = RegEx.new()
+@onready var fps_label = $CanvasLayer/HBoxContainer/FPS
+@onready var time_label = $CanvasLayer/HBoxContainer/time
+@onready var skylight = $DirectionalLight3D
 
 func _ready():
 	$CanvasLayer/role.text = GameManager.ROLE
 	$CanvasLayer/id.text = str(get_tree().get_multiplayer().get_unique_id())
+	
 	
 	# spawn the default map if the server:
 	if multiplayer.is_server():
@@ -28,18 +32,18 @@ func _process(_delta: float) -> void:
 	
 	# Update the label text
 	# "FPS: %d" rounds the number to an integer
-	$CanvasLayer/HBoxContainer/FPS.text = "FPS: %d" % fps
+	fps_label.text = "FPS: %d" % fps
 	
 	# Optional: Change color based on performance
 	if fps < 30:
-		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.RED)
+		fps_label.add_theme_color_override("font_color", Color.RED)
 	elif fps < 55:
-		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.YELLOW)
+		fps_label.add_theme_color_override("font_color", Color.YELLOW)
 	else:
-		$CanvasLayer/HBoxContainer/FPS.add_theme_color_override("font_color", Color.GREEN)
+		fps_label.add_theme_color_override("font_color", Color.GREEN)
 
 	# update the time display
-	$CanvasLayer/HBoxContainer/time.text = $DirectionalLight3D.get_time_12h()
+	time_label.text = skylight.get_time_12h()
 	
 	# check for any broken math
 	## Get every single node currently in the game tree
