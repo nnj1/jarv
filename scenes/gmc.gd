@@ -58,7 +58,7 @@ enum Gear { DRIVE, REVERSE }
 @onready var rotating_parts = [$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_004_13/Object_22, 
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12/Object_20,
 								$Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11/Object_18]
-@onready var gmc_damage_mat = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16.get_active_material(0)
+@onready var gmc_outerbody = $Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10/Object_16
 @onready var steering_wheel_axis: Vector3 = Vector3(0, 1, -1).normalized()
 @onready var current_steering_wheel_rotation_amount : float = 0.0
 @onready var max_steering_wheel_angle = 3.0 * PI 
@@ -237,6 +237,7 @@ func _process(_delta: float) -> void:
 	
 	# update the GMC damage vertex shader
 	# Adjust shader for GMC body material
+	var gmc_damage_mat = gmc_outerbody.get_active_material(0)
 	if gmc_damage_mat is ShaderMaterial:
 		gmc_damage_mat.set_shader_parameter("damage_amount", 0.85 *(1 - current_health/max_health))
 	
