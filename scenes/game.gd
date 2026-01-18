@@ -250,9 +250,13 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 			global_teleport(scene_instance, origin_position)
 						
 		# if it's an item_body, just the item
-		elif name_of_scene in ['whiskey', 'soju', 'gas_carton'] :
+		elif name_of_scene in ['whiskey', 'soju', 'gas_carton', 'mat'] :
 			# TODO: Fix this class instantiation thing
 			scene_instance.setup()
+			# 
+			if 'prepare' in scene_instance:
+				scene_instance.prepare()
+			
 			# don't spawn this item at the end of the aim ray, it's too far! 
 			# instead to go end of interaction ray
 			var player_interact_ray = get_node('entities/1/camera_pivot/tps_arm/Camera3D/RayCast3D')

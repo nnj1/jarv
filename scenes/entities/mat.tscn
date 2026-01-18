@@ -6,7 +6,8 @@
 [ext_resource type="Shader" uid="uid://baawxc8os2mly" path="res://shaders/item_highlight.gdshader" id="3_q0ef8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cf13u"]
-radius = 1.4306641
+height = 1.0
+radius = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkles"]
 resource_name = "material"
@@ -164,7 +165,7 @@ shape = SubResource("CylinderShape3D_cf13u")
 visible = false
 
 [node name="Pipe Valve" type="Node3D" parent="model/RUSTY_SCRAP"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1.2284861, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.6250458, 0, 0)
 
 [node name="Valve" type="Node3D" parent="model/RUSTY_SCRAP/Pipe Valve"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -184,9 +185,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jflek")
 visible = false
 
 [node name="REFINED_PLATES" type="Node3D" parent="model"]
-visible = false
 
 [node name="Generator2" type="Node3D" parent="model/REFINED_PLATES"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.06352055)
 
 [node name="Generator" type="MeshInstance3D" parent="model/REFINED_PLATES/Generator2"]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, -0.8995999, 0)
