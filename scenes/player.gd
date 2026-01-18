@@ -219,7 +219,7 @@ func _ready():
 	if not is_multiplayer_authority():
 		# if not the authority, make the guns visible on layer 1 and not layer 2
 		# this allows you to see other players holding guns
-		for weapon_mesh in get_all_nested_meshes($weapons):
+		for weapon_mesh in GlobalVars.get_all_nested_meshes($weapons):
 			weapon_mesh.set_layer_mask_value(1, true)
 			weapon_mesh.set_layer_mask_value(2, false)
 			# Deferred version:
@@ -812,16 +812,6 @@ func request_spawn_projectile(weapon_index: int, origin_pos: Vector3, target_pos
 	# Example: adding it to the 'Projectiles' container in your level
 	main_game_node.get_node('entities').add_child(rocket, true)
 
-# helpful function for recursively getting all meshes (useful for raycast)
-func get_all_nested_meshes(node: Node, mesh_list: Array[MeshInstance3D] = []) -> Array[MeshInstance3D]:
-	if node is MeshInstance3D:
-		mesh_list.append(node)
-	
-	for child in node.get_children():
-		get_all_nested_meshes(child, mesh_list)
-		
-	#print(mesh_list)
-	return mesh_list
 
 # if the mesh has a next pass highlight shader on the it's override material, highlight it
 func set_highlight_mesh(closest_mesh: MeshInstance3D, state:bool = true):
@@ -844,7 +834,7 @@ func get_closest_mesh_to_raycast(ray: RayCast3D) -> MeshInstance3D:
 	if self.in_rv:
 		body = main_game_node.get_node('entities/Gmc')
 		
-	var all_meshes = get_all_nested_meshes(body)
+	var all_meshes = GlobalVars.get_all_nested_meshes(body)
 	#print(all_meshes)
 	var best_mesh: MeshInstance3D = null
 	var min_error = INF

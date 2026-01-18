@@ -188,3 +188,14 @@ func safe_slerp(from_q: Quaternion, to_q: Quaternion, weight: float) -> Quaterni
 		# Negate the target to ensure we take the shortest path
 		return from_q.slerp(-to_q, weight)
 	return from_q.slerp(to_q, weight)
+
+# helpful function for recursively getting all meshes (useful for raycast)
+func get_all_nested_meshes(node: Node, mesh_list: Array[MeshInstance3D] = []) -> Array[MeshInstance3D]:
+	if node is MeshInstance3D:
+		mesh_list.append(node)
+	
+	for child in node.get_children():
+		get_all_nested_meshes(child, mesh_list)
+		
+	#print(mesh_list)
+	return mesh_list

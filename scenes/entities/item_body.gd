@@ -136,6 +136,7 @@ func sync_drop() -> void:
 
 func set_item_highlight(enabled: bool) -> void:
 	var meshes = model_container.find_children("*", "MeshInstance3D", true)
+	#var meshes = GlobalVars.get_all_nested_meshes(model_container)
 	var value = 1.0 if enabled else 0.0
 	
 	# TODO: dynamically add item highlight shader, if not on
