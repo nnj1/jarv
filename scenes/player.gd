@@ -108,6 +108,8 @@ func set_skin_color(given_skin_color: Color):
 	base_mat.set_shader_parameter("blue_replacement_color", skin_color)
 
 func change_weapon(index:  int = weapon_index):
+	# turn off any interaction messages
+	interact_message_label.visible = false
 	# drop any held items
 	if entity_held:
 		entity_held.drop()

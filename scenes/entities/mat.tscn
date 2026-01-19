@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cdtlu2tjolipn"]
+[gd_scene load_steps=27 format=4 uid="uid://cdtlu2tjolipn"]
 
 [ext_resource type="Script" uid="uid://dpo5vbllihab0" path="res://scenes/entities/mat.gd" id="1_cf13u"]
 [ext_resource type="Texture2D" uid="uid://bkq52tdfn0luv" path="res://assets/3D Retro Plumbing & Wiring/Pipe-Texture.png" id="2_4kwsp"]
@@ -49,8 +49,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yqns6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0ef8"]
-albedo_texture = ExtResource("2_4kwsp")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q0ef8"]
+load_path = "res://.godot/imported/Pipe-Texture.png-d2ba151538ed0e33a455ba4ee1ddc64b.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5chb"]
+albedo_texture = SubResource("CompressedTexture2D_q0ef8")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mjklm"]
 _surfaces = [{
@@ -222,7 +225,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27187502, 0, 0.1844335)
 mesh = SubResource("ArrayMesh_fifaa")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_q0ef8")
+surface_material_override/0 = SubResource("StandardMaterial3D_y5chb")
 
 [node name="Valve Pipe" type="MeshInstance3D" parent="model/RUSTY_SCRAP/Pipe Valve/Valve"]
 mesh = SubResource("ArrayMesh_rjr68")

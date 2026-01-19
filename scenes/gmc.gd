@@ -154,12 +154,11 @@ func save_rv():
 # TODO: data deserialization
 
 # only server should change mat amount
-@rpc("any_peer","call_remote", "reliable")
+@rpc("any_peer","call_local", "reliable")
 func network_change_mat_amount(given_mat_type: GlobalVars.MatType, amount: int = 0):
 	if not multiplayer.is_server(): return
-	var current_mat_amount = self.get(String(GlobalVars.MatType.find_key(given_mat_type)).to_lower())
-	self.set(String(GlobalVars.MatType.find_key(given_mat_type)).to_lower(), current_mat_amount + amount)
-	
+	var current_mat_amount = self.get('current_' + String(GlobalVars.MatType.find_key(given_mat_type)).to_lower())
+	self.set('current_' + String(GlobalVars.MatType.find_key(given_mat_type)).to_lower(), current_mat_amount + amount)
 	
 @rpc("any_peer","call_local", "reliable")
 func network_horn_on():

@@ -17,6 +17,12 @@ const descriptions = [
 
 @export var current_type: GlobalVars.MatType
 
+func interact(given_player_node) -> void:
+	super.interact(given_player_node)
+	# TODO: make it so player has to actually bring material back to RV
+	# Add 1 of the material to the Gmc inventory
+	main_game_node.get_node('entities/Gmc').rpc_id(1, 'network_change_mat_amount', current_type, 1)
+	
 func prepare():
 	#current_type = GlobalVars.MatType.values().pick_random()
 	current_type = [GlobalVars.MatType.RUSTY_SCRAP, GlobalVars.MatType.REFINED_PLATES, GlobalVars.MatType.CHEMICAL_SLUDGE].pick_random()
@@ -25,8 +31,9 @@ func prepare():
 	
 	# if chemical sludge, choose a variable texture
 	if current_type == GlobalVars.MatType.CHEMICAL_SLUDGE:
-		var mat_override = $model/CHEMICAL_SLUDGE/mod_barrel_1/Cylinder.get_surface_override_material(0)
+		var mat_override = $model/CHEMICAL_SLUDGE/mod_barrel_1/Cylinder.get_surface_override_material(0).duplicate(true)
 		mat_override.albedo_texture = load(barrel_textures_paths.pick_random())
+		$model/CHEMICAL_SLUDGE/mod_barrel_1/Cylinder.set_surface_override_material(0, mat_override)
 		
 	# make the correct mesh visible for the item
 	for mesh in $model.get_children():
