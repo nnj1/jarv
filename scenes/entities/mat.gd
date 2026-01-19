@@ -15,23 +15,22 @@ const descriptions = [
   "Delicate silicon wafers salvaged from high-end electronics. These are the 'brains' required to upgrade your RV's GPS, autopilot, or engine management systems."
 ]
 
-enum Type { RUSTY_SCRAP, WIRING_COMPONENTS, REFINED_PLATES, CHEMICAL_SLUDGE, PROCESSOR_CHIPS }
-@export var current_type: Type
+@export var current_type: GlobalVars.MatType
 
 func prepare():
-	#current_type = Type.values().pick_random()
-	current_type = [Type.RUSTY_SCRAP, Type.REFINED_PLATES, Type.CHEMICAL_SLUDGE].pick_random()
-	item_name = String(Type.find_key(current_type))
+	#current_type = GlobalVars.MatType.values().pick_random()
+	current_type = [GlobalVars.MatType.RUSTY_SCRAP, GlobalVars.MatType.REFINED_PLATES, GlobalVars.MatType.CHEMICAL_SLUDGE].pick_random()
+	item_name = String(GlobalVars.MatType.find_key(current_type))
 	item_description = descriptions[current_type]
 	
 	# if chemical sludge, choose a variable texture
-	if current_type == Type.CHEMICAL_SLUDGE:
+	if current_type == GlobalVars.MatType.CHEMICAL_SLUDGE:
 		var mat_override = $model/CHEMICAL_SLUDGE/mod_barrel_1/Cylinder.get_surface_override_material(0)
 		mat_override.albedo_texture = load(barrel_textures_paths.pick_random())
 		
 	# make the correct mesh visible for the item
 	for mesh in $model.get_children():
 		mesh.hide()
-	$model.get_node(Type.find_key(current_type)).show()
+	$model.get_node(GlobalVars.MatType.find_key(current_type)).show()
 	
 	

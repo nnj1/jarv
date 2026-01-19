@@ -1,5 +1,8 @@
 extends Node
 
+# Some enums:
+enum MatType { RUSTY_SCRAP, WIRING_COMPONENTS, REFINED_PLATES, CHEMICAL_SLUDGE, PROCESSOR_CHIPS }
+
 # Load your spritesheet
 @onready var spritesheet = preload('res://assets/kenney_crosshairPack/Tilesheet/crosshairs_tilesheet_white.png')
 @onready var idle_sound_streams = []

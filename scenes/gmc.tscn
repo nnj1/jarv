@@ -537,6 +537,21 @@ properties/18/replication_mode = 2
 properties/19/path = NodePath("handbrakeSound:playing")
 properties/19/spawn = true
 properties/19/replication_mode = 2
+properties/20/path = NodePath(".:current_rusty_scrap")
+properties/20/spawn = true
+properties/20/replication_mode = 2
+properties/21/path = NodePath(".:current_wiring_components")
+properties/21/spawn = true
+properties/21/replication_mode = 2
+properties/22/path = NodePath(".:current_refined_plates")
+properties/22/spawn = true
+properties/22/replication_mode = 2
+properties/23/path = NodePath(".:current_chemical_sludge")
+properties/23/spawn = true
+properties/23/replication_mode = 2
+properties/24/path = NodePath(".:current_processor_chips")
+properties/24/spawn = true
+properties/24/replication_mode = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asokp"]
 
