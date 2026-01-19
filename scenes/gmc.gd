@@ -441,6 +441,11 @@ func _on_inner_volume_body_exited(body: Node3D) -> void:
 # for detecting crashes/collisions to the RV vehiclebody3d
 func _on_body_entered(body: Node) -> void:
 	
+	# for certain objects just avoid the collision entirely
+	if 'IS_ITEM_BODY' in body:
+		if body.IS_ITEM_BODY:
+			return
+	
 	# 2. Set a threshold so minor bumps don't cause dents
 	if current_speed_kmh > 15.0:
 		# Map the speed to a damage value (e.g., 20 m/s = 0.4 damage)

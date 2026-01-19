@@ -33,6 +33,7 @@ func _ready() -> void:
 	$Panel/VBoxContainer/modal_desc.text = modal_desc
 	
 	# show the texture swap menu if a target mesh_was passed
+	# TODO: Create exceptions for certain items
 	if target_mesh:
 		prepare_texture_swap_tab()
 		$Panel/VBoxContainer/TabContainer.set_tab_hidden(0, false)
@@ -66,12 +67,18 @@ func prepare(given_modal_name:String = 'default_modal', given_modal_desc:String 
 	if target_node:
 		if 'desc' in target_node:
 			modal_desc = target_node.desc
+			
+	# This is if the target node is a material item
+	if target_node:
+		if 'item_description' in target_node:
+			modal_name = target_node.item_name
+			print(target_node.item_name)
+			modal_desc = target_node.item_description
 	
 	# if target node has a associated data structure you wanna display
 	if target_node:
 		if 'IS_RV' in target_node:
 			data_contents = GameManager.rv_data
-			
 			
 # DRAG AND DROP LOGIC FOR MODAL
 func _gui_input(event):
