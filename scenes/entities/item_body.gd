@@ -19,13 +19,12 @@ const IS_ITEM_BODY:bool = true
 @export var custom_interact_message: String = 'Press E to pick up'
 
 # --- State Variables ---
-var holding_player: Node3D = null 
-var hand_node: Marker3D = null 
+var holding_player: Node3D = null
+var hand_node: Marker3D = null
 @export var local_y_rotation: float = 0.0
 var rotation_speed: float = 2.0
 
 # --- Initialization & Model Loading ---
-
 @warning_ignore("unused_parameter")
 func setup(interactable: bool = true, pick:bool = true, employ: bool = false, consumable: bool = true, given_custom_interact_message = 'Press E to pick up') -> void:
 	is_interactable = interactable
