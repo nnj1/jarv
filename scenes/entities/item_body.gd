@@ -101,6 +101,9 @@ func sync_pickup(given_player_id: int) -> void:
 	# Hand cache
 	hand_node = holding_player.get_node('weapons/hand/grab_position')
 	
+	# take self off physics layer (to prevent collision with player)
+	self.set_collision_layer_value(5, false)
+	
 	set_item_highlight(false)
 	self.freeze = true
 
@@ -123,6 +126,9 @@ func sync_drop() -> void:
 	self.global_transform = final_transform
 	self.freeze = false
 	
+	# make self on a physics layer again
+	self.set_collision_layer_value(5, true)
+
 	if multiplayer.is_server():
 		# Throw the item slightly forward in front of the player
 		self.apply_central_impulse(-holding_player.global_transform.basis.z * 3.0)
