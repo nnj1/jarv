@@ -51,6 +51,10 @@ func update_rotation_server(new_rotation: float) -> void:
 		local_y_rotation = new_rotation
 
 func _process(delta: float) -> void:
+	# if you pass the kill plane, just destroy the item
+	if self.global_position.y <= -1000:
+		smart_queue_free()
+		
 	# While held, stick to the hand precisely
 	if holding_player and hand_node:
 		self.global_transform = hand_node.global_transform

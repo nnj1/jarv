@@ -202,3 +202,17 @@ func get_all_nested_meshes(node: Node, mesh_list: Array[MeshInstance3D] = []) ->
 		
 	#print(mesh_list)
 	return mesh_list
+
+func generate_random_points(center: Vector3, radius: float, count: int, height: int) -> Array[Vector3]:
+	var points: Array[Vector3] = []
+	
+	for i in range(count):
+		var r = radius * sqrt(randf()) # Corrects for area density
+		var theta = randf() * 2 * PI
+		
+		var x = r * cos(theta)
+		var z = r * sin(theta)
+		
+		points.append(center + Vector3(x, height, z))
+		
+	return points
