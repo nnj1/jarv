@@ -26,19 +26,22 @@ func toggle_menu():
 
 # works for both server and clients
 func close_session():
-	# 1. Check if a peer actually exists to avoid errors
-	if multiplayer.multiplayer_peer:
-		# .close() works for both Server and Client.
-		# If Server: Disconnects all clients and shuts down.
-		# If Client: Disconnects from the server.
-		multiplayer.multiplayer_peer.close()
-		
-		# 2. Reset the multiplayer_peer to null to clean up the API state
-		multiplayer.multiplayer_peer = null
+	
+	var callback = func():
+		# 1. Check if a peer actually exists to avoid errors
+		if multiplayer.multiplayer_peer:
+			# .close() works for both Server and Client.
+			# If Server: Disconnects all clients and shuts down.
+			# If Client: Disconnects from the server.
+			multiplayer.multiplayer_peer.close()
+			
+			# 2. Reset the multiplayer_peer to null to clean up the API state
+			multiplayer.multiplayer_peer = null
 	
 	# 3. Return to the Main Menu scene
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
-
+	#get_tree().change_scene_to_file("res://scenes/main.tscn")
+	SceneTransition.change_scene("res://scenes/main.tscn", callback)
+	
 func _on_exit_menu_button_pressed() -> void:
 	close_session()
 	menu_layer.visible = false

@@ -3,6 +3,7 @@ extends CanvasLayer
 var rect: ColorRect
 var target_path: String = ""
 var fade_duration: float = 0.5
+var other_func: Callable
 
 func _ready():
 	# 1. Setup the UI purely via code
@@ -13,9 +14,10 @@ func _ready():
 	rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-func change_scene(path: String, duration: float = 1.0):
+func change_scene(path: String, given_other_func: Callable, duration: float = 0.5):
 	target_path = path
 	fade_duration = duration
+	other_func = given_other_func
 	
 	# Block input so user can't click during fade
 	rect.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -37,4 +39,5 @@ func change_scene(path: String, duration: float = 1.0):
 
 func _perform_switch():
 	if target_path != "":
+		other_func.call()
 		get_tree().change_scene_to_file(target_path)

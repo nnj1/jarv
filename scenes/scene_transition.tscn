@@ -3,5 +3,5 @@
 [ext_resource type="Script" uid="uid://c1gi5po8x0838" path="res://scenes/scene_transition.gd" id="1_0wykx"]
 
 [node name="SceneTransition" type="CanvasLayer"]
-layer = 3
+layer = 7
 script = ExtResource("1_0wykx")

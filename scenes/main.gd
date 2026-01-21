@@ -130,15 +130,14 @@ func _process(delta: float) -> void:
 func _on_host_pressed():
 	# 1. Stop listening so another debug window can take the port	
 	stop_listening()
-	GameManager.start_server(int($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text), $"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit2".text)
-	#TODO: Get the scene transition to work without destroying multiplayer connectivity
-	#SceneTransition.change_scene('res://scenes/game.tscn')
-	get_tree().change_scene_to_file('res://scenes/game.tscn')
+	var callback = func(): GameManager.start_server(int($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit2.text), $"CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2/LineEdit2".text)
+	SceneTransition.change_scene('res://scenes/game.tscn', callback)
+	#get_tree().change_scene_to_file('res://scenes/game.tscn')
 
 func _on_join_pressed():
-	GameManager.start_client($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit.text)
-	#SceneTransition.change_scene('res://scenes/game.tscn')
-	get_tree().change_scene_to_file('res://scenes/game.tscn')
+	var callback = func(): GameManager.start_client($CanvasLayer/VBoxContainer/HBoxContainer/TextEdit.text)
+	SceneTransition.change_scene('res://scenes/game.tscn', callback)
+	#get_tree().change_scene_to_file('res://scenes/game.tscn')
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	GameManager.selected_skin = color
