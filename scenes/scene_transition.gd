@@ -31,6 +31,9 @@ func change_scene(path: String, given_other_func: Callable, duration: float = 0.
 	# Step B: When Step A finishes, call the scene swap function
 	tween.tween_callback(_perform_switch)
 	
+	# extra pause to see the menu screen
+	tween.tween_property(rect, "modulate:a", 1.0, fade_duration)
+	
 	# Step C: Fade back to transparent
 	tween.tween_property(rect, "modulate:a", 0.0, fade_duration)
 	
