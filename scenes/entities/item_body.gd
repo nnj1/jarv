@@ -54,6 +54,7 @@ func _process(delta: float) -> void:
 	# if you pass the kill plane, just destroy the item
 	if self.global_position.y <= -1000:
 		smart_queue_free()
+		print('item killed')
 		
 	# While held, stick to the hand precisely
 	if holding_player and hand_node:

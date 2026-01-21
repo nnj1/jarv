@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmww3ljcekw3k"]
+[gd_scene load_steps=3 format=3 uid="uid://bmww3ljcekw3k"]
 
+[ext_resource type="Script" uid="uid://bqniukoaffwho" path="res://scenes/maps/track.gd" id="1_lwb78"]
 [ext_resource type="PackedScene" uid="uid://cvjl0qgvcqr3f" path="res://assets/nfs_iii_hot_pursuit_-_summit/scene.gltf" id="1_vkjko"]
 
 [node name="Track" type="Node3D"]
+script = ExtResource("1_lwb78")
 
 [node name="rv_spawn_point" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1476.7979, 351.47647, -222.23543)

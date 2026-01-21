@@ -97,6 +97,7 @@ properties/1/replication_mode = 1
 collision_layer = 16
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_ypghb")
+continuous_cd = true
 script = ExtResource("1_fgm4t")
 
 [node name="model" type="Node3D" parent="."]
