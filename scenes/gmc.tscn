@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://do3xxsfa4op1l"]
+[gd_scene load_steps=66 format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
 [ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]
@@ -476,6 +476,12 @@ size = Vector3(4.684143, 0.24487305, 6.1716003)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrg0m"]
 size = Vector3(5.035309, 0.24487305, 6.1716003)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jh1p5"]
+size = Vector3(2.1789856, 0.24487305, 6.1716003)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l0436"]
+size = Vector3(6.6536865, 0.72998047, 5.888153)
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3f1he"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -739,6 +745,14 @@ shape = SubResource("BoxShape3D_jwa7j")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 0.8029111, 0.5960987, -2.6056306e-08, -0.5960987, 0.8029111, -3.509636e-08, 0.019443512, 4.894869, 9.7080765)
 shape = SubResource("BoxShape3D_qrg0m")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0.019443512, 3.1784363, 9.093825)
+shape = SubResource("BoxShape3D_jh1p5")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056762695, 2.4583688, 8.392838)
+shape = SubResource("BoxShape3D_l0436")
 
 [node name="front_left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8169963, 1.2730367, 7.63747)
