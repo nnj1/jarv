@@ -1284,3 +1284,6 @@ shape = SubResource("SphereShape3D_vhn86")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_vhn86")
+
+[node name="damage_marker_point" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7914343, 0)

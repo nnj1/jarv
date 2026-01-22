@@ -71,6 +71,9 @@ enum State { IDLE, AGGRO, ATTACK, STOMP, DEAD }
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var anim_player: AnimationPlayer = $Sketchfab_Scene/AnimationPlayer
 
+@onready var damage_marker = preload('res://scenes/damage_marker.tscn')
+@onready var damage_marker_point =$damage_marker_point
+
 const IS_ENEMY: bool = true
 
 # --- STATE SETTER ---
@@ -130,6 +133,12 @@ func deactivate_paw_area():
 # --- COMBAT & DAMAGE ---
 
 @rpc("any_peer", "call_local", "reliable")
+func show_damage_marker(amount: int):
+	var marker = damage_marker.instantiate()
+	marker.prepare(amount)
+	damage_marker_point.add_child(marker)
+	
+@rpc("any_peer", "call_local", "reliable")
 func damage(amount: int):
 	if not multiplayer.is_server() or current_state == State.DEAD: return
 	
@@ -149,6 +158,8 @@ func damage(amount: int):
 	if amount >= 25:
 		current_state = State.STOMP
 		stomp_timer = stomp_duration
+		
+	rpc('show_damage_marker', amount)
 
 func _on_body_entered(body):
 	if not multiplayer.is_server() or current_state == State.DEAD: return
