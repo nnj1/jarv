@@ -4,13 +4,19 @@ var value:int
 
 func prepare(given_damage_value) -> void:
 	self.text = str(int(given_damage_value))
+	if given_damage_value > 75:
+		self.modulate = Color.RED
+	elif given_damage_value > 25:
+		self.modulate = Color.ORANGE
+	else:
+		self.modulate = Color.WHITE
 	
 func _ready():
 	burst_and_free()
 
 func burst_and_free():
 	# 1. Setup Random Direction
-	var spread = 1.5 # How far it can drift sideways
+	var spread = 2.0 # How far it can drift sideways
 	var random_x = randf_range(-spread, spread)
 	var random_z = randf_range(-spread, spread)
 	var target_height = position.y + 2.0
