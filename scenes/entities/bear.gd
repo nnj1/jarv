@@ -99,8 +99,11 @@ var attack_cooldown_timer := 0.0
 var stomp_timer := 0.0
 var last_sent_anim := ""
 
+func _enter_tree() -> void:
+	self.global_position = home_position + Vector3(0.01, 0.01, 0.01)
+
 func _ready():
-	home_position = global_position
+	#home_position = global_position
 	contact_monitor = true
 	max_contacts_reported = 10
 	
