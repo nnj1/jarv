@@ -8,6 +8,8 @@ enum State { IDLE, AGGRO, ATTACK, STOMP, DEAD }
 @export var stop_drag := 15.0
 @export var turn_speed := 5.0
 @export var gravity_glue := 1000.0 
+@export var jump_force := 15
+@export var jump_cooldown := 1.5
 
 @export_group("Wander Settings")
 @export var wander_interval_min := 3.0
@@ -18,9 +20,9 @@ enum State { IDLE, AGGRO, ATTACK, STOMP, DEAD }
 @export_group("Combat")
 @export var melee_damage := 25
 @export var attack_cooldown := 1.5
-@export var stomp_duration := 1.2 / 2 
+@export var stomp_duration := 0.6
 @export var revenge_duration := 10.0
-@export var max_health := 1000.0 / 10
+@export var max_health := 100.0
 @export var current_health := max_health
 
 @export_group("Detection")
@@ -28,6 +30,7 @@ enum State { IDLE, AGGRO, ATTACK, STOMP, DEAD }
 @export_node_path("Area3D") var detection_area_path
 @onready var detection_area: Area3D = get_node(detection_area_path)
 @onready var paw_hitbox: Area3D = $Area3D2
+@onready var jump_ray: RayCast3D = $JumpRay # Add RayCast3D node child to Bear pointing forward
 
 @export_group("Sounds")
 @export var idle_sounds: Array[AudioStream] = [
@@ -70,9 +73,8 @@ enum State { IDLE, AGGRO, ATTACK, STOMP, DEAD }
 
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var anim_player: AnimationPlayer = $Sketchfab_Scene/AnimationPlayer
-
 @onready var damage_marker = preload('res://scenes/damage_marker.tscn')
-@onready var damage_marker_point =$damage_marker_point
+@onready var damage_marker_point = $damage_marker_point
 
 const IS_ENEMY: bool = true
 
@@ -84,14 +86,14 @@ var current_state = State.IDLE:
 			if anim_player:
 				anim_player.speed_scale = 1.0 
 			if is_inside_tree() and multiplayer.is_server():
-				_sync_anim_speed.rpc(1.0)
 				_update_state_assets(current_state)
 
-# --- TARGETING VARIABLES ---
+# --- AI & TARGETING VARIABLES ---
 var target_node: Node3D = null      
 var rv_target: Node3D = null        
 var revenge_target: Node3D = null   
 var revenge_timer := 0.0
+var jump_timer := 0.0
 
 var players_in_range: Array[Node3D] = []
 var home_position := Vector3.ZERO
@@ -106,10 +108,8 @@ func _enter_tree() -> void:
 	self.global_position = home_position + Vector3(0.01, 0.01, 0.01)
 
 func _ready():
-	#home_position = global_position
 	contact_monitor = true
 	max_contacts_reported = 10
-	
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0, -1.0, 0) 
 	
@@ -119,18 +119,19 @@ func _ready():
 	if detection_area:
 		detection_area.body_entered.connect(_on_detection_area_body_entered)
 		detection_area.body_exited.connect(_on_detection_area_body_exited)
-	
 	self.body_entered.connect(_on_body_entered)
 
-# --- ANIMATION CALLBACKS (Fixes Method Not Found Error) ---
+# --- ANIMATION CALLBACKS ---
 
 func activate_paw_area():
-	if paw_hitbox: paw_hitbox.monitoring = true
+	if paw_hitbox: 
+		paw_hitbox.monitoring = true
 
 func deactivate_paw_area():
-	if paw_hitbox: paw_hitbox.monitoring = false
-
-# --- COMBAT & DAMAGE ---
+	if paw_hitbox: 
+		paw_hitbox.monitoring = false
+		
+# --- COMBAT ---
 
 @rpc("any_peer", "call_local", "reliable")
 func show_damage_marker(amount: int):
@@ -141,7 +142,7 @@ func show_damage_marker(amount: int):
 @rpc("any_peer", "call_local", "reliable")
 func damage(amount: int):
 	if not multiplayer.is_server() or current_state == State.DEAD: return
-	
+	rpc('show_damage_marker', amount)
 	current_health = clamp(current_health - amount, 0, max_health)
 	
 	if current_health <= 0:
@@ -155,11 +156,9 @@ func damage(amount: int):
 			revenge_timer = revenge_duration
 			break
 
-	if amount >= 25:
+	if amount >= 25 and current_state != State.ATTACK:
 		current_state = State.STOMP
 		stomp_timer = stomp_duration
-		
-	rpc('show_damage_marker', amount)
 
 func _on_body_entered(body):
 	if not multiplayer.is_server() or current_state == State.DEAD: return
@@ -172,9 +171,6 @@ func _perform_attack(_target):
 	attack_cooldown_timer = attack_cooldown
 	last_sent_anim = "" 
 	
-	anim_player.speed_scale = 1.0
-	_sync_anim_speed.rpc(1.0)
-	
 	get_tree().create_timer(1.0).timeout.connect(func():
 		if current_state == State.ATTACK:
 			current_state = State.AGGRO
@@ -185,14 +181,12 @@ func _perform_attack(_target):
 func _physics_process(delta):
 	if not multiplayer.is_server() or current_state == State.DEAD: return
 	
-	# --- VOID CHECK ---
 	if global_position.y < kill_plane_y:
-		damage(9999) # Instantly kill the bear
+		damage(9999)
 		return
 		
-	if attack_cooldown_timer > 0: 
-		attack_cooldown_timer -= delta
-	
+	if attack_cooldown_timer > 0: attack_cooldown_timer -= delta
+	if jump_timer > 0: jump_timer -= delta
 	if revenge_timer > 0:
 		revenge_timer -= delta
 		if revenge_timer <= 0: revenge_target = null
@@ -204,20 +198,15 @@ func _physics_process(delta):
 		State.IDLE:
 			wander_timer -= delta
 			if wander_timer <= 0: _update_wander_logic()
-			if is_waiting: _play_anim_if_new("idleSmell")
-			else: _play_anim_if_new("polarbearrun")
+			_play_anim_if_new("idleSmell" if is_waiting else "polarbearrun")
 		State.AGGRO:
 			_play_anim_if_new("polarbearrun")
+			# MultiplayerSynchronizer handles speed_scale sync
 			var horiz_vel = Vector3(linear_velocity.x, 0, linear_velocity.z).length()
-			if horiz_vel > 0.5:
-				var target_anim_speed = clamp(remap(horiz_vel, 0, max_speed, 0.4, 1.2), 0.4, 1.2)
-				_sync_anim_speed.rpc(target_anim_speed)
-			else:
-				_sync_anim_speed.rpc(1.0)
+			anim_player.speed_scale = clamp(remap(horiz_vel, 0, max_speed, 0.4, 1.2), 0.4, 1.2)
 			
 			if target_node and attack_cooldown_timer <= 0:
-				var bodies = get_colliding_bodies()
-				if bodies.has(target_node):
+				if get_colliding_bodies().has(target_node):
 					_perform_attack(target_node)
 
 	if current_state != State.STOMP:
@@ -257,9 +246,19 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 
 	if move_dir.length() > 0.1:
 		var look_dir = Vector3(move_dir.x, 0, move_dir.z)
-		var target_up = ground_normal if is_on_ground else Vector3.UP
-		var target_basis = Basis.looking_at(look_dir, target_up)
-		state.transform.basis = state.transform.basis.slerp(target_basis, turn_speed * state.step).orthonormalized()
+		
+		# --- JUMP LOGIC ---
+		if is_on_ground and jump_timer <= 0 and jump_ray.is_colliding():
+			var obstacle = jump_ray.get_collider()
+			if obstacle != target_node:
+				state.linear_velocity.y = jump_force
+				print('jumped')
+				jump_timer = jump_cooldown
+
+		if not look_dir.is_zero_approx():
+			var target_basis = Basis.looking_at(look_dir, ground_normal if is_on_ground else Vector3.UP)
+			state.transform.basis = state.transform.basis.slerp(target_basis, turn_speed * state.step).orthonormalized()
+		
 		state.angular_velocity = Vector3.ZERO 
 		
 		if is_on_ground:
@@ -272,7 +271,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 		var horizontal_vel = Vector3(linear_velocity.x, 0, linear_velocity.z)
 		apply_central_force(-horizontal_vel * stop_drag)
 
-# --- ASSETS & NETWORKING ---
+# --- ASSETS ---
 
 func _update_state_assets(new_state: State):
 	match new_state:
@@ -291,21 +290,11 @@ func _update_state_assets(new_state: State):
 
 func _handle_death_cleanup():
 	set_physics_process(false)
-	# players can no longer hit the bear
 	collision_layer = 0
-	# don't collide with player
 	set_collision_mask_value(3, false)
 	set_collision_mask_value(4, false)
-	
-	# Let it fall and settle, then freeze
-	get_tree().create_timer(2.0).timeout.connect(func():
-		freeze = true 
-	)
-	
+	get_tree().create_timer(2.0).timeout.connect(func(): freeze = true)
 	deactivate_paw_area()
-	
-	# TODO: could spawn drops here
-	# clean up
 	get_tree().create_timer(60.0).timeout.connect(queue_free)
 
 func _play_anim_if_new(anim_name: String):
@@ -326,15 +315,9 @@ func _play_random_sound_rpc(state_for_sound: State):
 		State.AGGRO: pool = aggro_sounds
 		State.STOMP, State.DEAD: pool = hurt_sounds
 		State.ATTACK: pool = attack_sounds
-	
 	if not pool.is_empty():
 		audio_player.stream = pool.pick_random()
 		audio_player.play()
-
-@rpc("authority", "call_local", "unreliable")
-func _sync_anim_speed(speed: float):
-	if anim_player:
-		anim_player.speed_scale = speed
 
 # --- AI UTILS ---
 

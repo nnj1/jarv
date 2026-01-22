@@ -1018,6 +1018,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("Sketchfab_Scene/AnimationPlayer:speed_scale")
+properties/3/spawn = true
+properties/3/replication_mode = 2
 
 [node name="Bear" type="RigidBody3D"]
 collision_mask = 15
@@ -1287,3 +1290,7 @@ replication_config = SubResource("SceneReplicationConfig_vhn86")
 
 [node name="damage_marker_point" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7914343, 0)
+
+[node name="JumpRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.442797, -2.2082043)
+target_position = Vector3(0, 0, -10)

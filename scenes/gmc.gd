@@ -64,6 +64,9 @@ enum Gear { DRIVE, REVERSE }
 @onready var max_steering_wheel_angle = 3.0 * PI 
 @onready var steering_wheel_initial_basis = steering_wheel_mesh.transform.basis
 
+@onready var damage_marker = preload('res://scenes/damage_marker.tscn')
+@onready var damage_marker_point = $damage_marker_point
+
 @export_group('UI Labels and Controls')
 @onready var gear_label = main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/gear')
 @onready var car_speed_label = main_game_node.get_node('CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer/car_speed')
@@ -418,8 +421,15 @@ func repair(amount: float = 1000) -> void:
 	current_health = clamp(current_health + amount, 0, max_health)
 
 @rpc("any_peer", "call_local", "reliable")
+func show_damage_marker(amount: int):
+	var marker = damage_marker.instantiate()
+	marker.prepare(amount)
+	damage_marker_point.add_child(marker)
+	
+@rpc("any_peer", "call_local", "reliable")
 func damage(amount = 1) -> void:
 	if not multiplayer.is_server(): return
+	rpc('show_damage_marker', amount)
 	current_health = clamp(current_health - amount/damage_damper, 0, max_health)
 	# will have to adjust volume and other parameters
 	$crashSound.play()
