@@ -764,4 +764,7 @@ wait_time = 5.0
 stream = ExtResource("19_4r5pv")
 volume_db = 2.0
 
+[node name="damage_marker_point" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.411241, 0)
+
 [connection signal="timeout" from="GPUParticles3D/Timer" to="." method="_on_timer_timeout"]

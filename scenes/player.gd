@@ -46,6 +46,10 @@ var max_weapons:int = 3
 var health_decay_rate:float = 0.5
 var recoil_velocity: Vector3 = Vector3.ZERO
 
+# for damage values showing when player is attacked
+@onready var damage_marker = preload('res://scenes/damage_marker.tscn')
+@onready var damage_marker_point = $damage_marker_point
+
 @onready var frost_material = main_game_node.get_node('CanvasLayer2/frozen').material
 var frost_rate: float = 0.001 # 0.1 for debugging
 
@@ -181,11 +185,18 @@ func decay_health(delta):
 		# Prevent health from going below zero
 		current_health = max(current_health, 0)
 		
+		
+@rpc("any_peer", "call_local", "reliable")
+func show_damage_marker(amount: int):
+	var marker = damage_marker.instantiate()
+	marker.prepare(amount)
+	damage_marker_point.add_child(marker)
+	
 # Should be called by any client on all peers, but only the server will execute
 # current_health sync from authority to peers via multiplayer synchronizer
-# TODO: find a way for server to force hit animations on all clients
 @rpc("any_peer", "call_local", "reliable")
 func damage(amount: int = 1):
+	rpc('show_damage_marker', amount)
 	# delta ensures the decay is consistent regardless of frame rate
 	current_health -= amount
 	
