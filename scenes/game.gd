@@ -280,10 +280,11 @@ func global_teleport(vehicle, target_pos: Vector3):
 # makes the crosshair momentarily red
 @rpc("any_peer","call_local","reliable")
 func cross_hair_flash_red():
+	#if not $crosshair_flash_sound.playing:
+	$crosshair_flash_sound.play()
+		
 	var tween = create_tween()
-	
 	# Transition to Red over 0.1 seconds
 	tween.tween_property($CanvasLayer/crosshair, "modulate", Color.RED, 0.1)
-	
 	# Transition back to White (original) over 0.2 seconds
 	tween.tween_property($CanvasLayer/crosshair, "modulate", Color.WHITE, 0.2)

@@ -383,7 +383,7 @@ func _physics_process(delta):
 					interact_message_label.visible = true
 				# show the interaction message only if the hand is active when the target is pickable
 				elif target.is_pickable:
-					if weapons[weapon_index].name == 'hand':
+					#if weapons[weapon_index].name == 'hand':
 						interact_message_label.text = message
 						interact_message_label.visible = true
 				

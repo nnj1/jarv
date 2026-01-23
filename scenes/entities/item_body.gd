@@ -79,10 +79,13 @@ func interact(given_player_node) -> void:
 		return
 		
 	if given_player_node.is_multiplayer_authority():
-		if given_player_node.weapons[given_player_node.weapon_index].name == 'hand':
-			var player_id = given_player_node.multiplayer.get_unique_id()
-			# Ask server to pick this up
-			rpc_id(1, "server_request_pickup", player_id)
+		# switch to hand to pick up
+		if given_player_node.weapons[given_player_node.weapon_index].name != 'hand':
+			given_player_node.weapon_index = 0
+			given_player_node.change_weapon(0)
+		var player_id = given_player_node.multiplayer.get_unique_id()
+		# Ask server to pick this up
+		rpc_id(1, "server_request_pickup", player_id)
 
 @rpc("any_peer", "call_local", "reliable")
 func server_request_pickup(given_player_id: int) -> void:
