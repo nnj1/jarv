@@ -276,3 +276,14 @@ func global_teleport(vehicle, target_pos: Vector3):
 	# Critical: Reset velocity so the car doesn't keep its previous momentum
 	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, Vector3.ZERO)
 	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_ANGULAR_VELOCITY, Vector3.ZERO)
+
+# makes the crosshair momentarily red
+@rpc("any_peer","call_local","reliable")
+func cross_hair_flash_red():
+	var tween = create_tween()
+	
+	# Transition to Red over 0.1 seconds
+	tween.tween_property($CanvasLayer/crosshair, "modulate", Color.RED, 0.1)
+	
+	# Transition back to White (original) over 0.2 seconds
+	tween.tween_property($CanvasLayer/crosshair, "modulate", Color.WHITE, 0.2)

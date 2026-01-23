@@ -784,11 +784,11 @@ func _on_grunt_timer_timeout():
 		# Tell everyone to execute the function
 		rpc('play_idle_sound', randi_range(0, len(GlobalVars.idle_sound_streams) - 1))
 
-@rpc('any_peer','call_local','reliable')
+@rpc('any_peer','call_local','unreliable')
 func play_jump_sound():
 	$jumpSound.play()
 	
-@rpc('any_peer','call_local','reliable')
+@rpc('any_peer','call_local','unreliable')
 func play_idle_sound(index: int):
 	$idleSound.stream = GlobalVars.idle_sound_streams[index]
 	if not $jumpSound.playing:
@@ -805,8 +805,10 @@ func hit_scan_attack(damage_amount):
 					# TODO: NOT SECURE, since client can modify, make the check occur only on server
 					if host_server_data.friendly_fire:
 						body.rpc('damage', damage_amount)
+						main_game_node.cross_hair_flash_red()
 			else:
 				body.rpc('damage', damage_amount)
+				main_game_node.cross_hair_flash_red()
 
 func shoot_projectile():
 	rpc('request_spawn_projectile', weapon_index, get_node('weapons/' + weapons[weapon_index].name + '/spawn_position').global_position, aim_ray.to_global(aim_ray.target_position))
@@ -819,6 +821,7 @@ func request_spawn_projectile(weapon_index: int, origin_pos: Vector3, target_pos
 		return
 		
 	var rocket = weapons[weapon_index].projectile_scene.instantiate()
+	rocket.player_who_spawned_it_id = multiplayer.get_remote_sender_id()
 	
 	# This forces the rocket nose to point at the ray's impact point
 	rocket.look_at_from_position(origin_pos, target_pos, Vector3.UP)

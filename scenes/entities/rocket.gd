@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var main_game_node = get_tree().get_root().get_node('Node3D')
+
 @export var speed: float = 500.0
 @export var acceleration: float = 100.0
 @export var lifetime: float = 5.0
@@ -8,6 +10,7 @@ extends CharacterBody3D
 
 var current_speed: float = 0.0
 var is_active: bool = true
+var player_who_spawned_it_id: int
 
 @onready var mesh = $MeshInstance3D
 @onready var collision_shape = $CollisionShape3D
@@ -82,6 +85,10 @@ func sync_explode(point_of_contact = null):
 				var damage_multiplier = clamp(1.0 - (dist / radius), 0.0, 1.0)
 				#print(int(damage_amount * damage_multiplier))
 				body.rpc('damage', int(damage_amount * damage_multiplier))
+				
+				# have the player who spawned the rocket get a cross hair damage
+				if player_who_spawned_it_id:
+					main_game_node.rpc_id(player_who_spawned_it_id, 'cross_hair_flash_red')
 	
 	# 4. Cleanup (free the node on server, will free from elsewhere too because of multiplayersycnrhonizer)
 	await get_tree().create_timer(explosion_lifetime).timeout
