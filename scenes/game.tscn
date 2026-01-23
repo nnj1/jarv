@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene load_steps=44 format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://xythel0jxyq8" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_36.png" id="13_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://cj8k4rnouor5a" path="res://assets/Free-Cyberpunk-Resource-Pixel-Art-32x32-Icons/1 Icons/Icon14_35.png" id="14_ssvqc"]
 [ext_resource type="Script" uid="uid://dpxy7fi5jc7vn" path="res://scenes/broadcaster.gd" id="14_trtic"]
+[ext_resource type="Texture2D" uid="uid://dsh5ug12ut8d7" path="res://assets/kenney_cursor-pack/PNG/Outline/Double/tool_hammer.png" id="20_37s47"]
 [ext_resource type="Shader" uid="uid://bl4okw64bbtb4" path="res://shaders/frozenscreen.gdshader" id="21_5newe"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lnu2h"]
@@ -675,6 +676,28 @@ offset_bottom = 598.0
 rotation = -0.114274874
 theme_override_font_sizes/font_size = 25
 text = "100"
+
+[node name="edit_mode_display" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -11.0
+offset_top = 17.0
+offset_right = 29.0
+offset_bottom = 57.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/edit_mode_display"]
+position = Vector2(209, 437)
+texture = ExtResource("20_37s47")
+
+[node name="Label" type="Label" parent="CanvasLayer/edit_mode_display"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 409.0
+offset_right = 168.0
+offset_bottom = 462.0
+theme_override_font_sizes/font_size = 35
+text = "EDIT MODE"
 
 [node name="broadcaster" type="Timer" parent="."]
 script = ExtResource("14_trtic")

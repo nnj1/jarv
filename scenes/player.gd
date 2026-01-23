@@ -567,6 +567,7 @@ func _unhandled_input(event):
 	# Detect Edit mode Input
 	if event.is_action_pressed("edit") and not is_driving: # Map this to Right Mouse Button
 		in_edit_mode = true
+		main_game_node.get_node('CanvasLayer/edit_mode_display').show()
 		# play the sound
 		$editSound.play()
 		# boost the FOV
@@ -578,6 +579,7 @@ func _unhandled_input(event):
 		main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(116, 20, 10)	
 	elif event.is_action_released("edit") and not is_driving:
 		in_edit_mode = false
+		main_game_node.get_node('CanvasLayer/edit_mode_display').hide()
 		# turn off any currently highlighted mesh
 		if currently_highlighted_mesh:
 			set_highlight_mesh(currently_highlighted_mesh, false)
