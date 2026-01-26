@@ -21,16 +21,17 @@ enum State { IDLE, AGGRO, ATTACK, STOMP, DEAD }
 @export var melee_damage := 25
 @export var attack_cooldown := 1.5
 @export var stomp_duration := 0.6
-@export var revenge_duration := 10.0
+@export var revenge_duration := 10.0 # Duration to prioritize players over the RV
 @export var max_health := 100.0
 @export var current_health := max_health
 
 @export_group("Detection")
 @export var kill_plane_y := -2000.0
+@export var enraged_detection_radius := 129.0 # (43 * 3)
 @export_node_path("Area3D") var detection_area_path
 @onready var detection_area: Area3D = get_node(detection_area_path)
 @onready var paw_hitbox: Area3D = $Area3D2
-@onready var jump_ray: RayCast3D = $JumpRay # Add RayCast3D node child to Bear pointing forward
+@onready var jump_ray: RayCast3D = $JumpRay 
 
 @export_group("Sounds")
 @export var idle_sounds: Array[AudioStream] = [
@@ -94,6 +95,7 @@ var rv_target: Node3D = null
 var revenge_target: Node3D = null   
 var revenge_timer := 0.0
 var jump_timer := 0.0
+var has_been_damaged := false 
 
 var players_in_range: Array[Node3D] = []
 var home_position := Vector3.ZERO
@@ -121,17 +123,7 @@ func _ready():
 		detection_area.body_exited.connect(_on_detection_area_body_exited)
 	self.body_entered.connect(_on_body_entered)
 
-# --- ANIMATION CALLBACKS ---
-
-func activate_paw_area():
-	if paw_hitbox: 
-		paw_hitbox.monitoring = true
-
-func deactivate_paw_area():
-	if paw_hitbox: 
-		paw_hitbox.monitoring = false
-		
-# --- COMBAT ---
+# --- COMBAT & DAMAGE ---
 
 @rpc("any_peer", "call_local", "reliable")
 func show_damage_marker(amount: int):
@@ -145,17 +137,19 @@ func damage(amount: int):
 	rpc('show_damage_marker', amount)
 	current_health = clamp(current_health - amount, 0, max_health)
 	
+	# 1. Expand detection immediately on first hit
+	if not has_been_damaged and current_health < max_health:
+		has_been_damaged = true
+		_increase_detection_radius()
+
+	# 2. Trigger the revenge window (tells target logic to prefer players over RV)
+	revenge_timer = revenge_duration
+
 	if current_health <= 0:
 		current_state = State.DEAD
 		return
 
-	var attacker_id = multiplayer.get_remote_sender_id()
-	for player in players_in_range:
-		if is_instance_valid(player) and player.get_multiplayer_authority() == attacker_id:
-			revenge_target = player
-			revenge_timer = revenge_duration
-			break
-
+	# Stagger effect
 	if amount >= 25 and current_state != State.ATTACK:
 		current_state = State.STOMP
 		stomp_timer = stomp_duration
@@ -187,9 +181,12 @@ func _physics_process(delta):
 		
 	if attack_cooldown_timer > 0: attack_cooldown_timer -= delta
 	if jump_timer > 0: jump_timer -= delta
+	
+	# Countdown revenge timer
 	if revenge_timer > 0:
 		revenge_timer -= delta
-		if revenge_timer <= 0: revenge_target = null
+		if revenge_timer <= 0: 
+			revenge_target = null
 	
 	match current_state:
 		State.STOMP:
@@ -201,7 +198,6 @@ func _physics_process(delta):
 			_play_anim_if_new("idleSmell" if is_waiting else "polarbearrun")
 		State.AGGRO:
 			_play_anim_if_new("polarbearrun")
-			# MultiplayerSynchronizer handles speed_scale sync
 			var horiz_vel = Vector3(linear_velocity.x, 0, linear_velocity.z).length()
 			anim_player.speed_scale = clamp(remap(horiz_vel, 0, max_speed, 0.4, 1.2), 0.4, 1.2)
 			
@@ -247,12 +243,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 	if move_dir.length() > 0.1:
 		var look_dir = Vector3(move_dir.x, 0, move_dir.z)
 		
-		# --- JUMP LOGIC ---
 		if is_on_ground and jump_timer <= 0 and jump_ray.is_colliding():
 			var obstacle = jump_ray.get_collider()
 			if obstacle != target_node:
 				state.linear_velocity.y = jump_force
-				print('jumped')
 				jump_timer = jump_cooldown
 
 		if not look_dir.is_zero_approx():
@@ -271,7 +265,78 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 		var horizontal_vel = Vector3(linear_velocity.x, 0, linear_velocity.z)
 		apply_central_force(-horizontal_vel * stop_drag)
 
-# --- ASSETS ---
+# --- AI & TARGETING UTILS ---
+
+func _update_target_logic():
+	if current_state == State.DEAD: return
+	
+	# Clean list of invalid player references
+	players_in_range = players_in_range.filter(func(p): return is_instance_valid(p))
+	
+	var next_target: Node3D = null
+	
+	# --- NEW PRIORITY STACK (No Groups) ---
+
+	# 1. While revenge_timer is active, look for ANY player in range before checking RV
+	if revenge_timer > 0 and not players_in_range.is_empty():
+		var closest_dist := INF
+		for player in players_in_range:
+			var dist = global_position.distance_to(player.global_position)
+			if dist < closest_dist:
+				closest_dist = dist
+				next_target = player
+		# Sticky target: Keep this player as revenge_target
+		revenge_target = next_target 
+
+	# 2. If no players found in priority window, or window expired, go for RV
+	if next_target == null:
+		if is_instance_valid(rv_target):
+			next_target = rv_target
+		# 3. Last Fallback: Any player in range (standard detection)
+		elif not players_in_range.is_empty():
+			var closest_dist := INF
+			for player in players_in_range:
+				var dist = global_position.distance_to(player.global_position)
+				if dist < closest_dist:
+					closest_dist = dist
+					next_target = player
+
+	target_node = next_target
+	
+	if target_node:
+		if current_state == State.IDLE: current_state = State.AGGRO
+	else:
+		if current_state == State.AGGRO: current_state = State.IDLE
+
+func _increase_detection_radius():
+	if detection_area:
+		var shape = detection_area.shape_owner_get_shape(0, 0)
+		if shape is CylinderShape3D or shape is SphereShape3D:
+			shape.set_deferred("radius", enraged_detection_radius)
+
+func _update_wander_logic():
+	if current_state == State.DEAD: return
+	is_waiting = randf() < 0.4
+	if is_waiting:
+		wander_direction = Vector3.ZERO
+		wander_timer = randf_range(2.0, 4.0)
+	else:
+		var random_angle = randf() * TAU
+		wander_direction = Vector3(cos(random_angle), 0, sin(random_angle))
+		if global_position.distance_to(home_position) > max_wander_distance:
+			wander_direction = (home_position - global_position).normalized()
+		wander_timer = randf_range(wander_interval_min, wander_interval_max)
+
+func _on_detection_area_body_entered(body):
+	if body.get("IS_RV"): rv_target = body
+	if body.get("IS_PLAYER") and not players_in_range.has(body):
+		players_in_range.append(body)
+
+func _on_detection_area_body_exited(body):
+	if body == rv_target: rv_target = null
+	if players_in_range.has(body): players_in_range.erase(body)
+
+# --- ASSETS & ANIMATIONS ---
 
 func _update_state_assets(new_state: State):
 	match new_state:
@@ -319,47 +384,9 @@ func _play_random_sound_rpc(state_for_sound: State):
 		audio_player.stream = pool.pick_random()
 		audio_player.play()
 
-# --- AI UTILS ---
+func activate_paw_area():
+	if paw_hitbox: paw_hitbox.monitoring = true
 
-func _update_wander_logic():
-	if current_state == State.DEAD: return
-	is_waiting = randf() < 0.4
-	if is_waiting:
-		wander_direction = Vector3.ZERO
-		wander_timer = randf_range(2.0, 4.0)
-	else:
-		var random_angle = randf() * TAU
-		wander_direction = Vector3(cos(random_angle), 0, sin(random_angle))
-		if global_position.distance_to(home_position) > max_wander_distance:
-			wander_direction = (home_position - global_position).normalized()
-		wander_timer = randf_range(wander_interval_min, wander_interval_max)
-
-func _update_target_logic():
-	if current_state == State.DEAD: return
-	players_in_range = players_in_range.filter(func(p): return is_instance_valid(p))
+func deactivate_paw_area():
+	if paw_hitbox: paw_hitbox.monitoring = false
 	
-	var next_target: Node3D = null
-	if revenge_target: next_target = revenge_target
-	elif rv_target: next_target = rv_target
-	elif not players_in_range.is_empty():
-		var closest_dist := INF
-		for player in players_in_range:
-			var dist = global_position.distance_to(player.global_position)
-			if dist < closest_dist:
-				closest_dist = dist
-				next_target = player
-
-	target_node = next_target
-	if target_node:
-		if current_state == State.IDLE: current_state = State.AGGRO
-	else:
-		if current_state == State.AGGRO: current_state = State.IDLE
-
-func _on_detection_area_body_entered(body):
-	if body.get("IS_RV"): rv_target = body
-	if body.get("IS_PLAYER") and not players_in_range.has(body):
-		players_in_range.append(body)
-
-func _on_detection_area_body_exited(body):
-	if body == rv_target: rv_target = null
-	if players_in_range.has(body): players_in_range.erase(body)
