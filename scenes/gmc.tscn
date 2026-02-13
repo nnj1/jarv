@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://vd06hs1yu8oe" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Reverse/REVERSE.mp3" id="8_1qt6b"]
 [ext_resource type="PackedScene" uid="uid://c23aoacj82jmr" path="res://scenes/drivers_seat.tscn" id="8_3f1he"]
 [ext_resource type="PackedScene" uid="uid://bcpaivify1yk4" path="res://scenes/door.tscn" id="9_asokp"]
+[ext_resource type="AudioStream" uid="uid://bga02nanrr1wb" path="res://assets/41953282_gasoline-can-pouring-02/41953282_gasoline-can-pouring-02.mp3" id="10_5enki"]
 [ext_resource type="AudioStream" uid="uid://cx7pin3qnayjm" path="res://assets/car crash/clank1-91862.mp3" id="12_jh1p5"]
 [ext_resource type="AudioStream" uid="uid://d4fq7n5kremmj" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Horn/Horn.mp3" id="12_rcdwc"]
 [ext_resource type="Script" uid="uid://d3j6bx03u1cgs" path="res://src/gas_intake.gd" id="16_l0436"]
@@ -810,7 +811,9 @@ bus = &"Sounds"
 
 [node name="refuelSound" type="AudioStreamPlayer3D" parent="." unique_id=1712701268]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6772852, -11.406575)
-stream = ExtResource("6_6ms31")
+stream = ExtResource("10_5enki")
+volume_db = 6.0
+max_db = 6.0
 bus = &"Sounds"
 
 [node name="accelerateSound" type="AudioStreamPlayer3D" parent="." unique_id=531816237]
@@ -886,7 +889,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6923761, -11.574276)
 collision_layer = 2
 collision_mask = 4
-monitoring = false
 script = ExtResource("16_l0436")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gas_intake" unique_id=1355627276]
@@ -896,3 +898,4 @@ shape = SubResource("BoxShape3D_5enki")
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="inner_volume" to="." method="_on_inner_volume_body_entered"]
 [connection signal="body_exited" from="inner_volume" to="." method="_on_inner_volume_body_exited"]
+[connection signal="body_exited" from="gas_intake" to="gas_intake" method="_on_body_exited"]

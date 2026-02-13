@@ -4,50 +4,51 @@
 [ext_resource type="PackedScene" uid="uid://duubjsky2ftc6" path="res://scenes/menu_background.tscn" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://bkufpkxh7thv4" path="res://assets/kenney_cursor-pack/Vector/Basic/look_a.svg" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://ddwwdux6wtbf" path="res://assets/23-234533_wood-plank-clipart-transparent-background-hd-png-download.png" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://dugb17dnfblbw" path="res://src/game_version_label.gd" id="3_tbgi4"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=609624951]
 script = ExtResource("1_o5qli")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1820477061]
 layer = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1550680987]
 offset_left = 320.0
 offset_top = 319.0
 offset_right = 961.0
 offset_bottom = 595.0
 
-[node name="TabContainer" type="TabContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/VBoxContainer" unique_id=1095885240]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 current_tab = 0
 
-[node name="Create Server" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer"]
+[node name="Create Server" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer" unique_id=281539224]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server" unique_id=761589552]
 layout_mode = 2
 placeholder_text = "Enter server game name"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server" unique_id=325770027]
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer" unique_id=1081238356]
 layout_mode = 2
 button_pressed = true
 text = "Friendly Fire"
 
-[node name="CheckButton2" type="CheckButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
+[node name="CheckButton2" type="CheckButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer" unique_id=217749515]
 layout_mode = 2
 text = "Autosave"
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer" unique_id=1269831257]
 layout_mode = 2
 text = "Max Players"
 
-[node name="OptionButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer" unique_id=1174631371]
 layout_mode = 2
 selected = 0
 item_count = 5
@@ -62,14 +63,14 @@ popup/item_3/id = 3
 popup/item_4/text = "4"
 popup/item_4/id = 4
 
-[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer" unique_id=1478934206]
 layout_mode = 2
 text = "Starting Map"
 
-[node name="OptionButton2" type="OptionButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer"]
+[node name="OptionButton2" type="OptionButton" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer" unique_id=1296377231]
 layout_mode = 2
 
-[node name="FileDialog" type="FileDialog" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server"]
+[node name="FileDialog" type="FileDialog" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server" unique_id=1315775123]
 oversampling_override = 1.0
 title = "Open a File"
 initial_position = 1
@@ -77,104 +78,114 @@ ok_button_text = "Open"
 file_mode = 0
 access = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server" unique_id=1604994448]
 layout_mode = 2
 
-[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
+[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2" unique_id=2146339221]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter RV name"
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2" unique_id=186751091]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "path for RV save file"
 editable = false
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2" unique_id=2076244170]
 layout_mode = 2
 text = "Load RV Save"
 
-[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2"]
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer2" unique_id=775292216]
 layout_mode = 2
 disabled = true
 text = "Close Save"
 
-[node name="Server Browser" type="ItemList" parent="CanvasLayer/VBoxContainer/TabContainer"]
+[node name="Server Browser" type="ItemList" parent="CanvasLayer/VBoxContainer/TabContainer" unique_id=670517276]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 item_count = 1
 metadata/_tab_index = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=693918344]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="TextEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer" unique_id=16562036]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.52
 text = "localhost"
 placeholder_text = "hostname"
 
-[node name="TextEdit2" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="TextEdit2" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer" unique_id=1798522299]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "9999"
 placeholder_text = "port"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=1427760911]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=412403103]
 layout_mode = 2
 text = "Start Server"
 
-[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=1095757185]
 layout_mode = 2
 text = "Start Client"
 
-[node name="TextEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+[node name="TextEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=1705744590]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.52
 placeholder_text = "Enter display name..."
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=1964018004]
 layout_mode = 2
 tooltip_text = "Select player skin color"
 text = " "
 icon = ExtResource("2_jyhfs")
 color = Color(1, 0, 0, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1907580307]
 z_index = 1
-offset_left = 320.0
-offset_top = 134.0
-offset_right = 491.0
-offset_bottom = 244.0
+offset_left = 323.0
+offset_top = 113.0
+offset_right = 494.0
+offset_bottom = 233.0
 theme_override_font_sizes/font_size = 80
 text = "JaRV"
 
-[node name="23234533WoodPlankClipartTransparentBackgroundHdPngDownload" type="Sprite2D" parent="CanvasLayer"]
+[node name="Label2" type="Label" parent="CanvasLayer" unique_id=52845469]
+z_index = 1
+offset_left = 320.0
+offset_top = 212.0
+offset_right = 494.0
+offset_bottom = 332.0
+theme_override_font_sizes/font_size = 25
+text = "Game Version"
+script = ExtResource("3_tbgi4")
+
+[node name="23234533WoodPlankClipartTransparentBackgroundHdPngDownload" type="Sprite2D" parent="CanvasLayer" unique_id=2120132916]
 position = Vector2(407.5, 197.75)
 scale = Vector2(0.20546876, 0.20928341)
 texture = ExtResource("2_sugp2")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=956972577]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2" unique_id=2014440268]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/SubViewportContainer" unique_id=241731273]
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="MenuBackground" parent="CanvasLayer2/SubViewportContainer/SubViewport" instance=ExtResource("2_0wfyh")]
+[node name="MenuBackground" parent="CanvasLayer2/SubViewportContainer/SubViewport" unique_id=2099310581 instance=ExtResource("2_0wfyh")]
 
 [connection signal="text_changed" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="toggled" from="CanvasLayer/VBoxContainer/TabContainer/Create Server/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
