@@ -2,6 +2,7 @@ extends StaticBody3D
 
 const is_interactable: bool = true
 const is_pickable: bool = false
+const is_combinable: bool = false
 const custom_interact_message: String = 'Press E to use door'
 
 func interact(player_node: Node3D) -> void:

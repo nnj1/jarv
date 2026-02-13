@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cw4vukdv7u3or"]
+[gd_scene format=4 uid="uid://cw4vukdv7u3or"]
 
 [ext_resource type="Script" uid="uid://dqo0sqykr5p0c" path="res://scenes/entities/gas_carton.gd" id="1_fgm4t"]
 [ext_resource type="Texture2D" uid="uid://dhjm0a0t1lrgl" path="res://assets/fuel_can_low-poly/textures/fuel_can_baseColor.png" id="2_ypghb"]
@@ -93,34 +93,34 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="GasCarton" type="RigidBody3D"]
+[node name="GasCarton" type="RigidBody3D" unique_id=972400010]
 collision_layer = 16
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_ypghb")
 continuous_cd = true
 script = ExtResource("1_fgm4t")
 
-[node name="model" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="." unique_id=184723201]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Sketchfab_model" type="Node3D" parent="model"]
+[node name="Sketchfab_model" type="Node3D" parent="model" unique_id=1540612215]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 
-[node name="fuel_can_fbx" type="Node3D" parent="model/Sketchfab_model"]
+[node name="fuel_can_fbx" type="Node3D" parent="model/Sketchfab_model" unique_id=1348751478]
 transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
 
-[node name="RootNode" type="Node3D" parent="model/Sketchfab_model/fuel_can_fbx"]
+[node name="RootNode" type="Node3D" parent="model/Sketchfab_model/fuel_can_fbx" unique_id=2116426970]
 
-[node name="fuel_can" type="Node3D" parent="model/Sketchfab_model/fuel_can_fbx/RootNode"]
+[node name="fuel_can" type="Node3D" parent="model/Sketchfab_model/fuel_can_fbx/RootNode" unique_id=403467593]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 25.175833, -4.7683716e-07)
 
-[node name="fuel_can_fuel_can_0" type="MeshInstance3D" parent="model/Sketchfab_model/fuel_can_fbx/RootNode/fuel_can"]
+[node name="fuel_can_fuel_can_0" type="MeshInstance3D" parent="model/Sketchfab_model/fuel_can_fbx/RootNode/fuel_can" unique_id=2099306735]
 mesh = SubResource("ArrayMesh_bp6ny")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1869580087]
 transform = Transform3D(0.02, 0, 0, 0, -8.7422775e-10, 0.02, 0, -0.02, -8.7422775e-10, 0, 0.5035166, -9.536743e-09)
 shape = SubResource("ConvexPolygonShape3D_ypghb")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=785048990]
 replication_config = SubResource("SceneReplicationConfig_ypghb")

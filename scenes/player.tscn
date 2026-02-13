@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://cbaoxocs5fdn5"]
+[gd_scene format=4 uid="uid://cbaoxocs5fdn5"]
 
 [ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://ch75vuvbyawff" path="res://shaders/gnome_mat_with_bounce.gdshader" id="2_jej6c"]
@@ -542,7 +542,7 @@ background_color = Color(1, 1, 1, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "tps_arm", "fp_position")]
+[node name="Player" type="CharacterBody3D" unique_id=1765686778 node_paths=PackedStringArray("camera_pivot", "tps_arm", "fp_position")]
 collision_layer = 4
 collision_mask = 31
 script = ExtResource("1_3vyb7")
@@ -550,74 +550,74 @@ camera_pivot = NodePath("camera_pivot")
 tps_arm = NodePath("camera_pivot/tps_arm")
 fp_position = NodePath("camera_pivot/fp_pos")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=509016585]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1525264, 0)
 shape = SubResource("CapsuleShape3D_oprun")
 
-[node name="meshcollisionshape" type="CollisionShape3D" parent="."]
+[node name="meshcollisionshape" type="CollisionShape3D" parent="." unique_id=68748352]
 transform = Transform3D(-1, -6.6002366e-15, -1.509958e-07, 0, 1, -4.3711392e-08, 1.509958e-07, -4.3711392e-08, -1, 3.5527137e-15, 1.0089918, -8.940697e-08)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_ur7pv")
 disabled = true
 
-[node name="gnome_model" type="Node3D" parent="."]
+[node name="gnome_model" type="Node3D" parent="." unique_id=848318439]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0.865, -0.3887776)
 
-[node name="Sketchfab_model" type="Node3D" parent="gnome_model"]
+[node name="Sketchfab_model" type="Node3D" parent="gnome_model" unique_id=1623802192]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
 
-[node name="Collada visual scene group" type="Node3D" parent="gnome_model/Sketchfab_model"]
+[node name="Collada visual scene group" type="Node3D" parent="gnome_model/Sketchfab_model" unique_id=1607843233]
 transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 0)
 
-[node name="gnome_low" type="Node3D" parent="gnome_model/Sketchfab_model/Collada visual scene group"]
+[node name="gnome_low" type="Node3D" parent="gnome_model/Sketchfab_model/Collada visual scene group" unique_id=44941620]
 
-[node name="defaultMaterial" type="MeshInstance3D" parent="gnome_model/Sketchfab_model/Collada visual scene group/gnome_low"]
+[node name="defaultMaterial" type="MeshInstance3D" parent="gnome_model/Sketchfab_model/Collada visual scene group/gnome_low" unique_id=429511048]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.870377e-08, 0.14399183, -0.38877752)
 mesh = SubResource("ArrayMesh_dy6rv")
 skeleton = NodePath("")
 
-[node name="pill_model" type="MeshInstance3D" parent="."]
+[node name="pill_model" type="MeshInstance3D" parent="." unique_id=473531121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1435446, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_3vyb7")
 surface_material_override/0 = SubResource("StandardMaterial3D_3vyb7")
 
-[node name="camera_pivot" type="Node3D" parent="."]
+[node name="camera_pivot" type="Node3D" parent="." unique_id=720290701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.676, -1)
 
-[node name="fp_pos" type="Node3D" parent="camera_pivot"]
+[node name="fp_pos" type="Node3D" parent="camera_pivot" unique_id=379508450]
 
-[node name="tps_arm" type="SpringArm3D" parent="camera_pivot"]
+[node name="tps_arm" type="SpringArm3D" parent="camera_pivot" unique_id=2021113390]
 spring_length = 4.0
 
-[node name="Camera3D" type="Camera3D" parent="camera_pivot/tps_arm"]
+[node name="Camera3D" type="Camera3D" parent="camera_pivot/tps_arm" unique_id=1316241299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0050638914, 0)
 cull_mask = 1048573
 current = true
 
-[node name="RayCast3D" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D" unique_id=535278491]
 transform = Transform3D(1, 0, 0, 0, 2.1, 0, 0, 0, 1, 0, 0, -0.009)
 target_position = Vector3(0, 0, -3)
 collision_mask = 55
 collide_with_areas = true
 
-[node name="flashlight" type="SpotLight3D" parent="camera_pivot/tps_arm/Camera3D" node_paths=PackedStringArray("toggle_sound")]
+[node name="flashlight" type="SpotLight3D" parent="camera_pivot/tps_arm/Camera3D" unique_id=214759490 node_paths=PackedStringArray("toggle_sound")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.25689197, -0.33529317, 0)
 spot_range = 300.0
 script = ExtResource("6_tuyoq")
 toggle_sound = NodePath("toggleSoundPlayer")
 
-[node name="toggleSoundPlayer" type="AudioStreamPlayer3D" parent="camera_pivot/tps_arm/Camera3D/flashlight"]
+[node name="toggleSoundPlayer" type="AudioStreamPlayer3D" parent="camera_pivot/tps_arm/Camera3D/flashlight" unique_id=716012360]
 stream = ExtResource("6_y4r1p")
 
-[node name="aim_ray" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D"]
+[node name="aim_ray" type="RayCast3D" parent="camera_pivot/tps_arm/Camera3D" unique_id=2099072080]
 target_position = Vector3(0, 0, -100)
 collision_mask = 15
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1006454122]
 replication_config = SubResource("SceneReplicationConfig_3vyb7")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=412009383]
 material_override = SubResource("StandardMaterial3D_g2els")
 cast_shadow = 0
 amount = 4000
@@ -625,81 +625,75 @@ fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_qhqgy")
 draw_pass_1 = SubResource("QuadMesh_3vyb7")
 
-[node name="Timer" type="Timer" parent="GPUParticles3D"]
+[node name="Timer" type="Timer" parent="GPUParticles3D" unique_id=997386027]
 process_callback = 0
 autostart = true
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=286107349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 visible = false
 light_energy = 5.0
 
-[node name="weaponSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="weaponSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=882168159]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 1, -2.191693)
 
-[node name="weapons" type="Node3D" parent="."]
+[node name="weapons" type="Node3D" parent="." unique_id=716867924]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1)
 
-[node name="hand" type="Node3D" parent="weapons"]
+[node name="hand" type="Node3D" parent="weapons" unique_id=1682941267]
 visible = false
 
-[node name="grab_position" type="Marker3D" parent="weapons/hand"]
+[node name="grab_position" type="Marker3D" parent="weapons/hand" unique_id=928129574]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.05)
 
-[node name="grenadelauncher" type="Node3D" parent="weapons"]
+[node name="grenadelauncher" type="Node3D" parent="weapons" unique_id=306664267]
 transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, 0, 0, -0.85304)
 visible = false
 
-[node name="grenadeLauncher" type="MeshInstance3D" parent="weapons/grenadelauncher"]
+[node name="grenadeLauncher" type="MeshInstance3D" parent="weapons/grenadelauncher" unique_id=1144497861]
 layers = 2
 mesh = SubResource("ArrayMesh_rjdcq")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/grenadelauncher"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/grenadelauncher" unique_id=1563342543]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_jej6c")
-}
+libraries/ = SubResource("AnimationLibrary_jej6c")
 
-[node name="spawn_position" type="Marker3D" parent="weapons/grenadelauncher"]
+[node name="spawn_position" type="Marker3D" parent="weapons/grenadelauncher" unique_id=1482074996]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2.3841858e-07)
 
-[node name="knife" type="Node3D" parent="weapons"]
+[node name="knife" type="Node3D" parent="weapons" unique_id=1859006012]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -0.9908782)
 visible = false
 
-[node name="Cylinder" type="MeshInstance3D" parent="weapons/knife"]
+[node name="Cylinder" type="MeshInstance3D" parent="weapons/knife" unique_id=1928565311]
 layers = 2
 mesh = SubResource("ArrayMesh_vip6s")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/knife"]
-libraries = {
-&"": SubResource("AnimationLibrary_fulsm")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/knife" unique_id=1841676035]
+libraries/ = SubResource("AnimationLibrary_fulsm")
 
-[node name="mauser" type="Node3D" parent="weapons"]
+[node name="mauser" type="Node3D" parent="weapons" unique_id=8440699]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0, 0, -1.1916931)
 visible = false
 
-[node name="Cube" type="MeshInstance3D" parent="weapons/mauser"]
+[node name="Cube" type="MeshInstance3D" parent="weapons/mauser" unique_id=1976480849]
 layers = 2
 mesh = SubResource("ArrayMesh_k4xca")
 skeleton = NodePath("")
 
-[node name="Cube_001" type="MeshInstance3D" parent="weapons/mauser"]
+[node name="Cube_001" type="MeshInstance3D" parent="weapons/mauser" unique_id=432102005]
 transform = Transform3D(0.4047874, -0.0011695505, 0, 0.0011695505, 0.4047874, 0, 0, 0, 0.4047891, -0.213586, -0.44607335, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_uqeub")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/mauser"]
-libraries = {
-&"": SubResource("AnimationLibrary_a8ls1")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/mauser" unique_id=159718636]
+libraries/ = SubResource("AnimationLibrary_a8ls1")
 speed_scale = 4.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="weapons/mauser"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="weapons/mauser" unique_id=1010128873]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.1135387, -0.014629364)
 emitting = false
 amount = 1
@@ -710,61 +704,61 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_fulsm")
 draw_pass_1 = SubResource("QuadMesh_60mlk")
 
-[node name="jumpSound" type="AudioStreamPlayer3D" parent="."]
+[node name="jumpSound" type="AudioStreamPlayer3D" parent="." unique_id=1601460351]
 stream = ExtResource("10_d2wvv")
 bus = &"Sounds"
 
-[node name="hurtSound" type="AudioStreamPlayer3D" parent="."]
+[node name="hurtSound" type="AudioStreamPlayer3D" parent="." unique_id=1834024479]
 stream = ExtResource("15_qfm1y")
 bus = &"Sounds"
 
-[node name="moveSound" type="AudioStreamPlayer3D" parent="."]
+[node name="moveSound" type="AudioStreamPlayer3D" parent="." unique_id=1215142766]
 stream = ExtResource("11_3v2ag")
 bus = &"Sounds"
 
-[node name="weaponswapSound" type="AudioStreamPlayer3D" parent="."]
+[node name="weaponswapSound" type="AudioStreamPlayer3D" parent="." unique_id=1418564077]
 stream = ExtResource("5_qlg0r")
 bus = &"Sounds"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1075226737]
 layer = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=347952394]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=363068119]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_clear_mode = 1
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1207636076]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.493, -1)
 cull_mask = 2
 environment = SubResource("Environment_qlg0r")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." unique_id=2132730890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3312283, 0)
 billboard = 1
 text = "player_name"
 
-[node name="idleSound" type="AudioStreamPlayer3D" parent="."]
+[node name="idleSound" type="AudioStreamPlayer3D" parent="." unique_id=1396304083]
 volume_db = 2.0
 max_db = 5.0
 
-[node name="Timer" type="Timer" parent="idleSound"]
+[node name="Timer" type="Timer" parent="idleSound" unique_id=1490750765]
 wait_time = 5.0
 
-[node name="editSound" type="AudioStreamPlayer" parent="."]
+[node name="editSound" type="AudioStreamPlayer" parent="." unique_id=871673478]
 stream = ExtResource("19_4r5pv")
 volume_db = 2.0
 
-[node name="damage_marker_point" type="Marker3D" parent="."]
+[node name="damage_marker_point" type="Marker3D" parent="." unique_id=668917418]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.411241, 0)
 
 [connection signal="timeout" from="GPUParticles3D/Timer" to="." method="_on_timer_timeout"]

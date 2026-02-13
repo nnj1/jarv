@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var main_game_node = get_tree().get_root().get_node('Node3D')
 @onready var interaction_ray_target_label = main_game_node.get_node('CanvasLayer/HBoxContainer/target')
 @onready var interact_message_label = main_game_node.get_node('CanvasLayer/interact_message')
+
 # --- Exported Variables ---
 @export var speed: float = 10
 @export var jump_velocity: float = 9
@@ -350,9 +351,17 @@ func _physics_process(delta):
 	
 	# code for dropping held items
 	if Input.is_action_just_pressed('interact') and entity_held and not main_game_node.typing_chat:
-		entity_held.drop()
-		self.entity_held = null
+		var over_combinable_target = false
+		var collider = interaction_ray.get_collider()
+		if collider:
+			if 'is_combinable' in collider:
+				if collider.is_combinable:
+					over_combinable_target = true
 	
+		if not over_combinable_target:
+			entity_held.drop()
+			self.entity_held = null
+			
 	# for checking interaction ray colliders
 	if interaction_ray.is_colliding():
 		var target = interaction_ray.get_collider()
@@ -374,7 +383,7 @@ func _physics_process(delta):
 				set_highlight_mesh(closest_mesh, true)
 				currently_highlighted_mesh = closest_mesh	
 		
-		if 'is_interactable' in target and entity_held == null:
+		if 'is_interactable' in target: # and entity_held == null:
 			if target.is_interactable and not 'IS_RV' in target:
 				var message = target.custom_interact_message if ('custom_interact_message' in target) else 'Press E to interact'
 				# show the interaction message if the target isn't pickable
@@ -387,9 +396,13 @@ func _physics_process(delta):
 						interact_message_label.text = message
 						interact_message_label.visible = true
 				
-				# do the actual interaction if the player presses the key
+				# do the actual interaction if the player presses the key (drop the held item if there is one)
 				if Input.is_action_just_pressed('interact') and not main_game_node.typing_chat:
+					if entity_held and not target.is_combinable:
+						entity_held.drop()
+						entity_held = null
 					target.interact(self)
+
 	else:
 		# reset to default message
 		interact_message_label.text = 'Press E to interact'
