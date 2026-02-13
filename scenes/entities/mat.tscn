@@ -1,6 +1,6 @@
-[gd_scene load_steps=27 format=4 uid="uid://cdtlu2tjolipn"]
+[gd_scene format=4 uid="uid://cdtlu2tjolipn"]
 
-[ext_resource type="Script" uid="uid://dpo5vbllihab0" path="res://scenes/entities/mat.gd" id="1_cf13u"]
+[ext_resource type="Script" uid="uid://dpo5vbllihab0" path="res://src/mat.gd" id="1_cf13u"]
 [ext_resource type="Texture2D" uid="uid://bkq52tdfn0luv" path="res://assets/3D Retro Plumbing & Wiring/Pipe-Texture.png" id="2_4kwsp"]
 [ext_resource type="Texture2D" uid="uid://cljq6faf66rre" path="res://assets/3D Retro Plumbing & Wiring/Generator-Texture.png" id="2_i07tv"]
 [ext_resource type="Shader" uid="uid://baawxc8os2mly" path="res://shaders/item_highlight.gdshader" id="3_q0ef8"]

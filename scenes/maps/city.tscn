@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4oq6qksnqrv0"]
+[gd_scene format=3 uid="uid://b4oq6qksnqrv0"]
 
-[ext_resource type="Script" uid="uid://cfaqahmvfgq1e" path="res://scenes/maps/city.gd" id="1_s87x1"]
+[ext_resource type="Script" uid="uid://cfaqahmvfgq1e" path="res://src/city.gd" id="1_s87x1"]
 [ext_resource type="PackedScene" uid="uid://cut1t5l52k6o4" path="res://assets/sports_car_racing_moscow/scene.gltf" id="1_vngj4"]
 
 [node name="City" type="Node3D"]

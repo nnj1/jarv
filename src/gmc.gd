@@ -406,6 +406,8 @@ func _physics_process(delta: float) -> void:
 	_apply_stability_logic()
 
 func refuel(amount: float = 1000) -> void:
+	if not $refuelSound.playing:
+		$refuelSound.play()
 	current_fuel = clamp(current_fuel + amount, 0, max_fuel)
 	#if current_fuel > 0 and not $engineIdleSound.playing:
 	#	$engineIdleSound.play()

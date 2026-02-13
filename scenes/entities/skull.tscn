@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://okdu2wgy1tpf"]
+[gd_scene format=4 uid="uid://okdu2wgy1tpf"]
 
 [ext_resource type="Material" uid="uid://c83v3ag3aga26" path="res://assets/flying_skull/mats/Material.tres" id="1_kq183"]
-[ext_resource type="Script" uid="uid://crqbckijea4vp" path="res://scenes/entities/skull.gd" id="1_tl5qv"]
+[ext_resource type="Script" uid="uid://crqbckijea4vp" path="res://src/skull.gd" id="1_tl5qv"]
 [ext_resource type="AudioStream" uid="uid://bm1y1v7k7f005" path="res://assets/Monsters Vol.2/Monsters Vol.2/GreatWarg_Growl.wav" id="2_8cdun"]
 [ext_resource type="AudioStream" uid="uid://b2wq76711jrk1" path="res://assets/memesounds/Aughhhh.mp3" id="2_knxwu"]
 [ext_resource type="Material" uid="uid://ov87lhl2e741" path="res://assets/flying_skull/mats/Material.001.tres" id="2_tl5qv"]

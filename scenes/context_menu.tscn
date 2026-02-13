@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ciih5ll5kn3e5"]
+[gd_scene format=3 uid="uid://ciih5ll5kn3e5"]
 
-[ext_resource type="Script" uid="uid://b1stdbtkfx14s" path="res://scenes/context_menu.gd" id="1_yidbp"]
+[ext_resource type="Script" uid="uid://b1stdbtkfx14s" path="res://src/context_menu.gd" id="1_yidbp"]
 [ext_resource type="AudioStream" uid="uid://7hnt85uvo1uq" path="res://assets/UI Soundpack/UI Soundpack/MP3/Retro6.mp3" id="2_oog6e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yidbp"]

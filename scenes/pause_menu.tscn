@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ccrkn50dj7e7f"]
 
-[ext_resource type="Script" uid="uid://bmbx7vvj5exrk" path="res://scenes/pause_menu.gd" id="1_n87rw"]
-[ext_resource type="Script" uid="uid://s74xaed61jt6" path="res://scenes/res_option_button.gd" id="2_kukqi"]
+[ext_resource type="Script" uid="uid://bmbx7vvj5exrk" path="res://src/pause_menu.gd" id="1_n87rw"]
+[ext_resource type="Script" uid="uid://s74xaed61jt6" path="res://src/res_option_button.gd" id="2_kukqi"]
 [ext_resource type="AudioStream" uid="uid://bsqej3ddmusad" path="res://assets/UI Soundpack/UI Soundpack/MP3/African3.mp3" id="2_myx47"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]

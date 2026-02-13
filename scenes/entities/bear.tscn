@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=4 uid="uid://bul5swiy88ink"]
+[gd_scene format=4 uid="uid://bul5swiy88ink"]
 
-[ext_resource type="Script" uid="uid://cy80ewyrvq3jn" path="res://scenes/entities/bear.gd" id="1_pi8ka"]
+[ext_resource type="Script" uid="uid://cy80ewyrvq3jn" path="res://src/bear.gd" id="1_pi8ka"]
 [ext_resource type="Texture2D" uid="uid://bi0dqgflver2b" path="res://assets/polar_bear/textures/polarBearMaterial_baseColor.png" id="2_vhn86"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vhn86"]

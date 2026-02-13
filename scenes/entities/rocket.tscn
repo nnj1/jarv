@@ -1,6 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://brs35jscybls7"]
+[gd_scene format=3 uid="uid://brs35jscybls7"]
 
-[ext_resource type="Script" uid="uid://cug3lfxus1q35" path="res://scenes/entities/rocket.gd" id="1_3l0q3"]
+[ext_resource type="Script" uid="uid://cug3lfxus1q35" path="res://src/rocket.gd" id="1_3l0q3"]
 [ext_resource type="AudioStream" uid="uid://ckvaqwyp36k78" path="res://assets/quake/Qtestr_exp3.ogg" id="2_n2suw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3l0q3"]

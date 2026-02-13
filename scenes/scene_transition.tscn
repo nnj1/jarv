@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxf8q61hy6fl"]
+[gd_scene format=3 uid="uid://bxf8q61hy6fl"]
 
-[ext_resource type="Script" uid="uid://c1gi5po8x0838" path="res://scenes/scene_transition.gd" id="1_0wykx"]
+[ext_resource type="Script" uid="uid://c1gi5po8x0838" path="res://src/scene_transition.gd" id="1_0wykx"]
 
 [node name="SceneTransition" type="CanvasLayer"]
 layer = 7

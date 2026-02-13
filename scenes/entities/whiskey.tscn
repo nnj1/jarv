@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=4 uid="uid://btiea5xuubild"]
+[gd_scene format=4 uid="uid://btiea5xuubild"]
 
 [ext_resource type="Material" uid="uid://u6fjouwb8c8e" path="res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.001.tres" id="1_cmf10"]
-[ext_resource type="Script" uid="uid://crepo0tcwt5bu" path="res://scenes/entities/whiskey.gd" id="1_scsyp"]
+[ext_resource type="Script" uid="uid://crepo0tcwt5bu" path="res://src/whiskey.gd" id="1_scsyp"]
 [ext_resource type="Material" uid="uid://bm50gaqi2i5ge" path="res://assets/low_poly_whiskey_bottle__2_label_variants/mats/Material.002.tres" id="4_n3yrv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cmf10"]

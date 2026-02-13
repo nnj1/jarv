@@ -1,10 +1,10 @@
-[gd_scene load_steps=165 format=4 uid="uid://cbaeob2jhrfbx"]
+[gd_scene format=4 uid="uid://cbaeob2jhrfbx"]
 
-[ext_resource type="Script" uid="uid://vc0to0mcnd0" path="res://scenes/rv.gd" id="1_soone"]
+[ext_resource type="Script" uid="uid://vc0to0mcnd0" path="res://src/rv.gd" id="1_soone"]
 [ext_resource type="Texture2D" uid="uid://cc7lluvvsymrg" path="res://assets/motorhome_low_poly_with_interior/textures/picture_baseColor.png" id="1_tpk5l"]
-[ext_resource type="ArrayMesh" uid="uid://ci8h2n768b34w" path="res://scenes/tires.mesh" id="3_fekdd"]
+[ext_resource type="ArrayMesh" path="res://scenes/tires.mesh" id="3_fekdd"]
 [ext_resource type="PackedScene" uid="uid://cqvj6fnfjmvgv" path="res://assets/wheel_low_poly/scene.gltf" id="4_rx0af"]
-[ext_resource type="Script" uid="uid://cylrmf48x24ml" path="res://scenes/drivers_seat.gd" id="5_rx0af"]
+[ext_resource type="Script" uid="uid://cylrmf48x24ml" path="res://src/drivers_seat.gd" id="5_rx0af"]
 [ext_resource type="AudioStream" uid="uid://c08emxcxrp1ag" path="res://assets/Vehicle_Truck/Vehicle_Truck_Idle_Exterior_Front_Loop_Stereo_01.wav" id="6_fuocy"]
 [ext_resource type="AudioStream" uid="uid://dootuokgpi4i" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Engine sounds/3700rpm.mp3" id="7_ho8uj"]
 

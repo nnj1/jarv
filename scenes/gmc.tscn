@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://do3xxsfa4op1l"]
 
 [ext_resource type="Material" uid="uid://76udrc2ktgmi" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/interior.tres" id="1_07s2m"]
-[ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://scenes/gmc.gd" id="1_ehrx3"]
+[ext_resource type="Script" uid="uid://by2pq6wo13gse" path="res://src/gmc.gd" id="1_ehrx3"]
 [ext_resource type="Material" uid="uid://csseaenios2wy" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/clay.001.tres" id="3_2fmfr"]
 [ext_resource type="Shader" uid="uid://d4f164nggc5a" path="res://shaders/outline_selection.gdshader" id="3_5enki"]
 [ext_resource type="Material" uid="uid://d0knl0nnrco52" path="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/wood_interior.tres" id="3_l0436"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bcpaivify1yk4" path="res://scenes/door.tscn" id="9_asokp"]
 [ext_resource type="AudioStream" uid="uid://cx7pin3qnayjm" path="res://assets/car crash/clank1-91862.mp3" id="12_jh1p5"]
 [ext_resource type="AudioStream" uid="uid://d4fq7n5kremmj" path="res://assets/Realistic Vehicle Engine Sounds – Startup, Revs & Turbo Pack/Horn/Horn.mp3" id="12_rcdwc"]
-[ext_resource type="Script" uid="uid://d3j6bx03u1cgs" path="res://scenes/gas_intake.gd" id="16_l0436"]
+[ext_resource type="Script" uid="uid://d3j6bx03u1cgs" path="res://src/gas_intake.gd" id="16_l0436"]
 [ext_resource type="AudioStream" uid="uid://3oxhae2djy3f" path="res://assets/tires_squal_loop.wav" id="17_ldj7c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ehrx3"]
@@ -559,6 +559,9 @@ properties/23/replication_mode = 2
 properties/24/path = NodePath(".:current_processor_chips")
 properties/24/spawn = true
 properties/24/replication_mode = 2
+properties/25/path = NodePath("refuelSound:playing")
+properties/25/spawn = true
+properties/25/replication_mode = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asokp"]
 
@@ -802,6 +805,11 @@ damping_relaxation = 2.0
 
 [node name="engineIdleSound" type="AudioStreamPlayer3D" parent="." unique_id=672695152]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.934186, 10.108602)
+stream = ExtResource("6_6ms31")
+bus = &"Sounds"
+
+[node name="refuelSound" type="AudioStreamPlayer3D" parent="." unique_id=1712701268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6772852, -11.406575)
 stream = ExtResource("6_6ms31")
 bus = &"Sounds"
 

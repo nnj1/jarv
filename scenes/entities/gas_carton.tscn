@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cw4vukdv7u3or"]
 
-[ext_resource type="Script" uid="uid://dqo0sqykr5p0c" path="res://scenes/entities/gas_carton.gd" id="1_fgm4t"]
+[ext_resource type="Script" uid="uid://dqo0sqykr5p0c" path="res://src/gas_carton.gd" id="1_fgm4t"]
 [ext_resource type="Texture2D" uid="uid://dhjm0a0t1lrgl" path="res://assets/fuel_can_low-poly/textures/fuel_can_baseColor.png" id="2_ypghb"]
 [ext_resource type="Texture2D" uid="uid://jvnn2iwk7y2x" path="res://assets/fuel_can_low-poly/textures/fuel_can_metallicRoughness.png" id="3_tkv4r"]
 [ext_resource type="Texture2D" uid="uid://dnqbngk7nkyqt" path="res://assets/fuel_can_low-poly/textures/fuel_can_normal.png" id="4_38hht"]

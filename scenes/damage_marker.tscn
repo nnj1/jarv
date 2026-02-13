@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2n4i7i3hs1qw"]
+[gd_scene format=3 uid="uid://c2n4i7i3hs1qw"]
 
-[ext_resource type="Script" uid="uid://dm4cvenqh3yxl" path="res://scenes/damage_marker.gd" id="1_dadxe"]
+[ext_resource type="Script" uid="uid://dm4cvenqh3yxl" path="res://src/damage_marker.gd" id="1_dadxe"]
 
 [node name="DamageMarker" type="Label3D"]
 billboard = 1

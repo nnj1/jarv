@@ -1,6 +1,6 @@
-[gd_scene load_steps=372 format=4 uid="uid://duubjsky2ftc6"]
+[gd_scene format=4 uid="uid://duubjsky2ftc6"]
 
-[ext_resource type="Script" uid="uid://bft5423qb7c60" path="res://scenes/menu_background.gd" id="1_7js8a"]
+[ext_resource type="Script" uid="uid://bft5423qb7c60" path="res://src/menu_background.gd" id="1_7js8a"]
 [ext_resource type="Texture2D" uid="uid://cc7lluvvsymrg" path="res://assets/motorhome_low_poly_with_interior/textures/picture_baseColor.png" id="1_m27td"]
 [ext_resource type="PackedScene" uid="uid://cuk3jxruqyftw" path="res://assets/low_poly_snowy_simple_forest/scene.gltf" id="2_mypsn"]
 

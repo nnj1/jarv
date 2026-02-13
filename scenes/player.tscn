@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cbaoxocs5fdn5"]
 
-[ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://scenes/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://8oqsb8rokqku" path="res://src/player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://ch75vuvbyawff" path="res://shaders/gnome_mat_with_bounce.gdshader" id="2_jej6c"]
 [ext_resource type="Texture2D" uid="uid://j2ci80t10loi" path="res://assets/Heavy Weapons Pack/gl.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dn6k6hktelwhq" path="res://assets/gnome_3d_model_low_poly/textures/gnome_mat_baseColor.jpeg" id="2_ur7pv"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dnjogtkaeypmb" path="res://assets/gnome_3d_model_low_poly/textures/gnome_mat_normal.png" id="4_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://nswjibmrcdbc" path="res://assets/Heavy Weapons Pack/mauser.png" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b3e6nvgnd604j" path="res://assets/UI Soundpack/UI Soundpack/MP3/Wood Block1.mp3" id="5_qlg0r"]
-[ext_resource type="Script" uid="uid://bsjgl3qkbr63o" path="res://scenes/flashlight.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://bsjgl3qkbr63o" path="res://src/flashlight.gd" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://bdtm5ds3m6i7r" path="res://assets/UI Soundpack/UI Soundpack/MP3/Wood Block3.mp3" id="6_y4r1p"]
 [ext_resource type="AudioStream" uid="uid://cobye2nejgydu" path="res://assets/quake/Qtestsgun1.ogg" id="8_jej6c"]
 [ext_resource type="AudioStream" uid="uid://d4cpr8de437n7" path="res://assets/Grumbles - Copy/Damage/Ah.wav" id="10_d2wvv"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgmbnq3ptjrf1"]
+[gd_scene format=3 uid="uid://cgmbnq3ptjrf1"]
 
-[ext_resource type="Script" uid="uid://cs8wg0a7b7j8c" path="res://scenes/postprocess.gd" id="1_47bfh"]
+[ext_resource type="Script" uid="uid://cs8wg0a7b7j8c" path="res://src/postprocess.gd" id="1_47bfh"]
 [ext_resource type="Texture2D" uid="uid://cjqnvpk7a8kuh" path="res://screenshots/image.png" id="1_i0gwj"]
 [ext_resource type="Shader" uid="uid://cwjbdtiualye" path="res://shaders/psx.gdshader" id="1_kbw42"]
 

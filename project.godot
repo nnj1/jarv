@@ -30,7 +30,7 @@ SceneTransition="*res://scenes/scene_transition.tscn"
 Postprocess="*res://scenes/postprocess.tscn"
 MusicPlayer="*res://scenes/music_player.tscn"
 PauseMenu="*res://scenes/pause_menu.tscn"
-GameManager="*res://scenes/multiplayer_manager.gd"
+GameManager="*res://src/multiplayer_manager.gd"
 CursorManager="*res://scenes/cursor_manager.tscn"
 
 [display]
