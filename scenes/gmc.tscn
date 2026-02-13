@@ -886,7 +886,7 @@ spot_angle = 59.012245
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="gas_intake" type="Area3D" parent="." unique_id=925718740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6923761, -11.574276)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6923761, -11.512643)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("16_l0436")
