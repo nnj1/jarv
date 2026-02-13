@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://d2eopk71a0qdp"]
+[gd_scene format=3 uid="uid://d2eopk71a0qdp"]
 
 [ext_resource type="Script" uid="uid://dhlsf25q5s05u" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://dg7fo7ntvugh1" path="res://scenes/multiplayer_spawner.gd" id="2_gee14"]
@@ -247,102 +247,102 @@ shader_parameter/max_opacity = 0.8
 shader_parameter/crack_intensity = 0.1
 shader_parameter/frost_color = Color(0.9, 0.95, 1, 1)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1402447107]
 script = ExtResource("1_lbhrr")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1347508061]
 _spawnable_scenes = PackedStringArray("uid://cbaoxocs5fdn5", "uid://cw4vukdv7u3or", "uid://do3xxsfa4op1l", "uid://brs35jscybls7", "uid://okdu2wgy1tpf", "uid://btiea5xuubild", "uid://daqt0f2pxqgqm", "uid://bul5swiy88ink", "uid://cdtlu2tjolipn")
 spawn_path = NodePath("../entities")
 script = ExtResource("2_gee14")
 network_player = ExtResource("3_0tnpc")
 
-[node name="MapSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MapSpawner" type="MultiplayerSpawner" parent="." unique_id=1962206987]
 _spawnable_scenes = PackedStringArray("uid://boimqj5gn80a2", "uid://bmww3ljcekw3k", "uid://b10rykck3ks4x", "uid://b4oq6qksnqrv0")
 spawn_path = NodePath("../terrain")
 
-[node name="entities" type="Node3D" parent="."]
+[node name="entities" type="Node3D" parent="." unique_id=321010119]
 
-[node name="Gmc" parent="entities" instance=ExtResource("3_p57ef")]
+[node name="Gmc" parent="entities" unique_id=58134941 instance=ExtResource("3_p57ef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 10)
 
-[node name="terrain" type="Node3D" parent="."]
+[node name="terrain" type="Node3D" parent="." unique_id=1477363056]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=122721139]
 environment = ExtResource("4_iywne")
 camera_attributes = SubResource("CameraAttributesPractical_lnu2h")
 compositor = SubResource("Compositor_lbhrr")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." node_paths=PackedStringArray("world_env")]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1494146833 node_paths=PackedStringArray("world_env")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
 script = ExtResource("4_lbhrr")
 world_env = NodePath("../WorldEnvironment")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="DirectionalLight3D"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="DirectionalLight3D" unique_id=548755721]
 replication_config = SubResource("SceneReplicationConfig_kvpfn")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2026358925]
 layer = 3
 
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer"]
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer" unique_id=2127909379]
 position = Vector2(573, -22)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(147, 30, 220, 26, 235, 54, 163, 59)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
-[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer"]
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer" unique_id=1649054802]
 position = Vector2(191, -19)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(158, 28, 258, 21, 235, 54, 141, 58)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
-[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer"]
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer" unique_id=275246401]
 position = Vector2(-158, -58.030304)
 scale = Vector2(1, 2.4242425)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(147, 30, 220, 26, 235, 54, 163, 59)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=618149795]
 offset_right = 1152.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 
-[node name="FPS" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="FPS" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1317065511]
 layout_mode = 2
 text = "FPS: "
 
-[node name="speed" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="speed" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1576452739]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Speed: "
 
-[node name="time" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="time" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=408711080]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Time"
 
-[node name="target" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="target" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1183185457]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Looking at: "
 
-[node name="role" type="Label" parent="CanvasLayer"]
+[node name="role" type="Label" parent="CanvasLayer" unique_id=1120422302]
 offset_top = 28.0
 offset_right = 67.0
 offset_bottom = 53.0
 size_flags_horizontal = 10
 text = "Role"
 
-[node name="id" type="Label" parent="CanvasLayer"]
+[node name="id" type="Label" parent="CanvasLayer" unique_id=653183173]
 offset_top = 47.0
 offset_right = 67.0
 offset_bottom = 72.0
 size_flags_horizontal = 10
 text = "ID"
 
-[node name="crosshair" type="TextureRect" parent="CanvasLayer"]
+[node name="crosshair" type="TextureRect" parent="CanvasLayer" unique_id=1163039383]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -359,12 +359,10 @@ pivot_offset = Vector2(32, 32)
 texture = ExtResource("7_1kice")
 expand_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/crosshair"]
-libraries = {
-&"": SubResource("AnimationLibrary_bt5mj")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/crosshair" unique_id=1473684182]
+libraries/ = SubResource("AnimationLibrary_bt5mj")
 
-[node name="interact_message" type="Label" parent="CanvasLayer"]
+[node name="interact_message" type="Label" parent="CanvasLayer" unique_id=1706583681]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -381,26 +379,24 @@ theme_override_font_sizes/font_size = 32
 text = "Press E to interact"
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/interact_message"]
-libraries = {
-&"": SubResource("AnimationLibrary_kvuet")
-}
-autoplay = "bounce"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/interact_message" unique_id=1739871775]
+libraries/ = SubResource("AnimationLibrary_kvuet")
+autoplay = &"bounce"
 
-[node name="RV_HUD" type="Control" parent="CanvasLayer"]
+[node name="RV_HUD" type="Control" parent="CanvasLayer" unique_id=795774090]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
+[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/RV_HUD" unique_id=551670577]
 position = Vector2(-188.33334, 602)
 scale = Vector2(1.6666666, 1)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(111, -60, 260, -37, 239.6, 66, 107, 32)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
-[node name="Polygon2D5" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
+[node name="Polygon2D5" type="Polygon2D" parent="CanvasLayer/RV_HUD" unique_id=2086794234]
 material = SubResource("ShaderMaterial_264po")
 position = Vector2(-6, 491)
 scale = Vector2(1.6666666, 1)
@@ -408,28 +404,28 @@ color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(-1.486969, -0.6750778, 137.90195, 5.708528, 150.42303, 65.1322, -0.12097168, 48.66791)
 uv = PackedVector2Array(-1.486969, -0.6750778, 137.90195, 5.708528, 150.42303, 65.1322, -0.12097168, 48.66791)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RV_HUD"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RV_HUD" unique_id=829374565]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 546.0
 offset_right = 127.0
 offset_bottom = 640.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/RV_HUD/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/RV_HUD/HBoxContainer2" unique_id=936828128]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.1
 
-[node name="gear" type="Label" parent="CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer"]
+[node name="gear" type="Label" parent="CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer" unique_id=1645595118]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "gear"
 
-[node name="car_speed" type="Label" parent="CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer"]
+[node name="car_speed" type="Label" parent="CanvasLayer/RV_HUD/HBoxContainer2/VBoxContainer" unique_id=836376085]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 
-[node name="fuelpercent" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="fuelpercent" type="Label" parent="CanvasLayer/RV_HUD" unique_id=2099125092]
 layout_mode = 0
 offset_left = 87.0
 offset_top = 615.0
@@ -440,7 +436,7 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 1.22
 text = "99L"
 
-[node name="fuelicon" type="TextureRect" parent="CanvasLayer/RV_HUD"]
+[node name="fuelicon" type="TextureRect" parent="CanvasLayer/RV_HUD" unique_id=1895994315]
 modulate = Color(1, 1, 1, 0.5176471)
 layout_mode = 0
 offset_left = 82.0
@@ -450,7 +446,7 @@ offset_bottom = 614.0
 texture = ExtResource("7_u5sy4")
 expand_mode = 4
 
-[node name="oilpercent" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="oilpercent" type="Label" parent="CanvasLayer/RV_HUD" unique_id=606409819]
 layout_mode = 0
 offset_left = 141.0
 offset_top = 615.0
@@ -461,7 +457,7 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 1.22
 text = "99%"
 
-[node name="oilicon" type="TextureRect" parent="CanvasLayer/RV_HUD"]
+[node name="oilicon" type="TextureRect" parent="CanvasLayer/RV_HUD" unique_id=248733714]
 modulate = Color(1, 1, 1, 0.5176471)
 layout_mode = 0
 offset_left = 132.0
@@ -471,7 +467,7 @@ offset_bottom = 626.0
 texture = ExtResource("10_kvuet")
 expand_mode = 4
 
-[node name="batterypercent" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="batterypercent" type="Label" parent="CanvasLayer/RV_HUD" unique_id=270602332]
 layout_mode = 0
 offset_left = 191.0
 offset_top = 615.0
@@ -482,7 +478,7 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 1.22
 text = "99%"
 
-[node name="batteryicon" type="TextureRect" parent="CanvasLayer/RV_HUD"]
+[node name="batteryicon" type="TextureRect" parent="CanvasLayer/RV_HUD" unique_id=2115962366]
 modulate = Color(1, 1, 1, 0.5176471)
 layout_mode = 0
 offset_left = 186.0
@@ -492,20 +488,20 @@ offset_bottom = 614.0
 texture = ExtResource("11_trtic")
 expand_mode = 4
 
-[node name="RV_INSTRUCTIONS" type="Control" parent="CanvasLayer/RV_HUD"]
+[node name="RV_INSTRUCTIONS" type="Control" parent="CanvasLayer/RV_HUD" unique_id=1000965569]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/RV_HUD/RV_INSTRUCTIONS"]
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/RV_HUD/RV_INSTRUCTIONS" unique_id=569256020]
 position = Vector2(576, 870)
 scale = Vector2(1, 2.4242425)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(-257.28604, -110.627, 222, -117, 211.366, -80.459, -199.03203, -68.77601)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/RV_HUD/RV_INSTRUCTIONS"]
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/RV_HUD/RV_INSTRUCTIONS" unique_id=1828250547]
 layout_mode = 0
 offset_left = 359.0
 offset_top = 609.0
@@ -519,7 +515,7 @@ text = "[b]ALT[/b] Shift Gears | [b]B[/b] Handbrakes | [b]L[/b] Highbeams | [b]H
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="Label" type="Label" parent="CanvasLayer/RV_HUD" unique_id=1340193776]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 504.0
@@ -528,7 +524,7 @@ offset_bottom = 529.0
 theme_override_font_sizes/font_size = 20
 text = "RV Health"
 
-[node name="rvhealthpercentage" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="rvhealthpercentage" type="Label" parent="CanvasLayer/RV_HUD" unique_id=46542751]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 495.0
@@ -537,14 +533,14 @@ offset_bottom = 548.0
 theme_override_font_sizes/font_size = 35
 text = "100%"
 
-[node name="Polygon2D6" type="Polygon2D" parent="CanvasLayer/RV_HUD"]
+[node name="Polygon2D6" type="Polygon2D" parent="CanvasLayer/RV_HUD" unique_id=94364112]
 position = Vector2(870.83344, 265.9)
 scale = Vector2(1.6666666, 1)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(103.29994, -76.9, 179.3, -69.7, 179.1, 245.08, 118.71996, 272.4)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
-[node name="wiring_components" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="wiring_components" type="Label" parent="CanvasLayer/RV_HUD" unique_id=1166458762]
 layout_mode = 0
 offset_left = 1107.8334
 offset_top = 269.9
@@ -553,12 +549,12 @@ offset_bottom = 307.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/wiring_components"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/wiring_components" unique_id=2045870322]
 position = Vector2(-27, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_ir15t")
 
-[node name="refined_plates" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="refined_plates" type="Label" parent="CanvasLayer/RV_HUD" unique_id=1515621243]
 layout_mode = 0
 offset_left = 1107.8334
 offset_top = 332.9
@@ -567,12 +563,12 @@ offset_bottom = 370.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/refined_plates"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/refined_plates" unique_id=846253149]
 position = Vector2(-27, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_ca42v")
 
-[node name="processor_chips" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="processor_chips" type="Label" parent="CanvasLayer/RV_HUD" unique_id=1277579635]
 layout_mode = 0
 offset_left = 1107.8334
 offset_top = 398.9
@@ -581,12 +577,12 @@ offset_bottom = 436.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/processor_chips"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/processor_chips" unique_id=1725922344]
 position = Vector2(-27, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("12_rysoc")
 
-[node name="chemical_sludge" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="chemical_sludge" type="Label" parent="CanvasLayer/RV_HUD" unique_id=2001057235]
 layout_mode = 0
 offset_left = 1107.8334
 offset_top = 464.9
@@ -595,12 +591,12 @@ offset_bottom = 502.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/chemical_sludge"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/chemical_sludge" unique_id=2086327796]
 position = Vector2(-27, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_ssvqc")
 
-[node name="rusty_scrap" type="Label" parent="CanvasLayer/RV_HUD"]
+[node name="rusty_scrap" type="Label" parent="CanvasLayer/RV_HUD" unique_id=1599763939]
 layout_mode = 0
 offset_left = 1107.8334
 offset_top = 203.9
@@ -609,12 +605,12 @@ offset_bottom = 241.9
 theme_override_font_sizes/font_size = 25
 text = "100"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/rusty_scrap"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/RV_HUD/rusty_scrap" unique_id=1818309281]
 position = Vector2(-27, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_ssvqc")
 
-[node name="chatbox" type="Control" parent="CanvasLayer"]
+[node name="chatbox" type="Control" parent="CanvasLayer" unique_id=394436537]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -623,7 +619,7 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="chathistory" type="RichTextLabel" parent="CanvasLayer/chatbox"]
+[node name="chathistory" type="RichTextLabel" parent="CanvasLayer/chatbox" unique_id=1225848230]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -636,7 +632,7 @@ theme_override_font_sizes/normal_font_size = 20
 scroll_following = true
 horizontal_alignment = 2
 
-[node name="chatinput" type="LineEdit" parent="CanvasLayer/chatbox"]
+[node name="chatinput" type="LineEdit" parent="CanvasLayer/chatbox" unique_id=2007351371]
 layout_mode = 0
 offset_left = -376.0
 offset_top = 168.0
@@ -644,22 +640,22 @@ offset_right = 40.0
 offset_bottom = 201.0
 theme = SubResource("Theme_0tnpc")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/chatbox"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/chatbox" unique_id=587528786]
 stream = ExtResource("12_kvuet")
 
-[node name="player_HUD" type="Control" parent="CanvasLayer"]
+[node name="player_HUD" type="Control" parent="CanvasLayer" unique_id=1839214856]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/player_HUD"]
+[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/player_HUD" unique_id=1752336302]
 position = Vector2(928, 600)
 color = Color(0.12941177, 0.12941177, 0.12941177, 0.5803922)
 polygon = PackedVector2Array(85, -37, 214, -56, 223, 66, 61, 56)
 uv = PackedVector2Array(79, 10, 201, -37, 235, 54, 163, 59)
 
-[node name="heart" type="ColorRect" parent="CanvasLayer/player_HUD"]
+[node name="heart" type="ColorRect" parent="CanvasLayer/player_HUD" unique_id=1561318352]
 material = SubResource("ShaderMaterial_kvpfn")
 layout_mode = 0
 offset_left = 991.99994
@@ -668,7 +664,7 @@ offset_right = 1167.2815
 offset_bottom = 705.73315
 rotation = -0.26517564
 
-[node name="health_value" type="Label" parent="CanvasLayer/player_HUD"]
+[node name="health_value" type="Label" parent="CanvasLayer/player_HUD" unique_id=1757097955]
 layout_mode = 0
 offset_left = 1079.9999
 offset_top = 560.0
@@ -678,7 +674,7 @@ rotation = -0.114274874
 theme_override_font_sizes/font_size = 25
 text = "100"
 
-[node name="edit_mode_display" type="Control" parent="CanvasLayer"]
+[node name="edit_mode_display" type="Control" parent="CanvasLayer" unique_id=1489892016]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -687,11 +683,11 @@ offset_top = 17.0
 offset_right = 29.0
 offset_bottom = 57.0
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/edit_mode_display"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/edit_mode_display" unique_id=2002849558]
 position = Vector2(209, 437)
 texture = ExtResource("20_37s47")
 
-[node name="Label" type="Label" parent="CanvasLayer/edit_mode_display"]
+[node name="Label" type="Label" parent="CanvasLayer/edit_mode_display" unique_id=508757271]
 layout_mode = 0
 offset_left = 29.0
 offset_top = 409.0
@@ -700,13 +696,13 @@ offset_bottom = 462.0
 theme_override_font_sizes/font_size = 35
 text = "EDIT MODE"
 
-[node name="broadcaster" type="Timer" parent="."]
+[node name="broadcaster" type="Timer" parent="." unique_id=1575364395]
 script = ExtResource("14_trtic")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=303132418]
 layer = 2
 
-[node name="frozen" type="ColorRect" parent="CanvasLayer2"]
+[node name="frozen" type="ColorRect" parent="CanvasLayer2" unique_id=1376619933]
 material = SubResource("ShaderMaterial_e1j6l")
 anchors_preset = 15
 anchor_right = 1.0
@@ -718,7 +714,7 @@ pivot_offset = Vector2(576, 324)
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="crosshair_flash_sound" type="AudioStreamPlayer" parent="."]
+[node name="crosshair_flash_sound" type="AudioStreamPlayer" parent="." unique_id=1802616967]
 stream = ExtResource("23_bt5mj")
 bus = &"Sounds"
 

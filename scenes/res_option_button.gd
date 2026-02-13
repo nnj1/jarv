@@ -52,5 +52,5 @@ func _center_window() -> void:
 	var window_size = DisplayServer.window_get_size()
 	
 	# Simple math to find the center point
-	var center_pos = screen_rect.position + (screen_rect.size / 2) - (window_size / 2)
+	var center_pos = screen_rect.position + (screen_rect.size / 2.0) - (window_size / 2.0)
 	DisplayServer.window_set_position(center_pos)

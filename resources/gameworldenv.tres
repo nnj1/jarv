@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://b1syrdek0evt8"]
+[gd_resource type="Environment" format=3 uid="uid://b1syrdek0evt8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mn7lj"]
 
