@@ -6,6 +6,7 @@ const is_combinable: bool = false
 var custom_interact_message: String = 'Press E to drive'
 
 func interact(player_node: Node3D) -> void:
+	if player_node.in_edit_mode: return
 	print(str(player_node) + ' interacted with drivers seat.')
 	# first see if the player is already driving, so they can stop
 	if get_parent().driver_player_id == str(player_node.multiplayer.get_unique_id()):
