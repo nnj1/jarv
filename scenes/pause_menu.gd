@@ -12,7 +12,7 @@ func _ready():
 	# Hide the menu on start
 	menu_layer.hide()
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		toggle_menu()
 		

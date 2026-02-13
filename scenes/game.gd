@@ -69,6 +69,11 @@ func _input(_event: InputEvent):
 	if Input.is_action_just_released("chat"):
 		get_node('CanvasLayer/chatbox/chatinput').grab_focus()
 		typing_chat = true
+	
+	if Input.is_action_just_released("ui_cancel") and typing_chat:
+		get_node('CanvasLayer/chatbox/chatinput').release_focus()
+		get_node('CanvasLayer/chatbox/chatinput').text = ''
+		typing_chat = false
 		
 	if Input.is_action_just_released("command") and not typing_chat:
 		get_node('CanvasLayer/chatbox/chatinput').text = '/'

@@ -339,6 +339,7 @@ func lock_self_to_driver_seat(delta):
 
 # 1. Physics Movement and Camera Interpolation
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
 	
 	# decay health if outside the RV
 	if not in_rv:
@@ -346,9 +347,7 @@ func _physics_process(delta):
 		# slowly grow the frost shader
 		var current_frost = frost_material.get_shader_parameter('frost_amount')
 		frost_material.set_shader_parameter('frost_amount', current_frost + delta * frost_rate)
-	
-	if not is_multiplayer_authority(): return
-	
+
 	# code for dropping held items (only drop if the item is not over a combinable target)
 	if Input.is_action_just_pressed('interact') and entity_held and not main_game_node.typing_chat:
 		var over_combinable_target = false
@@ -589,7 +588,7 @@ func _unhandled_input(event):
 		main_game_node.get_node('CanvasLayer/crosshair/AnimationPlayer').play('spin_in')
 		
 	# Detect Edit mode Input
-	if event.is_action_pressed("edit") and not is_driving: # Map this to Right Mouse Button
+	if event.is_action_pressed("edit") and not is_driving and not main_game_node.typing_chat: # Map this to Right Mouse Button
 		in_edit_mode = true
 		main_game_node.get_node('CanvasLayer/edit_mode_display').show()
 		# play the sound
@@ -601,7 +600,7 @@ func _unhandled_input(event):
 		change_weapon(weapon_index)
 		# change crosshair texture
 		main_game_node.get_node('CanvasLayer/crosshair').texture = GlobalVars.get_cursor_texture(116, 20, 10)	
-	elif event.is_action_released("edit") and not is_driving:
+	elif event.is_action_released("edit") and not is_driving and in_edit_mode:
 		in_edit_mode = false
 		main_game_node.get_node('CanvasLayer/edit_mode_display').hide()
 		# turn off any currently highlighted mesh
@@ -610,7 +609,7 @@ func _unhandled_input(event):
 		currently_highlighted_mesh = null
 		#$editSound.play()
 		default_fov = 75
-		# swap to the hand
+		# swap back to hand 
 		weapon_index = 0
 		change_weapon(weapon_index)
 		
