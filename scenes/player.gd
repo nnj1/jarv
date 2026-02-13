@@ -349,7 +349,7 @@ func _physics_process(delta):
 	
 	if not is_multiplayer_authority(): return
 	
-	# code for dropping held items
+	# code for dropping held items (only drop if the item is not over a combinable target)
 	if Input.is_action_just_pressed('interact') and entity_held and not main_game_node.typing_chat:
 		var over_combinable_target = false
 		var collider = interaction_ray.get_collider()
