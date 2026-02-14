@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://btbuglxfvkdeo"
+path="res://.godot/imported/2 STARRY.ogg-d39dac278e1da4c38970e458bd516efd.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/2 STARRY.ogg"
+dest_files=["res://.godot/imported/2 STARRY.ogg-d39dac278e1da4c38970e458bd516efd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

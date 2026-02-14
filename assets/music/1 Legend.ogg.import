@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://nk0anp6ca3n2"
+path="res://.godot/imported/1 Legend.ogg-5e184e3b93b820f42c71daedf547c3bd.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/1 Legend.ogg"
+dest_files=["res://.godot/imported/1 Legend.ogg-5e184e3b93b820f42c71daedf547c3bd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

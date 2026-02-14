@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://btcfi8wpbe4wc"
+path="res://.godot/imported/22 A Leaders Burden.ogg-63b07d9a853546bfeb60f46ba1392ddf.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/22 A Leaders Burden.ogg"
+dest_files=["res://.godot/imported/22 A Leaders Burden.ogg-63b07d9a853546bfeb60f46ba1392ddf.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

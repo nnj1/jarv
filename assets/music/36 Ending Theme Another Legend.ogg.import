@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://x7yv611pt351"
+path="res://.godot/imported/36 Ending Theme Another Legend.ogg-fcd5d0c15ebba7dd38243398b9e62f02.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/36 Ending Theme Another Legend.ogg"
+dest_files=["res://.godot/imported/36 Ending Theme Another Legend.ogg-fcd5d0c15ebba7dd38243398b9e62f02.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

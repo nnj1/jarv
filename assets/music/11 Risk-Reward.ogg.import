@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8pnskhyt6mgc"
+path="res://.godot/imported/11 Risk-Reward.ogg-4dd7bd355cfcb5750ff02010bcadebdd.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/11 Risk-Reward.ogg"
+dest_files=["res://.godot/imported/11 Risk-Reward.ogg-4dd7bd355cfcb5750ff02010bcadebdd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

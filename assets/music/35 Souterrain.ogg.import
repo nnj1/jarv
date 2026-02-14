@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cqqea3tvlutcd"
+path="res://.godot/imported/35 Souterrain.ogg-6133934836c20e661cc132251a851cdb.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/35 Souterrain.ogg"
+dest_files=["res://.godot/imported/35 Souterrain.ogg-6133934836c20e661cc132251a851cdb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

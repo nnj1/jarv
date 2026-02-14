@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://2vx0lyknaq8t"
+path="res://.godot/imported/15 Stirred from Their Ambivalence.ogg-38248daa5ae9a40d5dbd935bd0267b6c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/15 Stirred from Their Ambivalence.ogg"
+dest_files=["res://.godot/imported/15 Stirred from Their Ambivalence.ogg-38248daa5ae9a40d5dbd935bd0267b6c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

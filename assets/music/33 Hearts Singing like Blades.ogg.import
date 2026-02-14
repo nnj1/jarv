@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://yenpxey02yul"
+path="res://.godot/imported/33 Hearts Singing like Blades.ogg-0ec7f9abe49e2fe0e89be01e87f60987.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/33 Hearts Singing like Blades.ogg"
+dest_files=["res://.godot/imported/33 Hearts Singing like Blades.ogg-0ec7f9abe49e2fe0e89be01e87f60987.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

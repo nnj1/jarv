@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bu6j3vsa1twlv"
+path="res://.godot/imported/24 The Usual Tact and Subtlety.ogg-31304543552029d36a0060c7cc187f24.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/24 The Usual Tact and Subtlety.ogg"
+dest_files=["res://.godot/imported/24 The Usual Tact and Subtlety.ogg-31304543552029d36a0060c7cc187f24.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

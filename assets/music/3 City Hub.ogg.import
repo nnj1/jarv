@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ccp58oc0ocag1"
+path="res://.godot/imported/3 City Hub.ogg-e502556944e44119c131ea2716464f91.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/3 City Hub.ogg"
+dest_files=["res://.godot/imported/3 City Hub.ogg-e502556944e44119c131ea2716464f91.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

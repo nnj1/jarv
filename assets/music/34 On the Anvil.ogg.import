@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bsdd08pj24p0h"
+path="res://.godot/imported/34 On the Anvil.ogg-b11582e4429c75b91095d9bff8d70a66.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/34 On the Anvil.ogg"
+dest_files=["res://.godot/imported/34 On the Anvil.ogg-b11582e4429c75b91095d9bff8d70a66.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

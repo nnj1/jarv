@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://573stoecihvq"
+path="res://.godot/imported/23 Beach Holiday.ogg-23eec1af9f2ba75e8dc54a4ab1056d99.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/23 Beach Holiday.ogg"
+dest_files=["res://.godot/imported/23 Beach Holiday.ogg-23eec1af9f2ba75e8dc54a4ab1056d99.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

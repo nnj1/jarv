@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bvkloedh7u606"
+path="res://.godot/imported/17 Waltzing Through.ogg-757affbff309056523cf23ab30828a12.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/17 Waltzing Through.ogg"
+dest_files=["res://.godot/imported/17 Waltzing Through.ogg-757affbff309056523cf23ab30828a12.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

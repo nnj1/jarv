@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://rl5535orvwr1"
+path="res://.godot/imported/21 Lets Do This.ogg-7b79d70cce1760d94ab80bccea5818f5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/21 Lets Do This.ogg"
+dest_files=["res://.godot/imported/21 Lets Do This.ogg-7b79d70cce1760d94ab80bccea5818f5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

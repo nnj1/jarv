@@ -36,7 +36,9 @@ func _ready():
 func load_music_from_folder():
 	for file_name in GlobalVars.dir_contents(music_folder):
 		playlist.append(music_folder + file_name)
-
+	# shuffle the music playlist
+	playlist.shuffle()
+	
 func play_menu_music():
 	if ResourceLoader.exists(menu_music_path):
 		var stream_res = load(menu_music_path)

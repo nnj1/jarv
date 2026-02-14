@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d0mtusbd4ejj0"
+path="res://.godot/imported/4 Lead Squadron.ogg-087a65db54618913438ffd58be2812b2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/4 Lead Squadron.ogg"
+dest_files=["res://.godot/imported/4 Lead Squadron.ogg-087a65db54618913438ffd58be2812b2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

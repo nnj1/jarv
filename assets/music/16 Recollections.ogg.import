@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfnrk01q03l6v"
+path="res://.godot/imported/16 Recollections.ogg-f693a93eb6e05b483b2c9151906d20ad.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/16 Recollections.ogg"
+dest_files=["res://.godot/imported/16 Recollections.ogg-f693a93eb6e05b483b2c9151906d20ad.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

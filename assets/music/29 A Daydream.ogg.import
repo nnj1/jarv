@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ceyk3ftybm6t"
+path="res://.godot/imported/29 A Daydream.ogg-4074ca2cd0edc2b6e526d5575bdcd9c5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/29 A Daydream.ogg"
+dest_files=["res://.godot/imported/29 A Daydream.ogg-4074ca2cd0edc2b6e526d5575bdcd9c5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

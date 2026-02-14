@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bf73tjmccqxgs"
+path="res://.godot/imported/26 Boating.ogg-c5d16ca6a5f81586e5ceec7d57c9428c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/26 Boating.ogg"
+dest_files=["res://.godot/imported/26 Boating.ogg-c5d16ca6a5f81586e5ceec7d57c9428c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
