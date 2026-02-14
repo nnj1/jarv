@@ -560,9 +560,6 @@ properties/23/replication_mode = 2
 properties/24/path = NodePath(".:current_processor_chips")
 properties/24/spawn = true
 properties/24/replication_mode = 2
-properties/25/path = NodePath("refuelSound:playing")
-properties/25/spawn = true
-properties/25/replication_mode = 2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asokp"]
 
@@ -850,6 +847,7 @@ bus = &"Sounds"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3448782, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=931403763]
+delta_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_3f1he")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=523369035]

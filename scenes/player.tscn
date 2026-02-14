@@ -615,6 +615,7 @@ target_position = Vector3(0, 0, -100)
 collision_mask = 15
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1006454122]
+delta_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_3vyb7")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=412009383]
