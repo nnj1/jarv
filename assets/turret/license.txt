@@ -1,0 +1,11 @@
+Model Information:
+* title:	Turret
+* source:	https://sketchfab.com/3d-models/turret-8d97fe5a2d654a2bb316824e56f90efb
+* author:	Kirilllucas (https://sketchfab.com/Kirill_Rostovtsev)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Turret" (https://sketchfab.com/3d-models/turret-8d97fe5a2d654a2bb316824e56f90efb) by Kirilllucas (https://sketchfab.com/Kirill_Rostovtsev) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

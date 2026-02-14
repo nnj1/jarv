@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cdffflrc8s2mh"]
+
+[ext_resource type="Script" uid="uid://b2l0unh43wa4d" path="res://src/turret.gd" id="1_156h6"]
+[ext_resource type="PackedScene" uid="uid://c0x36c2d7b4xo" path="res://assets/turret/scene.gltf" id="2_7r7be"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7r7be"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7r7be"]
+height = 1.9259949
+radius = 1.5927734
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7r7be"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:local_y_rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Turret" type="RigidBody3D" unique_id=581519656]
+collision_layer = 16
+collision_mask = 23
+physics_material_override = SubResource("PhysicsMaterial_7r7be")
+script = ExtResource("1_156h6")
+item_name = "Mounted Turret"
+item_description = "Can be mounted on the RV"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=576444665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.963974, 0)
+shape = SubResource("CylinderShape3D_7r7be")
+
+[node name="model" parent="." unique_id=1913363394 instance=ExtResource("2_7r7be")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0.16226093, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=28181209]
+replication_config = SubResource("SceneReplicationConfig_7r7be")

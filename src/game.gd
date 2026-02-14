@@ -255,7 +255,7 @@ func spawn_entity(name_of_scene: String, origin_position: Vector3, given_scale: 
 			global_teleport(scene_instance, origin_position)
 						
 		# if it's an item_body, just the item
-		elif name_of_scene in ['whiskey', 'soju', 'gas_carton', 'mat'] :
+		elif name_of_scene in ['whiskey', 'soju', 'gas_carton', 'mat', 'turret'] :
 			# TODO: Fix this class instantiation thing
 			scene_instance.setup()
 			# 
