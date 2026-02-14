@@ -1022,7 +1022,7 @@ properties/3/path = NodePath("Sketchfab_Scene/AnimationPlayer:speed_scale")
 properties/3/spawn = true
 properties/3/replication_mode = 2
 
-[node name="Bear" type="RigidBody3D"]
+[node name="Bear" type="RigidBody3D" unique_id=565398934]
 collision_mask = 15
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_vhn86")
@@ -1030,31 +1030,31 @@ contact_monitor = true
 script = ExtResource("1_pi8ka")
 detection_area_path = NodePath("Area3D")
 
-[node name="Sketchfab_Scene" type="Node3D" parent="."]
+[node name="Sketchfab_Scene" type="Node3D" parent="." unique_id=1642523926]
 transform = Transform3D(-219.20131, 0, 449.38934, 0, 500, 0, -449.38934, 0, -219.20131, -16.559732, 0, -18.136497)
 
-[node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene"]
+[node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene" unique_id=1645481697]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
 
-[node name="Polarbear_hd_fbx" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model"]
+[node name="Polarbear_hd_fbx" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model" unique_id=1510333925]
 transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
 
-[node name="Object_2" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx"]
+[node name="Object_2" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx" unique_id=653068374]
 
-[node name="RootNode" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2"]
+[node name="RootNode" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2" unique_id=1472023501]
 
-[node name="Level" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode"]
+[node name="Level" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode" unique_id=534501910]
 
-[node name="Polarbear" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level"]
+[node name="Polarbear" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level" unique_id=86346746]
 transform = Transform3D(0.43969834, 0, 0.8981455, 0, 1, 0, -0.8981455, 0, 0.43969834, -4.4681416, 0.0010375977, 1.4809653)
 
-[node name="Polarbear_hd" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear"]
+[node name="Polarbear_hd" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear" unique_id=803747643]
 
-[node name="Polarbear2" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd"]
+[node name="Polarbear2" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd" unique_id=317947396]
 
-[node name="Object_8" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2"]
+[node name="Object_8" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2" unique_id=354896210]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8" unique_id=127316409]
 bones/0/name = "_rootJoint"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -1238,59 +1238,58 @@ bones/25/position = Vector3(0.17541565, -4.440892e-16, -4.440892e-16)
 bones/25/rotation = Quaternion(0.1255331, -0.39220503, -0.099013075, 0.90587693)
 bones/25/scale = Vector3(1, 1, 1)
 
-[node name="Polarbear_01" type="BoneAttachment3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8/Skeleton3D"]
+[node name="Polarbear_01" type="BoneAttachment3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8/Skeleton3D" unique_id=321653172]
 bone_name = "Polarbear_01"
 bone_idx = 1
 
-[node name="Mesh" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8/Skeleton3D/Polarbear_01"]
+[node name="Mesh" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8/Skeleton3D/Polarbear_01" unique_id=1527899725]
 
-[node name="Object_11" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8/Skeleton3D"]
+[node name="Object_11" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8/Skeleton3D" unique_id=1719540190]
 mesh = SubResource("ArrayMesh_etqcq")
 skin = SubResource("Skin_rkl30")
+skeleton = NodePath("..")
 
-[node name="Object_10" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8"]
+[node name="Object_10" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Polarbear_hd_fbx/Object_2/RootNode/Level/Polarbear/Polarbear_hd/Polarbear2/Object_8" unique_id=2082010148]
 transform = Transform3D(0.4396983, -2.1270071e-17, 0.89814556, 3.1202775e-18, 1, 2.215464e-17, -0.89814556, -6.938894e-18, 0.4396983, -4.4681416, 0.0010375977, 1.4809653)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sketchfab_Scene"]
-libraries = {
-&"": SubResource("AnimationLibrary_x1hhf")
-}
-autoplay = "idleSmell"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sketchfab_Scene" unique_id=1936578995]
+libraries/ = SubResource("AnimationLibrary_x1hhf")
+autoplay = &"idleSmell"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=937121487]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 5.5781145, 0.20314693)
 shape = SubResource("CapsuleShape3D_vhn86")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=169696240]
 collision_layer = 0
 collision_mask = 6
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1593120863]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7996726, 0)
 shape = SubResource("CylinderShape3D_vhn86")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1836432885]
 volume_db = 6.0
 unit_size = 40.0
 max_db = 6.0
 bus = &"Sounds"
 
-[node name="Area3D2" type="Area3D" parent="."]
+[node name="Area3D2" type="Area3D" parent="." unique_id=543459027]
 collision_layer = 0
 collision_mask = 6
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" unique_id=1625453798]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.634697, 2.8116827, -3.4655645)
 shape = SubResource("SphereShape3D_vhn86")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1811922926]
 replication_config = SubResource("SceneReplicationConfig_vhn86")
 
-[node name="damage_marker_point" type="Marker3D" parent="."]
+[node name="damage_marker_point" type="Marker3D" parent="." unique_id=46445261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7914343, 0)
 
-[node name="JumpRay" type="RayCast3D" parent="."]
+[node name="JumpRay" type="RayCast3D" parent="." unique_id=721183508]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.442797, -2.2082043)
 target_position = Vector3(0, 0, -10)

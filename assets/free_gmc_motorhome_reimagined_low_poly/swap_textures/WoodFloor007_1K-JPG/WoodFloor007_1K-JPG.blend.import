@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cmfchv1uhlqp3"
-valid=false
+path="res://.godot/imported/WoodFloor007_1K-JPG.blend-742fcb5b78080778cc127704c3cc79a3.scn"
 
 [deps]
 
 source_file="res://assets/free_gmc_motorhome_reimagined_low_poly/swap_textures/WoodFloor007_1K-JPG/WoodFloor007_1K-JPG.blend"
+dest_files=["res://.godot/imported/WoodFloor007_1K-JPG.blend-742fcb5b78080778cc127704c3cc79a3.scn"]
 
 [params]
 
@@ -47,6 +48,7 @@ blender/meshes/colors=false
 blender/meshes/uvs=true
 blender/meshes/normals=true
 blender/meshes/export_geometry_nodes_instances=false
+blender/meshes/gpu_instances=false
 blender/meshes/tangents=true
 blender/meshes/skins=2
 blender/meshes/export_bones_deforming_mesh_only=false

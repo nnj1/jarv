@@ -5,10 +5,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbms2"]
 size = Vector3(0.43701172, 5.4958344, 2.2504883)
 
-[node name="door" type="StaticBody3D"]
+[node name="door" type="StaticBody3D" unique_id=1796613631]
 collision_layer = 0
 script = ExtResource("1_hpvv5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2083553855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2880578, 4.0207167, 1.9079132)
 shape = SubResource("BoxShape3D_wbms2")

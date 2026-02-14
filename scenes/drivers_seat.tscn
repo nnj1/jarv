@@ -13,15 +13,15 @@ properties/1/path = NodePath("driver_position:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="drivers_seat" type="Area3D"]
+[node name="drivers_seat" type="Area3D" unique_id=820138836]
 script = ExtResource("1_2my36")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1492516794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026275635, 0, 0.632843)
 shape = SubResource("BoxShape3D_fekdd")
 
-[node name="driver_position" type="Node3D" parent="."]
+[node name="driver_position" type="Node3D" parent="." unique_id=713244241]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.50484836, -0.3921342)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=904531553]
 replication_config = SubResource("SceneReplicationConfig_2my36")

@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://bqniukoaffwho" path="res://src/track.gd" id="1_lwb78"]
 [ext_resource type="PackedScene" uid="uid://cvjl0qgvcqr3f" path="res://assets/nfs_iii_hot_pursuit_-_summit/scene.gltf" id="1_vkjko"]
 
-[node name="Track" type="Node3D"]
+[node name="Track" type="Node3D" unique_id=1692839903]
 script = ExtResource("1_lwb78")
 
-[node name="rv_spawn_point" type="Marker3D" parent="."]
+[node name="rv_spawn_point" type="Marker3D" parent="." unique_id=1824667431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1476.7979, 351.47647, -222.23543)
 
-[node name="player_spawn_point" type="Marker3D" parent="."]
+[node name="player_spawn_point" type="Marker3D" parent="." unique_id=23275655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1483.7979, 355.3598, -270.85596)
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_vkjko")]
+[node name="Sketchfab_Scene" parent="." unique_id=280800306 instance=ExtResource("1_vkjko")]

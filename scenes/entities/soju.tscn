@@ -198,55 +198,50 @@ radius = 0.64501953
 height = 1.7866211
 radius = 0.33398438
 
-[node name="Soju" type="RigidBody3D"]
+[node name="Soju" type="RigidBody3D" unique_id=645493462]
 collision_layer = 16
 collision_mask = 23
 physics_material_override = SubResource("PhysicsMaterial_rba2d")
 continuous_cd = true
 script = ExtResource("1_31qq5")
 
-[node name="model" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="." unique_id=1189419221]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
-[node name="sketchfab" type="Node3D" parent="model"]
+[node name="sketchfab" type="Node3D" parent="model" unique_id=2023484248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08785343, -2.003066, 0)
 
-[node name="Cylinder_005_0" type="Node3D" parent="model/sketchfab"]
+[node name="Cylinder_005_0" type="Node3D" parent="model/sketchfab" unique_id=2105544131]
 transform = Transform3D(0.41652015, 0, 0, 0, 1.2975781, 0, 0, 0, 0.41652015, -0.06901616, 2.051527, 0)
 
-[node name="Object_4" type="MeshInstance3D" parent="model/sketchfab/Cylinder_005_0"]
+[node name="Object_4" type="MeshInstance3D" parent="model/sketchfab/Cylinder_005_0" unique_id=374528188]
 mesh = SubResource("ArrayMesh_p2hkm")
-skeleton = NodePath("")
 
-[node name="Cylinder_004_1" type="Node3D" parent="model/sketchfab"]
+[node name="Cylinder_004_1" type="Node3D" parent="model/sketchfab" unique_id=416768646]
 transform = Transform3D(0.27999312, 0, 0, 0, 0.034072455, 0, 0, 0, 0.27999312, -0.06901616, 4.614159, 0)
 
-[node name="Object_6" type="MeshInstance3D" parent="model/sketchfab/Cylinder_004_1"]
+[node name="Object_6" type="MeshInstance3D" parent="model/sketchfab/Cylinder_004_1" unique_id=21329897]
 mesh = SubResource("ArrayMesh_1sdxr")
-skeleton = NodePath("")
 
-[node name="Cylinder_003_2" type="Node3D" parent="model/sketchfab"]
+[node name="Cylinder_003_2" type="Node3D" parent="model/sketchfab" unique_id=1340058040]
 transform = Transform3D(0.6352771, 0, 0, 0, 1.0852675, 0, 0, 0, 0.6352771, -0.06901616, 2.0201082, 0)
 
-[node name="Object_8" type="MeshInstance3D" parent="model/sketchfab/Cylinder_003_2"]
+[node name="Object_8" type="MeshInstance3D" parent="model/sketchfab/Cylinder_003_2" unique_id=1283438978]
 mesh = SubResource("ArrayMesh_wrk2t")
-skeleton = NodePath("")
 
-[node name="Object_9" type="MeshInstance3D" parent="model/sketchfab/Cylinder_003_2"]
+[node name="Object_9" type="MeshInstance3D" parent="model/sketchfab/Cylinder_003_2" unique_id=860546864]
 mesh = SubResource("ArrayMesh_8tt7a")
-skeleton = NodePath("")
 
-[node name="Object_10" type="MeshInstance3D" parent="model/sketchfab/Cylinder_003_2"]
+[node name="Object_10" type="MeshInstance3D" parent="model/sketchfab/Cylinder_003_2" unique_id=1336686791]
 mesh = SubResource("ArrayMesh_v8dll")
-skeleton = NodePath("")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=778003037]
 replication_config = SubResource("SceneReplicationConfig_5iouq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1526279601]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.03857422, 0)
 shape = SubResource("CylinderShape3D_rba2d")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=2011269420]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.0198255, 0)
 shape = SubResource("CylinderShape3D_31qq5")

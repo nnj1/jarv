@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cx5lu0owyum7h"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cx5lu0owyum7h"]
 
 [ext_resource type="Texture2D" uid="uid://brg6gnuun83j3" path="res://assets/snow_town/textures/TextureMaterial_52_baseColor.png" id="1_51sp8"]
 

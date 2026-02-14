@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c3uv6w6li2h0s"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c3uv6w6li2h0s"]
 
 [ext_resource type="Shader" uid="uid://dkhww0v5e0wr5" path="res://assets/free_gmc_motorhome_reimagined_low_poly/mats/gmc_damage.gdshader" id="1_8arvm"]
 [ext_resource type="Texture2D" uid="uid://bp67n77fjrd5b" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/clay.001_baseColor.jpeg" id="2_6r1ma"]

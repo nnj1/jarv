@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dm4cvenqh3yxl" path="res://src/damage_marker.gd" id="1_dadxe"]
 
-[node name="DamageMarker" type="Label3D"]
+[node name="DamageMarker" type="Label3D" unique_id=753204959]
 billboard = 1
 no_depth_test = true
 alpha_cut = 1

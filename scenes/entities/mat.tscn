@@ -204,66 +204,62 @@ properties/2/path = NodePath(".:local_y_rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Mat" type="RigidBody3D"]
+[node name="Mat" type="RigidBody3D" unique_id=557638482]
 collision_layer = 16
 collision_mask = 23
 physics_material_override = SubResource("PhysicsMaterial_q0ef8")
 continuous_cd = true
 script = ExtResource("1_cf13u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=583467023]
 shape = SubResource("CylinderShape3D_cf13u")
 
-[node name="model" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="." unique_id=119670998]
 
-[node name="RUSTY_SCRAP" type="Node3D" parent="model"]
+[node name="RUSTY_SCRAP" type="Node3D" parent="model" unique_id=2636465]
 visible = false
 
-[node name="Pipe Valve" type="Node3D" parent="model/RUSTY_SCRAP"]
+[node name="Pipe Valve" type="Node3D" parent="model/RUSTY_SCRAP" unique_id=133377155]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.6250458, 0, 0)
 
-[node name="Valve" type="Node3D" parent="model/RUSTY_SCRAP/Pipe Valve"]
+[node name="Valve" type="Node3D" parent="model/RUSTY_SCRAP/Pipe Valve" unique_id=207736011]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 
-[node name="Valve Handle" type="MeshInstance3D" parent="model/RUSTY_SCRAP/Pipe Valve/Valve"]
+[node name="Valve Handle" type="MeshInstance3D" parent="model/RUSTY_SCRAP/Pipe Valve/Valve" unique_id=2079618758]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27187502, 0, 0.1844335)
 mesh = SubResource("ArrayMesh_fifaa")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_y5chb")
 
-[node name="Valve Pipe" type="MeshInstance3D" parent="model/RUSTY_SCRAP/Pipe Valve/Valve"]
+[node name="Valve Pipe" type="MeshInstance3D" parent="model/RUSTY_SCRAP/Pipe Valve/Valve" unique_id=2040194075]
 mesh = SubResource("ArrayMesh_rjr68")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_jflek")
 
-[node name="WIRING_COMPONENTS" type="Node3D" parent="model"]
+[node name="WIRING_COMPONENTS" type="Node3D" parent="model" unique_id=1781032164]
 visible = false
 
-[node name="REFINED_PLATES" type="Node3D" parent="model"]
+[node name="REFINED_PLATES" type="Node3D" parent="model" unique_id=1376538869]
 visible = false
 
-[node name="Generator2" type="Node3D" parent="model/REFINED_PLATES"]
+[node name="Generator2" type="Node3D" parent="model/REFINED_PLATES" unique_id=222739013]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.06352055)
 
-[node name="Generator" type="MeshInstance3D" parent="model/REFINED_PLATES/Generator2"]
+[node name="Generator" type="MeshInstance3D" parent="model/REFINED_PLATES/Generator2" unique_id=489914349]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, -0.8995999, 0)
 mesh = SubResource("ArrayMesh_dr7o6")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_4kwsp")
 
-[node name="CHEMICAL_SLUDGE" type="Node3D" parent="model"]
+[node name="CHEMICAL_SLUDGE" type="Node3D" parent="model" unique_id=71075605]
 visible = false
 
-[node name="mod_barrel_1" type="Node3D" parent="model/CHEMICAL_SLUDGE"]
+[node name="mod_barrel_1" type="Node3D" parent="model/CHEMICAL_SLUDGE" unique_id=1344874219]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.48669958, 0)
 
-[node name="Cylinder" type="MeshInstance3D" parent="model/CHEMICAL_SLUDGE/mod_barrel_1"]
+[node name="Cylinder" type="MeshInstance3D" parent="model/CHEMICAL_SLUDGE/mod_barrel_1" unique_id=837864623]
 mesh = SubResource("ArrayMesh_2qoyf")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_hhc80")
 
-[node name="PROCESSOR_CHIPS" type="Node3D" parent="model"]
+[node name="PROCESSOR_CHIPS" type="Node3D" parent="model" unique_id=307141069]
 visible = false
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=278643869]
 replication_config = SubResource("SceneReplicationConfig_q0ef8")

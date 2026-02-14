@@ -600,7 +600,6 @@ transform = Transform3D(1.0597088, -0.012953094, 0.0019657644, 0.012565306, 1.04
 [node name="Object_4" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Circle_001_0" unique_id=567110282]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_3f1he")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_3f1he")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Circle_001_0/Object_4" unique_id=1965412398]
@@ -616,7 +615,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8415001, 0.29307264, 3.4762
 [node name="Object_6" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_1" unique_id=2106935672]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_asokp")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_qt47t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_1/Object_6" unique_id=1183927628]
@@ -632,7 +630,6 @@ transform = Transform3D(0.24527092, 0, 0, 0, 0.28796402, 0, 0, 0, 0.24527092, 0.
 [node name="Object_8" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_003_2" unique_id=54523749]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_1qt6b")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_asokp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_003_2/Object_8" unique_id=1168861413]
@@ -648,7 +645,6 @@ transform = Transform3D(1.169081, 0, 0, 0, 1.169081, 0, 0, 0, 1.169081, 0, 0, 0)
 [node name="Object_10" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_006_3" unique_id=1530937696]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_jwa7j")
-skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_l0436")
 
 [node name="Cube_001_4" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=2129569108]
@@ -657,7 +653,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65635234, 0.29307264, 3.47
 [node name="Object_12" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_001_4" unique_id=1191945111]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_qrg0m")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_3g2tp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_001_4/Object_12" unique_id=780230033]
@@ -673,7 +668,6 @@ transform = Transform3D(-0.2194266, 0, 0.10958919, 0, 0.28796402, 0, -0.10958919
 [node name="Object_14" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_002_5" unique_id=772409260]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_wbms2")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ijvh7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Cube_002_5/Object_14" unique_id=1472908922]
@@ -689,7 +683,6 @@ transform = Transform3D(1.169081, 0, 0, 0, 1.169081, 0, 0, 0, 1.169081, 0, 0, 0)
 [node name="Object_16" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_009_10" unique_id=748190008]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_rcdwc")
-skeleton = NodePath("")
 
 [node name="Plane_001_11" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=109757215]
 transform = Transform3D(1.169081, 0, 0, 0, 1.035609, 0.5424612, 0, -0.5424612, 1.035609, 0, -0.9601844, 3.0583484)
@@ -697,7 +690,6 @@ transform = Transform3D(1.169081, 0, 0, 0, 1.035609, 0.5424612, 0, -0.5424612, 1
 [node name="Object_18" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_001_11" unique_id=1405557237]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_jh1p5")
-skeleton = NodePath("")
 
 [node name="Plane_003_12" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=1224206178]
 transform = Transform3D(1.169081, 0, 0, 0, 1.1336402, -0.28567532, 0, 0.28567532, 1.1336402, 0, -0.9601844, -1.1413176)
@@ -705,7 +697,6 @@ transform = Transform3D(1.169081, 0, 0, 0, 1.1336402, -0.28567532, 0, 0.28567532
 [node name="Object_20" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_003_12" unique_id=1138494917]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_l0436")
-skeleton = NodePath("")
 
 [node name="Plane_004_13" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=112854389]
 transform = Transform3D(1.169081, 0, 0, 0, 0.41821232, 1.0917183, 0, -1.0917183, 0.41821232, 0, -0.9601844, -2.1861901)
@@ -713,7 +704,6 @@ transform = Transform3D(1.169081, 0, 0, 0, 0.41821232, 1.0917183, 0, -1.0917183,
 [node name="Object_22" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_004_13" unique_id=2087497174]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_5enki")
-skeleton = NodePath("")
 
 [node name="Plane_005_14" type="Node3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=237995459]
 transform = Transform3D(1.169081, 0, 0, 0, 1.169081, 0, 0, 0, 1.169081, 0, 0, 0)
@@ -721,7 +711,6 @@ transform = Transform3D(1.169081, 0, 0, 0, 1.169081, 0, 0, 0, 1.169081, 0, 0, 0)
 [node name="Object_24" type="MeshInstance3D" parent="Sketchfab_Scene2/Sketchfab_model/root/GLTF_SceneRootNode/Plane_005_14" unique_id=955251499]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_ldj7c")
-skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1269004952]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056762695, 1.7748575, -0.25585938)

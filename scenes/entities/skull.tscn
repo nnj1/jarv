@@ -247,7 +247,7 @@ properties/3/replication_mode = 2
 [sub_resource type="SphereShape3D" id="SphereShape3D_tl5qv"]
 radius = 50.0
 
-[node name="Skull" type="CharacterBody3D"]
+[node name="Skull" type="CharacterBody3D" unique_id=1597629658]
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_tl5qv")
@@ -266,26 +266,26 @@ melee_attack_sound = ExtResource("4_ribas")
 ranged_attack_sound = ExtResource("5_a6se2")
 skin_color = null
 
-[node name="model" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="." unique_id=1822527749]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Sketchfab_Scene" type="Node3D" parent="model"]
+[node name="Sketchfab_Scene" type="Node3D" parent="model" unique_id=1852570827]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -41.607, -30, -72.908)
 
-[node name="Sketchfab_model" type="Node3D" parent="model/Sketchfab_Scene"]
+[node name="Sketchfab_model" type="Node3D" parent="model/Sketchfab_Scene" unique_id=1728066501]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
 
-[node name="root" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model"]
+[node name="root" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model" unique_id=444421975]
 
-[node name="GLTF_SceneRootNode" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root"]
+[node name="GLTF_SceneRootNode" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root" unique_id=1216098604]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, -1, 0, 1, 2.220446e-16, 0, 0, 0)
 
-[node name="Armature_15" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode"]
+[node name="Armature_15" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=559222331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.435146, 4.881332, 14.651846)
 
-[node name="GLTF_created_0" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15"]
+[node name="GLTF_created_0" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15" unique_id=230176355]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0"]
+[node name="Skeleton3D" type="Skeleton3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0" unique_id=808363486]
 bones/0/name = "GLTF_created_0_rootJoint"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -378,50 +378,51 @@ bones/12/position = Vector3(-2.3935647, 2.7038465, -0.74384964)
 bones/12/rotation = Quaternion(-0.64781916, 0.3581582, -0.28342593, 0.6096907)
 bones/12/scale = Vector3(1, 1.0000004, 1)
 
-[node name="Object_7" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
+[node name="Object_7" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D" unique_id=405954360]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_f5t0j")
 skin = SubResource("Skin_63k5r")
+skeleton = NodePath("..")
 
-[node name="Object_8" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
+[node name="Object_8" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D" unique_id=1920834921]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_gdeki")
 skin = SubResource("Skin_63k5r")
+skeleton = NodePath("..")
 
-[node name="Object_9" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D"]
+[node name="Object_9" type="MeshInstance3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0/Skeleton3D" unique_id=1281893149]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_5cvjj")
 skin = SubResource("Skin_63k5r")
+skeleton = NodePath("..")
 
-[node name="Cube_14" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0"]
+[node name="Cube_14" type="Node3D" parent="model/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_15/GLTF_created_0" unique_id=221556049]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="model/Sketchfab_Scene"]
-libraries = {
-&"": SubResource("AnimationLibrary_firie")
-}
-autoplay = "Flying"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="model/Sketchfab_Scene" unique_id=1996219281]
+libraries/ = SubResource("AnimationLibrary_firie")
+autoplay = &"Flying"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1702708896]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.744074, 0)
 shape = SubResource("SphereShape3D_8cdun")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=533164688]
 replication_config = SubResource("SceneReplicationConfig_tl5qv")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1142219942]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1159400091]
 shape = SubResource("SphereShape3D_tl5qv")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1273091510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.318293, 0)
 target_position = Vector3(0, 0, -1)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=464773202]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=800826365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41314125, 7.613599, 0)
 light_color = Color(1.8247963, 0, 0, 1)
 light_energy = 2.0

@@ -132,52 +132,52 @@ proximity_fade_enabled = true
 [sub_resource type="QuadMesh" id="QuadMesh_d40e5"]
 material = SubResource("StandardMaterial3D_n2suw")
 
-[node name="Rocket" type="CharacterBody3D"]
+[node name="Rocket" type="CharacterBody3D" unique_id=120874237]
 collision_layer = 9
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_3l0q3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=605538296]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_3l0q3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=989273582]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_n2suw")
 
-[node name="smoke" type="GPUParticles3D" parent="."]
+[node name="smoke" type="GPUParticles3D" parent="." unique_id=1956674202]
 amount = 200
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_3l0q3")
 draw_pass_1 = SubResource("QuadMesh_n2suw")
 
-[node name="fire" type="GPUParticles3D" parent="."]
+[node name="fire" type="GPUParticles3D" parent="." unique_id=2143188864]
 amount = 300
 lifetime = 0.15000000000000002
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_wrdly")
 draw_pass_1 = SubResource("QuadMesh_fa4p8")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=253829582]
 replication_config = SubResource("SceneReplicationConfig_3l0q3")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=501233599]
 light_color = Color(1, 0.45882353, 0, 1)
 light_energy = 5.0
 omni_range = 50.0
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=12246857]
 collision_layer = 0
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1446298617]
 shape = SubResource("SphereShape3D_3l0q3")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=566693368]
 stream = ExtResource("2_n2suw")
 
-[node name="explosion" type="GPUParticles3D" parent="."]
+[node name="explosion" type="GPUParticles3D" parent="." unique_id=796496545]
 emitting = false
 amount = 500
 lifetime = 0.5

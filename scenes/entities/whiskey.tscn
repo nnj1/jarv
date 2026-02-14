@@ -130,7 +130,7 @@ properties/2/path = NodePath(".:local_y_rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Whiskey" type="RigidBody3D"]
+[node name="Whiskey" type="RigidBody3D" unique_id=740597890]
 collision_layer = 16
 collision_mask = 23
 physics_material_override = SubResource("PhysicsMaterial_cmf10")
@@ -138,32 +138,29 @@ center_of_mass_mode = 1
 continuous_cd = true
 script = ExtResource("1_scsyp")
 
-[node name="model" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="." unique_id=1241865825]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, -2.2204462e-19, 0, 2.2204462e-19, 0.001, 0, 6.661338e-16, 0.008735657)
 
-[node name="Cube_Material_003_0" type="MeshInstance3D" parent="model"]
+[node name="Cube_Material_003_0" type="MeshInstance3D" parent="model" unique_id=1760002796]
 mesh = SubResource("ArrayMesh_fxcmm")
-skeleton = NodePath("")
 
-[node name="Cube_Material_002_0" type="MeshInstance3D" parent="model"]
+[node name="Cube_Material_002_0" type="MeshInstance3D" parent="model" unique_id=445847937]
 mesh = SubResource("ArrayMesh_1whwg")
-skeleton = NodePath("")
 
-[node name="Cube_Material_001_0" type="MeshInstance3D" parent="model"]
+[node name="Cube_Material_001_0" type="MeshInstance3D" parent="model" unique_id=444858409]
 mesh = SubResource("ArrayMesh_ind8p")
-skeleton = NodePath("")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1679535528]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, -2.2204462e-19, 0, 2.2204462e-19, 0.001, 0, 6.661338e-16, 0.008735657)
 shape = SubResource("ConvexPolygonShape3D_cmf10")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2082615445]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, -2.2204462e-19, 0, 2.2204462e-19, 0.001, 0, 6.661338e-16, 0.008735657)
 shape = SubResource("ConvexPolygonShape3D_scsyp")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=537033139]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, -2.2204462e-19, 0, 2.2204462e-19, 0.001, 0, 6.661338e-16, 0.008735657)
 shape = SubResource("ConvexPolygonShape3D_konq0")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1660754407]
 replication_config = SubResource("SceneReplicationConfig_cmf10")

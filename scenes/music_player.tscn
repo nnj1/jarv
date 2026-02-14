@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ceabrp47e4ipb" path="res://src/music_player.gd" id="1_jxdhu"]
 
-[node name="MusicPlayer" type="AudioStreamPlayer"]
+[node name="MusicPlayer" type="AudioStreamPlayer" unique_id=792154068]
 bus = &"Music"
 script = ExtResource("1_jxdhu")

@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://b0r5wecksw3fr"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b0r5wecksw3fr"]
 
 [ext_resource type="Texture2D" uid="uid://dn6k6hktelwhq" path="res://assets/gnome_3d_model_low_poly/textures/gnome_mat_baseColor.jpeg" id="1_t1tis"]
 [ext_resource type="Texture2D" uid="uid://cui376mccnuuh" path="res://assets/gnome_3d_model_low_poly/textures/gnome_mat_metallicRoughness.png" id="2_aly3o"]

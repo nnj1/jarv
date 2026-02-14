@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c1gi5po8x0838" path="res://src/scene_transition.gd" id="1_0wykx"]
 
-[node name="SceneTransition" type="CanvasLayer"]
+[node name="SceneTransition" type="CanvasLayer" unique_id=1780058655]
 layer = 7
 script = ExtResource("1_0wykx")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1779278741]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="ColorRect" unique_id=1499078723]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

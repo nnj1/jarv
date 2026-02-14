@@ -5332,660 +5332,505 @@ glow_enabled = true
 
 [sub_resource type="Compositor" id="Compositor_aomf1"]
 
-[node name="MenuBackground" type="Node3D"]
+[node name="MenuBackground" type="Node3D" unique_id=394988911]
 script = ExtResource("1_7js8a")
 
-[node name="Sketchfab_Scene" type="Node3D" parent="."]
+[node name="Sketchfab_Scene" type="Node3D" parent="." unique_id=528986798]
 
-[node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene"]
+[node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene" unique_id=104625442]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
 
-[node name="d4646b71864248c8aca980798b6b632c_fbx" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model"]
+[node name="d4646b71864248c8aca980798b6b632c_fbx" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model" unique_id=389038023]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 
-[node name="RootNode" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx"]
+[node name="RootNode" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx" unique_id=1460276843]
 
-[node name="motorhome" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode"]
+[node name="motorhome" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode" unique_id=819391638]
 transform = Transform3D(1, 0, 0, 0, -1.6292068e-07, 1, 0, -1, -1.6292068e-07, -0.027580261, 0, 0)
 
-[node name="motorhome_house_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_house_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1786414949]
 mesh = SubResource("ArrayMesh_wib3q")
-skeleton = NodePath("")
 
-[node name="motorhome_floor_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_floor_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=807059103]
 mesh = SubResource("ArrayMesh_y6emm")
-skeleton = NodePath("")
 
-[node name="motorhome_body_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_body_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=605100368]
 mesh = SubResource("ArrayMesh_l64kf")
-skeleton = NodePath("")
 
-[node name="motorhome_car_interior_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_car_interior_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=369032760]
 mesh = SubResource("ArrayMesh_c56x4")
-skeleton = NodePath("")
 
-[node name="motorhome_house_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_house_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=736641784]
 mesh = SubResource("ArrayMesh_anlxb")
-skeleton = NodePath("")
 
-[node name="motorhome_picture_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_picture_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1938825604]
 mesh = SubResource("ArrayMesh_dbjyj")
-skeleton = NodePath("")
 
-[node name="motorhome_black_metalic_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_black_metalic_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=2039446572]
 mesh = SubResource("ArrayMesh_3xjgv")
-skeleton = NodePath("")
 
-[node name="motorhome_black_mate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_black_mate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1173005744]
 mesh = SubResource("ArrayMesh_6tnsy")
-skeleton = NodePath("")
 
-[node name="motorhome_glass_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_glass_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=441365761]
 mesh = SubResource("ArrayMesh_8mlay")
-skeleton = NodePath("")
 
-[node name="motorhome_house_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_house_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1906324886]
 mesh = SubResource("ArrayMesh_kcqfl")
-skeleton = NodePath("")
 
-[node name="motorhome_mattress_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_mattress_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=719623511]
 mesh = SubResource("ArrayMesh_ex5wd")
-skeleton = NodePath("")
 
-[node name="motorhome_roller_blinds_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_roller_blinds_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1850663289]
 mesh = SubResource("ArrayMesh_vcqtb")
-skeleton = NodePath("")
 
-[node name="motorhome_kitchen_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_kitchen_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=2137436532]
 mesh = SubResource("ArrayMesh_dbw36")
-skeleton = NodePath("")
 
-[node name="motorhome_kitchen_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_kitchen_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=68179274]
 mesh = SubResource("ArrayMesh_238fj")
-skeleton = NodePath("")
 
-[node name="motorhome_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1315970694]
 mesh = SubResource("ArrayMesh_oc02l")
-skeleton = NodePath("")
 
-[node name="motorhome_kitchen_water_temp_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_kitchen_water_temp_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1895942937]
 mesh = SubResource("ArrayMesh_7b2tf")
-skeleton = NodePath("")
 
-[node name="motorhome_car_interior_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_car_interior_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=2043184699]
 mesh = SubResource("ArrayMesh_npt26")
-skeleton = NodePath("")
 
-[node name="motorhome_body__extra_3_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_body__extra_3_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=2017386841]
 mesh = SubResource("ArrayMesh_s7rcp")
-skeleton = NodePath("")
 
-[node name="motorhome_body_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_body_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1913691713]
 mesh = SubResource("ArrayMesh_044it")
-skeleton = NodePath("")
 
-[node name="motorhome_board_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_board_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=773257106]
 mesh = SubResource("ArrayMesh_0ravd")
-skeleton = NodePath("")
 
-[node name="motorhome_knife_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_knife_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1199539852]
 mesh = SubResource("ArrayMesh_hs7vy")
-skeleton = NodePath("")
 
-[node name="motorhome_knife_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_knife_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1596306749]
 mesh = SubResource("ArrayMesh_xlwxq")
-skeleton = NodePath("")
 
-[node name="motorhome_tv_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_tv_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=982330788]
 mesh = SubResource("ArrayMesh_1cvoh")
-skeleton = NodePath("")
 
-[node name="motorhome_car_interior_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_car_interior_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=58132904]
 mesh = SubResource("ArrayMesh_api8o")
-skeleton = NodePath("")
 
-[node name="motorhome_body_extra2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_body_extra2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=985279855]
 mesh = SubResource("ArrayMesh_q8f6l")
-skeleton = NodePath("")
 
-[node name="motorhome_water_level_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_water_level_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=750457648]
 mesh = SubResource("ArrayMesh_o4ek7")
-skeleton = NodePath("")
 
-[node name="motorhome_motor_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_motor_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=359589027]
 mesh = SubResource("ArrayMesh_v486g")
-skeleton = NodePath("")
 
-[node name="motorhome_motor_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_motor_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1669348422]
 mesh = SubResource("ArrayMesh_0qoun")
-skeleton = NodePath("")
 
-[node name="motorhome_motor_yellow_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_motor_yellow_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1168756027]
 mesh = SubResource("ArrayMesh_nsr1h")
-skeleton = NodePath("")
 
-[node name="motorhome_white_gray_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_white_gray_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=837190176]
 mesh = SubResource("ArrayMesh_a0h80")
-skeleton = NodePath("")
 
-[node name="motorhome_turnlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_turnlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=733827614]
 mesh = SubResource("ArrayMesh_62ff1")
-skeleton = NodePath("")
 
-[node name="motorhome_stoplight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_stoplight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=705220765]
 mesh = SubResource("ArrayMesh_65lm4")
-skeleton = NodePath("")
 
-[node name="motorhome_lights_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_lights_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=972459668]
 mesh = SubResource("ArrayMesh_0dmw1")
-skeleton = NodePath("")
 
-[node name="motorhome_houselight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_houselight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1530044378]
 mesh = SubResource("ArrayMesh_bar10")
-skeleton = NodePath("")
 
-[node name="motorhome_houselight_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_houselight_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1516149545]
 mesh = SubResource("ArrayMesh_vbrfd")
-skeleton = NodePath("")
 
-[node name="motorhome_tyre_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_tyre_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=895981335]
 mesh = SubResource("ArrayMesh_2mgqb")
-skeleton = NodePath("")
 
-[node name="motorhome_rim_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_rim_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=667001815]
 mesh = SubResource("ArrayMesh_og1f3")
-skeleton = NodePath("")
 
-[node name="motorhome_rim_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_rim_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=984300116]
 mesh = SubResource("ArrayMesh_a3kku")
-skeleton = NodePath("")
 
-[node name="motorhome_rim_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_rim_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1216593385]
 mesh = SubResource("ArrayMesh_nvmr3")
-skeleton = NodePath("")
 
-[node name="motorhome_number_plate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_number_plate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1371183459]
 mesh = SubResource("ArrayMesh_w6cm7")
-skeleton = NodePath("")
 
-[node name="motorhome_headlight_exttra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_headlight_exttra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1938280659]
 mesh = SubResource("ArrayMesh_0lfyl")
-skeleton = NodePath("")
 
-[node name="motorhome_radiator_grille_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_radiator_grille_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=121039443]
 mesh = SubResource("ArrayMesh_4p4dc")
-skeleton = NodePath("")
 
-[node name="motorhome_headlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_headlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=529580844]
 mesh = SubResource("ArrayMesh_bus82")
-skeleton = NodePath("")
 
-[node name="motorhome_mirror_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_mirror_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=726763402]
 mesh = SubResource("ArrayMesh_swv4h")
-skeleton = NodePath("")
 
-[node name="motorhome_bumper_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_bumper_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1773624920]
 mesh = SubResource("ArrayMesh_ylf2s")
-skeleton = NodePath("")
 
-[node name="motorhome_seats_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_seats_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=33904432]
 mesh = SubResource("ArrayMesh_uld6p")
-skeleton = NodePath("")
 
-[node name="motorhome_seats_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_seats_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1811496196]
 mesh = SubResource("ArrayMesh_5ywub")
-skeleton = NodePath("")
 
-[node name="motorhome_seats_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_seats_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=475194297]
 mesh = SubResource("ArrayMesh_hlefh")
-skeleton = NodePath("")
 
-[node name="motorhome_panel_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_panel_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1994642562]
 mesh = SubResource("ArrayMesh_evlxh")
-skeleton = NodePath("")
 
-[node name="motorhome_tumblers_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_tumblers_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1313422420]
 mesh = SubResource("ArrayMesh_ujpsf")
-skeleton = NodePath("")
 
-[node name="motorhome_tumblers_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome"]
+[node name="motorhome_tumblers_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome" unique_id=1530690132]
 mesh = SubResource("ArrayMesh_va36p")
-skeleton = NodePath("")
 
-[node name="motorhome_002" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode"]
+[node name="motorhome_002" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode" unique_id=1767445529]
 transform = Transform3D(7.54979e-08, 1, -1.6292068e-07, 0, -1.6292068e-07, -1, -1, 7.54979e-08, -1.2212453e-14, 6.435056, -0.021663917, 0)
 
-[node name="motorhome_002_house_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_house_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1569814288]
 mesh = SubResource("ArrayMesh_588g3")
-skeleton = NodePath("")
 
-[node name="motorhome_002_motor_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_motor_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1151184952]
 mesh = SubResource("ArrayMesh_xncd2")
-skeleton = NodePath("")
 
-[node name="motorhome_002_floor_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_floor_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=2059832554]
 mesh = SubResource("ArrayMesh_jdk5i")
-skeleton = NodePath("")
 
-[node name="motorhome_002_rust_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_rust_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1566183099]
 mesh = SubResource("ArrayMesh_wtgwo")
-skeleton = NodePath("")
 
-[node name="motorhome_002_body_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_body_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=356843919]
 mesh = SubResource("ArrayMesh_3xetq")
-skeleton = NodePath("")
 
-[node name="motorhome_002_car_interior_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_car_interior_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1006774257]
 mesh = SubResource("ArrayMesh_jgoa8")
-skeleton = NodePath("")
 
-[node name="motorhome_002_house_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_house_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=719079190]
 mesh = SubResource("ArrayMesh_rjlqa")
-skeleton = NodePath("")
 
-[node name="motorhome_002_black_metalic_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_black_metalic_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=548736867]
 mesh = SubResource("ArrayMesh_rwgsx")
-skeleton = NodePath("")
 
-[node name="motorhome_002_seats_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_seats_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1496534019]
 mesh = SubResource("ArrayMesh_r5dr0")
-skeleton = NodePath("")
 
-[node name="motorhome_002_kitchen_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_kitchen_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1177329142]
 mesh = SubResource("ArrayMesh_dx8on")
-skeleton = NodePath("")
 
-[node name="motorhome_002_black_mate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_black_mate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1801117584]
 mesh = SubResource("ArrayMesh_a8xkt")
-skeleton = NodePath("")
 
-[node name="motorhome_002_house_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_house_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1829953772]
 mesh = SubResource("ArrayMesh_8oxmx")
-skeleton = NodePath("")
 
-[node name="motorhome_002_body_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_body_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1677994202]
 mesh = SubResource("ArrayMesh_pf7fe")
-skeleton = NodePath("")
 
-[node name="motorhome_002_bumper_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_bumper_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=466944840]
 mesh = SubResource("ArrayMesh_q835g")
-skeleton = NodePath("")
 
-[node name="motorhome_002_roller_blinds_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_roller_blinds_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=511911970]
 mesh = SubResource("ArrayMesh_d50jt")
-skeleton = NodePath("")
 
-[node name="motorhome_002_glass_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_glass_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=855580639]
 mesh = SubResource("ArrayMesh_uscbi")
-skeleton = NodePath("")
 
-[node name="motorhome_002_mattress_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_mattress_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=2095806673]
 mesh = SubResource("ArrayMesh_x6vnj")
-skeleton = NodePath("")
 
-[node name="motorhome_002_body__extra_3_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_body__extra_3_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1506624593]
 mesh = SubResource("ArrayMesh_yc7q6")
-skeleton = NodePath("")
 
-[node name="motorhome_002_board_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_board_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=880807499]
 mesh = SubResource("ArrayMesh_q0871")
-skeleton = NodePath("")
 
-[node name="motorhome_002_knife_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_knife_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1767103903]
 mesh = SubResource("ArrayMesh_8du22")
-skeleton = NodePath("")
 
-[node name="motorhome_002_knife_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_knife_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1833002438]
 mesh = SubResource("ArrayMesh_2jfqe")
-skeleton = NodePath("")
 
-[node name="motorhome_002_tv_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_tv_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1761190415]
 mesh = SubResource("ArrayMesh_qggug")
-skeleton = NodePath("")
 
-[node name="motorhome_002_car_interior_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_car_interior_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=224736233]
 mesh = SubResource("ArrayMesh_s13vu")
-skeleton = NodePath("")
 
-[node name="motorhome_002_water_level_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_water_level_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=639787517]
 mesh = SubResource("ArrayMesh_i4kch")
-skeleton = NodePath("")
 
-[node name="motorhome_002_motor_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_motor_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1744700222]
 mesh = SubResource("ArrayMesh_gcbw5")
-skeleton = NodePath("")
 
-[node name="motorhome_002_car_interior_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_car_interior_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=401492809]
 mesh = SubResource("ArrayMesh_hx2jh")
-skeleton = NodePath("")
 
-[node name="motorhome_002_tyre_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_tyre_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=180370291]
 mesh = SubResource("ArrayMesh_hv8u7")
-skeleton = NodePath("")
 
-[node name="motorhome_002_rim_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_rim_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=418996643]
 mesh = SubResource("ArrayMesh_1x5jp")
-skeleton = NodePath("")
 
-[node name="motorhome_002_tumblers_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_tumblers_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=2055217228]
 mesh = SubResource("ArrayMesh_1pne5")
-skeleton = NodePath("")
 
-[node name="motorhome_002_seats_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_seats_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=998221743]
 mesh = SubResource("ArrayMesh_bhyqj")
-skeleton = NodePath("")
 
-[node name="motorhome_002_tumblers_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_tumblers_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=829238439]
 mesh = SubResource("ArrayMesh_17s3e")
-skeleton = NodePath("")
 
-[node name="motorhome_002_kitchen_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_kitchen_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=2111191679]
 mesh = SubResource("ArrayMesh_uxrum")
-skeleton = NodePath("")
 
-[node name="motorhome_002_headlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_headlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=761985696]
 mesh = SubResource("ArrayMesh_nbqhk")
-skeleton = NodePath("")
 
-[node name="motorhome_002_rim_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_rim_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=542196977]
 mesh = SubResource("ArrayMesh_71ph7")
-skeleton = NodePath("")
 
-[node name="motorhome_002_seats_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_seats_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1691153986]
 mesh = SubResource("ArrayMesh_un5jh")
-skeleton = NodePath("")
 
-[node name="motorhome_002_body_extra2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_body_extra2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1151819089]
 mesh = SubResource("ArrayMesh_l055y")
-skeleton = NodePath("")
 
-[node name="motorhome_002_picture_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_picture_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1375390367]
 mesh = SubResource("ArrayMesh_ea4pu")
-skeleton = NodePath("")
 
-[node name="motorhome_002_headlight_exttra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_headlight_exttra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=455668872]
 mesh = SubResource("ArrayMesh_siefq")
-skeleton = NodePath("")
 
-[node name="motorhome_002_rim_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_rim_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=2045739081]
 mesh = SubResource("ArrayMesh_0i1rv")
-skeleton = NodePath("")
 
-[node name="motorhome_002_houselight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_houselight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=498064516]
 mesh = SubResource("ArrayMesh_oxsyo")
-skeleton = NodePath("")
 
-[node name="motorhome_002_motor_yellow_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_motor_yellow_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1872920691]
 mesh = SubResource("ArrayMesh_ftncx")
-skeleton = NodePath("")
 
-[node name="motorhome_002_houselight_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_houselight_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1582252294]
 mesh = SubResource("ArrayMesh_t480l")
-skeleton = NodePath("")
 
-[node name="motorhome_002_stoplight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_stoplight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=2045133019]
 mesh = SubResource("ArrayMesh_vv6rn")
-skeleton = NodePath("")
 
-[node name="motorhome_002_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=703387562]
 mesh = SubResource("ArrayMesh_o27ev")
-skeleton = NodePath("")
 
-[node name="motorhome_002_radiator_grille_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_radiator_grille_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=594575877]
 mesh = SubResource("ArrayMesh_ooiff")
-skeleton = NodePath("")
 
-[node name="motorhome_002_turnlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_turnlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1753333044]
 mesh = SubResource("ArrayMesh_lfos4")
-skeleton = NodePath("")
 
-[node name="motorhome_002_lights_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_lights_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1478128435]
 mesh = SubResource("ArrayMesh_iu86h")
-skeleton = NodePath("")
 
-[node name="motorhome_002_number_plate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_number_plate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1850368715]
 mesh = SubResource("ArrayMesh_7ohf3")
-skeleton = NodePath("")
 
-[node name="motorhome_002_mirror_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002"]
+[node name="motorhome_002_mirror_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_002" unique_id=1069436823]
 mesh = SubResource("ArrayMesh_b21ty")
-skeleton = NodePath("")
 
-[node name="motorhome_003" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode"]
+[node name="motorhome_003" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode" unique_id=885729648]
 transform = Transform3D(7.54979e-08, 1, -1.6292068e-07, 0, -1.6292068e-07, -1, -1, 7.54979e-08, -1.2212453e-14, -5.6451836, -0.021663917, 0)
 
-[node name="motorhome_003_house_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_house_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1013046019]
 mesh = SubResource("ArrayMesh_4yy1u")
-skeleton = NodePath("")
 
-[node name="motorhome_003_motor_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_motor_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=748766729]
 mesh = SubResource("ArrayMesh_lmcvl")
-skeleton = NodePath("")
 
-[node name="motorhome_003_floor_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_floor_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1752800954]
 mesh = SubResource("ArrayMesh_yal0j")
-skeleton = NodePath("")
 
-[node name="motorhome_003_body_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_body_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1773098416]
 mesh = SubResource("ArrayMesh_6o46c")
-skeleton = NodePath("")
 
-[node name="motorhome_003_car_interior_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_car_interior_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=94056185]
 mesh = SubResource("ArrayMesh_ba5t7")
-skeleton = NodePath("")
 
-[node name="motorhome_003_house_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_house_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=435953482]
 mesh = SubResource("ArrayMesh_qqq6p")
-skeleton = NodePath("")
 
-[node name="motorhome_003_white_gray_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_white_gray_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1335781504]
 mesh = SubResource("ArrayMesh_3wadj")
-skeleton = NodePath("")
 
-[node name="motorhome_003_black_metalic_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_black_metalic_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=795877693]
 mesh = SubResource("ArrayMesh_hvnjq")
-skeleton = NodePath("")
 
-[node name="motorhome_003_seats_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_seats_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1297870455]
 mesh = SubResource("ArrayMesh_1yn0g")
-skeleton = NodePath("")
 
-[node name="motorhome_003_kitchen_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_kitchen_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1610110240]
 mesh = SubResource("ArrayMesh_t5rjl")
-skeleton = NodePath("")
 
-[node name="motorhome_003_black_mate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_black_mate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=443436355]
 mesh = SubResource("ArrayMesh_wuwy1")
-skeleton = NodePath("")
 
-[node name="motorhome_003_house_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_house_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1373344559]
 mesh = SubResource("ArrayMesh_k0rte")
-skeleton = NodePath("")
 
-[node name="motorhome_003_mattress_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_mattress_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1131102846]
 mesh = SubResource("ArrayMesh_lonbr")
-skeleton = NodePath("")
 
-[node name="motorhome_003_body_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_body_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1009086813]
 mesh = SubResource("ArrayMesh_ka413")
-skeleton = NodePath("")
 
-[node name="motorhome_003_bumper_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_bumper_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=301490082]
 mesh = SubResource("ArrayMesh_g5gjd")
-skeleton = NodePath("")
 
-[node name="motorhome_003_body__extra_3_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_body__extra_3_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=274471612]
 mesh = SubResource("ArrayMesh_2b414")
-skeleton = NodePath("")
 
-[node name="motorhome_003_roller_blinds_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_roller_blinds_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1152584174]
 mesh = SubResource("ArrayMesh_uqp5o")
-skeleton = NodePath("")
 
-[node name="motorhome_003_glass_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_glass_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1313347837]
 mesh = SubResource("ArrayMesh_otnfa")
-skeleton = NodePath("")
 
-[node name="motorhome_003_body_extra2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_body_extra2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=583521026]
 mesh = SubResource("ArrayMesh_cbxrc")
-skeleton = NodePath("")
 
-[node name="motorhome_003_kitchen_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_kitchen_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=605161046]
 mesh = SubResource("ArrayMesh_t0w7e")
-skeleton = NodePath("")
 
-[node name="motorhome_003_board_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_board_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1456127065]
 mesh = SubResource("ArrayMesh_vl0f0")
-skeleton = NodePath("")
 
-[node name="motorhome_003_knife_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_knife_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=625631625]
 mesh = SubResource("ArrayMesh_ig4kt")
-skeleton = NodePath("")
 
-[node name="motorhome_003_knife_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_knife_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=527600524]
 mesh = SubResource("ArrayMesh_6sdhi")
-skeleton = NodePath("")
 
-[node name="motorhome_003_tv_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_tv_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1842179351]
 mesh = SubResource("ArrayMesh_pfsw1")
-skeleton = NodePath("")
 
-[node name="motorhome_003_car_interior_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_car_interior_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1779397521]
 mesh = SubResource("ArrayMesh_u5tux")
-skeleton = NodePath("")
 
-[node name="motorhome_003_water_level_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_water_level_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=578944082]
 mesh = SubResource("ArrayMesh_5rwvb")
-skeleton = NodePath("")
 
-[node name="motorhome_003_motor_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_motor_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1358613730]
 mesh = SubResource("ArrayMesh_isvx5")
-skeleton = NodePath("")
 
-[node name="motorhome_003_tyre_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_tyre_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=378078497]
 mesh = SubResource("ArrayMesh_ebkkb")
-skeleton = NodePath("")
 
-[node name="motorhome_003_car_interior_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_car_interior_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1728941698]
 mesh = SubResource("ArrayMesh_16ai7")
-skeleton = NodePath("")
 
-[node name="motorhome_003_motor_yellow_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_motor_yellow_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1481956433]
 mesh = SubResource("ArrayMesh_yt7pa")
-skeleton = NodePath("")
 
-[node name="motorhome_003_rim_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_rim_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=941567156]
 mesh = SubResource("ArrayMesh_14csw")
-skeleton = NodePath("")
 
-[node name="motorhome_003_tumblers_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_tumblers_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=646064176]
 mesh = SubResource("ArrayMesh_bft5x")
-skeleton = NodePath("")
 
-[node name="motorhome_003_seats_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_seats_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=2004845984]
 mesh = SubResource("ArrayMesh_qhehd")
-skeleton = NodePath("")
 
-[node name="motorhome_003_tumblers_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_tumblers_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1603900592]
 mesh = SubResource("ArrayMesh_lm61n")
-skeleton = NodePath("")
 
-[node name="motorhome_003_headlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_headlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1350850253]
 mesh = SubResource("ArrayMesh_27rbn")
-skeleton = NodePath("")
 
-[node name="motorhome_003_rim_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_rim_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=519400904]
 mesh = SubResource("ArrayMesh_47stb")
-skeleton = NodePath("")
 
-[node name="motorhome_003_seats_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_seats_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=430837336]
 mesh = SubResource("ArrayMesh_x5ujc")
-skeleton = NodePath("")
 
-[node name="motorhome_003_picture_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_picture_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=653508072]
 mesh = SubResource("ArrayMesh_frrb2")
-skeleton = NodePath("")
 
-[node name="motorhome_003_headlight_exttra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_headlight_exttra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1933432382]
 mesh = SubResource("ArrayMesh_qw6yk")
-skeleton = NodePath("")
 
-[node name="motorhome_003_rim_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_rim_extra_2_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1006762399]
 mesh = SubResource("ArrayMesh_m0x13")
-skeleton = NodePath("")
 
-[node name="motorhome_003_houselight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_houselight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=294904882]
 mesh = SubResource("ArrayMesh_uyi04")
-skeleton = NodePath("")
 
-[node name="motorhome_003_houselight_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_houselight_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1473925087]
 mesh = SubResource("ArrayMesh_j0ixe")
-skeleton = NodePath("")
 
-[node name="motorhome_003_lights_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_lights_extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=874153272]
 mesh = SubResource("ArrayMesh_60wd2")
-skeleton = NodePath("")
 
-[node name="motorhome_003_stoplight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_stoplight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=721403431]
 mesh = SubResource("ArrayMesh_m2ha0")
-skeleton = NodePath("")
 
-[node name="motorhome_003_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_red_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1240616488]
 mesh = SubResource("ArrayMesh_ts3xf")
-skeleton = NodePath("")
 
-[node name="motorhome_003_radiator_grille_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_radiator_grille_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1304336906]
 mesh = SubResource("ArrayMesh_poxsn")
-skeleton = NodePath("")
 
-[node name="motorhome_003_kitchen_water_temp_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_kitchen_water_temp_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=207963634]
 mesh = SubResource("ArrayMesh_0wdjx")
-skeleton = NodePath("")
 
-[node name="motorhome_003_mirror_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_mirror_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=336448917]
 mesh = SubResource("ArrayMesh_o0jg1")
-skeleton = NodePath("")
 
-[node name="motorhome_003_panel_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_panel_light_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=847013775]
 mesh = SubResource("ArrayMesh_8y7y0")
-skeleton = NodePath("")
 
-[node name="motorhome_003_turnlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_turnlight_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=183679436]
 mesh = SubResource("ArrayMesh_uo0xf")
-skeleton = NodePath("")
 
-[node name="motorhome_003_number_plate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_number_plate_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1454762645]
 mesh = SubResource("ArrayMesh_lt7kd")
-skeleton = NodePath("")
 
-[node name="motorhome_003_chair_Extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_chair_Extra_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=1295093932]
 mesh = SubResource("ArrayMesh_d0mf6")
-skeleton = NodePath("")
 
-[node name="motorhome_003_chair_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003"]
+[node name="motorhome_003_chair_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/d4646b71864248c8aca980798b6b632c_fbx/RootNode/motorhome_003" unique_id=349653464]
 mesh = SubResource("ArrayMesh_q0wa6")
-skeleton = NodePath("")
 
-[node name="Sketchfab_Scene2" parent="." instance=ExtResource("2_mypsn")]
+[node name="Sketchfab_Scene2" parent="." unique_id=1709249065 instance=ExtResource("2_mypsn")]
 transform = Transform3D(-4.9927545, 0, -0.26908672, 0, 5, 0, 0.26908672, 0, -4.9927545, 0, 1.1006184, -23.742958)
 
-[node name="camera_pivot" type="Node3D" parent="."]
+[node name="camera_pivot" type="Node3D" parent="." unique_id=1746933254]
 
-[node name="Camera3D" type="Camera3D" parent="camera_pivot"]
+[node name="Camera3D" type="Camera3D" parent="camera_pivot" unique_id=1605005754]
 transform = Transform3D(1, 6.016187e-08, 1.0676388e-08, -6.016187e-08, 0.9389382, 0.34408578, 1.0676388e-08, -0.34408578, 0.9389382, 0, 2.888554, 7.124372)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_luko6")
-}
-autoplay = "rotation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2073909756]
+libraries/ = SubResource("AnimationLibrary_luko6")
+autoplay = &"rotation"
 speed_scale = 0.1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1707803894]
 environment = SubResource("Environment_0gqq8")
 camera_attributes = SubResource("CameraAttributesPractical_luko6")
 compositor = SubResource("Compositor_aomf1")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=17347894]
 transform = Transform3D(1, 0, 0, 0, -0.54852676, 0.83613294, 0, -0.83613294, -0.54852676, 0, 14.676858, 0)
 shadow_enabled = true

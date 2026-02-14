@@ -18,18 +18,18 @@ shader_parameter/use_lens_distortion = true
 shader_parameter/overlay_color = Color(1, 1, 1, 10)
 shader_parameter/lens_distortion_strength = 0.0
 
-[node name="Postprocess" type="Node2D"]
+[node name="Postprocess" type="Node2D" unique_id=1098869014]
 script = ExtResource("1_47bfh")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=580725624]
 layer = 5
 
-[node name="Image" type="Sprite2D" parent="CanvasLayer"]
+[node name="Image" type="Sprite2D" parent="CanvasLayer" unique_id=1164554664]
 visible = false
 position = Vector2(584, 334)
 texture = ExtResource("1_i0gwj")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=667324265]
 visible = false
 material = SubResource("ShaderMaterial_i0gwj")
 anchors_preset = 15

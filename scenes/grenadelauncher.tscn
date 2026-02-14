@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://c3b27jk5jd6ay"]
+[gd_scene format=4 uid="uid://c3b27jk5jd6ay"]
 
 [ext_resource type="PackedScene" uid="uid://dvc5hvynj5lcu" path="res://assets/Heavy Weapons Pack/grenadelauncher.blend" id="1_psw4d"]
 [ext_resource type="Texture2D" uid="uid://j2ci80t10loi" path="res://assets/Heavy Weapons Pack/gl.png" id="2_t12j7"]
@@ -104,8 +104,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_swdnx")
 
-[node name="grenadelauncher" instance=ExtResource("1_psw4d")]
+[node name="grenadelauncher" unique_id=555307872 instance=ExtResource("1_psw4d")]
 
-[node name="grenadeLauncher" parent="." index="0"]
+[node name="grenadeLauncher" parent="." index="0" unique_id=1282903259]
 layers = 2
 mesh = SubResource("ArrayMesh_bspg5")

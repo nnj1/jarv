@@ -116,7 +116,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2
 
 [node name="fuel_can_fuel_can_0" type="MeshInstance3D" parent="model/Sketchfab_model/fuel_can_fbx/RootNode/fuel_can" unique_id=2099306735]
 mesh = SubResource("ArrayMesh_bp6ny")
-skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1869580087]
 transform = Transform3D(0.02, 0, 0, 0, -8.7422775e-10, 0.02, 0, -0.02, -8.7422775e-10, 0, 0.5035166, -9.536743e-09)

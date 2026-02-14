@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://csseaenios2wy"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://csseaenios2wy"]
 
 [ext_resource type="Texture2D" uid="uid://bp67n77fjrd5b" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/clay.001_baseColor.jpeg" id="1_skh3d"]
 [ext_resource type="Texture2D" uid="uid://ocijrirortrt" path="res://assets/free_gmc_motorhome_reimagined_low_poly/textures/clay.001_metallicRoughness.png" id="2_j7lrh"]

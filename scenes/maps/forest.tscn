@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://d1tt713eukxd6" path="res://src/forest.gd" id="1_frkk5"]
 
-[node name="Forest" type="Node3D"]
+[node name="Forest" type="Node3D" unique_id=1786974304]
 script = ExtResource("1_frkk5")
 
-[node name="rv_spawn_point" type="Marker3D" parent="."]
+[node name="rv_spawn_point" type="Marker3D" parent="." unique_id=1335096148]
 
-[node name="player_spawn_point" type="Marker3D" parent="."]
+[node name="player_spawn_point" type="Marker3D" parent="." unique_id=967868321]

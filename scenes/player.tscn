@@ -574,7 +574,6 @@ transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0,
 [node name="defaultMaterial" type="MeshInstance3D" parent="gnome_model/Sketchfab_model/Collada visual scene group/gnome_low" unique_id=429511048]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.870377e-08, 0.14399183, -0.38877752)
 mesh = SubResource("ArrayMesh_dy6rv")
-skeleton = NodePath("")
 
 [node name="pill_model" type="MeshInstance3D" parent="." unique_id=473531121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1435446, 0)
@@ -654,7 +653,6 @@ visible = false
 [node name="grenadeLauncher" type="MeshInstance3D" parent="weapons/grenadelauncher" unique_id=1144497861]
 layers = 2
 mesh = SubResource("ArrayMesh_rjdcq")
-skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/grenadelauncher" unique_id=1563342543]
 root_node = NodePath("../..")
@@ -670,7 +668,6 @@ visible = false
 [node name="Cylinder" type="MeshInstance3D" parent="weapons/knife" unique_id=1928565311]
 layers = 2
 mesh = SubResource("ArrayMesh_vip6s")
-skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/knife" unique_id=1841676035]
 libraries/ = SubResource("AnimationLibrary_fulsm")
@@ -682,13 +679,11 @@ visible = false
 [node name="Cube" type="MeshInstance3D" parent="weapons/mauser" unique_id=1976480849]
 layers = 2
 mesh = SubResource("ArrayMesh_k4xca")
-skeleton = NodePath("")
 
 [node name="Cube_001" type="MeshInstance3D" parent="weapons/mauser" unique_id=432102005]
 transform = Transform3D(0.4047874, -0.0011695505, 0, 0.0011695505, 0.4047874, 0, 0, 0, 0.4047891, -0.213586, -0.44607335, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_uqeub")
-skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/mauser" unique_id=159718636]
 libraries/ = SubResource("AnimationLibrary_a8ls1")

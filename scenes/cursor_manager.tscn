@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://b5gq2l5g85bsy" path="res://src/cursor_manager.gd" id="1_frm4i"]
 
-[node name="CursorManager" type="Node"]
+[node name="CursorManager" type="Node" unique_id=2007639002]
 script = ExtResource("1_frm4i")
