@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://bqjc6x48apajk" path="res://assets/turret/mats/T_yellow.tres" id="4_6o6e8"]
 [ext_resource type="Material" uid="uid://cc0kb4nrqpawp" path="res://assets/turret/mats/T_D_yellow.tres" id="5_0lyr7"]
 [ext_resource type="Material" uid="uid://cvpemdli08p1g" path="res://assets/turret/mats/T_Grey.tres" id="6_ytss0"]
+[ext_resource type="AudioStream" uid="uid://8ffrnoy1hu5o" path="res://assets/nox/Electromagnetic_Neon_Light_Loop_Mono_Elektrousi_01.wav" id="7_uxfic"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7r7be"]
 
@@ -3854,8 +3855,8 @@ shadow_mesh = SubResource("ArrayMesh_bidq6")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cx17j"]
 direction = Vector3(0, 0, 1)
 spread = 0.0
-initial_velocity_min = 500.0
-initial_velocity_max = 500.0
+initial_velocity_min = 1500.0
+initial_velocity_max = 1500.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cx17j"]
@@ -3867,6 +3868,7 @@ emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_uxfic"]
 material = SubResource("StandardMaterial3D_cx17j")
+size = Vector3(1, 1, 100)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_kybca"]
 _surfaces = [{
@@ -4574,9 +4576,10 @@ collision_mask = 7
 
 [node name="LaserParticles" type="GPUParticles3D" parent="model/main_turret/hinge" unique_id=1431330738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6567516, 44.68097)
-amount = 5000
+amount = 100
 preprocess = 0.1
 fixed_fps = 0
+interpolate = false
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_cx17j")
 draw_pass_1 = SubResource("BoxMesh_uxfic")
@@ -4602,4 +4605,11 @@ monitorable = false
 shape = SubResource("SphereShape3D_156h6")
 
 [node name="idleSound" type="AudioStreamPlayer3D" parent="." unique_id=269507341]
+bus = &"Sounds"
+
+[node name="laserSound" type="AudioStreamPlayer3D" parent="." unique_id=682721901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2998161, 2.2267692)
+stream = ExtResource("7_uxfic")
+volume_db = 20.0
+max_db = 6.0
 bus = &"Sounds"

@@ -12,7 +12,9 @@ extends ItemBody
 
 @export_group("Laser Settings")
 @export var laser_enabled: bool = true
-@export var particle_speed: float = 1500.0 # Set high for "instant" growth/shrink
+@export var particle_speed: float = 1500.0 
+@export var max_particle_amount: int = 64 # Keep around 64-128 for long cylinders
+@export var penetration_depth: float = 0.3 
 
 @onready var turret_body: Node3D = $model/main_turret
 @onready var gun_pivot: Marker3D = $model/main_turret/hinge
@@ -31,10 +33,14 @@ func _ready() -> void:
 	body_scale = turret_body.scale
 	gun_scale = gun_pivot.scale
 	
-	# Sync RayCast length from Editor
+	# Prevent laser from hitting the turret's own collision
+	laser_ray.add_exception(self)
+	
+	# Sync RayCast length
 	ray_max_length = laser_ray.target_position.length()
 	
-	# Force particles to be high-speed
+	# Setup Particles
+	laser_particles.amount = max_particle_amount
 	var mat = laser_particles.process_material as ParticleProcessMaterial
 	if mat:
 		mat.initial_velocity_min = particle_speed
@@ -57,22 +63,35 @@ func _physics_process(delta: float) -> void:
 		_patrol(delta)
 
 func set_laser_state(active: bool) -> void:
+	if active:
+		if has_node("laserSound"): $laserSound.play()
+	else:
+		if has_node("laserSound"): $laserSound.stop()
+	
 	laser_enabled = active
 	laser_particles.emitting = active
 	laser_ray.enabled = active
+	
 	if not active:
 		laser_particles.restart()
 
 func _update_particle_laser() -> void:
+	var target_dist: float = ray_max_length
+	
 	if laser_ray.is_colliding():
 		var coll_point = laser_ray.get_collision_point()
-		var dist = laser_particles.global_position.distance_to(coll_point)
+		target_dist = laser_particles.global_position.distance_to(coll_point)
+		target_dist += penetration_depth
 		
-		# High speed (1500) results in a very low lifetime (e.g. 0.02s)
-		# This makes the beam feel physically attached to the target
-		laser_particles.lifetime = max(0.001, (dist - 0.05) / particle_speed)
-	else:
-		laser_particles.lifetime = ray_max_length / particle_speed
+	# 1. Smooth the lifetime
+	# Using lerp prevents the "jitter" that causes additive emission to flicker
+	var target_lifetime = max(0.01, target_dist / particle_speed)
+	laser_particles.lifetime = lerp(laser_particles.lifetime, target_lifetime, 0.4)
+	
+	# 2. Maintain high overlap for brightness
+	# We use a 0.5 minimum ratio so the beam never gets "thin" or "dim" when short
+	var ratio = target_dist / ray_max_length
+	laser_particles.amount_ratio = clamp(ratio, 0.5, 1.0)
 
 func _update_target_list() -> void:
 	targets = targets.filter(func(t): return is_instance_valid(t))
@@ -103,7 +122,7 @@ func _patrol(delta: float) -> void:
 func _track_target(delta: float) -> void:
 	var aim_pt = current_target.global_position + Vector3(0, aim_height_offset, 0)
 
-	# 1. Rotate Body (Y Axis) - Flip 180 for Positive Z model
+	# Rotate Body (Y Axis) - +Z Forward
 	var body_pos = aim_pt
 	body_pos.y = turret_body.global_position.y
 	var b_dir = (body_pos - turret_body.global_position).normalized()
@@ -113,7 +132,7 @@ func _track_target(delta: float) -> void:
 		turret_body.global_basis = Basis(cur_b_quat.slerp(target_basis_y.get_rotation_quaternion(), delta * turn_speed))
 		turret_body.scale = body_scale
 
-	# 2. Rotate Hinge (X Axis) - Flip 180 for Positive Z model
+	# Rotate Hinge (X Axis) - +Z Forward
 	var g_dir = (aim_pt - gun_pivot.global_position).normalized()
 	if !g_dir.is_zero_approx():
 		var target_basis_x = Basis.looking_at(g_dir, Vector3.UP).rotated(Vector3.UP, PI)
