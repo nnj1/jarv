@@ -4587,3 +4587,6 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=451759430]
 shape = SubResource("SphereShape3D_156h6")
+
+[node name="idleSound" type="AudioStreamPlayer3D" parent="." unique_id=269507341]
+bus = &"Sounds"
