@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cc0kb4nrqpawp"]
+
+[resource]
+resource_name = "T_D_yellow"
+cull_mode = 2
+albedo_color = Color(0.5582763, 0.5236594, 0.22626984, 1)
+roughness = 0.6
