@@ -1022,7 +1022,7 @@ properties/3/path = NodePath("Sketchfab_Scene/AnimationPlayer:speed_scale")
 properties/3/spawn = true
 properties/3/replication_mode = 2
 
-[node name="Bear" type="RigidBody3D" unique_id=565398934]
+[node name="Bear" type="RigidBody3D" unique_id=565398934 groups=["enemies"]]
 collision_mask = 15
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_vhn86")

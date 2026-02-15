@@ -33,6 +33,10 @@ CursorManager="*res://scenes/cursor_manager.tscn"
 
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+enemies=""
+
 [gui]
 
 theme/custom_font="uid://bbyybor08ktnd"
